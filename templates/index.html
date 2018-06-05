@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block title %}
+    <title>{{ category.name or "busybee"}}{% if view.range %} | {{ view.range }}{% endif %}</title>
+{% endblock %}
+
+{% set content = view(entry_type_not='sidebar',count=20) %}
+
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="style.css" />
+{% endblock %}
+    <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+
+    {% if category.parent %}
+    <link rel="up" href="{{category.parent.link}}" />
+    {% endif %}
+    {% if content.previous %}
+    <link rel="previous" href="{{content.previous.link}}" />
+    {% endif %}
+    {% if content.next %}
+    <link rel="next" href="{{content.next.link}}" />
+    {% endif %}
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+</head>
+
+<body id="{{ template.name }}">
+
+
+<div id="container">
+    {% block banner %}
+    <div id="banner">
+        <h1>{{ category.name or "busybee" }}</h1>
+        {% if category.description %}
+        <div id="description">{{category.description}}</div>
+        {% endif %}
+    </div>
+    {% endblock %}
+
+    {% block navigation %}
+    <div id="nav">
+        <h2>Navigation</h2>
+        <ul class="breadcrumb">
+            {% for cat in category.breadcrumb[:-1] %}
+            <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+            {% endfor %}
+            <li class="here">
+                {% if view.range %}<a href="{{category.link}}">{{category.name}}</a>
+                {% else %}{{category.name}}{% endif %}
+            </li>
+        </ul>
+
+        {% if category.subcats %}
+        <ul class="subcats">
+            {% for subcat in category.subcats %}
+            <li><a href="{{subcat.link}}">{{subcat.name}}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% set sidebar = get_view(category=category,entry_type='sidebar',order='title') %}
+        {% if sidebar.entries %}
+        <ul class="sidebar">
+            {% for entry in sidebar.entries %}
+            <li><a href="{{entry.link}}">{{entry.title}}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endblock %}
+
+    {% block content %}
+    <div id="entries">
+
+        {% if content.previous or content.next %}
+        <div class="nav topnav">
+            {% if content.previous %}
+            <span class="prev"><a href="{{content.previous}}">Previous page</a></span>
+            {% endif %}
+            &nbsp;
+            {% if content.next %}
+            <span class="next"><a href="{{content.next}}">Next page</a></span>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% block entries %}
+        {% for entry in content.entries %}
+        <div class="entry">
+            <div class="heading">
+                {% block heading scoped %}
+                <h2><a href="{{entry.link}}">{{entry.title}}</a></h2>
+                <div class="posted">
+                    <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
+                    <span class="time">{{entry.date.format('h:mm A')}}</span>
+                    <span class="ago">{{entry.date.humanize()}}</span>
+                    {% if entry.author %}
+                    <span class="author">by {{entry.author}}</span>
+                    {% endif %}
+                </div>
+                {% endblock %}
+            </div>
+
+            <div class="content">
+                {% block entrybody scoped %}
+                {% if entry.body %}
+                <div class="body">
+                {{ entry.body(max_width=240,
+                    max_height=240,
+                    link=entry.link,
+                    resize="fill",
+                    count=1,
+                    div_class="thumb") }}
+                </div>
+                {% endif %}
+
+                {% if entry.more %}
+                <a class="readmore" href="{{ entry.link }}#more">Read more...</a>
+                {% endif %}
+
+                {% endblock %}
+            </div>
+        </div>
+        {% endfor %}
+        {% endblock %}
+
+        {% if content.previous or content.next %}
+        <div class="nav bottomnav">
+            {% if content.previous %}
+            <span class="prev"><a href="{{content.previous}}">Previous page</a></span>
+            {% endif %}
+            &nbsp;
+            {% if content.next %}
+            <span class="next"><a href="{{content.next}}">Next page</a></span>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="expand"></div>
+    </div>
+    {% endblock %}
+
+</div>
+<script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
+
+</body></html>

@@ -1,0 +1,523 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: black;
+    font-family: helvetica,arial,sans-serif;
+}
+
+#banner {
+    text-align: center;
+}
+
+#banner h1 a {
+    width: auto;
+    display: inline-block;
+    margin: 1em;
+    padding: 1em 2em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: #ff7;
+    border: solid black 1px;
+    border-radius: 3em;
+    color: #036;
+    text-shadow: 0 0 4px white, 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white;
+    box-shadow: 0 4px 7px rgba(0,0,0,0.5);
+    text-decoration: none;
+
+    /*{{image('_logo.jpg').get_css_background(uncomment=True,width=640,quality=35)}}*/
+}
+
+a:link {
+    color: #000;
+}
+a:visited {
+    color: #333;
+}
+a:hover {
+    color: #700;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#comics, #entries .Comic, #entries .newchapter {
+    text-align: center;
+}
+
+#comics .comic, #entries .entry {
+    clear: both;
+    margin: 1em;
+}
+
+#comics .heading, #entries .heading {
+    margin: 0 1em 1em;
+    position: relative;
+    background: #eee;
+    border-radius: 1em;
+}
+
+#comics .heading h2 {
+    margin: 0;
+}
+
+.posted {
+    font-size: small;
+    position: absolute;
+    top: 0;
+    right: 1em;
+    font-weight: normal;
+    color: #333;
+}
+
+.posted a {
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin: 1px 2px;
+    padding: 1px 2px;
+    border: dotted rgba(0,0,0,0.5) 1px;
+    border-radius: 4px;
+    background: #ff9;
+}
+
+.posted a.anchor {
+    font-weight: lighter;
+    font-style: italic;
+    color: rgba(0,0,0,0.5);
+    padding: 0 2px;
+}
+.posted a:hover {
+    color: #700;
+    background: white;
+    border: solid black 1px;
+}
+
+.posted .ago { font-weight: normal; }
+.posted .ago:before { content: '('; }
+.posted .ago:after { content: ')'; }
+
+#news, #entries .News {
+    text-align: left;
+    background: #acf;
+    border: solid black 1px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1ex;
+}
+#news h2 {
+    background: #247;
+    color: white;
+    text-shadow: black 0 0 2px;
+    margin: 0;
+    padding: 0 12px;
+}
+
+#news h2 span {
+    font-size: small;
+}
+
+#news .entry {
+    clear: both;
+    margin: 0;
+    padding: 0;
+}
+
+#news .heading {
+    background: #68b;
+    color: black;
+    border-bottom: double #047 3px;
+    border-top: solid #047 1px;
+    position: relative;
+    margin: 0;
+    padding: 0 12px;
+}
+
+#news h3 {
+    margin: 0;
+    padding: 0;
+}
+
+#news .heading .posted {
+    font-size: small;
+    position: absolute;
+    right: 1ex;
+    top: 0.1ex;
+}
+
+#news .content {
+    padding: 0 12px;
+}
+
+.commentlink a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: small;
+}
+
+#news .commentlink a {
+    color: black;
+    font-weight: bold;
+}
+
+#news .commentlink a {
+    display: block;
+    float: right;
+    font-size: x-small;
+    margin: 4px 1em;
+    padding: 0.5ex 1em;
+    background: rgba(34,68,119,0.5);
+    border-radius: 2em;
+    border: solid rgba(34,68,119,0.75) 1px;
+}
+
+#news .commentlink a:hover {
+    background: rgba(34,68,119,1);
+    color: white;
+    border: solid rgba(255,255,255,0.75) 1px;
+}
+
+#news .more {
+    font-style: italic;
+    font-size: small;
+}
+
+#container {
+    min-height: 100vh;
+}
+
+#comics .more, .Comic .more, .newchapter .more {
+    margin: 1ex 5em 1em;
+    padding: 1ex 1em;
+    background: #cfc;
+    border: solid black 1px;
+    text-align: left;
+    border-radius: 1em;
+}
+
+#nav_page_mini {
+    position: absolute;
+    left: 0;
+    z-index: 100;
+}
+
+ul.nav_bar {
+    display: flex;
+    list-style-type: none;
+    margin: 0 1em;
+    padding: 0;
+    vertical-align: middle;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.nav_bar li {
+    display: inline;
+    margin: 0;
+    padding: 0 2px;
+    vertical-align: middle;
+    font-size: 0;
+}
+
+ul.nav_bar li img {
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+span.error {
+    background: #ff9;
+    color: #700;
+}
+
+
+#comments {
+    margin: 1em 1ex;
+    border-radius: 1em;
+    border: solid black 1px;
+    overflow: hidden;
+}
+#comments h2 {
+    margin: 0;
+    padding: 0.5ex 16px 0;
+    background: #704;
+    color: white;
+}
+#comments #disqus_thread {
+    border-top: double #704 3px;
+    padding: 1ex;
+}
+
+#entries .News .heading {
+    margin: 0;
+    padding: 0;
+    background: #247;
+    color: white;
+    border-radius: 0;
+}
+
+#entries .News .heading h2 {
+    margin: 0;
+    padding: 0 16px;
+}
+
+#entries .News .heading .posted {
+    color: white;
+}
+
+#entries .News .content {
+    padding: 0 16px;
+}
+
+#nav_series {
+    margin: 0 1em 1em;
+    text-align: center;
+}
+
+#nav_series a {
+    text-decoration: none;
+}
+#nav_series a:hover {
+    color: white;
+    background: black;
+}
+
+#nav_series >ul {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul.breadcrumb li {
+    display: inline;
+    margin: 0;
+}
+ul.breadcrumb li a {
+    margin: 0;
+    padding: 1ex;
+    background: #ccc;
+    text-decoration: none;
+    border: solid black 1px;
+}
+
+#nav_series >ul >li >a, #nav_series >ul >li >span {
+    display: inline-block;
+    padding: 1ex;
+}
+#nav_series >ul, #nav_series >ul >li {
+    display: inline;
+}
+
+#nav_series >ul >li.root >a {
+    border-radius: 2em 0 0 2em;
+    color: white;
+    background: black;
+    padding-left: 1em;
+}
+#nav_series ul.breadcrumb li.root a:hover {
+    color: black;
+    background: #7ff;
+}
+#nav_series ul.breadcrumb li.root span { font-weight: bold; }
+
+ul.breadcrumb li.here span {
+    background: white;
+    border: solid black 1px;
+}
+
+ul.subcats {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.subcats >li {
+    margin: 0;
+    padding: 0 0 1ex;
+    position: relative;
+}
+
+ul.subcats >li >a {
+    background: #ccc;
+    color: black;
+    margin: 0;
+    padding: 1ex;
+    border: solid black 1px;
+}
+
+ul.subcats >li div {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    left: 0;
+    width: 500%;
+    text-align: left;
+}
+ul.subcats >li:hover >div {
+    display: block;
+}
+ul.subcats >li >div >ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    border: solid black 2px;
+    border-radius: 0 1ex 1ex 1ex;
+    overflow: hidden;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.25);
+}
+
+#nav_series ul.subcats >li >div >ul li a {
+    display: block;
+    background: #ffc;
+    padding: 1ex 1em;
+    border-top: solid black 1px;
+    color: black;
+}
+
+#nav_series ul.subcats >li >div >ul li:first-child a {
+    border: none;
+}
+
+#nav_series ul.subcats >li >div >ul li a:hover {
+    background: black;
+    color: white;
+}
+
+#nav_series a.archive, #nav_series a.comics {
+    padding: 1ex 1em 1ex 1ex;
+    border-radius: 0 1em 1em 0;
+    border: solid black 1px;
+    color: black;
+    font-weight: bold;
+}
+
+#nav_series a.archive:hover, #nav_series a.comics:hover {
+    color: white;
+    background: black;
+}
+
+#nav_series a.archive {
+    background: #cfc;
+}
+
+#nav_series a.comics {
+    background: #ffc;
+}
+
+#archive #content {
+    background: #cfc;
+    margin: 1em;
+    border: solid black 1px;
+    border-radius: 1ex;
+    overflow: hidden;
+}
+
+#archive #content >div {
+    padding: 0 16px;
+}
+
+#archive h2 {
+    background: #074;
+    color: white;
+    padding: 0 16px;
+    margin: 0;
+}
+
+#archive h3 {
+    background: #7f7;
+    padding: 0 16px;
+    margin: 0;
+    border-bottom: double black 3px;
+}
+
+#entry #nav_series .breadcrumb:before {
+    content: "Back to browsing: ";
+    padding: 0.5ex;
+    font-size: small;
+    display: inline-block;
+}
+#entry #nav_series .breadcrumb a {
+    padding: 0.5ex 1em;
+    font-size: small;
+    border-radius: 1.5em;
+    border: none;
+    font-weight: bold;
+}
+
+#archive li.subseries p { display: inline; }
+#archive li.News { font-style: italic; font-size: small;}
+#archive li.News a { background: #acf; }
+#archive li.News a:before { content: 'News: '; font-weight: bold;}
+
+#archive li.Recap a { background: #ff7; }
+#archive li.Recap a:before { content: 'Recap: '; font-weight: bold; }
+
+#archive li span.posted { position: static; font-size: small; }
+
+#archive #content >ul { padding-left: 1em; }
+
+@media screen and (max-width:720px) {
+    .posted {
+        position: static;
+        float: right;
+    }
+
+    #nav_page_mini {
+        position: static;
+        float: left;
+    }
+}
+
+#support {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background: #cfc;
+    border-bottom-right-radius: 1em;
+    border: solid black 1px;
+    border-style: none solid solid none;
+}
+
+#support h2 {
+    background: #074;
+    color: white;
+    margin: 0;
+    padding: 4px 16px;
+    border-bottom: solid black 1px;
+    font-size: medium;
+}
+
+#support ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 4px 16px 4px;
+    font-size: small;
+}
+
+#support ul li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    margin-left: 1ex;
+    padding-left: 1ex;
+    border-left: solid black 1px;
+}
+
+#support ul li:first-child {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+}

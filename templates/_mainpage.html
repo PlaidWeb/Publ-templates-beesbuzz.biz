@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>busybee</title>
+
+    {% set content = view(entry_type_not='sidebar',count=20) %}
+    <link rel="stylesheet" href="index.css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+</head>
+<body id="{{ template.name }}">
+
+    <h1><span>busy</span>bee</h1>
+
+    <div id="links">
+        {%- for entry in view(entry_type='sidebar',order='oldest').entries -%}
+        <a href="{{entry.link}}"
+            title="{{entry.title}}"
+            class="{{entry.icon or entry.title.lower()}}"><span>
+            {{entry.title}}
+        </span></a>
+        {%- endfor -%}
+    </div>
+
+    <div id="content">
+    <ul id="categories">
+        {% for cat in category.subcats %}
+        <li class="{{cat.basename}}"><a href="{{cat.link}}"><div>{{cat.name}}</div></a></li>
+        {% endfor %}
+
+        <li class="store"><a href="https://biz.beesbuzz.biz" title="Buy my stuff!"><div>Store</div></a></li>
+    </ul>
+
+    <div id="entries">
+        <h2>Latest things</h2>
+        <ul>
+            {% for entry in view(recurse=True,order='newest',count=5,entry_type_not='sidebar').entries %}
+            <li>{{entry.category.name}}: <a href="{{entry.link}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
+            {% endfor %}
+        </ul>
+
+        <ul id="siteinfo">
+            <li><a href="/about">About/contact</a></li>
+            <li><a href="/legal">Legal/privacy</a></li>
+            <li><a href="/sitemap">Site map</a></li>
+        </ul>
+    </div>
+    </div>
+
+
+</body></html>

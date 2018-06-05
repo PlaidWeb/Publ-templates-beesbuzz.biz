@@ -1,0 +1,188 @@
+#container {
+    margin: 3em;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+#container h1 {
+    margin: 0;
+    padding: 1ex;
+}
+
+#description p {
+    display: inline;
+}
+
+#banner {
+    text-align: center;
+    position: relative;
+}
+
+
+#nav h2 {
+    display: none;
+}
+
+.entry {
+    clear: both;
+}
+
+.entry .heading {
+    clear: both;
+}
+
+.entry h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.entry h2 a {
+    display: block;
+    height: 100%;
+}
+
+.entry .heading {
+    position: relative;
+}
+
+.entry .heading .posted {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: small;
+}
+
+.entry .content {
+    margin: 0 1em 1em;
+}
+
+.inset-right {
+    margin: 1em;
+    float: right;
+}
+
+.inset-left {
+    margin: 1em;
+    float: left;
+}
+
+.entry .posted .ago:before {
+    content: '(';
+}
+.entry .posted .ago:after {
+    content: ')';
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#entries .nav {
+    position: relative;
+    text-align: center;
+    font-size: small;
+}
+
+#entries .nav .prev {
+    float: left;
+}
+
+#entries .nav .next {
+    float: right;
+}
+
+#entries .nav a {
+    white-space: nowrap;
+}
+
+.expand {
+    clear: both;
+}
+
+#nav ul {
+    list-style-type: none;
+    font-size: small;
+    margin: 0;
+    padding-left: 1ex;
+    display: inline-block;
+}
+
+#nav li {
+    display: inline-block;
+}
+
+#nav .breadcrumb li.here {
+    font-weight: bold;
+}
+
+#nav .breadcrumb li:before {
+    content: '» ';
+    margin-left: 1ex;
+}
+
+#nav .breadcrumb li:first-child:before {
+    content: none;
+}
+
+#nav .subcats {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0; padding: 0;
+}
+
+a.readmore {
+    text-decoration: none;
+    font-size: small;
+    font-style: italic;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    #container {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .inset-left, .inset-right {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    .entry .content {
+        padding: 1ex;
+    }
+
+    .entry .posted {
+        padding: 0px 1ex;
+        font-size: x-small;
+    }
+
+    .entry .posted .time {
+        display: none;
+    }
+
+    #entries .nav .prev, #entries .nav .next {
+        display: inline-block;
+        position: static;
+        margin: 0 2em;
+    }
+}
+
+#disqus_thread {
+    padding: 1em;
+}
+

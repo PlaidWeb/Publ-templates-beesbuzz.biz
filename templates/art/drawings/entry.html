@@ -1,0 +1,27 @@
+{% extends '/entry.html' %}
+
+{% block entrybody %}
+{% if entry.body %}
+<div class="body">
+    {{entry.body(
+        div_class='images',
+        gallery_id=entry.uuid,
+        width=960,
+        height=960,
+        resize="fit")}}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block entrymore %}
+{% if entry.more %}
+<div class="more"><a name="more"></a>
+    {{entry.more(
+        div_class='images',
+        gallery_id=entry.uuid,
+        width=960,
+        height=960,
+        resize="fit")}}
+</div>
+{% endif %}
+{% endblock %}

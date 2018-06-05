@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% set recaps = view(entry_type='Recap',order='oldest',recurse=True) %}
+<html lang="en">
+<head>
+    <title>{{category.name}}: Full recap</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+
+    <link rel="up" href="{{category.link}}" />
+
+    {% for entry in recaps.entries %}
+    {{ entry.card(width=480,height=360,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
+    {% endfor %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@fluffy" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+</head>
+<body id="{{ template.name }}">
+
+<div id="container">
+    <div id="banner">
+        <h1>busybee comics{{ ': ' ~ category.name if category.basename != 'comics' }}</h1>
+    </div>
+
+        <div id="nav_series">
+            <ul class="breadcrumb">
+                <li class="root"><a href="/">busy<span>bee</span></a></li>
+                {% for cat in category.breadcrumb[1:-1] %}
+                <li class="parent"><a href="{{view.link(category=cat)}}">{{cat.name}}</a></li>
+                {% endfor %}
+                <li class="here"><span>{{category.name}}</span></li>
+            </ul>
+
+            {% if category.subcats %}
+            <ul class="subcats">
+                {% for subcat in category.subcats recursive %}
+                <li><a href="{{subcat.link}}">{{subcat.name}}</a>
+                    {% if subcat.subcats %}
+                    <div><ul>{{ loop(subcat.subcats) }}</ul></div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <ul class="tail"><li>
+                <a class="archive" href="{{category.link(template='archive')}}">About</a>
+            </li></ul>
+        </div>
+
+
+    <div id="entries">
+
+        {% for entry in recaps.entries %}
+        <div class="{{ entry.entry_type if entry.entry_type else 'Comic' }}">
+            <div class="heading">
+                {% set chapterStart = entry.previous(entry_type='newchapter') %}
+                {% if chapterStart %}
+                <h2><a href="{{chapterStart.archive(category=category)}}">{{ entry.title }}</a></h2>
+                {% endif %}
+            </div>
+
+            <div class="commentlink">
+                <a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+            </div>
+
+
+            <div class="content">
+                {% if entry.body %}
+                <div id="preamble" class="body">
+                    {{entry.body(
+                        div_class='images',
+                        scale=2,
+                        width=320)}}
+                </div>
+                {% endif %}
+
+                {% if entry.more %}
+                <div id="more" class="more">
+                    {{entry.more(
+                        div_class='images',
+                        width=320,
+                        height=320)}}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
+</body></html>

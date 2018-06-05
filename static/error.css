@@ -1,0 +1,47 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: white;
+    color: black;
+}
+
+h1 {
+    font-size: 200%;
+    color: #700;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    text-shadow: white 0px 0px 5px;
+    font-family: monospace;
+}
+
+img {
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+#errorinfo {
+    position: fixed;
+    bottom: 1ex;
+    right: 1ex;
+    font-size: small;
+    font-family: monospace;
+    border: dashed black 1px;
+    background: #ccc;
+    padding: 1em;
+}
+
+#errorinfo >ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#errorinfo li span {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{category.name}}: {{ entry.title(markup=False) }}</title>
+
+    <link rel="stylesheet" href="{{ entry.stylesheet or 'style.css' }}">
+    <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+
+    <link rel="up" href="{{category.link}}" />
+    {% if entry.previous %}
+    <link rel="previous" href="{{entry.previous.link}}" />
+    {% endif %}
+    {% if entry.next %}
+    <link rel="next" href="{{entry.next.link}}" />
+    {% endif %}
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+    {{ entry.card(width=800,height=800) }}
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@fluffy" />
+</head>
+<body id="{{ template.name }}">
+
+<div id="container">
+    <div id="banner">
+        <h1>{{category.name}}</h1>
+    </div>
+
+    <div id="entries">
+
+        <div class="nav topnav">
+            {% set prev = entry.previous(entry_type_not='sidebar') %}
+            {% if prev %}
+            <span class="prev"><a href="{{prev.link}}">{{prev.title}}</a></span>
+            {% endif %}
+            {% set next = entry.next(entry_type_not='sidebar') %}
+            {% if next %}
+            <span class="next"><a href="{{next.link}}">{{next.title}}</a></span>
+            {% endif %}
+
+            <span class="up"><a href="{{category.link}}">Back to {{entry.category.name}}</a></span>
+        </div>
+
+        <div class="entry">
+            <div class="heading">
+                {% block heading %}
+                <h2>{{entry.title}}</h2>
+                <div class="posted">
+                    <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
+                    <span class="time">{{entry.date.format('h:mm A')}}</span>
+                    <span class="ago">{{entry.date.humanize()}}</span>
+                    {% if entry.author %}
+                    <span class="author">by {{entry.author}}</span>
+                    {% endif %}
+                </div>
+                {% endblock %}
+            </div>
+
+            <div class="content">
+                {% block entrybody %}
+                {% if entry.body %}
+                <div id="preamble" class="body">
+                    {{entry.body(gallery_id=entry.uuid,
+                        div_class='images',
+                        width=960,
+                        height=960,
+                        fullsize_width=3840,
+                        fullsize_height=2160,
+                        fullsize_quality=35)}}
+                </div>
+                {% endif %}
+                {% endblock %}
+
+                {% block entrymore %}
+                {% if entry.more %}
+                <div id="more">
+                    {{entry.more(gallery_id=entry.uuid,
+                        div_class='images',
+                        width=960,
+                        height=960,
+                        fullsize_width=3840,
+                        fullsize_height=2160,
+                        fullsize_quality=35)}}
+                </div>
+                {% endif %}
+                {% endblock %}
+            </div>
+
+            {% block comments %}
+            <div class="comments" id="comments">
+                <div class="heading">
+                    <h2>Comments</h2>
+                </div>
+
+                {% include '_comment_thread.html' %}
+            </div>
+            {% endblock %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
+</body></html>

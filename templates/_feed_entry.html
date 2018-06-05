@@ -1,0 +1,21 @@
+{{entry.body(
+    max_width=640,
+    max_height=640,
+    link=entry.link(absolute=True),
+    resize="fit",
+    div_class='images',
+    absolute=True,
+)}}
+
+{% if entry.get('spoilers') %}
+<a href="{{entry.link(absolute=True)}}">Read more...</a>
+{% else %}
+{{entry.more(
+    max_width=640,
+    max_height=640,
+    link=entry.link(absolute=True),
+    resize="fit",
+    div_class='images',
+    absolute=True,
+)}}
+{% endif %}

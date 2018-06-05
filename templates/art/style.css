@@ -1,0 +1,223 @@
+@import url('{{static("bubbly.css")}}');
+
+html {
+    background: #222;
+    color: white;
+    font-family: "helvetica", "lucida sans", "arial", "sans-serif";
+}
+
+
+h1 {
+    color: white;
+    background: black;
+    padding: 0.2ex 0;
+}
+
+h1 a,
+h2 a {
+    text-decoration: none;
+}
+
+
+body#entry .intro {
+    display: block;
+    background: #333;
+    color: white;
+    padding: 0.5ex;
+    margin: 0px 0px 1ex;
+}
+
+#container {
+    background: white;
+    color: black;
+    box-shadow: 0px 0px 10px #f37;
+}
+
+#entries .heading {
+    color: white;
+    background: #777;
+    text-shadow: 0px 0px 3px black,
+    1px 1px 1px black,
+    1px -1px 1px black,
+    -1px 1px 1px black,
+    -1px -1px 1px black;
+}
+
+#entries .heading .posted {
+    position: absolute;
+    bottom: -1ex;
+    right: 1em;
+    font-size: small;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.5ex;
+    border: black 1px;
+    border-radius: 1ex;
+}
+
+.posted .time {
+    display: none;
+}
+
+#entries h2 {
+    margin: 0 0 1ex;
+    padding: 0.5ex;
+}
+
+#entries h2 a {
+    display: block;
+    color: white;
+    padding: 0;
+}
+
+a:link {
+    color: #c00;
+}
+
+a:visited {
+    color: #733;
+}
+
+a:hover {
+    color: #f00;
+}
+
+a:active {
+    color: #c00;
+}
+
+h1 a,
+h1 a:visited {
+    color: white;
+}
+
+.images {
+    text-align: center;
+    clear: both;
+}
+
+.images img,
+.thumb img {
+    vertical-align: middle;
+}
+
+.images img {
+    margin: 1ex;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+
+.thumb img {
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.25);
+    border: solid rgba(128,128,128,0.5) 1px
+}
+
+#index .thumb {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+
+.topnav,
+.bottomnav {
+    margin: .5ex 0;
+    font-size: small;
+    position: relative;
+    text-align: center;
+}
+
+.topnav a,
+.bottomnav a {
+    text-decoration: none;
+}
+
+.topnav .prev,
+.bottomnav .prev {
+    position: absolute;
+    left: 1em;
+}
+
+.topnav .prev:before,
+.bottomnav .prev:before {
+    content: "← ";
+}
+
+.topnav .next,
+.bottomnav .next {
+    position: absolute;
+    right: 1em;
+}
+
+.topnav .next:after,
+.bottomnav .next:after {
+    content: " →";
+}
+
+.topnav,
+.bottomnav {
+    clear: both;
+}
+
+
+.bottomnav {
+    border: none;
+    border-top: solid #700 1px;
+}
+
+#description {
+    text-align: center;
+    font-size: small;
+    font-style: italic;
+    border-bottom: solid black 1px;
+    margin: 0;
+    padding: 0 1em;
+    background: #ccc;
+}
+
+#nav h2 {
+    display: none;
+}
+
+#nav {
+    border-bottom: solid #300 1px;
+    vertical-align: middle;
+}
+
+#nav .subcats {
+    vertical-align: middle;
+    border-left: dotted black 1px;
+    margin-left: 1em;
+    padding-left: 1em;
+}
+
+#nav .subcats a {
+    border: dotted #777 1px;
+    color: #333;
+    background: #eee;
+    display: inline-block;
+    margin: 1ex 0 1ex;
+    padding: 0.5ex;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: small;
+    border-radius: 1ex;
+}
+
+#nav .subcats a:hover {
+    border: solid white 1px;
+    color: white;
+    background: #333;
+}
+
+.entry {
+    position: relative;
+    overflow: hidden;
+}
+.entry .readmore {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    font-style: italic;
+}
+
+.entry .readmore a {
+    text-decoration: none;
+}
+

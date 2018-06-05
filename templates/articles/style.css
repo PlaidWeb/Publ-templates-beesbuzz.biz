@@ -1,0 +1,140 @@
+@import url('{{static("pygments.default.css")}}');
+@import url('{{static("bubbly.css")}}');
+
+body {
+    background: #ccc;
+}
+
+a { color: #900; }
+a:visited { color: #833; }
+a:hover { color: #c11; }
+
+#container {
+    border: solid black 1px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+    background: white;
+    color: black;
+}
+
+#container #banner {
+    background: #007;
+    color: white;
+}
+
+#description {
+    position: absolute;
+    right: 1ex;
+    bottom: 0;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+}
+
+#container h1 a,
+#container h1 a:visited {
+    color: white;
+}
+
+.entry .heading {
+    background: #09c;
+    color: white;
+    box-shadow: 0 5px 3px rgba(0,0,0,0.2);
+    text-align: center;
+    margin-top: 1ex;
+}
+
+#index .thumb img {
+    margin-bottom: 1em;
+    box-shadow: 4px 4px 6px rgba(0,0,0,0.25);
+}
+
+.entry .heading h2 a,
+.entry .heading h2 a:visited,
+#entry .entry .heading h2 {
+    color: white;
+    height: 100%;
+    padding: 1ex 0;
+    margin-bottom: 1em;
+}
+
+.entry h2 a:hover {
+    background: #05a;
+}
+
+.entry .heading .posted {
+    background: rgba(255,255,255,0.3);
+    padding: 1ex;
+    border-top-left-radius: 5px;
+}
+
+#index .entry .body img {
+    float: left;
+    margin-right: 1em;
+}
+
+#entry .images {
+    text-align: center;
+}
+
+#entry .images img {
+    margin: 1ex;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 6px rgba(0,0,0,0.25);
+}
+
+.entry .posted .ago {
+    color: rgba(255,255,255,0.8);
+    font-style: italic;
+}
+
+p {
+    text-align: justify;
+    hyphens: auto;
+}
+
+iframe {
+    max-width: 100%;
+    display: inline-block;
+}
+
+#nav .sidebar {
+    float: right;
+    padding-right: 2em;
+}
+
+#entries .nav {
+    padding: 1em;
+}
+
+#entries .nav a {
+    background: #074;
+    border-radius: 1.2em;
+    padding: 0.1em 1em 0.3em;
+    margin: 1ex;
+    color: white;
+    font-family: helvetica, sans-serif;
+}
+
+#entries .nav a:hover {
+    background: #470;
+}
+
+#entries .nav a, #entries .nav a:visited {
+    color: white;
+}
+
+#entries .nav .prev a:before {
+    content: '« ';
+    font-weight: bold;
+}
+
+#entries .nav .next a:after {
+    content: ' »';
+    font-weight: bold;
+}
+
+blockquote {
+    border-left: solid rgba(0,0,0,0.25) 3px;
+    margin-left: 2em;
+    padding-left: 1.5ex;
+}
+

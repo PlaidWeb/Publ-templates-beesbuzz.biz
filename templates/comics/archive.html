@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="{{ static('favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ static('favicon.png') }}" />
+    <title>busybee comics | {{category.name}} archive</title>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+</head>
+<body id="archive">
+
+    <div id="container">
+        <div id="banner">
+            <h1>busybee comics: {{category.name if category.basename != 'comics'}} archive</h1>
+        </div>
+
+        <div id="nav_series">
+            <ul class="breadcrumb">
+                <li class="root"><a href="/">busy<span>bee</span></a></li>
+                {% for cat in category.breadcrumb[1:-1] %}
+                <li class="parent"><a href="{{view.link(category=cat,template=template)}}">{{cat.name}}</a></li>
+                {% endfor %}
+                <li class="here"><span>{{category.name}}</span></li>
+            </ul>
+
+            {% if category.subcats %}
+            <ul class="subcats">
+                {% for subcat in category.subcats recursive %}
+                <li><a href="{{subcat.link(template=template)}}">{{subcat.name}}</a>
+                    {% if subcat.subcats %}
+                    <div><ul>{{ loop(subcat.subcats) }}</ul></div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <ul class="tail"><li>
+                <a class="comics" href="{{category.link}}">Comics</a>
+            </li></ul>
+        </div>
+
+        <div id="content">
+            <h2>About This Comic</h2>
+
+            {% set abouts = view(entry_type='About',recurse=True,order='title') %}
+            {% if abouts.entries or category.description %}
+            <h3>Information</h3>
+            <div>
+            {{category.description}}
+            <ul>
+                {% for entry in abouts.entries %}
+                <li><a href="{{entry.link}}">{{entry.title}}</a>{{ ': '~entry.description if entry.description }}</li>
+                {% endfor %}
+            </ul>
+            </div>
+            {% endif %}
+
+
+            {% if category.breadcrumb[1:-1] %}
+            <h3>Higher Levels</h3>
+            <div>
+            <ul>
+                {% for cat in category.breadcrumb[1:-1] %}
+                <li class="subseries"><a href="{{cat.link(template=template)}}">{{cat.name}}</a>{% if cat.description %}: {{cat.description}}{% endif %}</li>
+                {% endfor %}
+            </ul>
+            </div>
+            {% endif %}
+
+            {% if category.subcats %}
+            <h3>Sub-series</h3>
+            <div>
+            <ul>
+                {% for subcat in category.subcats recursive %}
+                <li class="subseries"><a href="{{subcat.link(template=template)}}">{{subcat.name}}</a>{% if subcat.description %}: {{subcat.description}}{% endif %}
+
+                    {% if subcat.subcats %}
+                    <div><ul>{{ loop(subcat.subcats) }}</ul></div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            </div>
+            {% endif %}
+
+            <h3>Entries</h3>
+            <div>
+            <ul>
+                {% for entry in view(order='oldest').entries %}
+                <li class="{{entry.entry_type or 'Comic'}}">
+                    <a href="{{entry.link if entry.entry_type in ['News','Recap'] else entry.archive}}">{{entry.title}}</a> <span class="posted">({{entry.date.format('YYYY/MM/DD')}})</span>
+                </li>
+                {% endfor %}
+            </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{# Filter out entries which we want to show up in the main flow #}
+{% set TYPEFILTER = ['','newchapter'] %}
+{% set comics = view(entry_type=TYPEFILTER,recurse=True,count=1,order="oldest" if "date" in view.spec else "newest") %}
+
+{# Find all the categories visible on this page #}
+{% set categories = comics.entries|groupby('category') %}
+
+{# Render a button for the navigation bars #}
+{% macro navButton(size, anchor, button, alt, link, title) %}
+    {{ image('_'~button~'.png').get_img_tag(
+            height=size,
+            alt_text=alt,
+            link=(link ~ ('#' ~ anchor if anchor else '')) if link else None,
+            title=title) }}
+{% endmacro %}
+
+{# Render an entry button #}
+{% macro navEntry(size, anchor, button, alt, entry) %}
+    {% if entry %}
+        {{ navButton(size, anchor, button, alt, entry.archive(category=category,paging=view.paging), entry.category.name~': '~entry.title) }}
+    {% else %}
+        {{ navButton(size, anchor, button~'-disabled', alt, None, '')}}
+    {% endif %}
+{% endmacro %}
+
+{# Render a view button #}
+{% macro navView(size, anchor, button, alt, view) %}
+    {% if view %}
+        {{ navButton(size, anchor, button, alt, view.link,
+            view.first.category.name~': '~view.first.title
+            if view.count == 1 else
+                view.range(year='YYYY/MM',
+                           month='YYYY/MM',
+                           day='YYYY/MM/DD',
+                           single='{oldest}',
+                           span='{oldest}—{newest}')) }}
+    {% else %}
+        {{ navButton(size, anchor, button~'-disabled', alt, None, '') }}
+    {% endif %}
+{% endmacro %}
+
+{# Render the entire navbar #}
+{% macro navBar(size, mini=False, anchor=None) %}
+{% set smol = size*7/8 if mini else size %}
+<ul class="nav_bar">
+    <li class="beginning">
+        {% set catFirst = category.first(entry_type=TYPEFILTER,recurse=True) %}
+        {{ navEntry(smol, anchor, 'first', '[Beginning]', catFirst if catFirst != comics.first else None) }}
+    </li>
+    <li class="prev_chapter">
+        {{ navEntry(smol, anchor, 'prev_chapter', '[Last Chapter]',
+                    comics.first.previous(category=category,
+                                          entry_type='newchapter',
+                                          recurse=True) if comics.first else None)
+        }}
+    </li>
+    <li class="prev_page">
+        {{ navView(size, anchor, 'prev_page', '[Last Page]', comics.older) }}
+    </li>
+    <li class="next_page">
+        {{ navView(size, anchor, 'next_page', '[Next Page]', comics.newer) }}
+    </li>
+    <li class="next_chapter">
+        {{ navEntry(smol, anchor, 'next_chapter', '[Next Chapter]',
+                    comics.last.next(category=category,
+                                     entry_type='newchapter',
+                                     recurse=True) if comics.last else None)
+        }}
+    </li>
+    {% if not mini %}
+    <li class="latest">
+        {% set catLast = category.last(entry_type=TYPEFILTER, recurse=True) %}
+        {{ navEntry(size, anchor, 'latest', '[Latest Page]', catLast if catLast != comics.last else None) }}
+    </li>
+    {% endif %}
+</ul>
+{% endmacro -%}
+
+<head>
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+    {% if categories|count == 1 %}
+    <link rel="stylesheet" href="{{categories[0].grouper.link(template='style.css')}}" />
+    {% else %}
+    <link rel="stylesheet" href="style.css" />
+    {% endif %}
+    <link rel="icon" href="{{ static('favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ static('favicon.png') }}" />
+
+    <title>
+    busybee comics
+    {{ comics.range(year='MMMM YYYY',month='MMMM YYYY',day='YYYY/MM/DD',span='{oldest}—{newest} ({count} comics)',single='{oldest} ({count} comics)')}}
+    {% if comics.entries|count == 1 %}
+    | {{ comics.first.category.name }}: {{ comics.first.title }}
+    {% endif %}
+    </title>
+
+    {% for entry in comics.entries[0:3] %}
+    {{ entry.card(width=480,height=360,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
+    {% endfor %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@fluffy" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+</head>
+<body>
+    <div id="container">
+        <div id="banner">
+            <h1><a href="{{category.link}}">busybee comics{{ ': ' ~ category.name if category.basename != 'comics' }}</a></h1>
+        </div>
+
+        <div id="support">
+            <h2>Support this comic</h2>
+            <ul><li><a href="https://patreon.com/fluffy" title="Support me on Patreon">Patreon</a></li>
+                <li><a href="https://biz.beesbuzz.biz/" title="Buy my books">Store</a></li>
+            </ul>
+        </div>
+
+        <div id="nav_series">
+            <ul class="breadcrumb">
+                <li class="root"><a href="/">busy<span>bee</span></a></li>
+                {% for cat in category.breadcrumb[1:-1] %}
+                <li class="parent"><a href="{{view.link(category=cat)}}">{{cat.name}}</a></li>
+                {% endfor %}
+                <li class="here"><span>{{category.name}}</span></li>
+            </ul>
+
+            {% if category.subcats %}
+            <ul class="subcats">
+                {% for subcat in category.subcats recursive %}
+                <li><a href="{{subcat.link}}">{{subcat.name}}</a>
+                    {% if subcat.subcats %}
+                    <div><ul>{{ loop(subcat.subcats) }}</ul></div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <ul class="tail"><li>
+                <a class="archive" href="{{category.link(template='archive')}}">About</a>
+            </li></ul>
+        </div>
+
+        <div id="nav_page_mini">{{ navBar(40,True) }}</div>
+
+        <div id="comics">
+            {% for entry in comics.entries %}
+            <div class="comic">
+                <div class="heading">
+                    <h2>{% if entry.category.path != category.path %}<a href="{{entry.archive(paging=view.paging)}}">{{entry.category.name}}</a>:{% endif %}
+                    {{entry.title}}
+                    </h2>
+                    <span class="posted">
+                         {{entry.date.format('YYYY')}}/<a href="{{entry.archive(paging='month',category=category)}}">{{entry.date.format('MM')}}</a>/<a href="{{entry.archive(paging='day',category=category)}}">{{entry.date.format('DD')}}</a>
+                         <a class="anchor" href="{{entry.archive(category=category)}}">#</a>
+                     </span>
+                </div>
+
+                {% if entry.body %}
+                {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link) }}
+                {% endif %}
+                {% if entry.more %}
+                <div class="more">
+                    {{ entry.more(
+                        width=240,
+                        height=240,
+                        gallery_id='more_'~entry.uuid,
+                        resize='fill',
+                        fullsize_width=3840,
+                        fullsize_height=2160,
+                        fullsize_quality=35
+                    ) }}
+                </div>
+                {% endif %}
+
+                <div class="commentlink">
+                <a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+                </div>
+
+
+            </div>
+            {% endfor %}
+
+            <div id="nav_page">
+                {{ navBar(80,False) }}
+            </div>
+
+        </div>
+
+        {% set newsposts = get_view(entry_type='News',
+            category=category,
+            recurse=True,
+            after=comics.first,
+            before=comics.newer.first if comics.newer else None,
+            order='oldest') if comics.count > 0 else None %}
+        {% if newsposts.count %}
+        <div id="news">
+            <h2>News <span>{{newsposts.range(year='MMMM YYYY',month='MMMM YYYY',day='YYYY/MM/DD',single='',span='({oldest}—{newest})') if newsposts.range else ''}}</span></h2>
+            {% for entry in newsposts.entries %}
+            <div class="entry">
+                <div class="heading">
+                    <h3>{{entry.title}}</h3>
+                    <span class="posted">{{entry.date.format('YYYY/MM/DD h:mm A')}}</span>
+                </div>
+                <div class="commentlink">
+                    <a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+                </div>
+                <div class="content">
+                    {% if entry.body %}
+                    <div class="body">
+                        {{entry.body(link=entry.link,width=320,height=320,div_class="inset_left")}}
+                    </div>
+                    {% endif %}
+                    {% if entry.more %}
+                    <a class="readmore" href="{{entry.link}}">Read more&hellip;</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+    </div>
+
+
+    <script id="dsq-count-scr" src="//DISQUS_SHORTNAME.disqus.com/count.js" async></script>
+</body>
+</html>

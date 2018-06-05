@@ -1,0 +1,57 @@
+@import url('{{static("pygments.default.css")}}');
+@import url('{{static("bubbly.css")}}');
+
+#html {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+#banner {
+    background: black;
+    color: white;
+}
+
+a:link {
+    color: #600;
+}
+a:visited {
+    color: #933;
+}
+
+#container {
+    border:  solid black 1px;
+}
+
+#nav .sidebar {
+    float: right;
+    border-left: solid black 1px;
+    padding: 1ex;
+}
+
+#nav .sidebar li:before {
+    content: '• ';
+}
+
+.entry .heading {
+    background: #600;
+    color: white;
+}
+
+#container h1 a,
+#container h1 a:visited {
+    color: white;
+}
+
+.entry .heading h2 a,
+.entry .heading h2 a:visited,
+#entry .entry .heading h2 {
+    color: white;
+    height: 100%;
+    padding: 1ex 1em;
+    margin-bottom: 1em;
+}
+
+.entry .heading h2 a:hover {
+    background-color: #800;
+}
+
+#sitemap .subcats li >p { display: inline; }

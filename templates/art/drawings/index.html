@@ -1,0 +1,12 @@
+{% extends '/index.html' %}
+
+{% block entrybody %}
+{% if entry.body %}
+<div class="body">
+{{ entry.body(max_height=240, max_width=480,
+    gallery_id="drawings",
+    resize="fit",
+    div_class="thumb") }}
+</div>
+{% endif %}
+{% endblock %}

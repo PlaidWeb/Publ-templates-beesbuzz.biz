@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{category.name}}: {{ entry.title }}</title>
+
+    <link rel="stylesheet" href="{{ entry.stylesheet or 'style.css' }}">
+    <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+
+    <link rel="up" href="{{category.link}}" />
+    {% if entry.previous %}
+    <link rel="previous" href="{{entry.previous.link}}" />
+    {% endif %}
+    {% if entry.next %}
+    <link rel="next" href="{{entry.next.link}}" />
+    {% endif %}
+
+    {{ entry.card(width=800,height=800,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@fluffy" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+</head>
+<body id="{{ template.name }}">
+
+<div id="container">
+    <div id="banner">
+        <h1><a href="{{entry.archive}}">busybee comics{{ ': ' ~ category.name if category.basename != 'comics' }}</a></h1>
+    </div>
+
+        <div id="support">
+            <h2>Support this comic</h2>
+            <ul><li><a href="https://patreon.com/fluffy" title="Support me on Patreon">Patreon</a></li>
+                <li><a href="https://biz.beesbuzz.biz/" title="Buy my books">Store</a></li>
+            </ul>
+        </div>
+
+    <div id="nav_series">
+        <ul class="breadcrumb">
+            <li><a href="{{entry.archive(category='comics')}}">All comics</a></li>
+            {% for cat in category.breadcrumb[2:] %}
+            <li><a href="{{entry.archive(category=cat)}}">{{cat.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div id="entries">
+
+        <div class="{{ entry.entry_type if entry.entry_type else 'Comic' }}">
+            <div class="heading">
+                <h2>{{entry.title}}</h2>
+                <span class="posted">{{ entry.date.format('YYYY/MM/DD') }}
+                    <span class="ago">{{ entry.date.humanize() }}</span>
+                </span>
+            </div>
+
+            <div class="content">
+                {% if entry.body %}
+                <div id="preamble" class="body">
+                    {{entry.body(
+                        div_class='images',
+                        scale=2,
+                        width=960)}}
+                </div>
+                {% endif %}
+
+                {% if entry.more %}
+                <div id="more" class="more">
+                    {{entry.more(gallery_id=entry.uuid,
+                        div_class='images',
+                        width=640,
+                        height=640,
+                        fullsize_width=3840,
+                        fullsize_height=2160,
+                        fullsize_quality=35)}}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    <div id="comments">
+        <div class="heading">
+        <h2>Comments</h2>
+        </div>
+
+        {% include '/_comment_thread.html' %}
+    </div>
+</div>
+
+<script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
+</body></html>
