@@ -35,13 +35,13 @@ body {
 }
 
 a:link {
-    color: #000;
+    color: #009;
 }
 a:visited {
-    color: #333;
+    color: #337;
 }
 a:hover {
-    color: #700;
+    color: #737;
 }
 
 img {
@@ -87,6 +87,7 @@ img {
     border: dotted rgba(0,0,0,0.5) 1px;
     border-radius: 4px;
     background: #ff9;
+    color: black;
 }
 
 .posted a.anchor {
@@ -286,6 +287,7 @@ span.error {
 
 #nav_series a {
     text-decoration: none;
+    color: black;
 }
 #nav_series a:hover {
     color: white;
@@ -308,6 +310,7 @@ ul.breadcrumb li a {
     background: #ccc;
     text-decoration: none;
     border: solid black 1px;
+    color: black;
 }
 
 #nav_series >ul >li >a, #nav_series >ul >li >span {
@@ -521,3 +524,17 @@ ul.subcats >li >div >ul {
     padding-left: 0;
     border-left: none;
 }
+
+#comments a:link {
+    color: #900;
+    text-decoration: underline !important;
+}
+
+#comments a:visited {
+    color: #707;
+}
+
+#comments a:hover {
+    color: #909;
+}
+

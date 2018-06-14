@@ -9,4 +9,8 @@
     div_class="thumb") }}
 </div>
 {% endif %}
+
+{% if entry.more %}
+<a class="readmore" href="{{entry.link}}">More...</a>
+{% endif %}
 {% endblock %}

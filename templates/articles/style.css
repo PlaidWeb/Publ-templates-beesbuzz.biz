@@ -38,8 +38,9 @@ a:hover { color: #c11; }
     background: #09c;
     color: white;
     box-shadow: 0 5px 3px rgba(0,0,0,0.2);
-    text-align: center;
+    text-align: left;
     margin-top: 1ex;
+    padding-left: 3em;
 }
 
 #index .thumb img {
@@ -54,6 +55,8 @@ a:hover { color: #c11; }
     height: 100%;
     padding: 1ex 0;
     margin-bottom: 1em;
+    margin-left: -3em;
+    padding-left: 3em;
 }
 
 .entry h2 a:hover {
@@ -63,7 +66,7 @@ a:hover { color: #c11; }
 .entry .heading .posted {
     background: rgba(255,255,255,0.3);
     padding: 1ex;
-    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #index .entry .body img {
@@ -89,6 +92,7 @@ a:hover { color: #c11; }
 p {
     text-align: justify;
     hyphens: auto;
+    -webkit-hyphens: auto;
 }
 
 iframe {
@@ -102,10 +106,12 @@ iframe {
 }
 
 #entries .nav {
-    padding: 1em;
+    margin: 1em 0;
+    font-size: small;
 }
 
 #entries .nav a {
+    display: inline-block;
     background: #074;
     border-radius: 1.2em;
     padding: 0.1em 1em 0.3em;

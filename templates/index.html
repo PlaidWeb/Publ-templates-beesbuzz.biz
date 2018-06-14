@@ -25,6 +25,8 @@
     <link rel="next" href="{{content.next.link}}" />
     {% endif %}
 
+    {% block scripthooks %}
+    {% endblock %}
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 </head>
 
@@ -32,6 +34,8 @@
 
 
 <div id="container">
+    <div class="top-hook"></div>
+
     {% block banner %}
     <div id="banner">
         <h1>{{ category.name or "busybee" }}</h1>
@@ -93,6 +97,7 @@
         <div class="entry">
             <div class="heading">
                 {% block heading scoped %}
+                <div class="top-hook"></div>
                 <h2><a href="{{entry.link}}">{{entry.title}}</a></h2>
                 <div class="posted">
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
@@ -145,6 +150,7 @@
     {% endblock %}
 
 </div>
-<script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
 
+<script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
+<script id="dsq-count-scr" src="//beesbuzzbiz.disqus.com/count.js" async></script>
 </body></html>

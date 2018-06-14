@@ -1,0 +1,34 @@
+{% extends '/index.html' %}
+
+{% block navigation %}
+<div id="nav">
+    <a href="/">back to busybee</a>
+    </div>
+{% endblock %}
+
+{% block entrybody %}
+{% if entry.body %}
+<div class="commentlink">
+<a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments"><span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+</div>
+
+<div class="body">
+
+{{ entry.body(max_width=240,
+    max_height=240,
+    link=entry.link,
+    resize="fill",
+    count=1,
+    div_class="thumb") }}
+
+
+</div>
+{% endif %}
+
+
+
+{% if entry.more %}
+<a class="readmore" href="{{ entry.link }}#more">Read more...</a>
+{% endif %}
+
+{% endblock %}

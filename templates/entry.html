@@ -16,6 +16,8 @@
     <link rel="next" href="{{entry.next.link}}" />
     {% endif %}
 
+    {% block scripthooks %}
+    {% endblock %}
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
     {{ entry.card(width=800,height=800) }}
@@ -26,28 +28,42 @@
 <body id="{{ template.name }}">
 
 <div id="container">
+    <div class="top-hook"></div>
+
     <div id="banner">
-        <h1>{{category.name}}</h1>
+        <div class="top-hook"></div>
+        <h1><a href="{{category.link}}">{{category.name}}</a></h1>
     </div>
 
     <div id="entries">
+        <div class="top-hook"></div>
 
+        {% set prev = entry.previous(entry_type_not='sidebar') %}
+        {% set next = entry.next(entry_type_not='sidebar') %}
+        {% if prev or next %}
         <div class="nav topnav">
-            {% set prev = entry.previous(entry_type_not='sidebar') %}
-            {% if prev %}
-            <span class="prev"><a href="{{prev.link}}">{{prev.title}}</a></span>
-            {% endif %}
-            {% set next = entry.next(entry_type_not='sidebar') %}
-            {% if next %}
-            <span class="next"><a href="{{next.link}}">{{next.title}}</a></span>
-            {% endif %}
+            <div>
+                <span class="prev">
+                    {% if prev %}
+                    <a href="{{prev.link}}">{{prev.title}}</a>
+                    {% endif %}
+                </span>
 
-            <span class="up"><a href="{{category.link}}">Back to {{entry.category.name}}</a></span>
+                &nbsp;
+
+                <span class="next">
+                    {% if next %}
+                    <a href="{{next.link}}">{{next.title}}</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
+        {% endif %}
 
         <div class="entry">
             <div class="heading">
                 {% block heading %}
+                <div class="top-hook"></div>
                 <h2>{{entry.title}}</h2>
                 <div class="posted">
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
@@ -96,8 +112,22 @@
                     <h2>Comments</h2>
                 </div>
 
-                {% include '_comment_thread.html' %}
-            </div>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{entry.permalink(absolute=True)}}";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "{{entry.get('Thread-ID', 'publ_' ~ entry.id)}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = 'https://beesbuzzbiz.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>            </div>
             {% endblock %}
 
         </div>

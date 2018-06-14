@@ -48,8 +48,16 @@
 .entry .heading .posted {
     position: absolute;
     right: 0;
-    bottom: 0;
+    top: 0;
     font-size: small;
+}
+
+.entry .heading .top-hook {
+    float: right;
+    width: 13em;
+    height: 1em;
+    position: relative;
+    z-index: 10000;
 }
 
 .entry .content {
@@ -57,12 +65,12 @@
 }
 
 .inset-right {
-    margin: 1em;
+    margin: 0 0 1ex 1em;
     float: right;
 }
 
 .inset-left {
-    margin: 1em;
+    margin: 0 1em 1ex 0;
     float: left;
 }
 
@@ -78,23 +86,32 @@ img {
     height: auto;
 }
 
+
 #entries .nav {
-    position: relative;
     text-align: center;
-    font-size: small;
+    vertical-align: middle;
+    display: table;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-#entries .nav .prev {
-    float: left;
+#entries .nav >div {
+    display: table-row;
 }
 
-#entries .nav .next {
-    float: right;
+#entries .nav span {
+    display: table-cell;
+    width: 33%;
+    vertical-align: middle;
+}
+#entries .nav span.prev {
+    text-align: left;
+}
+#entries .nav span.next {
+    text-align: right;
 }
 
-#entries .nav a {
-    white-space: nowrap;
-}
 
 .expand {
     clear: both;
@@ -175,10 +192,8 @@ a.readmore {
         display: none;
     }
 
-    #entries .nav .prev, #entries .nav .next {
-        display: inline-block;
-        position: static;
-        margin: 0 2em;
+    .entry .heading .top-hook {
+        width: 10em;
     }
 }
 

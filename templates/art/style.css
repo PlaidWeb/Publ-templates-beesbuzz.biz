@@ -15,6 +15,7 @@ h1 {
 
 h1 a,
 h2 a {
+    color: white;
     text-decoration: none;
 }
 
@@ -45,6 +46,7 @@ body#entry .intro {
 
 #entries .heading .posted {
     position: absolute;
+    top: auto;
     bottom: -1ex;
     right: 1em;
     font-size: small;
@@ -119,34 +121,31 @@ h1 a:visited {
 .bottomnav {
     margin: .5ex 0;
     font-size: small;
-    position: relative;
-    text-align: center;
 }
 
 .topnav a,
 .bottomnav a {
     text-decoration: none;
+    margin: 0 1em;
 }
 
 .topnav .prev,
 .bottomnav .prev {
-    position: absolute;
     left: 1em;
 }
 
-.topnav .prev:before,
-.bottomnav .prev:before {
+.topnav .prev a:before,
+.bottomnav .prev a:before {
     content: "← ";
 }
 
 .topnav .next,
 .bottomnav .next {
-    position: absolute;
     right: 1em;
 }
 
-.topnav .next:after,
-.bottomnav .next:after {
+.topnav .next a:after,
+.bottomnav .next a:after {
     content: " →";
 }
 

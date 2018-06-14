@@ -1,0 +1,163 @@
+@import url('{{static("fonts/Kubasta.css")}}');
+@import url('{{static("fonts/pixel-header.css")}}');
+
+html {
+    background: #333;
+    font-family: 'Kubasta', sans-serif;
+    color: white;
+}
+
+#container {
+    background: black;
+    margin: 3em;
+    padding: 1em;
+    position: relative;
+}
+
+#nav h2 {
+    display: none;
+}
+
+#nav ul {
+    list-style-type: none;
+    font-size: small;
+    margin: 0;
+    padding-left: 1ex;
+    display: inline-block;
+}
+
+#nav li {
+    display: inline-block;
+}
+
+#nav .breadcrumb li.here {
+    font-weight: bold;
+    text-shadow: 0px 0px 4px white;
+}
+
+#nav .breadcrumb li:before {
+    content: '» ';
+    margin-left: 1ex;
+}
+
+#nav .breadcrumb li:first-child:before {
+    content: none;
+}
+
+#nav .subcats {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0; padding: 0;
+}
+
+#nav .sidebar {
+    float: right;
+}
+
+
+h1, h2, h3 {
+    font-family: 'pixel-header', 'C64 Pro mono', '8bitoperator', 'Terminal', 'Monaco', 'Inconsolata', monospace;
+    line-height: 1.6em;
+}
+
+a {
+    color: #7ff;
+    text-shadow: 0px 0px 2px #133, 0px 0px 4px rgba(127,255,255,0.5);
+}
+
+a:hover {
+    color: #f7f;
+    text-shadow: 0px 0px 2px #133, 0px 0px 4px rgba(255,127,255,0.5);
+}
+
+h1 {
+    color: #f77;
+    text-align: center;
+    text-shadow: 0px 0px 3px #311, 0px 0px 6px rgba(255,127,127,0.5);
+    text-transform: uppercase;
+}
+
+h1 a {
+    color: #f77;
+}
+
+h2 {
+    color: #ff7;
+    text-shadow: 0px 0px 3px #331, 0px 0px 6px rgba(255,255,127,0.5);
+    margin: 0;
+}
+
+.heading .top-hook {
+    float: right;
+    width: 6em;
+    height: 10px;
+}
+
+h2 a {
+    color: #ff7;
+    display: block;
+}
+
+h2 a:hover {
+    color: #f7f;
+    text-shadow: 0px 0px 3px #133, 0px 0px 6px rgba(255,127,255,0.5);
+}
+
+#entries {
+    text-align: center;
+}
+
+.entry {
+    color: white;
+    text-shadow: 0px 0px 2px #333, 0px 0px 4px rgba(255,255,255,0.25);
+    width: 568px;
+    max-width: 100%;
+    display: inline-block;
+    margin: 1em;
+    text-align: left;
+    border: dotted #00f 3px;
+    box-sizing: border-box;
+}
+
+.entry .content {
+    line-height: 1em;
+    padding: 16px;
+}
+
+iframe {
+    max-width: 100%;
+}
+
+.heading {
+    position: relative;
+}
+
+.heading .posted {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    line-height: 1.5ex;
+    text-align: right;
+}
+
+.heading .posted .time {
+    display: none;
+}
+
+.heading .posted .ago {
+    color: rgba(255,255,255,0.5);
+    display: block;
+    font-size: 70%;
+}
+
+@media screen and (max-width: 745px) {
+    #container {
+        margin: 0;
+        padding: 1ex;
+    }
+    .entry {
+        display: block;
+        width: auto;
+    }
+}
+

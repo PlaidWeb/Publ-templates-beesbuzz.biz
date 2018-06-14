@@ -1,0 +1,165 @@
+
+body {
+    background: #999;
+    font-family: Times, "Times New Roman", serif;
+    text-align: center;
+    font-size: medium;
+    margin: 0px;
+    padding: 1em;
+    min-height: 512px;
+}
+
+#container:before {
+    content: "塵";
+    position: fixed;
+    font-size: 500px;
+    font-style: italic;
+    color: rgba(0,0,0,0.1);
+    top: -.7ex;
+    left: -.2ex;
+}
+
+#nav {
+    text-transform: lowercase;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 0;
+    font-size: small;
+    background: rgba(255,255,255,0.3);
+    border: solid #ccc 1px;
+    border-style: none none solid solid;
+}
+
+#nav h2 {
+    padding: 0 1ex;
+}
+
+#nav ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 1ex;
+}
+
+.entry {
+    background: rgba(255, 255, 255, 0.5);
+    width: 20em;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid #ccc 1px;
+    margin-bottom: 1em;
+}
+
+.entry .heading { position: relative; }
+
+.posted {
+    position: absolute;
+    font-size: x-small;
+    top: 0;
+    right: 0;
+}
+.posted span { display: block; }
+
+.posted .time { display: none; }
+.posted .ago { display: none; }
+
+h1,
+h2,
+h3 {
+    text-transform: lowercase;
+    font-style: italic;
+}
+
+h2 {
+    margin: 0px 0px 0.2ex;
+    padding: 0.2ex 0px;
+    border-bottom: solid #999 1px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+h2 a {
+    text-decoration: none;
+}
+
+h2 a:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: xx-small;
+    display: block;
+    content: '#';
+    text-decoration: underline;
+}
+
+a {
+    color: #400;
+}
+
+a:visited {
+    color: #304;
+}
+
+a:hover {
+    color: #500;
+}
+
+a:active {
+    color: #600;
+}
+
+#banner {
+    margin-top: 1em;
+    border-bottom: solid #333 1px;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-family: "MT Chancery", Zapfino, cursive, serif;
+    color: white;
+}
+
+#description {
+    font-size: small;
+    font-style: italic;
+}
+#description p {
+    margin: 0;
+    padding: 0;
+}
+
+.topnav, .bottomnav {
+    width: 100%;
+    position: relative;
+    margin-bottom: 1ex;
+    font-style: italic;
+    font-size: small;
+}
+
+.topnav .up {
+    display: none;
+}
+
+.prev {
+    position: absolute;
+    left: 0;
+}
+.prev:before {
+    content: "← ";
+}
+
+.next {
+    position: absolute;
+    right: 0;
+}
+.next:after {
+    content: " →";
+}
+
+#comments {
+    margin-top: 20em;
+}
+

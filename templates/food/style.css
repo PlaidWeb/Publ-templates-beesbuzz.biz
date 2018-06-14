@@ -1,0 +1,9 @@
+@import url('../style.css');
+
+#nav .sidebar:before {
+    color: black;
+    font-weight: bold;
+    content: "Sites I like:";
+    font-size: medium;
+}
+

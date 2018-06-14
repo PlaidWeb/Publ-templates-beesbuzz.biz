@@ -50,6 +50,13 @@ a:visited {
     margin-bottom: 1em;
 }
 
+p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+
 .entry .heading h2 a:hover {
     background-color: #800;
 }

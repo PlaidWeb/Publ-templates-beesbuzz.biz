@@ -1,5 +1,6 @@
 html {
-    background: #ccf;
+    background: #dcf;
+    /* {{image('_layout/carpet.jpg').get_css_background(width=512,uncomment=True)}} */
     font-family: 'helvetica', sans-serif;
     margin: 0;
     padding: 0;
@@ -102,7 +103,7 @@ a:hover {
     font-size: small;
     margin: 16px;
     padding: 0;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    box-shadow: 6px 6px 12px rgba(0,0,0,0.3);
     vertical-align: top;
     max-width: 320px;
     box-sizing: border-box;
@@ -112,6 +113,7 @@ a:hover {
 #entries:hover {
     border: solid #700 1px;
     border-radius: 0;
+    box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
 }
 
 #entries h2 {
@@ -191,7 +193,7 @@ a:hover {
 
     overflow: hidden;
 
-    box-shadow: 3px 3px 4px rgba(0,0,0,0.25);
+    box-shadow: 6px 6px 12px rgba(0,0,0,0.3);
     box-sizing: border-box;
 
     transition: all 0.25s ease;
@@ -233,7 +235,7 @@ a:hover {
     background-repeat: no-repeat;
     border-color: #700;
     filter: grayscale(0%);
-    box-shadow: 3px 3px 4px rgba(0,0,0,0.5);
+    box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
     border-radius: 0;
     border-width: 1px;
 }
