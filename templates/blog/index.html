@@ -9,10 +9,10 @@
 {% block entrybody %}
 {% if entry.body %}
 <div class="commentlink">
-<a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments"><span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+<a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments"><span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
 </div>
 
-<div class="body">
+<div class="body p-summary">
 
 {{ entry.body(max_width=240,
     max_height=240,
@@ -28,7 +28,8 @@
 
 
 {% if entry.more %}
-<a class="readmore" href="{{ entry.link }}#more">Read more...</a>
+<a class="readmore" href="{{ entry.link }}#more">Read more&hellip;
+{%- if entry.get('cut') %} ({{entry.get('cut')}}){% endif %}</a>
 {% endif %}
 
 {% endblock %}

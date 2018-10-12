@@ -1,0 +1,5 @@
+Name: A sample Publ site
+Index-Template: _mainpage
+Path-Alias: /rss.php feed
+
+This is just a sample of how to build a more complex site in Publ.

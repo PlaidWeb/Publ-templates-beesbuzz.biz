@@ -1,3 +1,5 @@
+@import url('{{static("pygments.default.css")}}');
+
 a[href] {
     color: #700;
 }
@@ -135,10 +137,6 @@ hr {
     text-indent: -1em;
 }
 
-blockquote {
-    font-style: italic;
-}
-
 .topnav {
     border-top: dotted black 1px;
     position: relative;
@@ -178,3 +176,5 @@ blockquote {
 .next:after {
     content: " →";
 }
+
+.hidden { display: none; }

@@ -42,8 +42,7 @@ a:visited {
 }
 
 .entry .heading h2 a,
-.entry .heading h2 a:visited,
-#entry .entry .heading h2 {
+.entry .heading h2 a:visited {
     color: white;
     height: 100%;
     padding: 1ex 1em;
@@ -62,3 +61,21 @@ p {
 }
 
 #sitemap .subcats li >p { display: inline; }
+
+#entries .topnav {
+    border-top: dotted black 1px;
+}
+
+#entries .nav .prev a {
+    margin-left: 1em;
+}
+#entries .nav .prev a:before {
+    content: '« ';
+}
+
+#entries .nav .next a {
+    margin-right: 1em;
+}
+#entries .nav .next a:after {
+    content: ' »';
+}

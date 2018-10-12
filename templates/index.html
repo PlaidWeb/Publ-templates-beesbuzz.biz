@@ -13,7 +13,10 @@
     <link rel="stylesheet" href="style.css" />
 {% endblock %}
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}" />
-    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="feed" />
+    <link rel="alternate" type="application/atom+xml" title="Summary feed" href="feed-summary" />
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
 
     {% if category.parent %}
     <link rel="up" href="{{category.parent.link}}" />
@@ -83,28 +86,33 @@
         {% if content.previous or content.next %}
         <div class="nav topnav">
             {% if content.previous %}
-            <span class="prev"><a href="{{content.previous}}">Previous page</a></span>
+            <span class="prev"><a href="{{content.previous}}">{{ view.spec.date and content.previous.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
             {% endif %}
             &nbsp;
             {% if content.next %}
-            <span class="next"><a href="{{content.next}}">Next page</a></span>
+            <span class="next"><a href="{{content.next}}">{{ view.spec.date and content.next.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
             {% endif %}
         </div>
         {% endif %}
 
         {% block entries %}
         {% for entry in content.entries %}
-        <div class="entry">
+        <article class="entry h-entry">
             <div class="heading">
                 {% block heading scoped %}
                 <div class="top-hook"></div>
-                <h2><a href="{{entry.link}}">{{entry.title}}</a></h2>
-                <div class="posted">
+                <h2 class="p-name"><a href="{{entry.link}}" class="u-url">{{entry.title}}</a></h2>
+                <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                     <span class="time">{{entry.date.format('h:mm A')}}</span>
-                    <span class="ago">{{entry.date.humanize()}}</span>
+                    <span class="ago">{{entry.date.humanize()}}</span></time>
                     {% if entry.author %}
-                    <span class="author">by {{entry.author}}</span>
+                    by
+                    <span class="author">
+                        <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                    </span>
+                    {% else %}
+                        {% include '/_hcard.html' %}
                     {% endif %}
                 </div>
                 {% endblock %}
@@ -113,7 +121,7 @@
             <div class="content">
                 {% block entrybody scoped %}
                 {% if entry.body %}
-                <div class="body">
+                <div class="body p-summary">
                 {{ entry.body(max_width=240,
                     max_height=240,
                     link=entry.link,
@@ -124,23 +132,23 @@
                 {% endif %}
 
                 {% if entry.more %}
-                <a class="readmore" href="{{ entry.link }}#more">Read more...</a>
+                <a class="readmore" rel="self" href="{{ entry.link }}#more">Read more...</a>
                 {% endif %}
 
                 {% endblock %}
             </div>
-        </div>
+        </article>
         {% endfor %}
         {% endblock %}
 
         {% if content.previous or content.next %}
         <div class="nav bottomnav">
             {% if content.previous %}
-            <span class="prev"><a href="{{content.previous}}">Previous page</a></span>
+            <span class="prev"><a href="{{content.previous}}">{{ view.spec.date and content.previous.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
             {% endif %}
             &nbsp;
             {% if content.next %}
-            <span class="next"><a href="{{content.next}}">Next page</a></span>
+            <span class="next"><a href="{{content.next}}">{{ view.spec.date and content.next.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
             {% endif %}
         </div>
         {% endif %}

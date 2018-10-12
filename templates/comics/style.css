@@ -121,6 +121,10 @@ img {
     margin: 0;
     padding: 0 12px;
 }
+#entries .News h2 a {
+    color: white;
+    text-decoration: none;
+}
 
 #news h2 span {
     font-size: small;
@@ -538,3 +542,5 @@ ul.subcats >li >div >ul {
     color: #909;
 }
 
+.author { display: none; }
+.hidden { display: none; }

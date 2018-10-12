@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+{%- set view = view(recurse=True,count=30,entry_type_not="sidebar") -%}
+
+<feed xmlns="http://www.w3.org/2005/Atom"
+    xmlns:fh="http://purl.org/syndication/history/1.0">
+
+    <title>{{"busybee: " ~ category.name if category.parent else category.name}}</title>
+    <subtitle>Art, music, comics, and more</subtitle>
+    <link href="{{ view.link(template='feed',absolute=True) }}" rel="self" />
+    <link href="{{ category.link(template='feed',absolute=True) }}" rel="current" />
+    {% if view.next %}
+    <link href="{{ view.next.first.archive('month','feed',absolute=True) }}" rel="prev-archive" />
+    {% endif %}
+    {% if view.previous %}
+    <link href="{{ view.previous.last.archive('month','feed',absolute=True) }}" rel="next-archive" />
+    {% endif %}
+    <link href="{{ category.link(absolute=True) }}" />
+    {% if request.args %}<fh:archive />{% endif %}
+    <id>tag:{{request.host}},{{template.last_modified.format('YYYY-MM-DD')}}:{{category.path or "_all"}}</id>
+    <updated>{{view(recurse=True).last_modified.isoformat()}}</updated>
+
+    {% for entry in view.entries %}
+    <entry>
+        <title>{{entry.title(markup=False,no_smartquotes=True)}}</title>
+        <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
+        <published>{{entry.date.isoformat()}}</published>
+        <updated>{{entry.last_modified.isoformat()}}</updated>
+        <id>urn:uuid:{{entry.uuid}}</id>
+        <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
+        {% block entrycontent scoped %}
+        <content type="html">
+<![CDATA[
+{{entry.body(
+    max_width=320,
+    max_height=320,
+    link=entry.link(absolute=True),
+    resize="fill",
+    div_class='images',
+    absolute=True,
+    fill_crop_y=0.25,
+    count=3
+)}}
+
+{% if entry.more %}
+<a href="{{entry.link(absolute=True)}}">Read more...</a>
+{% endif %}
+
+<p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
+<hr><p><i>If you like my work, please consider supporting me <a href="https://patreon.com/fluffy">on Patreon</a>.</i></p>
+]]>
+        </content>
+        {% endblock %}
+        {% for cat in entry.category.breadcrumb -%}
+        <category term="{{cat.link(absolute=True)}}" label="{{cat.name}}" />
+        {% endfor %}
+        {% for tag in entry.get_all('tag') %}
+        <category term="{{tag}}" />
+        {% endfor %}
+    </entry>
+    {% endfor %}
+</feed>

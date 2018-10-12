@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 {# Filter out entries which we want to show up in the main flow #}
 {% set TYPEFILTER = ['','newchapter'] %}
 {% set comics = view(entry_type=TYPEFILTER,recurse=True,count=1,order="oldest" if "date" in view.spec else "newest") %}
@@ -80,14 +79,16 @@
 {% endmacro -%}
 
 <head>
-    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="feed" />
+    <link rel="alternate" type="application/atom+xml" title="Summary feed" href="feed-summary" />
     {% if categories|count == 1 %}
     <link rel="stylesheet" href="{{categories[0].grouper.link(template='style.css')}}" />
     {% else %}
     <link rel="stylesheet" href="style.css" />
     {% endif %}
-    <link rel="icon" href="{{ static('favicon.png') }}" />
-    <link rel="shortcut icon" href="{{ static('favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
 
     <title>
     busybee comics
@@ -98,10 +99,13 @@
     </title>
 
     {% for entry in comics.entries[0:3] %}
-    {{ entry.card(width=480,height=360,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
+    {{ entry.card(width=800,height=800,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
     {% endfor %}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@fluffy" />
+
+    <link rel="pingback" href="https://webmention.io/beesbuzz.biz/xmlrpc" />
+    <link rel="webmention" href="https://webmention.io/beesbuzz.biz/webmention" />
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 </head>
@@ -148,19 +152,24 @@
 
         <div id="comics">
             {% for entry in comics.entries %}
-            <div class="comic">
+            <article class="h-entry comic">
                 <div class="heading">
-                    <h2>{% if entry.category.path != category.path %}<a href="{{entry.archive(paging=view.paging)}}">{{entry.category.name}}</a>:{% endif %}
-                    {{entry.title}}
+                    <h2>{% if entry.category.path != category.path %}<a href="{{entry.archive(paging=view.paging)}}" class="p-category">{{entry.category.name}}</a>:{% endif %}
+                    <a href="{{entry.link}}" class="h-name u-url">{{entry.title}}</a>
                     </h2>
-                    <span class="posted">
-                         {{entry.date.format('YYYY')}}/<a href="{{entry.archive(paging='month',category=category)}}">{{entry.date.format('MM')}}</a>/<a href="{{entry.archive(paging='day',category=category)}}">{{entry.date.format('DD')}}</a>
+                    <span class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
+                         {{entry.date.format('YYYY')}}/<a href="{{entry.archive(paging='month',category=category)}}">{{entry.date.format('MM')}}</a>/<a href="{{entry.archive(paging='day',category=category)}}">{{entry.date.format('DD')}}</a></time>
                          <a class="anchor" href="{{entry.archive(category=category)}}">#</a>
                      </span>
+                    <span class="author">
+                        <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                    </span>
                 </div>
 
                 {% if entry.body %}
-                {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link) }}
+                <div class="p-summary">
+                    {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link) }}
+                </div>
                 {% endif %}
                 {% if entry.more %}
                 <div class="more">
@@ -177,11 +186,11 @@
                 {% endif %}
 
                 <div class="commentlink">
-                <a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
                 </div>
 
 
-            </div>
+            </article>
             {% endfor %}
 
             <div id="nav_page">
@@ -200,25 +209,27 @@
         <div id="news">
             <h2>News <span>{{newsposts.range(year='MMMM YYYY',month='MMMM YYYY',day='YYYY/MM/DD',single='',span='({oldest}—{newest})') if newsposts.range else ''}}</span></h2>
             {% for entry in newsposts.entries %}
+            <article class="h-entry">
             <div class="entry">
                 <div class="heading">
-                    <h3>{{entry.title}}</h3>
+                    <h3 class="p-name">{{entry.title}}</h3>
                     <span class="posted">{{entry.date.format('YYYY/MM/DD h:mm A')}}</span>
                 </div>
                 <div class="commentlink">
                     <a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
                 </div>
-                <div class="content">
+                <div class="content p-summary">
                     {% if entry.body %}
                     <div class="body">
                         {{entry.body(link=entry.link,width=320,height=320,div_class="inset_left")}}
                     </div>
                     {% endif %}
                     {% if entry.more %}
-                    <a class="readmore" href="{{entry.link}}">Read more&hellip;</a>
+                    <a class="readmore" href="{{entry.link}}">Read more&hellip;
+                    {%- if entry.get('cut') %} ({{entry.get('cut')}}){% endif %}</a>
                     {% endif %}
                 </div>
-            </div>
+            </div></article>
             {% endfor %}
         </div>
         {% endif %}
@@ -226,7 +237,8 @@
 
     </div>
 
+{% include '/_hcard.html' %}
 
-    <script id="dsq-count-scr" src="//DISQUS_SHORTNAME.disqus.com/count.js" async></script>
+    <script id="dsq-count-scr" src="//beesbuzzbiz.disqus.com/count.js" async></script>
 </body>
 </html>

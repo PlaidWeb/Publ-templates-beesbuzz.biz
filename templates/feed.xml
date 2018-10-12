@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-{% set view = view(recurse=True,count=30,entry_type_not="sidebar") %}
+{%- set view = view(recurse=True,count=30,entry_type_not="sidebar") -%}
 
 <feed xmlns="http://www.w3.org/2005/Atom"
     xmlns:fh="http://purl.org/syndication/history/1.0">
@@ -9,11 +9,12 @@
     <subtitle>Art, music, comics, and more</subtitle>
     <link href="{{ view.link(template='feed',absolute=True) }}" rel="self" />
     <link href="{{ category.link(template='feed',absolute=True) }}" rel="current" />
+    <link href="https://pubsubhubbub.superfeedr.com" rel="hub" />
     {% if view.next %}
-    <link href="{{ view.next.first.archive('month','feed',absolute=True) }}" rel="prev-archive" />
+    <link href="{{ view.next.first.archive('month','feed',category=category,absolute=True) }}" rel="prev-archive" />
     {% endif %}
     {% if view.previous %}
-    <link href="{{ view.previous.last.archive('month','feed',absolute=True) }}" rel="next-archive" />
+    <link href="{{ view.previous.last.archive('month','feed',category=category,absolute=True) }}" rel="next-archive" />
     {% endif %}
     <link href="{{ category.link(absolute=True) }}" />
     {% if request.args %}<fh:archive />{% endif %}
@@ -22,7 +23,7 @@
 
     {% for entry in view.entries %}
     <entry>
-        <title>{{entry.title(markup=False)}}</title>
+        <title>{{entry.category.name + ": " if entry.category.name != category.name}}{{entry.title(markup=False, no_smartquotes=True)}}</title>
         <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
         <published>{{entry.date.isoformat()}}</published>
         <updated>{{entry.last_modified.isoformat()}}</updated>
@@ -33,12 +34,8 @@
 <![CDATA[
         {% include get_template('_feed_entry', entry) %}
 
-<p><a href="{{entry.link}}#comments">comments</a></p>
-<p>{{image('/_layout/patreon.png').get_img_tag(
-    width=40,
-    absolute=True,alt_text="Patreon",
-    link="https://patreon.com/fluffy")}}
-    If you like my work, please consider supporting me <a href="https://patreon.com/fluffy">on Patreon</a>.</p>
+<p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
+<hr><p><i>If you like my work, please consider supporting me <a href="https://patreon.com/fluffy">on Patreon</a>.</i></p>
 ]]>
         </content>
         {% endblock %}

@@ -26,7 +26,10 @@ logging.info("Setting up")
 APP_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 config = {
-    'database': 'sqlite:///index.db',
+    'database_config': {
+        'provider': 'sqlite',
+        'filename': os.path.join(APP_PATH, 'index.db')
+    },
     'timezone': 'US/Pacific',
     'cache': {
         'CACHE_TYPE': 'simple',
@@ -38,13 +41,19 @@ config = {
 
 app = publ.publ(__name__, config)
 
-# Rewrite old comic URLs to date-based views; ideally this should be a feature in
-# Publ itself. See https://github.com/fluffy-critter/Publ/issues/11
 import flask
 
 
 @app.path_alias_regex(r'/d/([0-9]{8}(_w)?)\.php')
 def redirect_date(match):
+    """ This is an example of how to migrate old URLs to new ones; my old site
+    had date-based views like:
+
+    http://beesbuzz.biz/d/201006.php
+
+    which this now turns into:
+
+    http://beesbuzz.biz/comics/?date=201006 """
     return flask.url_for('category', category='comics', date=match.group(1)), True
 
 if __name__ == "__main__":

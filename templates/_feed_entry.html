@@ -7,8 +7,8 @@
     absolute=True,
 )}}
 
-{% if entry.get('spoilers') %}
-<a href="{{entry.link(absolute=True)}}">Read more...</a>
+{% if entry.get('cut') %}
+<p><a href="{{entry.link(absolute=True)}}">Read more...</a> ({{entry.get('cut')}})</p>
 {% else %}
 {{entry.more(
     max_width=640,

@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="{{ entry.stylesheet or 'style.css' }}">
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
     <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+
+    <link rel="pingback" href="https://webmention.io/beesbuzz.biz/xmlrpc" />
+    <link rel="webmention" href="https://webmention.io/beesbuzz.biz/webmention" />
 
     <link rel="up" href="{{category.link}}" />
     {% if entry.previous %}
@@ -60,26 +65,33 @@
         </div>
         {% endif %}
 
-        <div class="entry">
+        <article class="h-entry entry">
             <div class="heading">
                 {% block heading %}
                 <div class="top-hook"></div>
-                <h2>{{entry.title}}</h2>
-                <div class="posted">
+                <h2 class="p-name"><a href="{{entry.link}}" class="u-url">{{entry.title}}</a></h2>
+                <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                     <span class="time">{{entry.date.format('h:mm A')}}</span>
-                    <span class="ago">{{entry.date.humanize()}}</span>
+                    <span class="ago">{{entry.date.humanize()}}</span></time>
+                    <span class="author{{entry.author and '' or ' hidden'}}">
                     {% if entry.author %}
-                    <span class="author">by {{entry.author}}</span>
+                    by
+                        <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                    {% else %}
+                        {% include '/_hcard.html' %}
                     {% endif %}
+
+                    </span>
+
                 </div>
                 {% endblock %}
             </div>
 
-            <div class="content">
+            <div class="content e-content">
                 {% block entrybody %}
                 {% if entry.body %}
-                <div id="preamble" class="body">
+                <div id="preamble" class="body p-summary">
                     {{entry.body(gallery_id=entry.uuid,
                         div_class='images',
                         width=960,
@@ -112,29 +124,32 @@
                     <h2>Comments</h2>
                 </div>
 
-<div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-        this.page.url = "{{entry.permalink(absolute=True)}}";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "{{entry.get('Thread-ID', 'publ_' ~ entry.id)}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    (function() {  // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = "{{entry.permalink(absolute=True)}}";  // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = "{{entry.get('Thread-ID', 'publ_' ~ entry.id)}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    (function() {  // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
 
-        s.src = 'https://beesbuzzbiz.disqus.com/embed.js';
+                        s.src = 'https://DISQUS-DOMAIN.disqus.com/embed.js';
 
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>            </div>
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
             {% endblock %}
 
-        </div>
+        </article>
+
 
     </div>
 
 </div>
+
 
 <script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
 </body></html>

@@ -1,0 +1,9 @@
+Title: fluffy@queer.party
+Icon: mastodon
+Redirect-To: https://queer.party/@fluffy
+Entry-Type: sidebar
+UUID: 01fe6d8c-19f6-410e-980e-cf4f6632e5cc
+Date: 170
+Entry-ID: 5811
+Path-Alias: /mastodon
+Link-Rel: me

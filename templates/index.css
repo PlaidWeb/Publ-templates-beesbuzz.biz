@@ -111,7 +111,7 @@ a:hover {
 }
 
 #entries:hover {
-    border: solid #700 1px;
+    border: solid #700 3px;
     border-radius: 0;
     box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
 }
@@ -213,7 +213,8 @@ a:hover {
         0 -1px 0 white;
 }
 
-#categories li a div {
+#categories li a span {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -305,3 +306,4 @@ a:hover {
 
 }
 
+.hidden { display: none; }

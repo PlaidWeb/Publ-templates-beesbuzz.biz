@@ -68,3 +68,4 @@ float: right;
     content: " ->";
 }
 
+.hidden { display: none; }

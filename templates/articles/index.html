@@ -2,7 +2,7 @@
 
 {% block entrybody %}
 {% if entry.body %}
-<div class="body">
+<div class="body p-summary">
 {{ entry.body(max_width=360,
     max_height=240,
     link=entry.link() ~ "#preamble",
@@ -13,6 +13,8 @@
 {% endif %}
 
 {% if entry.more %}
-<a class="readmore" href="{{entry.link}}#more">Read more...</a>
+<a class="readmore" href="{{entry.link}}#more">Read more...
+{%- if entry.get('cut') %} ({{entry.get('cut')}}){% endif %}</a>
+</a>
 {% endif %}
 {% endblock %}

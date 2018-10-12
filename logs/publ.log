@@ -1,0 +1,877 @@
+INFO:MainThread:root:Setting up
+INFO:MainThread:publ.model:setting schema version to 2
+INFO:MainThread:root:Setting up
+INFO:MainThread:publ.model:setting schema version to 2
+INFO:MainThread:root:Watching content for changes
+INFO:MainThread:root:Setting up
+INFO:MainThread:publ.model:setting schema version to 2
+INFO:MainThread:root:Watching content for changes
+INFO:MainThread:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:Thread-3:publ.image:Starting LocalImage threadpool
+INFO:Thread-3:werkzeug:127.0.0.1 - - [12/Oct/2018 12:39:59] "GET / HTTP/1.1" 500 -
+INFO:Thread-4:werkzeug:127.0.0.1 - - [12/Oct/2018 12:39:59] "GET /static/error.css HTTP/1.1" 200 -
+INFO:Thread-5:werkzeug:127.0.0.1 - - [12/Oct/2018 12:40:07] "GET / HTTP/1.1" 500 -
+INFO:MainThread:root:Setting up
+INFO:MainThread:publ.model:setting schema version to 2
+INFO:MainThread:root:Watching content for changes
+INFO:MainThread:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:Thread-3:publ.image:Starting LocalImage threadpool
+INFO:Thread-3:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:09] "GET / HTTP/1.1" 500 -
+INFO:Thread-4:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:10] "GET / HTTP/1.1" 500 -
+INFO:MainThread:root:Setting up
+INFO:MainThread:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:MainThread:werkzeug: * Restarting with fsevents reloader
+INFO:MainThread:root:Setting up
+WARNING:MainThread:werkzeug: * Debugger is active!
+INFO:MainThread:werkzeug: * Debugger PIN: 690-293-123
+INFO:Thread-7:publ.model:setting schema version to 2
+INFO:Thread-7:root:Watching content for changes
+INFO:Thread-7:publ.image:Starting LocalImage threadpool
+INFO:Thread-7:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:26] "GET / HTTP/1.1" 200 -
+INFO:Thread-10:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:26] "GET /static/lightbox/css/lightbox.min.css HTTP/1.1" 200 -
+INFO:Thread-11:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:26] "GET /static/lightbox/js/lightbox-plus-jquery.min.js HTTP/1.1" 200 -
+INFO:Thread-13:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:26] "GET /static/lightbox/images/next.png HTTP/1.1" 200 -
+INFO:Thread-14:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:26] "GET /static/lightbox/images/loading.gif HTTP/1.1" 200 -
+INFO:Thread-12:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:26] "GET /static/lightbox/images/prev.png HTTP/1.1" 200 -
+INFO:Thread-15:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:26] "GET /static/lightbox/images/close.png HTTP/1.1" 200 -
+INFO:Thread-16:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:27] "GET / HTTP/1.1" 500 -
+INFO:Thread-18:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:27] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO:Thread-19:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:27] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:Thread-17:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:27] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:Thread-20:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:27] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:Thread-21:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:28] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+INFO:Thread-22:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:29] "GET / HTTP/1.1" 500 -
+INFO:Thread-25:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:29] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:Thread-24:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:29] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO:Thread-23:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:29] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:Thread-26:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:29] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:Thread-27:werkzeug:127.0.0.1 - - [12/Oct/2018 12:41:29] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+INFO:MainThread:root:Setting up
+INFO:MainThread:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:MainThread:werkzeug: * Restarting with fsevents reloader
+INFO:MainThread:root:Setting up
+WARNING:MainThread:werkzeug: * Debugger is active!
+INFO:MainThread:werkzeug: * Debugger PIN: 690-293-123
+INFO:Thread-7:publ.model:setting schema version to 2
+INFO:Thread-7:root:Watching content for changes
+INFO:Indexer_0:publ.index:Scanning meta info: content/_.cat
+INFO:Thread-7:publ.image:Starting LocalImage threadpool
+INFO:Indexer_0:publ.index:Scanning entry: content/root level entry.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/root level entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/root level entry.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/root level entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/root level entry.md
+INFO:Thread-7:werkzeug:127.0.0.1 - - [12/Oct/2018 12:47:25] "GET / HTTP/1.1" 200 -
+INFO:Indexer_0:publ.index:Scanning entry: content/root level entry.md
+INFO:Thread-8:publ.index:File deleted: content/root level entry.md
+INFO:Thread-8:publ.index:file created: content/root level entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/root level entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/root level entry.md
+INFO:Thread-8:publ.index:file created: content/blog/sample blog entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/blog/sample blog entry.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/blog/sample blog entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/blog/sample blog entry.md
+INFO:Thread-8:publ.index:File deleted: content/blog/sample blog entry.md
+INFO:Thread-8:publ.index:file created: content/blog/sample blog entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/blog/sample blog entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/blog/sample blog entry.md
+INFO:Thread-10:werkzeug:127.0.0.1 - - [12/Oct/2018 12:47:55] "GET / HTTP/1.1" 200 -
+INFO:Thread-11:werkzeug:127.0.0.1 - - [12/Oct/2018 12:47:55] "GET /index.css HTTP/1.1" 200 -
+INFO:Thread-12:werkzeug:127.0.0.1 - - [12/Oct/2018 12:48:56] "GET /sitemap HTTP/1.1" 200 -
+INFO:Thread-13:werkzeug:127.0.0.1 - - [12/Oct/2018 12:48:59] "GET /sitemap HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/_.cat
+INFO:Indexer_0:publ.index:Scanning meta info: content/_.cat
+INFO:Thread-14:werkzeug:127.0.0.1 - - [12/Oct/2018 12:49:19] "GET /sitemap HTTP/1.1" 200 -
+INFO:Thread-15:werkzeug:127.0.0.1 - - [12/Oct/2018 12:49:23] "GET /blog/ HTTP/1.1" 200 -
+INFO:Thread-16:werkzeug:127.0.0.1 - - [12/Oct/2018 12:49:23] "GET /blog/style.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file created: content/blog/_.cat
+INFO:Indexer_0:publ.index:Scanning meta info: content/blog/_.cat
+INFO:Thread-17:werkzeug:127.0.0.1 - - [12/Oct/2018 12:50:42] "GET /blog/ HTTP/1.1" 200 -
+INFO:Thread-18:werkzeug:127.0.0.1 - - [12/Oct/2018 12:50:42] "GET /blog/style.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/blog/_.cat
+INFO:Indexer_0:publ.index:Scanning meta info: content/blog/_.cat
+INFO:Thread-19:werkzeug:127.0.0.1 - - [12/Oct/2018 12:50:54] "GET /blog/ HTTP/1.1" 200 -
+INFO:Thread-20:werkzeug:127.0.0.1 - - [12/Oct/2018 12:50:54] "GET /blog/style.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file created: content/.DS_Store
+INFO:Thread-8:publ.index:file created: content/_layout/cat-art.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/bandcamp.png
+INFO:Thread-8:publ.index:file created: content/_layout/carpet.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-articles.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-blog.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-food.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-comics.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-code.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-games.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-store.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-writing.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/cat-music.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/favicon-big.png
+INFO:Thread-8:publ.index:file created: content/_layout/discord.png
+INFO:Thread-8:publ.index:file created: content/_layout/itch.png
+INFO:Thread-8:publ.index:file created: content/_layout/github.png
+INFO:Thread-8:publ.index:file created: content/_layout/mastodon.png
+INFO:Thread-8:publ.index:file created: content/_layout/papertexture.png
+INFO:Thread-8:publ.index:file created: content/_layout/papertexture.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/patreon.png
+INFO:Thread-8:publ.index:file created: content/_layout/plaidbg-dark.png
+INFO:Thread-8:publ.index:file created: content/_layout/plaidlogo-blur-bg.jpg
+INFO:Thread-8:publ.index:file created: content/_layout/plaidbg-light.png
+INFO:Thread-8:publ.index:file created: content/_layout/rss.png
+INFO:Thread-8:publ.index:file created: content/_layout/plaidlogo.png
+INFO:Thread-8:publ.index:file created: content/_layout/twitch.png
+INFO:Thread-8:publ.index:file created: content/_layout/twitter.png
+INFO:Thread-8:publ.index:file created: content/_layout/soundcloud.png
+INFO:Thread-8:publ.index:file created: content/_layout/tumblr.png
+INFO:Thread-8:publ.index:file modified: content/.DS_Store
+INFO:Thread-8:publ.index:file modified: content/.DS_Store
+INFO:Thread-8:publ.index:file created: content/_link-discord.md
+INFO:Thread-8:publ.index:file created: content/_link-itch.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-discord.md
+INFO:Thread-8:publ.index:file created: content/_link-github.md
+INFO:Thread-8:publ.index:file created: content/_link-bandcamp.md
+INFO:Thread-8:publ.index:file created: content/_link-mastodon.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-itch.md
+INFO:Thread-8:publ.index:file created: content/_link-rss.md
+INFO:Thread-8:publ.index:file created: content/_link-soundcloud.md
+INFO:Thread-8:publ.index:file created: content/_link-patreon.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-github.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-bandcamp.md
+INFO:Thread-8:publ.index:file created: content/_link-twitch.md
+INFO:Thread-8:publ.index:file created: content/_link-tumblr.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-mastodon.md
+INFO:Thread-8:publ.index:file created: content/_link-twitter.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-rss.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-soundcloud.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-patreon.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-twitch.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-tumblr.md
+INFO:Indexer_0:publ.index:Scanning entry: content/_link-twitter.md
+INFO:Thread-8:publ.index:file created: content/comment-policy.md
+INFO:Thread-8:publ.index:file created: content/privacy policy.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comment-policy.md
+INFO:Thread-8:publ.index:file created: content/about.md
+INFO:Indexer_0:publ.index:Scanning entry: content/privacy policy.md
+INFO:Indexer_0:publ.index:Scanning entry: content/about.md
+INFO:Thread-21:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /blog/ HTTP/1.1" 200 -
+INFO:Thread-22:publ.image:Updating image content/_layout/plaidbg-light.png -> 12895462006,1528249682.0,15917
+INFO:Renderer_0:publ.image:Rendering file static/_img/c8/c0a3/plaidbg-light_0c8ea6f1b2_192x192.png
+INFO:Thread-22:publ.image:Updating image content/_layout/plaidlogo.png -> 12895462008,1528251908.0,385624
+INFO:Renderer_2:publ.image:Rendering file static/_img/44/c0ae/plaidlogo_9f2ab28658_192x192.png
+INFO:Thread-22:publ.image:Updating image content/_layout/plaidbg-dark.png -> 12895462005,1528249692.0,18283
+INFO:Renderer_4:publ.image:Rendering file static/_img/97/97ce/plaidbg-dark_9a0b69511f_192x192.png
+INFO:Renderer_7:publ.image:Rendering file static/_img/97/97ce/plaidbg-dark_9a0b69511f_192x192.png
+INFO:Renderer_9:publ.image:Rendering file static/_img/44/c0ae/plaidlogo_9f2ab28658_192x192.png
+INFO:Thread-22:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /blog/style.css HTTP/1.1" 200 -
+INFO:Renderer_7:publ.image:static/_img/97/97ce/plaidbg-dark_9a0b69511f_192x192.png: complete
+INFO:Renderer_8:publ.image:Rendering file static/_img/97/97ce/plaidbg-dark_9a0b69511f_384x384.png
+INFO:Renderer_0:publ.image:static/_img/c8/c0a3/plaidbg-light_0c8ea6f1b2_192x192.png: complete
+INFO:Renderer_1:publ.image:Rendering file static/_img/c8/c0a3/plaidbg-light_0c8ea6f1b2_384x384.png
+INFO:Renderer_4:publ.image:static/_img/97/97ce/plaidbg-dark_9a0b69511f_192x192.png: complete
+INFO:Renderer_6:publ.image:Rendering file static/_img/97/97ce/plaidbg-dark_9a0b69511f_384x384.png
+INFO:Renderer_8:publ.image:static/_img/97/97ce/plaidbg-dark_9a0b69511f_384x384.png: complete
+INFO:Renderer_1:publ.image:static/_img/c8/c0a3/plaidbg-light_0c8ea6f1b2_384x384.png: complete
+INFO:Renderer_6:publ.image:static/_img/97/97ce/plaidbg-dark_9a0b69511f_384x384.png: complete
+INFO:Renderer_9:publ.image:static/_img/44/c0ae/plaidlogo_9f2ab28658_192x192.png: complete
+INFO:Renderer_10:publ.image:Rendering file static/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png
+INFO:Renderer_2:publ.image:static/_img/44/c0ae/plaidlogo_9f2ab28658_192x192.png: complete
+INFO:Renderer_3:publ.image:Rendering file static/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png
+INFO:Thread-23:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /_async/_img/c8/c0a3/plaidbg-light_0c8ea6f1b2_384x384.png HTTP/1.1" 302 -
+INFO:Thread-24:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /_async/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png HTTP/1.1" 302 -
+INFO:Thread-25:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /_async/_img/97/97ce/plaidbg-dark_9a0b69511f_384x384.png HTTP/1.1" 302 -
+INFO:Thread-26:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /_async/_img/c8/c0a3/plaidbg-light_0c8ea6f1b2_384x384.png?cb=264988954894566&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-28:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /_async/_img/97/97ce/plaidbg-dark_9a0b69511f_384x384.png?cb=120668644229342&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-29:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /static/_img/c8/c0a3/plaidbg-light_0c8ea6f1b2_384x384.png HTTP/1.1" 200 -
+INFO:Thread-30:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:44] "GET /static/_img/97/97ce/plaidbg-dark_9a0b69511f_384x384.png HTTP/1.1" 200 -
+INFO:Thread-27:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:45] "GET /_async/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png?cb=110619803111035&retry_count=1 HTTP/1.1" 302 -
+INFO:Renderer_10:publ.image:static/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png: complete
+INFO:Renderer_3:publ.image:static/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png: complete
+INFO:Thread-31:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:45] "GET /_async/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png?cb=202894511019686&retry_count=2 HTTP/1.1" 302 -
+INFO:Thread-32:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:45] "GET /_async/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png?cb=84146134895640&retry_count=3 HTTP/1.1" 302 -
+INFO:Thread-33:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:45] "GET /static/_img/44/c0ae/plaidlogo_9f2ab28658_384x384.png HTTP/1.1" 200 -
+INFO:Thread-34:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET / HTTP/1.1" 200 -
+INFO:Thread-35:publ.image:Updating image content/_layout/carpet.jpg -> 12895461986,1528262046.0,447974
+INFO:Renderer_5:publ.image:Rendering file static/_img/aa/a1bd/carpet_03840f121f_512x512.jpg
+INFO:Thread-35:publ.image:Updating image content/_layout/favicon-big.png -> 12895461998,1527931249.0,2258
+INFO:Renderer_4:publ.image:Rendering file static/_img/f3/dee0/favicon-big_129b1e47b0.png
+INFO:Thread-35:publ.image:Updating image content/_layout/bandcamp.png -> 12895461985,1527493461.0,15308
+INFO:Renderer_6:publ.image:Rendering file static/_img/1b/a4dd/bandcamp_c00ed0b47e_48x48.png
+INFO:Thread-35:publ.image:Updating image content/_layout/twitch.png -> 12895462012,1527209466.0,15623
+INFO:Thread-35:publ.image:Updating image content/_layout/discord.png -> 12895461997,1527411574.0,1559
+INFO:Renderer_17:publ.image:Rendering file static/_img/58/43f7/twitch_8ab3b61907_48x48.png
+INFO:Renderer_19:publ.image:Rendering file static/_img/e0/5ead/discord_8d0aa6986d_48x47.png
+INFO:Renderer_6:publ.image:static/_img/1b/a4dd/bandcamp_c00ed0b47e_48x48.png: complete
+INFO:Thread-35:publ.image:Updating image content/_layout/soundcloud.png -> 12895462010,1527119683.0,33837
+INFO:Renderer_2:publ.image:Rendering file static/_img/1b/a4dd/bandcamp_c00ed0b47e_96x96.png
+INFO:Renderer_19:publ.image:static/_img/e0/5ead/discord_8d0aa6986d_48x47.png: complete
+INFO:Renderer_11:publ.image:Rendering file static/_img/e0/5ead/discord_8d0aa6986d_96x94.png
+INFO:Renderer_2:publ.image:static/_img/1b/a4dd/bandcamp_c00ed0b47e_96x96.png: complete
+INFO:Renderer_17:publ.image:static/_img/58/43f7/twitch_8ab3b61907_48x48.png: complete
+INFO:Renderer_18:publ.image:Rendering file static/_img/58/43f7/twitch_8ab3b61907_96x96.png
+INFO:Thread-35:publ.image:Updating image content/_layout/twitter.png -> 12895462013,1527114645.0,4954
+INFO:Renderer_13:publ.image:Rendering file static/_img/19/24cf/soundcloud_ea1c3a430c_48x48.png
+INFO:Renderer_11:publ.image:static/_img/e0/5ead/discord_8d0aa6986d_96x94.png: complete
+INFO:Renderer_4:publ.image:static/_img/f3/dee0/favicon-big_129b1e47b0.png: complete
+INFO:Thread-35:publ.image:Updating image content/_layout/mastodon.png -> 12895462001,1527184103.0,3976
+INFO:Renderer_15:publ.image:Rendering file static/_img/ec/8cce/twitter_5f8f2c43be_48x48.png
+INFO:Renderer_18:publ.image:static/_img/58/43f7/twitch_8ab3b61907_96x96.png: complete
+INFO:Renderer_18:publ.image:Rendering file static/_img/e3/057e/mastodon_751eb9deab_45x48.png
+INFO:Thread-35:publ.image:Updating image content/_layout/github.png -> 12895461999,1527113684.0,4268
+INFO:Renderer_15:publ.image:static/_img/ec/8cce/twitter_5f8f2c43be_48x48.png: complete
+INFO:Renderer_13:publ.image:static/_img/19/24cf/soundcloud_ea1c3a430c_48x48.png: complete
+INFO:Renderer_18:publ.image:static/_img/e3/057e/mastodon_751eb9deab_45x48.png: complete
+INFO:Renderer_9:publ.image:Rendering file static/_img/ec/8cce/twitter_5f8f2c43be_96x96.png
+INFO:Renderer_13:publ.image:Rendering file static/_img/ef/7a02/github_54c4200dcb_48x48.png
+INFO:Renderer_10:publ.image:Rendering file static/_img/e3/057e/mastodon_751eb9deab_89x96.png
+INFO:Renderer_8:publ.image:Rendering file static/_img/19/24cf/soundcloud_ea1c3a430c_96x96.png
+INFO:Renderer_9:publ.image:static/_img/ec/8cce/twitter_5f8f2c43be_96x96.png: complete
+INFO:Renderer_13:publ.image:static/_img/ef/7a02/github_54c4200dcb_48x48.png: complete
+INFO:Thread-35:publ.image:Updating image content/_layout/rss.png -> 12895462009,1527115108.0,6646
+INFO:Renderer_18:publ.image:Rendering file static/_img/ef/7a02/github_54c4200dcb_96x96.png
+INFO:Renderer_10:publ.image:static/_img/e3/057e/mastodon_751eb9deab_89x96.png: complete
+INFO:Thread-35:publ.image:Updating image content/_layout/patreon.png -> 12895462004,1525846133.0,6083
+INFO:Renderer_7:publ.image:Rendering file static/_img/17/b578/rss_e98359e830_48x48.png
+INFO:Thread-35:publ.image:Updating image content/_layout/cat-blog.jpg -> 12895461989,1528251941.0,81804
+INFO:Renderer_19:publ.image:Rendering file static/_img/b2/e174/patreon_0f076997a4_48x48.png
+INFO:Renderer_7:publ.image:static/_img/17/b578/rss_e98359e830_48x48.png: complete
+INFO:Renderer_18:publ.image:static/_img/ef/7a02/github_54c4200dcb_96x96.png: complete
+INFO:Thread-35:publ.image:Updating image content/_layout/cat-store.jpg -> 12895461995,1527988538.0,280057
+INFO:Renderer_0:publ.image:Rendering file static/_img/17/b578/rss_e98359e830_96x96.png
+INFO:Renderer_17:publ.image:Rendering file static/_img/77/7b88/cat-blog_4469df1a46_240x180.jpg
+INFO:Renderer_19:publ.image:static/_img/b2/e174/patreon_0f076997a4_48x48.png: complete
+INFO:Renderer_8:publ.image:static/_img/19/24cf/soundcloud_ea1c3a430c_96x96.png: complete
+INFO:Renderer_18:publ.image:Rendering file static/_img/b2/e174/patreon_0f076997a4_96x96.png
+INFO:Thread-35:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /index.css HTTP/1.1" 200 -
+INFO:Renderer_4:publ.image:Rendering file static/_img/37/ad10/cat-store_303fd0b32e_240x180.jpg
+INFO:Renderer_17:publ.image:static/_img/77/7b88/cat-blog_4469df1a46_240x180.jpg: complete
+INFO:Renderer_1:publ.image:Rendering file static/_img/77/7b88/cat-blog_4469df1a46_480x360.jpg
+INFO:Renderer_18:publ.image:static/_img/b2/e174/patreon_0f076997a4_96x96.png: complete
+INFO:Thread-37:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/f3/dee0/favicon-big_129b1e47b0.png HTTP/1.1" 302 -
+INFO:Thread-38:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/b2/e174/patreon_0f076997a4_96x96.png HTTP/1.1" 302 -
+INFO:Renderer_0:publ.image:static/_img/17/b578/rss_e98359e830_96x96.png: complete
+INFO:Thread-39:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/17/b578/rss_e98359e830_96x96.png HTTP/1.1" 302 -
+INFO:Thread-40:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/ef/7a02/github_54c4200dcb_96x96.png HTTP/1.1" 302 -
+INFO:Thread-41:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/e3/057e/mastodon_751eb9deab_89x96.png HTTP/1.1" 302 -
+INFO:Thread-42:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/ec/8cce/twitter_5f8f2c43be_96x96.png HTTP/1.1" 302 -
+INFO:Thread-43:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/19/24cf/soundcloud_ea1c3a430c_96x96.png HTTP/1.1" 302 -
+INFO:Thread-44:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/e0/5ead/discord_8d0aa6986d_96x94.png HTTP/1.1" 302 -
+INFO:Thread-45:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/58/43f7/twitch_8ab3b61907_96x96.png HTTP/1.1" 302 -
+INFO:Thread-46:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /_async/_img/1b/a4dd/bandcamp_c00ed0b47e_96x96.png HTTP/1.1" 302 -
+INFO:Thread-49:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/f3/dee0/favicon-big_129b1e47b0.png HTTP/1.1" 200 -
+INFO:Thread-50:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/b2/e174/patreon_0f076997a4_96x96.png HTTP/1.1" 200 -
+INFO:Thread-51:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/17/b578/rss_e98359e830_96x96.png HTTP/1.1" 200 -
+INFO:Thread-52:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/ef/7a02/github_54c4200dcb_96x96.png HTTP/1.1" 200 -
+INFO:Thread-53:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/e3/057e/mastodon_751eb9deab_89x96.png HTTP/1.1" 200 -
+INFO:Thread-54:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/ec/8cce/twitter_5f8f2c43be_96x96.png HTTP/1.1" 200 -
+INFO:Thread-55:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/19/24cf/soundcloud_ea1c3a430c_96x96.png HTTP/1.1" 200 -
+INFO:Thread-57:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/58/43f7/twitch_8ab3b61907_96x96.png HTTP/1.1" 200 -
+INFO:Thread-56:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/e0/5ead/discord_8d0aa6986d_96x94.png HTTP/1.1" 200 -
+INFO:Thread-58:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:50] "GET /static/_img/1b/a4dd/bandcamp_c00ed0b47e_96x96.png HTTP/1.1" 200 -
+INFO:Renderer_1:publ.image:static/_img/77/7b88/cat-blog_4469df1a46_480x360.jpg: complete
+INFO:Renderer_4:publ.image:static/_img/37/ad10/cat-store_303fd0b32e_240x180.jpg: complete
+INFO:Renderer_14:publ.image:Rendering file static/_img/37/ad10/cat-store_303fd0b32e_480x360.jpg
+INFO:Renderer_5:publ.image:static/_img/aa/a1bd/carpet_03840f121f_512x512.jpg: complete
+INFO:Renderer_12:publ.image:Rendering file static/_img/aa/a1bd/carpet_03840f121f_1024x1024.jpg
+INFO:Renderer_14:publ.image:static/_img/37/ad10/cat-store_303fd0b32e_480x360.jpg: complete
+INFO:Thread-36:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /_async/_img/aa/a1bd/carpet_03840f121f_1024x1024.jpg HTTP/1.1" 302 -
+INFO:Renderer_12:publ.image:static/_img/aa/a1bd/carpet_03840f121f_1024x1024.jpg: complete
+INFO:Thread-47:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /_async/_img/77/7b88/cat-blog_4469df1a46_480x360.jpg HTTP/1.1" 302 -
+INFO:Thread-48:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /_async/_img/37/ad10/cat-store_303fd0b32e_480x360.jpg HTTP/1.1" 302 -
+INFO:Thread-60:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /_async/_img/77/7b88/cat-blog_4469df1a46_480x360.jpg?cb=2595602686475&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-61:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /_async/_img/37/ad10/cat-store_303fd0b32e_480x360.jpg?cb=58962359233146&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-62:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /static/_img/77/7b88/cat-blog_4469df1a46_480x360.jpg HTTP/1.1" 200 -
+INFO:Thread-63:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /static/_img/37/ad10/cat-store_303fd0b32e_480x360.jpg HTTP/1.1" 200 -
+INFO:Thread-59:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /_async/_img/aa/a1bd/carpet_03840f121f_1024x1024.jpg?cb=113394381304073&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-64:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /_async/_img/aa/a1bd/carpet_03840f121f_1024x1024.jpg?cb=200585895915421&retry_count=2 HTTP/1.1" 302 -
+INFO:Thread-65:werkzeug:127.0.0.1 - - [12/Oct/2018 13:00:51] "GET /static/_img/aa/a1bd/carpet_03840f121f_1024x1024.jpg HTTP/1.1" 200 -
+INFO:Thread-66:werkzeug:127.0.0.1 - - [12/Oct/2018 13:02:47] "GET /legal HTTP/1.1" 301 -
+INFO:Thread-67:werkzeug:127.0.0.1 - - [12/Oct/2018 13:02:47] "GET /1801-Legal-Information HTTP/1.1" 200 -
+INFO:Thread-68:werkzeug:127.0.0.1 - - [12/Oct/2018 13:04:15] "GET / HTTP/1.1" 200 -
+INFO:Thread-69:werkzeug:127.0.0.1 - - [12/Oct/2018 13:04:15] "GET /index.css HTTP/1.1" 304 -
+INFO:Thread-70:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:25] "GET / HTTP/1.1" 200 -
+INFO:Thread-71:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:25] "GET /index.css HTTP/1.1" 304 -
+INFO:Thread-72:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:33] "GET / HTTP/1.1" 200 -
+INFO:Renderer_15:publ.image:Rendering file static/_img/44/c0ae/plaidlogo_9f2ab28658_120x120.png
+INFO:Renderer_15:publ.image:static/_img/44/c0ae/plaidlogo_9f2ab28658_120x120.png: complete
+INFO:Renderer_9:publ.image:Rendering file static/_img/44/c0ae/plaidlogo_9f2ab28658_240x240.png
+INFO:Thread-73:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:33] "GET /_async/_img/44/c0ae/plaidlogo_9f2ab28658_240x240.png HTTP/1.1" 302 -
+INFO:Renderer_9:publ.image:static/_img/44/c0ae/plaidlogo_9f2ab28658_240x240.png: complete
+INFO:Thread-74:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:33] "GET /_async/_img/44/c0ae/plaidlogo_9f2ab28658_240x240.png?cb=9842026878324&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-75:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:33] "GET /_async/_img/44/c0ae/plaidlogo_9f2ab28658_240x240.png?cb=7438730217226&retry_count=2 HTTP/1.1" 302 -
+INFO:Thread-76:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:33] "GET /static/_img/44/c0ae/plaidlogo_9f2ab28658_240x240.png HTTP/1.1" 200 -
+INFO:Thread-77:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET / HTTP/1.1" 200 -
+INFO:Thread-79:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/44/c0ae/plaidlogo_9f2ab28658_240x240.png HTTP/1.1" 200 -
+INFO:Thread-78:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /index.css HTTP/1.1" 200 -
+INFO:Thread-81:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/f3/dee0/favicon-big_129b1e47b0.png HTTP/1.1" 200 -
+INFO:Thread-80:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/aa/a1bd/carpet_03840f121f_1024x1024.jpg HTTP/1.1" 200 -
+INFO:Thread-82:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/b2/e174/patreon_0f076997a4_96x96.png HTTP/1.1" 200 -
+INFO:Thread-83:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/17/b578/rss_e98359e830_96x96.png HTTP/1.1" 200 -
+INFO:Thread-84:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/ef/7a02/github_54c4200dcb_96x96.png HTTP/1.1" 200 -
+INFO:Thread-85:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/e3/057e/mastodon_751eb9deab_89x96.png HTTP/1.1" 200 -
+INFO:Thread-86:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/ec/8cce/twitter_5f8f2c43be_96x96.png HTTP/1.1" 200 -
+INFO:Thread-87:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/19/24cf/soundcloud_ea1c3a430c_96x96.png HTTP/1.1" 200 -
+INFO:Thread-88:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/e0/5ead/discord_8d0aa6986d_96x94.png HTTP/1.1" 200 -
+INFO:Thread-91:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/77/7b88/cat-blog_4469df1a46_480x360.jpg HTTP/1.1" 200 -
+INFO:Thread-90:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/1b/a4dd/bandcamp_c00ed0b47e_96x96.png HTTP/1.1" 200 -
+INFO:Thread-89:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/58/43f7/twitch_8ab3b61907_96x96.png HTTP/1.1" 200 -
+INFO:Thread-92:werkzeug:127.0.0.1 - - [12/Oct/2018 13:07:36] "GET /static/_img/37/ad10/cat-store_303fd0b32e_480x360.jpg HTTP/1.1" 200 -
+INFO:Thread-2:werkzeug: * Detected change in '/Users/fluffy/projects/Publ-sample-templates/main.py', reloading
+INFO:MainThread:werkzeug: * Restarting with fsevents reloader
+INFO:MainThread:root:Setting up
+WARNING:MainThread:werkzeug: * Debugger is active!
+INFO:MainThread:werkzeug: * Debugger PIN: 690-293-123
+INFO:MainThread:root:Setting up
+INFO:MainThread:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:MainThread:werkzeug: * Restarting with fsevents reloader
+INFO:MainThread:root:Setting up
+WARNING:MainThread:werkzeug: * Debugger is active!
+INFO:MainThread:werkzeug: * Debugger PIN: 690-293-123
+INFO:Thread-7:root:Watching content for changes
+INFO:Thread-7:publ.image:Starting LocalImage threadpool
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Thread-7:werkzeug:127.0.0.1 - - [12/Oct/2018 13:15:04] "GET / HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:File deleted: content/comics/sample-news.md
+INFO:Thread-8:publ.index:file created: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Thread-10:publ.image:Updating image content/_layout/cat-comics.jpg -> 12895461991,1528263620.0,516575
+INFO:Renderer_0:publ.image:Rendering file static/_img/fd/83b6/cat-comics_6194297dd4_240x360.jpg
+INFO:Thread-10:werkzeug:127.0.0.1 - - [12/Oct/2018 13:15:04] "GET /index.css HTTP/1.1" 200 -
+INFO:Renderer_0:publ.image:static/_img/fd/83b6/cat-comics_6194297dd4_240x360.jpg: complete
+INFO:Renderer_2:publ.image:Rendering file static/_img/fd/83b6/cat-comics_6194297dd4_480x720.jpg
+INFO:Renderer_2:publ.image:static/_img/fd/83b6/cat-comics_6194297dd4_480x720.jpg: complete
+INFO:Thread-11:werkzeug:127.0.0.1 - - [12/Oct/2018 13:15:07] "GET /comics/41-Sample-news-post HTTP/1.1" 200 -
+INFO:Thread-12:werkzeug:127.0.0.1 - - [12/Oct/2018 13:15:07] "GET /comics/style.css HTTP/1.1" 200 -
+INFO:Thread-13:werkzeug:127.0.0.1 - - [12/Oct/2018 13:15:10] "GET /comics/?id=41 HTTP/1.1" 200 -
+INFO:Thread-14:werkzeug:127.0.0.1 - - [12/Oct/2018 13:15:10] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-8:publ.index:file modified: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Thread-15:werkzeug:127.0.0.1 - - [12/Oct/2018 13:16:08] "GET /comics/?id=41 HTTP/1.1" 200 -
+INFO:Thread-16:werkzeug:127.0.0.1 - - [12/Oct/2018 13:16:08] "GET /comics/style.css HTTP/1.1" 200 -
+INFO:Thread-17:werkzeug:127.0.0.1 - - [12/Oct/2018 13:16:10] "GET /comics/?id=41 HTTP/1.1" 200 -
+INFO:Thread-18:werkzeug:127.0.0.1 - - [12/Oct/2018 13:16:10] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-19:werkzeug:127.0.0.1 - - [12/Oct/2018 13:16:12] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-20:werkzeug:127.0.0.1 - - [12/Oct/2018 13:16:12] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-8:publ.index:file created: content/comics/subseries/_.cat
+INFO:Indexer_0:publ.index:Scanning meta info: content/comics/subseries/_.cat
+INFO:Thread-21:werkzeug:127.0.0.1 - - [12/Oct/2018 13:17:05] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-22:werkzeug:127.0.0.1 - - [12/Oct/2018 13:17:05] "GET /comics/style.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file created: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Thread-8:publ.index:File deleted: content/comics/subseries/newspost.md
+INFO:Thread-8:publ.index:file created: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Thread-8:publ.index:file modified: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Thread-8:publ.index:File deleted: content/comics/subseries/newspost.md
+INFO:Thread-8:publ.index:file created: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Thread-23:werkzeug:127.0.0.1 - - [12/Oct/2018 13:17:34] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-24:werkzeug:127.0.0.1 - - [12/Oct/2018 13:17:34] "GET /comics/style.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file created: content/comics/subseries/subseries-comic.jpg
+INFO:Thread-8:publ.index:file created: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Thread-8:publ.index:File deleted: content/comics/subseries/sample comic.md
+INFO:Thread-8:publ.index:file created: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Thread-25:werkzeug:127.0.0.1 - - [12/Oct/2018 13:20:07] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-26:werkzeug:127.0.0.1 - - [12/Oct/2018 13:20:07] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/.DS_Store
+INFO:Thread-8:publ.index:file created: content/comics/.DS_Store
+INFO:Thread-8:publ.index:file moved: content/comics/subseries/subseries-comic.jpg -> content/comics/subseries/sample comic.jpg
+INFO:Thread-28:werkzeug:127.0.0.1 - - [12/Oct/2018 13:20:25] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Thread-27:publ.image:Updating image content/comics/subseries/sample comic.jpg -> 12895463515,1539375577.5411494,53899
+INFO:Renderer_1:publ.image:Rendering file static/_img/12/b733/sample-comic_ed397d7bab_800x800_0-0-968-968.jpg
+INFO:Renderer_2:publ.image:Rendering file static/_img/12/b733/sample-comic_ed397d7bab_577x484.jpg
+INFO:Thread-27:werkzeug:127.0.0.1 - - [12/Oct/2018 13:20:25] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-29:werkzeug:127.0.0.1 - - [12/Oct/2018 13:20:25] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Renderer_2:publ.image:static/_img/12/b733/sample-comic_ed397d7bab_577x484.jpg: complete
+INFO:Renderer_0:publ.image:Rendering file static/_img/12/b733/sample-comic_ed397d7bab.jpg
+INFO:Renderer_1:publ.image:static/_img/12/b733/sample-comic_ed397d7bab_800x800_0-0-968-968.jpg: complete
+INFO:Renderer_0:publ.image:static/_img/12/b733/sample-comic_ed397d7bab.jpg: complete
+INFO:Thread-30:werkzeug:127.0.0.1 - - [12/Oct/2018 13:20:25] "GET /_async/_img/12/b733/sample-comic_ed397d7bab.jpg HTTP/1.1" 302 -
+INFO:Thread-31:werkzeug:127.0.0.1 - - [12/Oct/2018 13:20:25] "GET /_async/_img/12/b733/sample-comic_ed397d7bab.jpg?cb=36542685577576&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-32:werkzeug:127.0.0.1 - - [12/Oct/2018 13:20:25] "GET /static/_img/12/b733/sample-comic_ed397d7bab.jpg HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/comics/.DS_Store
+INFO:Thread-8:publ.index:file created: content/comics/sample comic.md
+INFO:Thread-8:publ.index:file created: content/comics/sample comic.jpg
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+WARNING:Indexer_0:publ.entry:Entry 'content/comics/sample comic.md' had ID 83, which belongs to 'content/comics/subseries/sample comic.md'. Reassigned to 29
+INFO:Thread-8:publ.index:File deleted: content/comics/sample comic.md
+INFO:Thread-8:publ.index:file created: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Thread-8:publ.index:file modified: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Thread-33:werkzeug:127.0.0.1 - - [12/Oct/2018 13:21:03] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-34:werkzeug:127.0.0.1 - - [12/Oct/2018 13:21:03] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Thread-35:werkzeug:127.0.0.1 - - [12/Oct/2018 13:21:03] "GET /static/_img/12/b733/sample-comic_ed397d7bab.jpg HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Thread-8:publ.index:File deleted: content/comics/sample comic.md
+INFO:Thread-8:publ.index:file created: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Thread-8:publ.index:file modified: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scheduling fixup for content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Thread-8:publ.index:File deleted: content/comics/subseries/sample comic.md
+INFO:Thread-8:publ.index:file created: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Thread-36:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:11] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-37:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:11] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Thread-38:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:14] "GET /comics/ HTTP/1.1" 304 -
+INFO:Thread-39:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:14] "GET /comics/subseries/style.css HTTP/1.1" 304 -
+INFO:Thread-8:publ.index:file modified: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Thread-8:publ.index:file modified: content/comics/subseries/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/sample comic.md
+INFO:Thread-40:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:40] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-41:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:40] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Thread-8:publ.index:File deleted: content/comics/sample comic.md
+INFO:Thread-8:publ.index:file created: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample comic.md
+INFO:Thread-42:publ.image:Updating image content/comics/sample comic.jpg -> 12895463608,1539375577.5411494,53899
+INFO:Thread-42:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:53] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-43:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:53] "GET /comics/style.css HTTP/1.1" 200 -
+INFO:Thread-44:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:55] "GET /comics/subseries/ HTTP/1.1" 200 -
+INFO:Thread-45:werkzeug:127.0.0.1 - - [12/Oct/2018 13:34:55] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file created: content/comics/_begin-disabled.png
+INFO:Thread-8:publ.index:file created: content/comics/_first-disabled.png
+INFO:Thread-8:publ.index:file created: content/comics/_first.png
+INFO:Thread-8:publ.index:file created: content/comics/_latest.png
+INFO:Thread-8:publ.index:file created: content/comics/_latest-disabled.png
+INFO:Thread-8:publ.index:file created: content/comics/_begin.png
+INFO:Thread-8:publ.index:file created: content/comics/_logo.jpg
+INFO:Thread-8:publ.index:file created: content/comics/_next_chapter-disabled.png
+INFO:Thread-8:publ.index:file created: content/comics/_next_page.png
+INFO:Thread-8:publ.index:file created: content/comics/_next_page-disabled.png
+INFO:Thread-8:publ.index:file created: content/comics/_next_chapter.png
+INFO:Thread-8:publ.index:file created: content/comics/_prev_chapter-disabled.png
+INFO:Thread-8:publ.index:file created: content/comics/_prev_page-disabled.png
+INFO:Thread-8:publ.index:file created: content/comics/_prev_chapter.png
+INFO:Thread-8:publ.index:file created: content/comics/_prev_page.png
+INFO:Thread-46:publ.image:Updating image content/comics/_first-disabled.png -> 12895468241,1527838629.0,8505
+INFO:Renderer_6:publ.image:Rendering file static/_img/75/5fe6/first-disabled_a4c10b12e8_28x35.png
+INFO:Thread-46:publ.image:Updating image content/comics/_prev_chapter-disabled.png -> 12895468250,1527838629.0,8054
+INFO:Renderer_6:publ.image:static/_img/75/5fe6/first-disabled_a4c10b12e8_28x35.png: complete
+INFO:Renderer_4:publ.image:Rendering file static/_img/75/5fe6/first-disabled_a4c10b12e8_55x70.png
+INFO:Renderer_2:publ.image:Rendering file static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8_25x35.png
+INFO:Thread-46:publ.image:Updating image content/comics/_prev_page-disabled.png -> 12895468252,1527838629.0,6746
+INFO:Renderer_2:publ.image:static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8_25x35.png: complete
+INFO:Renderer_0:publ.image:Rendering file static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8_50x70.png
+INFO:Renderer_7:publ.image:Rendering file static/_img/c6/240c/prev-page-disabled_0b373a8ffc_24x40.png
+INFO:Renderer_4:publ.image:static/_img/75/5fe6/first-disabled_a4c10b12e8_55x70.png: complete
+INFO:Thread-46:publ.image:Updating image content/comics/_next_page-disabled.png -> 12895468248,1527838629.0,6445
+INFO:Renderer_7:publ.image:static/_img/c6/240c/prev-page-disabled_0b373a8ffc_24x40.png: complete
+INFO:Renderer_6:publ.image:Rendering file static/_img/c6/240c/prev-page-disabled_0b373a8ffc_49x80.png
+INFO:Renderer_12:publ.image:Rendering file static/_img/09/b8aa/next-page-disabled_0f0117984a_23x40.png
+INFO:Renderer_0:publ.image:static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8_50x70.png: complete
+INFO:Thread-46:publ.image:Updating image content/comics/_next_chapter-disabled.png -> 12895468246,1527838629.0,8631
+INFO:Renderer_12:publ.image:static/_img/09/b8aa/next-page-disabled_0f0117984a_23x40.png: complete
+INFO:Renderer_9:publ.image:Rendering file static/_img/09/b8aa/next-page-disabled_0f0117984a_46x80.png
+INFO:Renderer_2:publ.image:Rendering file static/_img/79/6d75/next-chapter-disabled_2dbfc47ede_25x35.png
+INFO:Renderer_9:publ.image:static/_img/09/b8aa/next-page-disabled_0f0117984a_46x80.png: complete
+INFO:Renderer_6:publ.image:static/_img/c6/240c/prev-page-disabled_0b373a8ffc_49x80.png: complete
+INFO:Renderer_16:publ.image:Rendering file static/_img/75/5fe6/first-disabled_a4c10b12e8_63x80.png
+INFO:Renderer_9:publ.image:Rendering file static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8_58x80.png
+INFO:Renderer_2:publ.image:static/_img/79/6d75/next-chapter-disabled_2dbfc47ede_25x35.png: complete
+INFO:Renderer_5:publ.image:Rendering file static/_img/79/6d75/next-chapter-disabled_2dbfc47ede_50x70.png
+INFO:Renderer_7:publ.image:Rendering file static/_img/c6/240c/prev-page-disabled_0b373a8ffc.png
+INFO:Thread-46:publ.image:Updating image content/comics/_latest-disabled.png -> 12895468243,1527838629.0,6550
+INFO:Renderer_16:publ.image:static/_img/75/5fe6/first-disabled_a4c10b12e8_63x80.png: complete
+INFO:Renderer_5:publ.image:static/_img/79/6d75/next-chapter-disabled_2dbfc47ede_50x70.png: complete
+INFO:Renderer_9:publ.image:static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8_58x80.png: complete
+INFO:Renderer_13:publ.image:Rendering file static/_img/09/b8aa/next-page-disabled_0f0117984a.png
+INFO:Renderer_3:publ.image:Rendering file static/_img/79/6d75/next-chapter-disabled_2dbfc47ede_58x80.png
+INFO:Renderer_8:publ.image:Rendering file static/_img/75/5fe6/first-disabled_a4c10b12e8.png
+INFO:Renderer_2:publ.image:Rendering file static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8.png
+INFO:Renderer_15:publ.image:Rendering file static/_img/7b/e147/latest-disabled_0baf5078bf_60x80.png
+INFO:Thread-46:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /comics/subseries/ HTTP/1.1" 200 -
+INFO:Renderer_7:publ.image:static/_img/c6/240c/prev-page-disabled_0b373a8ffc.png: complete
+INFO:Renderer_13:publ.image:static/_img/09/b8aa/next-page-disabled_0f0117984a.png: complete
+INFO:Renderer_8:publ.image:static/_img/75/5fe6/first-disabled_a4c10b12e8.png: complete
+INFO:Renderer_3:publ.image:static/_img/79/6d75/next-chapter-disabled_2dbfc47ede_58x80.png: complete
+INFO:Renderer_2:publ.image:static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8.png: complete
+INFO:Renderer_12:publ.image:Rendering file static/_img/79/6d75/next-chapter-disabled_2dbfc47ede.png
+INFO:Renderer_15:publ.image:static/_img/7b/e147/latest-disabled_0baf5078bf_60x80.png: complete
+INFO:Renderer_10:publ.image:Rendering file static/_img/7b/e147/latest-disabled_0baf5078bf.png
+INFO:Thread-47:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /comics/subseries/style.css HTTP/1.1" 304 -
+INFO:Thread-48:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/75/5fe6/first-disabled_a4c10b12e8_55x70.png HTTP/1.1" 302 -
+INFO:Renderer_12:publ.image:static/_img/79/6d75/next-chapter-disabled_2dbfc47ede.png: complete
+INFO:Thread-49:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8_50x70.png HTTP/1.1" 302 -
+INFO:Thread-50:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/c6/240c/prev-page-disabled_0b373a8ffc_49x80.png HTTP/1.1" 302 -
+INFO:Renderer_10:publ.image:static/_img/7b/e147/latest-disabled_0baf5078bf.png: complete
+INFO:Thread-51:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/09/b8aa/next-page-disabled_0f0117984a_46x80.png HTTP/1.1" 302 -
+INFO:Thread-52:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/79/6d75/next-chapter-disabled_2dbfc47ede_50x70.png HTTP/1.1" 302 -
+INFO:Thread-53:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/75/5fe6/first-disabled_a4c10b12e8.png HTTP/1.1" 302 -
+INFO:Thread-54:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8.png HTTP/1.1" 302 -
+INFO:Thread-55:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/c6/240c/prev-page-disabled_0b373a8ffc.png HTTP/1.1" 302 -
+INFO:Thread-56:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/09/b8aa/next-page-disabled_0f0117984a.png HTTP/1.1" 302 -
+INFO:Thread-57:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/79/6d75/next-chapter-disabled_2dbfc47ede.png HTTP/1.1" 302 -
+INFO:Thread-58:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /_async/_img/7b/e147/latest-disabled_0baf5078bf.png HTTP/1.1" 302 -
+INFO:Thread-59:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8_50x70.png HTTP/1.1" 200 -
+INFO:Thread-60:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/75/5fe6/first-disabled_a4c10b12e8_55x70.png HTTP/1.1" 200 -
+INFO:Thread-61:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/c6/240c/prev-page-disabled_0b373a8ffc_49x80.png HTTP/1.1" 200 -
+INFO:Thread-62:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/09/b8aa/next-page-disabled_0f0117984a_46x80.png HTTP/1.1" 200 -
+INFO:Thread-63:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/79/6d75/next-chapter-disabled_2dbfc47ede_50x70.png HTTP/1.1" 200 -
+INFO:Thread-64:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/75/5fe6/first-disabled_a4c10b12e8.png HTTP/1.1" 200 -
+INFO:Thread-65:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/9d/b1a5/prev-chapter-disabled_f88c80abc8.png HTTP/1.1" 200 -
+INFO:Thread-68:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/79/6d75/next-chapter-disabled_2dbfc47ede.png HTTP/1.1" 200 -
+INFO:Thread-66:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/c6/240c/prev-page-disabled_0b373a8ffc.png HTTP/1.1" 200 -
+INFO:Thread-67:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/09/b8aa/next-page-disabled_0f0117984a.png HTTP/1.1" 200 -
+INFO:Thread-69:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:36] "GET /static/_img/7b/e147/latest-disabled_0baf5078bf.png HTTP/1.1" 200 -
+INFO:Thread-70:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:38] "GET /comics/ HTTP/1.1" 304 -
+INFO:Thread-71:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:38] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-72:publ.image:Updating image content/comics/_first.png -> 12895468242,1527838645.0,10031
+INFO:Renderer_11:publ.image:Rendering file static/_img/fb/76f5/first_4ab71c8cc5_28x35.png
+INFO:Thread-72:publ.image:Updating image content/comics/_prev_page.png -> 12895468253,1527838645.0,7774
+INFO:Renderer_11:publ.image:static/_img/fb/76f5/first_4ab71c8cc5_28x35.png: complete
+INFO:Renderer_6:publ.image:Rendering file static/_img/fb/76f5/first_4ab71c8cc5_55x70.png
+INFO:Renderer_4:publ.image:Rendering file static/_img/7e/0edd/prev-page_052fbbf280_24x40.png
+INFO:Renderer_4:publ.image:static/_img/7e/0edd/prev-page_052fbbf280_24x40.png: complete
+INFO:Renderer_19:publ.image:Rendering file static/_img/7e/0edd/prev-page_052fbbf280_49x80.png
+INFO:Renderer_0:publ.image:Rendering file static/_img/fb/76f5/first_4ab71c8cc5_63x80.png
+INFO:Renderer_6:publ.image:static/_img/fb/76f5/first_4ab71c8cc5_55x70.png: complete
+INFO:Thread-72:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /comics/ HTTP/1.1" 200 -
+INFO:Renderer_9:publ.image:Rendering file static/_img/7e/0edd/prev-page_052fbbf280_49x80.png
+INFO:Renderer_19:publ.image:static/_img/7e/0edd/prev-page_052fbbf280_49x80.png: complete
+INFO:Renderer_0:publ.image:static/_img/fb/76f5/first_4ab71c8cc5_63x80.png: complete
+INFO:Renderer_16:publ.image:Rendering file static/_img/fb/76f5/first_4ab71c8cc5.png
+INFO:Renderer_9:publ.image:static/_img/7e/0edd/prev-page_052fbbf280_49x80.png: complete
+INFO:Renderer_7:publ.image:Rendering file static/_img/7e/0edd/prev-page_052fbbf280.png
+INFO:Thread-74:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /_async/_img/7e/0edd/prev-page_052fbbf280_49x80.png HTTP/1.1" 302 -
+INFO:Thread-73:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /_async/_img/fb/76f5/first_4ab71c8cc5_55x70.png HTTP/1.1" 302 -
+INFO:Renderer_7:publ.image:static/_img/7e/0edd/prev-page_052fbbf280.png: complete
+INFO:Renderer_16:publ.image:static/_img/fb/76f5/first_4ab71c8cc5.png: complete
+INFO:Thread-78:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /static/_img/fb/76f5/first_4ab71c8cc5_55x70.png HTTP/1.1" 200 -
+INFO:Thread-77:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /static/_img/7e/0edd/prev-page_052fbbf280_49x80.png HTTP/1.1" 200 -
+INFO:Thread-75:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /_async/_img/fb/76f5/first_4ab71c8cc5.png HTTP/1.1" 302 -
+INFO:Thread-76:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /_async/_img/7e/0edd/prev-page_052fbbf280.png HTTP/1.1" 302 -
+INFO:Thread-79:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /_async/_img/fb/76f5/first_4ab71c8cc5.png?cb=185419229773223&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-80:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /_async/_img/7e/0edd/prev-page_052fbbf280.png?cb=88606681170957&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-81:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /static/_img/fb/76f5/first_4ab71c8cc5.png HTTP/1.1" 200 -
+INFO:Thread-82:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:40] "GET /static/_img/7e/0edd/prev-page_052fbbf280.png HTTP/1.1" 200 -
+INFO:Thread-83:publ.image:Updating image content/comics/_next_page.png -> 12895468249,1527838645.0,7322
+INFO:Renderer_17:publ.image:Rendering file static/_img/f4/8b8c/next-page_8bbf8c4836_23x40.png
+INFO:Renderer_17:publ.image:static/_img/f4/8b8c/next-page_8bbf8c4836_23x40.png: complete
+INFO:Renderer_8:publ.image:Rendering file static/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png
+INFO:Renderer_2:publ.image:Rendering file static/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png
+INFO:Thread-83:publ.image:Updating image content/comics/_latest.png -> 12895468244,1527838646.0,7714
+INFO:Renderer_18:publ.image:Rendering file static/_img/05/a4e1/latest_3773b41809_60x80.png
+INFO:Renderer_8:publ.image:static/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png: complete
+INFO:Thread-83:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /comics/?id=83 HTTP/1.1" 200 -
+INFO:Renderer_2:publ.image:static/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png: complete
+INFO:Renderer_12:publ.image:Rendering file static/_img/f4/8b8c/next-page_8bbf8c4836.png
+INFO:Renderer_18:publ.image:static/_img/05/a4e1/latest_3773b41809_60x80.png: complete
+INFO:Renderer_11:publ.image:Rendering file static/_img/05/a4e1/latest_3773b41809.png
+INFO:Renderer_12:publ.image:static/_img/f4/8b8c/next-page_8bbf8c4836.png: complete
+INFO:Thread-84:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /_async/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png HTTP/1.1" 302 -
+INFO:Thread-85:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /_async/_img/f4/8b8c/next-page_8bbf8c4836.png HTTP/1.1" 302 -
+INFO:Thread-87:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /comics/subseries/style.css HTTP/1.1" 304 -
+INFO:Renderer_11:publ.image:static/_img/05/a4e1/latest_3773b41809.png: complete
+INFO:Thread-88:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /static/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png HTTP/1.1" 200 -
+INFO:Thread-89:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /static/_img/f4/8b8c/next-page_8bbf8c4836.png HTTP/1.1" 200 -
+INFO:Thread-86:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /_async/_img/05/a4e1/latest_3773b41809.png HTTP/1.1" 302 -
+INFO:Thread-90:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /_async/_img/05/a4e1/latest_3773b41809.png?cb=229893215816007&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-91:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:42] "GET /static/_img/05/a4e1/latest_3773b41809.png HTTP/1.1" 200 -
+INFO:Thread-92:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:43] "GET /comics/?id=29 HTTP/1.1" 200 -
+INFO:Thread-93:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:43] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-94:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:44] "GET /_async/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png HTTP/1.1" 302 -
+INFO:Thread-95:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:44] "GET /_async/_img/f4/8b8c/next-page_8bbf8c4836.png HTTP/1.1" 302 -
+INFO:Thread-96:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:44] "GET /_async/_img/05/a4e1/latest_3773b41809.png HTTP/1.1" 302 -
+INFO:Thread-97:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:44] "GET /static/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png HTTP/1.1" 200 -
+INFO:Thread-98:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:44] "GET /static/_img/f4/8b8c/next-page_8bbf8c4836.png HTTP/1.1" 200 -
+INFO:Thread-99:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:44] "GET /static/_img/05/a4e1/latest_3773b41809.png HTTP/1.1" 200 -
+INFO:Thread-100:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:48] "GET /comics/?id=83 HTTP/1.1" 304 -
+INFO:Thread-103:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:48] "GET /_async/_img/f4/8b8c/next-page_8bbf8c4836.png HTTP/1.1" 302 -
+INFO:Thread-101:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:48] "GET /comics/subseries/style.css HTTP/1.1" 304 -
+INFO:Thread-102:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:48] "GET /_async/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png HTTP/1.1" 302 -
+INFO:Thread-104:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:48] "GET /_async/_img/05/a4e1/latest_3773b41809.png HTTP/1.1" 302 -
+INFO:Thread-106:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:48] "GET /static/_img/f4/8b8c/next-page_8bbf8c4836_46x80.png HTTP/1.1" 200 -
+INFO:Thread-107:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:48] "GET /static/_img/05/a4e1/latest_3773b41809.png HTTP/1.1" 200 -
+INFO:Thread-105:werkzeug:127.0.0.1 - - [12/Oct/2018 13:35:48] "GET /static/_img/f4/8b8c/next-page_8bbf8c4836.png HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:File deleted: content/comics/subseries/sample comic.jpg
+INFO:Thread-8:publ.index:file created: content/comics/subseries/sample comic.jpg
+INFO:Thread-108:publ.image:Updating image content/comics/subseries/sample comic.jpg -> 12895468410,1539376578.2000282,62055
+INFO:Renderer_4:publ.image:Rendering file static/_img/78/2b1c/sample-comic_290bdb7803_800x800_0-0-968-968.jpg
+INFO:Renderer_5:publ.image:Rendering file static/_img/78/2b1c/sample-comic_290bdb7803_577x484.jpg
+INFO:Thread-108:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:20] "GET /comics/?id=83 HTTP/1.1" 200 -
+INFO:Thread-110:publ.image:Updating image content/comics/_logo.jpg -> 12895468245,1526961272.0,741159
+INFO:Thread-110:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:20] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Renderer_13:publ.image:Rendering file static/_img/03/ab46/logo_1616b08c70_640x312_q35.jpg
+INFO:Renderer_4:publ.image:static/_img/78/2b1c/sample-comic_290bdb7803_800x800_0-0-968-968.jpg: complete
+INFO:Renderer_5:publ.image:static/_img/78/2b1c/sample-comic_290bdb7803_577x484.jpg: complete
+INFO:Renderer_6:publ.image:Rendering file static/_img/78/2b1c/sample-comic_290bdb7803.jpg
+INFO:Renderer_6:publ.image:static/_img/78/2b1c/sample-comic_290bdb7803.jpg: complete
+INFO:Renderer_13:publ.image:static/_img/03/ab46/logo_1616b08c70_640x312_q35.jpg: complete
+INFO:Renderer_0:publ.image:Rendering file static/_img/03/ab46/logo_1616b08c70_1280x625_q35.jpg
+INFO:Renderer_0:publ.image:static/_img/03/ab46/logo_1616b08c70_1280x625_q35.jpg: complete
+INFO:Thread-109:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:20] "GET /_async/_img/78/2b1c/sample-comic_290bdb7803.jpg HTTP/1.1" 302 -
+INFO:Thread-112:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:20] "GET /_async/_img/78/2b1c/sample-comic_290bdb7803.jpg?cb=140577469927465&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-113:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:20] "GET /static/_img/78/2b1c/sample-comic_290bdb7803.jpg HTTP/1.1" 200 -
+INFO:Thread-111:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:20] "GET /_async/_img/03/ab46/logo_1616b08c70_1280x625_q35.jpg HTTP/1.1" 302 -
+INFO:Thread-114:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:20] "GET /_async/_img/03/ab46/logo_1616b08c70_1280x625_q35.jpg?cb=79046324756192&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-115:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:20] "GET /static/_img/03/ab46/logo_1616b08c70_1280x625_q35.jpg HTTP/1.1" 200 -
+INFO:Thread-116:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:22] "GET /comics/?id=29 HTTP/1.1" 200 -
+INFO:Thread-117:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:22] "GET /comics/style.css HTTP/1.1" 200 -
+INFO:Thread-118:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:23] "GET /comics/?id=83 HTTP/1.1" 304 -
+INFO:Thread-120:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:23] "GET /_async/_img/78/2b1c/sample-comic_290bdb7803.jpg HTTP/1.1" 302 -
+INFO:Thread-119:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:23] "GET /comics/subseries/style.css HTTP/1.1" 304 -
+INFO:Thread-121:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:23] "GET /static/_img/78/2b1c/sample-comic_290bdb7803.jpg HTTP/1.1" 200 -
+INFO:Thread-122:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:28] "GET /comics/?id=29 HTTP/1.1" 304 -
+INFO:Thread-123:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:28] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-124:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:29] "GET /comics/?id=83 HTTP/1.1" 304 -
+INFO:Thread-126:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:29] "GET /_async/_img/78/2b1c/sample-comic_290bdb7803.jpg HTTP/1.1" 302 -
+INFO:Thread-125:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:29] "GET /comics/subseries/style.css HTTP/1.1" 304 -
+INFO:Thread-127:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:29] "GET /static/_img/78/2b1c/sample-comic_290bdb7803.jpg HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Thread-8:publ.index:file modified: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Thread-128:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:59] "GET /comics/?id=83 HTTP/1.1" 200 -
+INFO:Thread-129:werkzeug:127.0.0.1 - - [12/Oct/2018 13:36:59] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Thread-130:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:02] "GET /comics/?id=29 HTTP/1.1" 200 -
+INFO:Thread-131:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:02] "GET /comics/style.css HTTP/1.1" 200 -
+INFO:Thread-132:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:03] "GET /comics/?id=29 HTTP/1.1" 200 -
+INFO:Thread-133:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:03] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-134:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:05] "GET /comics/archive HTTP/1.1" 200 -
+INFO:Thread-135:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:05] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-136:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:07] "GET /comics/41-Sample-news-post HTTP/1.1" 200 -
+INFO:Thread-137:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:07] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-138:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:11] "GET /comics/?id=41 HTTP/1.1" 200 -
+INFO:Thread-139:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:11] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-140:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:13] "GET /comics/?id=41 HTTP/1.1" 200 -
+INFO:Thread-141:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:13] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-142:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:17] "GET /comics/subseries/ HTTP/1.1" 200 -
+INFO:Thread-143:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:17] "GET /comics/subseries/style.css HTTP/1.1" 304 -
+INFO:Thread-8:publ.index:file modified: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Thread-8:publ.index:File deleted: content/comics/sample-news.md
+INFO:Thread-8:publ.index:file created: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/sample-news.md
+INFO:Thread-8:publ.index:file modified: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Thread-8:publ.index:File deleted: content/comics/subseries/newspost.md
+INFO:Thread-8:publ.index:file created: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Thread-144:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:45] "GET /comics/ HTTP/1.1" 200 -
+INFO:Thread-145:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:45] "GET /comics/style.css HTTP/1.1" 200 -
+INFO:Thread-146:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:50] "GET /comics/subseries/ HTTP/1.1" 200 -
+INFO:Thread-147:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:50] "GET /comics/subseries/style.css HTTP/1.1" 200 -
+INFO:Thread-148:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:55] "GET /comics/ HTTP/1.1" 304 -
+INFO:Thread-149:werkzeug:127.0.0.1 - - [12/Oct/2018 13:37:55] "GET /comics/style.css HTTP/1.1" 304 -
+INFO:Thread-150:werkzeug:127.0.0.1 - - [12/Oct/2018 13:38:03] "GET / HTTP/1.1" 200 -
+INFO:Thread-151:werkzeug:127.0.0.1 - - [12/Oct/2018 13:38:03] "GET /index.css HTTP/1.1" 200 -
+INFO:Thread-152:werkzeug:127.0.0.1 - - [12/Oct/2018 13:38:03] "GET /static/_img/fd/83b6/cat-comics_6194297dd4_480x720.jpg HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/.DS_Store
+INFO:Thread-8:publ.index:file modified: content/.DS_Store
+INFO:Thread-8:publ.index:file created: content/art/.DS_Store
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_1136.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_1124.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_0170.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_1080.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_0437.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_0854.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_1182.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_0442.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_0069.jpg
+INFO:Thread-8:publ.index:file created: content/art/photography/random/random.md
+INFO:Thread-8:publ.index:file created: content/art/photography/random/IMG_0183.jpg
+INFO:Indexer_0:publ.index:Scanning entry: content/art/photography/random/random.md
+INFO:Thread-8:publ.index:file created: content/art/photography/.DS_Store
+INFO:Thread-153:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:13] "GET / HTTP/1.1" 200 -
+INFO:Thread-154:publ.image:Updating image content/_layout/cat-art.jpg -> 12895461987,1527974115.0,115281
+INFO:Renderer_7:publ.image:Rendering file static/_img/f3/2a4b/cat-art_cc73af1521_240x160.jpg
+INFO:Thread-154:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:13] "GET /index.css HTTP/1.1" 200 -
+INFO:Renderer_7:publ.image:static/_img/f3/2a4b/cat-art_cc73af1521_240x160.jpg: complete
+INFO:Renderer_3:publ.image:Rendering file static/_img/f3/2a4b/cat-art_cc73af1521_480x320.jpg
+INFO:Renderer_3:publ.image:static/_img/f3/2a4b/cat-art_cc73af1521_480x320.jpg: complete
+INFO:Thread-155:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:13] "GET /_async/_img/f3/2a4b/cat-art_cc73af1521_480x320.jpg HTTP/1.1" 302 -
+INFO:Thread-156:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:13] "GET /_async/_img/f3/2a4b/cat-art_cc73af1521_480x320.jpg?cb=197385626968704&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-157:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:13] "GET /static/_img/f3/2a4b/cat-art_cc73af1521_480x320.jpg HTTP/1.1" 200 -
+INFO:Thread-158:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:14] "GET /art/ HTTP/1.1" 200 -
+INFO:Thread-159:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:14] "GET /art/style.css HTTP/1.1" 200 -
+INFO:Thread-160:publ.image:Updating image content/art/photography/random/IMG_1080.jpg -> 12895468665,1525846133.0,373664
+INFO:Thread-160:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:16] "GET /art/photography/ HTTP/1.1" 200 -
+INFO:Renderer_15:publ.image:Rendering file static/_img/38/2dd6/IMG-1080_cd240dcff9_240x240_128-0-896-768.jpg
+INFO:Thread-161:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:16] "GET /art/photography/style.css HTTP/1.1" 200 -
+INFO:Renderer_15:publ.image:static/_img/38/2dd6/IMG-1080_cd240dcff9_240x240_128-0-896-768.jpg: complete
+INFO:Renderer_10:publ.image:Rendering file static/_img/38/2dd6/IMG-1080_cd240dcff9_480x480_128-0-896-768.jpg
+INFO:Renderer_10:publ.image:static/_img/38/2dd6/IMG-1080_cd240dcff9_480x480_128-0-896-768.jpg: complete
+INFO:Thread-162:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:16] "GET /_async/_img/38/2dd6/IMG-1080_cd240dcff9_480x480_128-0-896-768.jpg HTTP/1.1" 302 -
+INFO:Thread-163:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:16] "GET /_async/_img/38/2dd6/IMG-1080_cd240dcff9_480x480_128-0-896-768.jpg?cb=88386007256682&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-164:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:16] "GET /static/_img/38/2dd6/IMG-1080_cd240dcff9_480x480_128-0-896-768.jpg HTTP/1.1" 200 -
+INFO:Renderer_8:publ.image:Rendering file static/_img/38/2dd6/IMG-1080_cd240dcff9_800x600.jpg
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_0069.jpg -> 12895468671,1525846133.0,351904
+INFO:Renderer_18:publ.image:Rendering file static/_img/02/d8db/IMG-0069_2a9ad5033d_427x320.jpg
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_0170.jpg -> 12895468667,1525846133.0,359095
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_0183.jpg -> 12895468673,1525846133.0,308293
+INFO:Renderer_19:publ.image:Rendering file static/_img/8c/1a8f/IMG-0170_619f996473_427x320.jpg
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_0437.jpg -> 12895468675,1525846133.0,188982
+INFO:Renderer_6:publ.image:Rendering file static/_img/16/0f80/IMG-0183_fff9d05d38_427x320.jpg
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_0442.jpg -> 12895468672,1525846133.0,292144
+INFO:Renderer_17:publ.image:Rendering file static/_img/9f/27dd/IMG-0437_c05d8b0afc_427x320.jpg
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_0854.jpg -> 12895468669,1525846133.0,571584
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_1124.jpg -> 12895468668,1525846133.0,289124
+INFO:Renderer_1:publ.image:Rendering file static/_img/e4/ce4f/IMG-0442_debc99ba74_427x320.jpg
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_1136.jpg -> 12895468666,1525846133.0,353848
+INFO:Renderer_8:publ.image:static/_img/38/2dd6/IMG-1080_cd240dcff9_800x600.jpg: complete
+INFO:Thread-165:publ.image:Updating image content/art/photography/random/IMG_1182.jpg -> 12895468670,1525846133.0,156579
+INFO:Renderer_19:publ.image:static/_img/8c/1a8f/IMG-0170_619f996473_427x320.jpg: complete
+INFO:Renderer_10:publ.image:Rendering file static/_img/cf/de46/IMG-0854_75a9bc1cfc_427x320.jpg
+INFO:Renderer_9:publ.image:Rendering file static/_img/8c/1a8f/IMG-0170_619f996473_853x640.jpg
+INFO:Thread-165:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /art/photography/130-Random-images HTTP/1.1" 200 -
+INFO:Renderer_5:publ.image:Rendering file static/_img/38/2dd6/IMG-1080_cd240dcff9_427x320.jpg
+INFO:Renderer_17:publ.image:static/_img/9f/27dd/IMG-0437_c05d8b0afc_427x320.jpg: complete
+INFO:Renderer_17:publ.image:Rendering file static/_img/3a/4f68/IMG-1124_805572f58a_427x320.jpg
+INFO:Renderer_3:publ.image:Rendering file static/_img/9f/27dd/IMG-0437_c05d8b0afc.jpg
+INFO:Thread-166:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /art/photography/style.css HTTP/1.1" 304 -
+INFO:Renderer_18:publ.image:static/_img/02/d8db/IMG-0069_2a9ad5033d_427x320.jpg: complete
+INFO:Renderer_11:publ.image:Rendering file static/_img/02/d8db/IMG-0069_2a9ad5033d.jpg
+INFO:Renderer_6:publ.image:static/_img/16/0f80/IMG-0183_fff9d05d38_427x320.jpg: complete
+INFO:Renderer_13:publ.image:Rendering file static/_img/16/0f80/IMG-0183_fff9d05d38_853x640.jpg
+INFO:Renderer_11:publ.image:static/_img/02/d8db/IMG-0069_2a9ad5033d.jpg: complete
+INFO:Renderer_12:publ.image:Rendering file static/_img/02/d8db/IMG-0069_2a9ad5033d_853x640.jpg
+INFO:Renderer_11:publ.image:Rendering file static/_img/1e/b208/IMG-1136_f89f8519aa_240x320.jpg
+INFO:Renderer_10:publ.image:static/_img/cf/de46/IMG-0854_75a9bc1cfc_427x320.jpg: complete
+INFO:Renderer_2:publ.image:Rendering file static/_img/cf/de46/IMG-0854_75a9bc1cfc_853x640.jpg
+INFO:Renderer_3:publ.image:static/_img/9f/27dd/IMG-0437_c05d8b0afc.jpg: complete
+INFO:Renderer_7:publ.image:Rendering file static/_img/9f/27dd/IMG-0437_c05d8b0afc_853x640.jpg
+INFO:Renderer_9:publ.image:static/_img/8c/1a8f/IMG-0170_619f996473_853x640.jpg: complete
+INFO:Renderer_4:publ.image:Rendering file static/_img/8c/1a8f/IMG-0170_619f996473.jpg
+INFO:Renderer_1:publ.image:static/_img/e4/ce4f/IMG-0442_debc99ba74_427x320.jpg: complete
+INFO:Renderer_15:publ.image:Rendering file static/_img/e4/ce4f/IMG-0442_debc99ba74_853x640.jpg
+INFO:Renderer_9:publ.image:Rendering file static/_img/b2/f7af/IMG-1182_f141e5731f_427x320.jpg
+INFO:Renderer_5:publ.image:static/_img/38/2dd6/IMG-1080_cd240dcff9_427x320.jpg: complete
+INFO:Renderer_16:publ.image:Rendering file static/_img/38/2dd6/IMG-1080_cd240dcff9.jpg
+INFO:Renderer_4:publ.image:static/_img/8c/1a8f/IMG-0170_619f996473.jpg: complete
+INFO:Renderer_13:publ.image:static/_img/16/0f80/IMG-0183_fff9d05d38_853x640.jpg: complete
+INFO:Renderer_0:publ.image:Rendering file static/_img/16/0f80/IMG-0183_fff9d05d38.jpg
+INFO:Renderer_15:publ.image:static/_img/e4/ce4f/IMG-0442_debc99ba74_853x640.jpg: complete
+INFO:Renderer_8:publ.image:Rendering file static/_img/e4/ce4f/IMG-0442_debc99ba74.jpg
+INFO:Renderer_2:publ.image:static/_img/cf/de46/IMG-0854_75a9bc1cfc_853x640.jpg: complete
+INFO:Renderer_14:publ.image:Rendering file static/_img/cf/de46/IMG-0854_75a9bc1cfc.jpg
+INFO:Renderer_17:publ.image:static/_img/3a/4f68/IMG-1124_805572f58a_427x320.jpg: complete
+INFO:Thread-167:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/02/d8db/IMG-0069_2a9ad5033d_853x640.jpg HTTP/1.1" 302 -
+INFO:Renderer_18:publ.image:Rendering file static/_img/3a/4f68/IMG-1124_805572f58a_853x640.jpg
+INFO:Thread-169:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/16/0f80/IMG-0183_fff9d05d38_853x640.jpg HTTP/1.1" 302 -
+INFO:Thread-168:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/8c/1a8f/IMG-0170_619f996473_853x640.jpg HTTP/1.1" 302 -
+INFO:Thread-171:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/e4/ce4f/IMG-0442_debc99ba74_853x640.jpg HTTP/1.1" 302 -
+INFO:Thread-170:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/9f/27dd/IMG-0437_c05d8b0afc_853x640.jpg HTTP/1.1" 302 -
+INFO:Thread-172:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/cf/de46/IMG-0854_75a9bc1cfc_853x640.jpg HTTP/1.1" 302 -
+INFO:Thread-178:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/16/0f80/IMG-0183_fff9d05d38_853x640.jpg?cb=59556113004503&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-179:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/8c/1a8f/IMG-0170_619f996473_853x640.jpg?cb=218963483001129&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-180:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/e4/ce4f/IMG-0442_debc99ba74_853x640.jpg?cb=101391295946059&retry_count=1 HTTP/1.1" 302 -
+INFO:Renderer_0:publ.image:static/_img/16/0f80/IMG-0183_fff9d05d38.jpg: complete
+INFO:Renderer_8:publ.image:static/_img/e4/ce4f/IMG-0442_debc99ba74.jpg: complete
+INFO:Renderer_11:publ.image:static/_img/1e/b208/IMG-1136_f89f8519aa_240x320.jpg: complete
+INFO:Renderer_10:publ.image:Rendering file static/_img/1e/b208/IMG-1136_f89f8519aa_480x640.jpg
+INFO:Renderer_7:publ.image:static/_img/9f/27dd/IMG-0437_c05d8b0afc_853x640.jpg: complete
+INFO:Renderer_14:publ.image:static/_img/cf/de46/IMG-0854_75a9bc1cfc.jpg: complete
+INFO:Renderer_18:publ.image:static/_img/3a/4f68/IMG-1124_805572f58a_853x640.jpg: complete
+INFO:Renderer_6:publ.image:Rendering file static/_img/3a/4f68/IMG-1124_805572f58a.jpg
+INFO:Renderer_9:publ.image:static/_img/b2/f7af/IMG-1182_f141e5731f_427x320.jpg: complete
+INFO:Renderer_1:publ.image:Rendering file static/_img/b2/f7af/IMG-1182_f141e5731f_853x640.jpg
+INFO:Renderer_12:publ.image:static/_img/02/d8db/IMG-0069_2a9ad5033d_853x640.jpg: complete
+INFO:Renderer_16:publ.image:static/_img/38/2dd6/IMG-1080_cd240dcff9.jpg: complete
+INFO:Renderer_19:publ.image:Rendering file static/_img/38/2dd6/IMG-1080_cd240dcff9_853x640.jpg
+INFO:Renderer_10:publ.image:static/_img/1e/b208/IMG-1136_f89f8519aa_480x640.jpg: complete
+INFO:Renderer_3:publ.image:Rendering file static/_img/1e/b208/IMG-1136_f89f8519aa.jpg
+INFO:Renderer_6:publ.image:static/_img/3a/4f68/IMG-1124_805572f58a.jpg: complete
+INFO:Renderer_1:publ.image:static/_img/b2/f7af/IMG-1182_f141e5731f_853x640.jpg: complete
+INFO:Renderer_5:publ.image:Rendering file static/_img/b2/f7af/IMG-1182_f141e5731f.jpg
+INFO:Renderer_3:publ.image:static/_img/1e/b208/IMG-1136_f89f8519aa.jpg: complete
+INFO:Renderer_5:publ.image:static/_img/b2/f7af/IMG-1182_f141e5731f.jpg: complete
+INFO:Renderer_19:publ.image:static/_img/38/2dd6/IMG-1080_cd240dcff9_853x640.jpg: complete
+INFO:Thread-173:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/38/2dd6/IMG-1080_cd240dcff9_853x640.jpg HTTP/1.1" 302 -
+INFO:Thread-174:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/3a/4f68/IMG-1124_805572f58a_853x640.jpg HTTP/1.1" 302 -
+INFO:Thread-182:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/cf/de46/IMG-0854_75a9bc1cfc_853x640.jpg?cb=227877314442325&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-183:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/16/0f80/IMG-0183_fff9d05d38_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-175:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/1e/b208/IMG-1136_f89f8519aa_480x640.jpg HTTP/1.1" 302 -
+INFO:Thread-176:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/b2/f7af/IMG-1182_f141e5731f_853x640.jpg HTTP/1.1" 302 -
+INFO:Thread-177:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/02/d8db/IMG-0069_2a9ad5033d_853x640.jpg?cb=108701004101205&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-184:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/8c/1a8f/IMG-0170_619f996473_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-185:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/e4/ce4f/IMG-0442_debc99ba74_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-187:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/3a/4f68/IMG-1124_805572f58a_853x640.jpg?cb=155755714018091&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-186:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/38/2dd6/IMG-1080_cd240dcff9_853x640.jpg?cb=218406059601704&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-181:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/9f/27dd/IMG-0437_c05d8b0afc_853x640.jpg?cb=49818550020572&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-189:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/1e/b208/IMG-1136_f89f8519aa_480x640.jpg?cb=232951077144917&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-190:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/b2/f7af/IMG-1182_f141e5731f_853x640.jpg?cb=259983394771561&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-191:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/02/d8db/IMG-0069_2a9ad5033d_853x640.jpg?cb=219027361056874&retry_count=2 HTTP/1.1" 302 -
+INFO:Thread-188:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/cf/de46/IMG-0854_75a9bc1cfc_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-192:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/3a/4f68/IMG-1124_805572f58a_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-193:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/38/2dd6/IMG-1080_cd240dcff9_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-197:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /_async/_img/9f/27dd/IMG-0437_c05d8b0afc_853x640.jpg?cb=78571943235649&retry_count=2 HTTP/1.1" 302 -
+INFO:Thread-196:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/02/d8db/IMG-0069_2a9ad5033d_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-195:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/b2/f7af/IMG-1182_f141e5731f_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-194:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/1e/b208/IMG-1136_f89f8519aa_480x640.jpg HTTP/1.1" 200 -
+INFO:Thread-198:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:19] "GET /static/_img/9f/27dd/IMG-0437_c05d8b0afc_853x640.jpg HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/art/.DS_Store
+INFO:Thread-8:publ.index:file created: content/art/over-under-through.jpg
+INFO:Thread-8:publ.index:file created: content/art/20101230-over-under-through.md
+INFO:Indexer_0:publ.index:Scanning entry: content/art/20101230-over-under-through.md
+INFO:Thread-199:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:55] "GET /art/photography/130-Random-images HTTP/1.1" 200 -
+INFO:Thread-200:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:55] "GET /art/photography/style.css HTTP/1.1" 200 -
+INFO:Thread-201:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:57] "GET /art/photography/ HTTP/1.1" 200 -
+INFO:Thread-202:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:57] "GET /art/photography/style.css HTTP/1.1" 304 -
+INFO:Thread-203:publ.image:Updating image content/art/over-under-through.jpg -> 12895468884,1526442780.0,120067
+INFO:Thread-203:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:59] "GET /art/ HTTP/1.1" 200 -
+INFO:Renderer_4:publ.image:Rendering file static/_img/bc/24c2/over-under-through_75017e1b6c_240x240_224-0-686-462.jpg
+INFO:Thread-205:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:59] "GET /art/style.css HTTP/1.1" 200 -
+INFO:Renderer_4:publ.image:static/_img/bc/24c2/over-under-through_75017e1b6c_240x240_224-0-686-462.jpg: complete
+INFO:Renderer_15:publ.image:Rendering file static/_img/bc/24c2/over-under-through_75017e1b6c_462x462_224-0-686-462.jpg
+INFO:Renderer_15:publ.image:static/_img/bc/24c2/over-under-through_75017e1b6c_462x462_224-0-686-462.jpg: complete
+INFO:Thread-204:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:59] "GET /_async/_img/bc/24c2/over-under-through_75017e1b6c_462x462_224-0-686-462.jpg HTTP/1.1" 302 -
+INFO:Thread-206:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:59] "GET /_async/_img/bc/24c2/over-under-through_75017e1b6c_462x462_224-0-686-462.jpg?cb=34798079759945&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-207:werkzeug:127.0.0.1 - - [12/Oct/2018 13:39:59] "GET /static/_img/bc/24c2/over-under-through_75017e1b6c_462x462_224-0-686-462.jpg HTTP/1.1" 200 -
+INFO:Thread-208:werkzeug:127.0.0.1 - - [12/Oct/2018 13:40:03] "GET / HTTP/1.1" 200 -
+INFO:Thread-209:werkzeug:127.0.0.1 - - [12/Oct/2018 13:40:03] "GET /index.css HTTP/1.1" 200 -
+INFO:Thread-8:publ.index:file modified: content/comics/subseries/newspost.md
+INFO:Indexer_0:publ.index:Scanning entry: content/comics/subseries/newspost.md
+INFO:Thread-8:publ.index:file modified: content/blog/sample blog entry.md
+INFO:Indexer_0:publ.index:Scanning entry: content/blog/sample blog entry.md
+INFO:Thread-210:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:25] "GET / HTTP/1.1" 200 -
+INFO:Thread-211:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:25] "GET /index.css HTTP/1.1" 200 -
+INFO:Thread-212:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:27] "GET /blog/ HTTP/1.1" 200 -
+INFO:Thread-213:publ.image:Updating image content/_layout/plaidlogo-blur-bg.jpg -> 12895462007,1538766773.7504213,32323
+INFO:Thread-213:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:27] "GET /blog/style.css HTTP/1.1" 200 -
+INFO:Renderer_17:publ.image:Rendering file static/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_206x206.jpg
+INFO:Renderer_17:publ.image:static/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_206x206.jpg: complete
+INFO:Renderer_0:publ.image:Rendering file static/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg
+INFO:Renderer_0:publ.image:static/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg: complete
+INFO:Thread-214:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:28] "GET /_async/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg HTTP/1.1" 302 -
+INFO:Thread-215:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:28] "GET /_async/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg?cb=44969422960679&retry_count=1 HTTP/1.1" 302 -
+INFO:Thread-216:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:28] "GET /static/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg HTTP/1.1" 200 -
+INFO:Thread-217:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:29] "GET /blog/8-Sample-blog-entry HTTP/1.1" 200 -
+INFO:Thread-218:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:29] "GET /blog/style.css HTTP/1.1" 304 -
+INFO:Thread-219:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:29] "GET /_async/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg HTTP/1.1" 302 -
+INFO:Thread-220:werkzeug:127.0.0.1 - - [12/Oct/2018 13:41:29] "GET /static/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg HTTP/1.1" 200 -
+INFO:Thread-221:werkzeug:127.0.0.1 - - [12/Oct/2018 13:42:54] "GET /blog/8-Sample-blog-entry HTTP/1.1" 200 -
+INFO:Thread-222:werkzeug:127.0.0.1 - - [12/Oct/2018 13:42:54] "GET /blog/style.css HTTP/1.1" 304 -
+INFO:Thread-223:werkzeug:127.0.0.1 - - [12/Oct/2018 13:42:54] "GET /_async/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg HTTP/1.1" 302 -
+INFO:Thread-224:werkzeug:127.0.0.1 - - [12/Oct/2018 13:42:54] "GET /static/_img/dc/1e29/plaidlogo-blur-bg_b0157c31eb_412x412.jpg HTTP/1.1" 200 -

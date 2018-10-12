@@ -3,12 +3,15 @@
 <head>
 {% block head %}
     <title>{{error.code}} {{error.message}}</title>
-    <link rel="stylesheet" href="{{static('error.css')}}" />
+    <link rel="stylesheet" href="{{static('error/generic.css')}}" />
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
 {% endblock %}
 </head>
 <body>
     {% block flair %}
-    <h1>{{error.code}} {{error.message}}</h1>
+    <h1><img src="{{static('error/500.gif')}}" title="you have reached the i office and the spacer is the only one square of toilet paper on how it's growing!" alt="error">
+    I AM ERROR</h1>
     {% endblock %}
 
     <div id="errorinfo"><ul>

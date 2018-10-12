@@ -1,0 +1,81 @@
+{% extends '/index.html' %}
+
+{% block title %}
+<title>{{category.name}}: Entries for {{view(recurse=True,count=30).range}}</title>
+{% endblock %}
+
+{% block banner %}
+<div id="banner"><h1>{{category.name}}: Entries for {{view(recurse=True,count=30).range}}</h1></div>
+{% endblock %}
+
+{% block content %}
+{% set content = view(recurse=True,count=30) %}
+<div id="entries">
+
+    {% if content.previous or content.next %}
+    <div class="nav topnav">
+        {% if content.previous %}
+        <span class="prev"><a href="{{content.previous.link(template=template)}}">{{content.previous.range}}</a></span>
+        {% endif %}
+        &nbsp;
+        {% if content.next %}
+        <span class="next"><a href="{{content.next.link(template=template)}}">{{content.next.range}}</a></span>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% for entry in content.entries %}
+    <div class="entry">
+        <div class="heading">
+            {% block heading scoped %}
+            <div class="top-hook"></div>
+            <h2><a href="{{entry.link}}">{{entry.title}}</a></h2>
+            <div class="posted">
+                <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
+                <span class="time">{{entry.date.format('h:mm A')}}</span>
+                <span class="ago">{{entry.date.humanize()}}</span>
+                {% if entry.author %}
+                <span class="author">by {{entry.author}}</span>
+                {% endif %}
+            </div>
+            {% endblock %}
+        </div>
+
+        <div class="content">
+            {% block entrybody scoped %}
+            {% if entry.body %}
+            <div class="body">
+            {{ entry.body(max_width=240,
+                max_height=240,
+                link=entry.link,
+                resize="fill",
+                count=1,
+                div_class="thumb") }}
+            </div>
+            {% endif %}
+
+            {% if entry.more %}
+            <a class="readmore" href="{{ entry.link }}#more">Read more...</a>
+            {% endif %}
+
+            {% endblock %}
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if content.previous or content.next %}
+    <div class="nav bottomnav">
+        {% if content.previous %}
+        <span class="prev"><a href="{{content.previous.link(template=template)}}">{{content.previous.range}}</a></span>
+        {% endif %}
+        &nbsp;
+        {% if content.next %}
+        <span class="next"><a href="{{content.next.link(template=template)}}">{{content.next.range}}</a></span>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="expand"></div>
+</div>
+{% endblock %}
+

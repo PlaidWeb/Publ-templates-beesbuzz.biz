@@ -118,6 +118,7 @@ iframe {
     margin: 1ex;
     color: white;
     font-family: helvetica, sans-serif;
+    text-decoration: none;
 }
 
 #entries .nav a:hover {
@@ -144,3 +145,14 @@ blockquote {
     padding-left: 1.5ex;
 }
 
+.inset-left, .inset-right { shape-margin: 1em; }
+.inset-left {
+    margin-right: 1em;
+}
+.inset-right {
+    margin-left: 1em;
+}
+
+.shaped {
+    box-shadow: none;
+}

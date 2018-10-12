@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Image stream for {{ category.name }}</title>
+
+{% set content = view(entry_type_not='sidebar',recurse=True) %}
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed">
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+</head>
+
+<body id="{{template.name}}">
+
+<div class="gallery_stream">
+{% for entry in content.entries %}
+{% if entry.body %}{{ entry.body(width=320,height=320,resize="fill",gallery_id="stream") }}{% endif %}
+{% endfor %}
+</div>
+
+<script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
+
+</body>
+</html>

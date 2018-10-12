@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="{{ entry.stylesheet or 'style.css' }}">
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
     <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+
+    <link rel="pingback" href="https://webmention.io/beesbuzz.biz/xmlrpc" />
+    <link rel="webmention" href="https://webmention.io/beesbuzz.biz/webmention" />
 
     <link rel="up" href="{{category.link}}" />
     {% if entry.previous %}
@@ -19,7 +24,7 @@
     {{ entry.card(width=800,height=800,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@fluffy" />
+    <meta name="twitter:creator" content="{{entry['twitter-creator'] or '@fluffy'}}" />
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 </head>
@@ -49,15 +54,15 @@
 
     <div id="entries">
 
-        <div class="{{ entry.entry_type if entry.entry_type else 'Comic' }}">
+        <article class="h-entry {{ entry.entry_type or 'Comic' }}">
             <div class="heading">
-                <h2>{{entry.title}}</h2>
-                <span class="posted">{{ entry.date.format('YYYY/MM/DD') }}
+                <h2 class="p-name"><a href="{{entry.link}}" class="u-url">{{entry.title}}</a></h2>
+                <span class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">{{ entry.date.format('YYYY/MM/DD') }}</time>
                     <span class="ago">{{ entry.date.humanize() }}</span>
                 </span>
             </div>
 
-            <div class="content">
+            <div class="content e-content">
                 {% if entry.body %}
                 <div id="preamble" class="body">
                     {{entry.body(
@@ -81,15 +86,39 @@
             </div>
         </div>
 
-    </div>
+        <div class="author hidden">
+            {% if entry.author %}
+                <a rel="author" href="{{entry['Author-URL'] or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+            {% else %}
+                {% include '/_hcard.html' %}
+            {% endif %}
+        </div>
+
+        {% include '/_hcard.html' %}
+    </article>
 
     <div id="comments">
         <div class="heading">
         <h2>Comments</h2>
         </div>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{entry.permalink(absolute=True)}}";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "{{entry.get('Thread-ID', 'publ_' ~ entry.id)}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
 
-        {% include '/_comment_thread.html' %}
-    </div>
+        s.src = 'https://DISQUS-DOMAIN.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>            </div>
+
+
 </div>
 
 <script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
