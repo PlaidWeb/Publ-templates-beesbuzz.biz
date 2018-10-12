@@ -2,6 +2,15 @@
 
 These templates are based on the ones I use on [my website](https://beesbuzz.biz). Here is some documentation on how they are put together.
 
+This repository also contains some basic content to demonstrate parts of the site in operation. To run the sample site you can clone this repository and, inside your clone, type the following:
+
+```bash
+pipenv install
+./run.sh
+```
+
+which will run the sample site at http://localhost:5000
+
 ## General overview
 
 The root-level `index.html` and `entry.html` handle the generic layout for index and entry pages throughout the site. `feed.xml` is the Atom feed.
