@@ -3,7 +3,8 @@
 {%- set view = view(recurse=True,count=30,entry_type_not="sidebar") -%}
 
 <feed xmlns="http://www.w3.org/2005/Atom"
-    xmlns:fh="http://purl.org/syndication/history/1.0">
+    xmlns:fh="http://purl.org/syndication/history/1.0"
+    xmlns:at="http://purl.org/atompub/tombstones/1.0">
 
     <title>{{"busybee: " ~ category.name if category.parent else category.name}}</title>
     <subtitle>Art, music, comics, and more</subtitle>
