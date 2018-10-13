@@ -44,6 +44,12 @@ app = publ.publ(__name__, config)
 import flask
 
 
+@app.route('/favicon.ico')
+def favicon():
+    """ Add a route for serving up the favicon """
+    return flask.redirect(flask.url_for('static', filename='favicon.ico'))
+
+
 @app.path_alias_regex(r'/d/([0-9]{8}(_w)?)\.php')
 def redirect_date(match):
     """ This is an example of how to migrate old URLs to new ones; my old site
@@ -55,6 +61,21 @@ def redirect_date(match):
 
     http://beesbuzz.biz/comics/?date=201006 """
     return flask.url_for('category', category='comics', date=match.group(1)), True
+
+
+@app.path_alias_regex(r'/blog/e/')
+def redirect_blog_entry(match):
+    ''' Another URL migration example; this redirects legacy blog content
+    to the 'missing content' entry if another page hasn't already claimed the
+    legacy path. '''
+    return flask.url_for('entry', entry_id=7821), False
+
+
+@app.path_alias_regex(r'/\.well-known/(host-meta|webfinger).*')
+def redirect_bridgy(match):
+    ''' This redirects ActivityPub activity to fed.brid.gy. See
+    https://fed.brid.gy/#use for usage. '''
+    return 'https://fed.brid.gy' + flask.request.full_path, False
 
 if __name__ == "__main__":
     app.run(port=os.environ.get('PORT', 5000))
