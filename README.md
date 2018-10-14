@@ -35,11 +35,15 @@ A few things of note in the `index.html` template:
 * Similarly it does a relative link to the `feed` template, so if someone points their RSS reader at a category page they only subscribe to that category (and its subcategories).
 * Entries with an `Entry-Type` of `sidebar` will appear in the navigation section, rather than in the main content flow
 
+#### Articles extensions (`articles/index.html`)
+
+If an entry has a `Cut` header it will put the cut text next to the "read more" link. This is useful for providing content warnings or the like.
+
 ### Feed template (`feed.xml`)
 
 The `feed.xml` template is the Atom feed template. It uses the `_feed_entry.html` template fragment to format entries within the feed. The top-level `_feed_entry.html` is the default for the whole site.
 
-These `_feed_entry` fragments support a custom entry header, `Spoilers`, which I use to indicate whether the below-the-fold content should be done as a link or should be put directly into the feed. For example, an entry which looks like this:
+These `_feed_entry` fragments support a custom entry header, `Cut`, which I use to indicate whether the below-the-fold content should be done as a link or should be put directly into the feed. For example, an entry which looks like this:
 
 ```
 Title: This is a regular entry
@@ -55,7 +59,7 @@ will have both paragraphs appear in the Atom feed; however, an entry like this:
 
 ```
 Title: A spoilered entry
-Spoilers: yes
+Cut: yes
 
 Here is the intro text.
 
