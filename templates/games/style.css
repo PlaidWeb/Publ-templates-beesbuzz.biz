@@ -1,5 +1,7 @@
 @import url('{{static("fonts/Kubasta.css")}}');
 @import url('{{static("fonts/pixel-header.css")}}');
+@import url('{{static("webmentions.css")}}');
+
 
 html {
     background: #333;

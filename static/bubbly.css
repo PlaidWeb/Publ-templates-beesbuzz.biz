@@ -1,3 +1,5 @@
+@import url('webmentions.css');
+
 #container {
     margin: 3em;
     border-radius: 16px;
@@ -67,11 +69,13 @@
 .inset-right {
     margin: 0 0 1ex 1em;
     float: right;
+    shape-margin: 1em;
 }
 
 .inset-left {
     margin: 0 1em 1ex 0;
     float: left;
+    shape-margin: 1em;
 }
 
 .entry .posted .ago:before {
@@ -173,10 +177,10 @@ a.readmore {
         border-radius: 0;
     }
 
-    .inset-left, .inset-right {
+    div.inset-left, div.inset-right, .shaped {
         float: none;
         text-align: center;
-        width: 100%;
+        max-width: 100%;
     }
 
     .entry .content {
@@ -199,5 +203,35 @@ a.readmore {
 
 #disqus_thread {
     padding: 1em;
+}
+
+.hidden { display: none; }
+
+table {
+    border-collapse: collapse;
+}
+
+thead {
+    background: #fef;
+}
+
+tfoot {
+    background: #ffe;
+    font-weight: bold;
+}
+
+thead, tbody, tfoot, colgroup {
+    border: solid black 2px;
+}
+
+th {
+    padding: 0.2ex 1ex;
+    border: solid black 2px;
+    text-align: center;
+}
+
+td {
+    padding: 0.2ex 1ex;
+    border: solid black 1px;
 }
 

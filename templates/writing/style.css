@@ -1,4 +1,5 @@
 @import url('{{static("pygments.default.css")}}');
+@import url('{{static("webmentions.css")}}');
 
 body { color: black; background: white; font-family: courier new, courier, fixed, monospace; }
 h1,h2,h3 { text-transform: lowercase; text-align: center; }
@@ -69,3 +70,4 @@ float: right;
 }
 
 .hidden { display: none; }
+

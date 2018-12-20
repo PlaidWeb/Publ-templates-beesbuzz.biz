@@ -11,9 +11,9 @@
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
 
     <link rel="openid.server" href="https://id.beesbuzz.biz/" />
+    <link rel="authorization_endpoint" href="https://auth.beesbuzz.biz/" />
 
-    <link rel="pingback" href="https://webmention.io/beesbuzz.biz/xmlrpc" />
-    <link rel="webmention" href="https://webmention.io/beesbuzz.biz/webmention" />
+    {% include '/_webmention.html' %}
 </head>
 <body id="{{ template.name }}">
 
@@ -39,7 +39,7 @@
         <h2>Latest things</h2>
         <ul>
             {% for entry in view(recurse=True,order='newest',count=5,entry_type_not='sidebar').entries %}
-            <li>{{entry.category.name}}: <a href="{{entry.link}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
+            <li><a href="{{entry.category.link}}">{{entry.category.name}}</a>: <a href="{{entry.link}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
             {% endfor %}
         </ul>
 

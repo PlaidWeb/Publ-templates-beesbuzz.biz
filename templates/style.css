@@ -52,7 +52,6 @@ a:visited {
 p {
     text-align: justify;
     hyphens: auto;
-    -webkit-hyphens: auto;
 }
 
 
@@ -78,4 +77,8 @@ p {
 }
 #entries .nav .next a:after {
     content: ' »';
+}
+
+.images {
+    text-align: center;
 }

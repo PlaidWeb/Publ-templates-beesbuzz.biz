@@ -30,8 +30,6 @@ body {
     background: white;
     border: solid black 1px;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
     max-width: 50em;
     margin: 2em auto;
     padding: 2em;
@@ -115,8 +113,6 @@ hr {
     border: solid black 1px;
     background: #ffc;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 #nav h2 {

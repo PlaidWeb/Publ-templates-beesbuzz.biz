@@ -1,4 +1,3 @@
-
 body {
     background: #999;
     font-family: Times, "Times New Roman", serif;
@@ -58,10 +57,8 @@ body {
     top: 0;
     right: 0;
 }
-.posted span { display: block; }
 
-.posted .time { display: none; }
-.posted .ago { display: none; }
+.posted time { display: none; }
 
 h1,
 h2,
@@ -159,8 +156,15 @@ h1 {
     content: " →";
 }
 
-#comments {
+#webmentions {
     margin-top: 20em;
 }
 
 .hidden { display: none; }
+
+#webmentions ul, #webmentions li { display: inline; margin: 0; padding: 0;}
+#webmentions h2, #webmentions span, #webmentions .source { display: none; }
+#webmentions a { text-decoration: none; }
+#webmentions img { max-height: 1.2em; }
+
+}

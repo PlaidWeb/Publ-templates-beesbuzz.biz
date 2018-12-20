@@ -22,7 +22,7 @@
 
     {% block scripthooks %}
     {% endblock %}
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML" async></script>
 
     {{ entry.card(width=800,height=800) }}
     <meta property="og:type" content="website" />
@@ -94,7 +94,7 @@
                     {{entry.body(gallery_id=entry.uuid,
                         div_class='images',
                         width=960,
-                        height=960,
+                        height=640,
                         fullsize_width=3840,
                         fullsize_height=2160,
                         fullsize_quality=35)}}
@@ -107,8 +107,8 @@
                 <div id="more">
                     {{entry.more(gallery_id=entry.uuid,
                         div_class='images',
-                        width=960,
-                        height=960,
+                        width=360,
+                        height=360,
                         fullsize_width=3840,
                         fullsize_height=2160,
                         fullsize_quality=35)}}
@@ -116,6 +116,11 @@
                 {% endif %}
                 {% endblock %}
             </div>
+
+            {% block webmentions %}
+            <div class="webmentions" id="webmentions"></div>
+            <script src="{{ static('webmention.js') }}"></script>
+            {% endblock %}
 
             {% block comments %}
             <div class="comments" id="comments">
@@ -132,7 +137,6 @@
     </div>
 
 </div>
-
 
 <script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
 </body></html>

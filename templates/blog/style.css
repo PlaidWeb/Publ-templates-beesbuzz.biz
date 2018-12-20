@@ -284,18 +284,111 @@ table {
 }
 
 thead {
-    border: solid black 2px;
     background: #fef;
+}
+
+tfoot {
+    background: #ffe;
+    font-weight: bold;
+}
+
+thead, tbody, tfoot, colgroup {
+    border: solid black 2px;
 }
 
 th {
     padding: 0.2ex 1ex;
     border: solid black 2px;
+    text-align: center;
 }
 
 td {
     padding: 0.2ex 1ex;
     border: solid black 1px;
+}
+
+blockquote:before {
+    font-family: 'Georgia', 'Times', serif;
+    content: '“';
+    font-size: 500%;
+    position: absolute;
+    left: -.5ex;
+    top: -.55ex;
+    color: #ccc;
+    z-index: -10;
+    -webkit-text-stroke: #999 0.2px;
+    text-shadow: rgba(0,0,0,0.3) 2px 2px 4px, #777 0 0 1px;
+}
+
+blockquote {
+    position: relative;
+    z-index: 0;
+    border: solid #eee 1px;
+    background: #f7f7f7;
+    box-shadow: #999 0 2px 4px;
+    padding: 0.25ex 1em;
+}
+
+#webmentions {
+    margin: 0;
+    position: relative;
+    z-index: 100;
+    line-height: 1.2em;
+}
+
+#webmentions .comments {
+    max-height: 20em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-size: 80%;
+}
+
+#webmentions h2 {
+    font-size: medium;
+    margin: 0;
+    padding: 2px;
+    background: #ccc;
+}
+
+#webmentions img {
+    max-width: 1.2em;
+    max-height: 1.2em;
+    border-radius: 25%;
+}
+
+#webmentions .reacts img {
+    margin: 3px -1ex 1px 0;
+}
+
+#webmentions ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 4px;
+}
+
+#webmentions li {
+    text-indent: -1em;
+    padding-left: 1em;
+}
+
+#webmentions a.reaction {
+    text-decoration: none;
+}
+
+#webmentions .comments li {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#webmentions .comments li .text {
+    color: #555;
+    font-style: italic;
+    text-decoration: none;
+}
+
+#webmentions .comments li .name {
+    color: #111;
 }
 
 .inset-right { float: right; clear: right; margin-left: 1em; shape-margin: 1em;}

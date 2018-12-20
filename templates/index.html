@@ -18,8 +18,6 @@
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
 
-    {% include '/_webmention.html' %}
-
     {% if category.parent %}
     <link rel="up" href="{{category.parent.link}}" />
     {% endif %}

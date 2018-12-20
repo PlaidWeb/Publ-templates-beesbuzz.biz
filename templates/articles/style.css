@@ -49,8 +49,7 @@ a:hover { color: #c11; }
 }
 
 .entry .heading h2 a,
-.entry .heading h2 a:visited,
-#entry .entry .heading h2 {
+.entry .heading h2 a:visited {
     color: white;
     height: 100%;
     padding: 1ex 0;
@@ -92,7 +91,6 @@ a:hover { color: #c11; }
 p {
     text-align: justify;
     hyphens: auto;
-    -webkit-hyphens: auto;
 }
 
 iframe {
