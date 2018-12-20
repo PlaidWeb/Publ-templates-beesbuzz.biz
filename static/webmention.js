@@ -1,4 +1,4 @@
-/** webmention.js
+/* webmention.js
 
 Simple thing for embedding webmentions from webmention.io into a page, client-side.
 
@@ -24,10 +24,10 @@ SOFTWARE.
 
 Usage:
 
-1. Put a <div id="webmentions"></div> where you want your webmentions to be
+1. Copy this file to your website and put it somewhere sensible
+2. Put a <div id="webmentions"></div> where you want your webmentions to be
    embedded
-2. Do a <script href="/path/to/webmention.js"> somewhere on your page (please
-   copy this to your own site instead of referencing mine)
+3. Do a <script href="/path/to/webmention.js"> somewhere on your page
 
 You can also pass in some arguments, for example:
 
@@ -42,9 +42,11 @@ Accepted arguments:
 
 This is a quick hack that could be a lot better.
 
-GitHub repo (for latest released versions, bug fixes, etc.):
+GitHub repo (for latest released versions, issue tracking, etc.):
 
-    http://github.com/PlaidWeb/Publ-templates-beesbuzz.biz/static
+    http://github.com/PlaidWeb/Publ-templates-beesbuzz.biz
+
+(look in the static/ subdirectory)
 
 */
 
