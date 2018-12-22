@@ -27,7 +27,7 @@ Usage:
 1. Copy this file to your website and put it somewhere sensible
 2. Put a <div id="webmentions"></div> where you want your webmentions to be
    embedded
-3. Do a <script href="/path/to/webmention.js"> somewhere on your page
+3. Do a <script href="/path/to/webmention.js"></script> somewhere on your page
 
 You can also pass in some arguments, for example:
 
@@ -44,7 +44,7 @@ This is a quick hack that could be a lot better.
 
 GitHub repo (for latest released versions, issue tracking, etc.):
 
-    http://github.com/PlaidWeb/Publ-templates-beesbuzz.biz
+    http://github.com/PlaidWeb/Publ-site
 
 (look in the static/ subdirectory)
 
@@ -66,13 +66,12 @@ GitHub repo (for latest released versions, issue tracking, etc.):
     };
 
     var reactEmoji = {
-        'replied': '💬',
-        'liked': '❤️',
-        'reposted': '🔄',
-        'bookmarked': '⭐️',
-        'mentioned': '💬',
-        'rsvp': '📅',
-        'reacted': '💥'
+        'in-reply-to': '💬',
+        'like-of': '❤️',
+        'repost-of': '🔄',
+        'bookmark-of': '⭐️',
+        'mention-of': '💬',
+        'rsvp': '📅'
     };
 
     function reactImage(r) {
@@ -81,11 +80,8 @@ GitHub repo (for latest released versions, issue tracking, etc.):
         var html = '<a class="reaction" title="' + who + ' ' + response + '" href="' + r.url + '">';
         if (r.author && r.author.photo) {
             html += '<img src="' + r.author.photo + '">';
-        } else {
-            html += reactEmoji[response];
         }
-
-        html += '</a>';
+        html += (reactEmoji[r['wm-property']] || '⁉️') + '</a>';
 
         return html;
     }
@@ -104,7 +100,7 @@ GitHub repo (for latest released versions, issue tracking, etc.):
             } else {
                 html += c.url.split('/')[2];
             }
-            html += '</a> ';
+            html += '</a>: ';
 
             var linkclass, linktext;
             if (c.name) {

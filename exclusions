@@ -1,0 +1,4 @@
+templates/_comment_thread.html
+templates/_hcard.html
+templates/404.html
+templates/_webmention.html

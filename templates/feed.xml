@@ -10,7 +10,7 @@
     <subtitle>Art, music, comics, and more</subtitle>
     <link href="{{ view.link(template='feed',absolute=True) }}" rel="self" />
     <link href="{{ category.link(template='feed',absolute=True) }}" rel="current" />
-    <link href="https://pubsubhubbub.superfeedr.com" rel="hub" />
+    <link href="https://busybee.superfeedr.com" rel="hub" />
     {% if view.next %}
     <link href="{{ view.next.first.archive('month','feed',category=category,absolute=True) }}" rel="prev-archive" />
     {% endif %}
@@ -36,7 +36,6 @@
         {% include get_template('_feed_entry', entry) %}
 
 <p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
-<hr><p><i>If you like my work, please consider supporting me <a href="https://patreon.com/fluffy">on Patreon</a>.</i></p>
 ]]>
         </content>
         {% endblock %}
@@ -49,7 +48,7 @@
     </entry>
     {% endfor %}
 
-    {% for entry in view.deleted %}
+    {% for entry in view(before=view.first,after=view.last).deleted %}
     <at:deleted-entry ref="urn:uuid:{{entry.uuid}}" when="{{entry.last_modified.isoformat()}}">
         <link>{{entry.permalink(absolute=True)}}</link>
     </at:deleted-entry>

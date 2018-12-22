@@ -65,7 +65,7 @@
         {% endif %}
 
         <article class="h-entry entry">
-            <div class="heading">
+            <header class="heading">
                 {% block heading %}
                 <div class="top-hook"></div>
                 <h2 class="p-name"><a href="{{entry.link}}" class="u-url">{{entry.title}}</a></h2>
@@ -81,13 +81,19 @@
                         {% include '/_hcard.html' %}
                     {% endif %}
 
+                    {% for type in ('like-of', 'in-reply-to', 'repost-of', 'bookmark-of', 'mention-of', 'rsvp') %}
+                        {% for link in entry.get_all(type) %}
+                            <a href="{{link}}" class="u-{{type}}"></a>
+                        {% endfor %}
+                    {% endfor %}
+
                     </span>
 
                 </div>
                 {% endblock %}
-            </div>
+            </header>
 
-            <div class="content e-content">
+            <section class="content e-content">
                 {% block entrybody %}
                 {% if entry.body %}
                 <div id="preamble" class="body p-summary">
@@ -115,20 +121,25 @@
                 </div>
                 {% endif %}
                 {% endblock %}
-            </div>
+            </section>
 
             {% block webmentions %}
-            <div class="webmentions" id="webmentions"></div>
+<<<<<<< HEAD
+            <section class="webmentions" id="webmentions"></section>
             <script src="{{ static('webmention.js') }}"></script>
+=======
+            <div class="webmentions" id="webmentions"></div>
+>>>>>>> 08a777cc5de4698f3d8b1a10c960cb6c4f53be41
             {% endblock %}
 
             {% block comments %}
-            <div class="comments" id="comments">
+            <section class="comments" id="comments">
                 <div class="heading">
                     <h2>Comments</h2>
                 </div>
 
                 {% include '/_comment_thread.html' %}
+            </section>
             {% endblock %}
 
         </article>
