@@ -81,6 +81,21 @@ Entries can override their individual stylesheet by setting a `Stylesheet` heade
 
 Subcategories can remove comments entirely by overriding the `comments` block.
 
+I have defined some custom headers for this template for better [Webmention](http://indieweb.org/Webmention) support:
+
+* Like-of: Indicates that this entry "likes" the specified URL
+* In-reply-to: Indicates that this entry is a reply to the specified URL
+* Repost-of: Indicates that this entry is a repost of the specified URL
+* Bookmark-of: Indicates that this entry collects the specified URL as a resource
+* Mention-of: Indicates that this entry simply mentions the URL (this is also implied without a header though)
+* rsvp: Indicates that this entry is... a response of some sort to an invitation? um. I'm not really sure how this is supposed to work, maybe ask [Aaron](https://aaronparecki.com) about it.
+
+You can use more than one of the above.
+
+#### Per-category extensions (`(category)/entry.html`)
+
+Several of the categories override parts of the master `entry.html`, primarily to change the way that images are displayed by default.
+
 ## Main/landing page (`_mainpage.html`, `index.css`)
 
 The landing page for the site is handled by the `_mainpage.html` template; this is selected by there being a content file called `_site.cat` (this filename is arbitrary) with the following content:
@@ -143,7 +158,7 @@ UUID: b3c6f3cd-16fc-4cf2-b165-8a059e66d052
 
 ## Comics section
 
-This has by far the most complex layout (and unlike most of the site these templates stand alone), and there is a *lot* to take in. Let's break it down piece by piece.
+This has by far the most complex layout (and unlike most of the site these templates stand alone, aside from the Atom feed), and there is a *lot* to take in. Let's break it down piece by piece.
 
 ### Index page (`comics/index.html`)
 
