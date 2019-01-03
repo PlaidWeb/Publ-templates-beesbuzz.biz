@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block banner %}
-<div id="banner"><h1>{{category.name}}: Entries for {{view(recurse=True,count=30).range}}</h1></div>
+<div id="banner"><h1>{{category.name}}: Entries for {{view(recurse=True,count=30,entry_type_not='sidebar').range}}</h1></div>
 {% endblock %}
 
 {% block content %}
-{% set content = view(recurse=True,count=30) %}
+{% set content = view(recurse=True,count=30,entry_type_not='sidebar') %}
 <div id="entries">
 
     {% if content.previous or content.next %}
