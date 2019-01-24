@@ -257,12 +257,12 @@ a:hover {
 
 /* {% for cat in category.subcats %} */
 #categories li.{{cat.basename}}  {
-    /*{{image('_layout/cat-'~cat.basename~'.jpg').get_css_background(uncomment=True,width=240)}}*/
+    /*{{image('_layout/cat-'~cat.basename~'.jpg').get_css_background(uncomment=True,width=240,quaity=90)}}*/
 }
 /* {% endfor %} */
 
 #categories li.store {
-    /*{{image('_layout/cat-store.jpg').get_css_background(uncomment=True,width=240)}}*/
+    /*{{image('_layout/cat-store.jpg').get_css_background(uncomment=True,width=240,quality=95)}}*/
 }
 
 @media screen and (max-width: 700px) {
