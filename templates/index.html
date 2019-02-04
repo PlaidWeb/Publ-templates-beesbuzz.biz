@@ -83,14 +83,14 @@
     {% block content %}
     <div id="entries">
 
-        {% if content.previous or content.next %}
+        {% if content.older or content.newer %}
         <div class="nav topnav">
-            {% if content.previous %}
-            <span class="prev"><a href="{{content.previous}}">{{ view.spec.date and content.previous.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
+            {% if content.older %}
+            <span class="prev"><a href="{{content.older}}">{{ view.spec.date and content.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
             {% endif %}
             &nbsp;
-            {% if content.next %}
-            <span class="next"><a href="{{content.next}}">{{ view.spec.date and content.next.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+            {% if content.newer %}
+            <span class="next"><a href="{{content.newer}}">{{ view.spec.date and content.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
             {% endif %}
         </div>
         {% endif %}
@@ -141,14 +141,14 @@
         {% endfor %}
         {% endblock %}
 
-        {% if content.previous or content.next %}
+        {% if content.older or content.newer %}
         <div class="nav bottomnav">
-            {% if content.previous %}
-            <span class="prev"><a href="{{content.previous}}">{{ view.spec.date and content.previous.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
+            {% if content.older %}
+            <span class="prev"><a href="{{content.older}}">{{ view.spec.date and content.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
             {% endif %}
             &nbsp;
-            {% if content.next %}
-            <span class="next"><a href="{{content.next}}">{{ view.spec.date and content.next.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+            {% if content.newer %}
+            <span class="next"><a href="{{content.newer}}">{{ view.spec.date and content.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
             {% endif %}
         </div>
         {% endif %}
