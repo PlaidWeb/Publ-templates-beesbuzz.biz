@@ -81,7 +81,7 @@ GitHub repo (for latest released versions, issue tracking, etc.):
     function reactImage(r) {
         var who = (r.author && r.author.name ? r.author.name : r.url.split('/')[2]);
         var response = reactTitle[r['wm-property']] || 'reacted';
-        var html = '<a class="reaction" title="' + who + ' ' + response + '" href="' + r.url + '">';
+        var html = '<a class="reaction" rel="nofollow" title="' + who + ' ' + response + '" href="' + r.url + '">';
         if (r.author && r.author.photo) {
             html += '<img src="' + r.author.photo + '">';
         }
@@ -120,7 +120,7 @@ GitHub repo (for latest released versions, issue tracking, etc.):
 
             html += reactImage(c);
 
-            html += ' <a class="source" href="' + c.url + '">';
+            html += ' <a class="source" rel="nofollow" href="' + c.url + '">';
             if (c.author && c.author.name) {
                 html += c.author.name;
             } else {
