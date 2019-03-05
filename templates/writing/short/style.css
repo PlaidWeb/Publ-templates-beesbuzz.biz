@@ -174,3 +174,25 @@ hr {
 }
 
 .hidden { display: none; }
+
+.entry .tags {
+    font-size: x-small;
+    padding-right: 1em;
+}
+
+.entry .tags ul {
+    font-weight: normal;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.entry .tags li {
+    display: inline;
+    font-style: italic;
+}
+.entry .tags li+li:before {
+    display: inline;
+    content: ' • ';
+}
+

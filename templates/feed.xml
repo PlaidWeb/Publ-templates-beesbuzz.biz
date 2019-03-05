@@ -42,8 +42,8 @@
         {% for cat in entry.category.breadcrumb -%}
         <category term="{{cat.link(absolute=True)}}" label="{{cat.name}}" />
         {% endfor %}
-        {% for tag in entry.get_all('tag') %}
-        <category term="{{tag}}" />
+        {% for tag in entry.tags %}
+        <category term="{{view(tag=tag).link(absolute=True)}}" label="{{tag}}" />
         {% endfor %}
     </entry>
     {% endfor %}

@@ -84,13 +84,28 @@ a:hover {
     /* {{image('/_layout/plaidbg-dark.png').get_css_background(width=192,uncomment=True)}} */
     background-color: #511;
     background-attachment: fixed;
-    border-radius: 1em 0 0 1em;
+    border-radius: 0 0 0 1em;
     color: #ff9;
 }
 
 #nav h2 {
+    display: none;
     margin: 0;
-    padding: 0 1em;
+    padding: 0;
+}
+
+#nav ul {
+    list-style-type: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+#nav ul li {
+    display: inline;
+}
+#nav ul li+li:before {
+    display: inline;
+    content: ' • ';
 }
 
 #nav a {
@@ -111,17 +126,47 @@ a:hover {
 
 .entry .heading {
     position: relative;
-    border-bottom: solid black 1px;
     margin: 0;
-    background: #ffc;
+}
+
+#entry .entry .tags {
+    text-align: right;
+}
+.entry .tags {
+    font-size: x-small;
+    padding-right: 1em;
+}
+
+.entry .tags ul {
+    font-weight: normal;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.entry .tags li {
+    display: inline;
+    font-style: italic;
+}
+.entry .tags li+li:before {
+    display: inline;
+    content: ' • ';
+}
+
+.entry ul.tags li a {
+    display: inline;
+    margin: 0;
+    padding: 0;
 }
 
 .entry .heading h2 {
     margin: 0;
     padding: 4px 16px;
-    box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
     position: relative;
-    z-index: 100;
+    z-index: 10;
+    background: #ffc;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+    border-bottom: solid black 1px;
 }
 
 .entry .heading .top-hook {
@@ -138,7 +183,7 @@ a:hover {
     text-decoration: none;
 }
 
-.entry .heading:hover {
+.entry .heading a:hover {
     background: #ff7;
 }
 

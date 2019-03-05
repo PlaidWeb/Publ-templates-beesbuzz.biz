@@ -88,10 +88,20 @@
                     {% endfor %}
 
                     </span>
-
                 </div>
                 {% endblock %}
             </header>
+
+            {% block entrytags %}
+                {% if entry.tags %}
+                <nav class="tags">
+                <ul class="tags">Tags:
+                    {% for tag in entry.tags %}
+                    <li><a rel="tag" href="{{entry.archive(tag=tag)}}">{{tag}}</a></li>
+                    {% endfor %}
+                </ul></nav>
+                {% endif %}
+            {% endblock %}
 
             <section class="content e-content">
                 {% block entrybody %}

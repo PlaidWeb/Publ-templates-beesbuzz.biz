@@ -5,7 +5,8 @@ name = "pypi"
 
 [packages]
 gunicorn = "*"
-publ = "==0.3.11"
+publ = "*"
+flask-profiler = "*"
 
 [dev-packages]
 

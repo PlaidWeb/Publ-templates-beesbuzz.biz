@@ -41,6 +41,8 @@
 .entry h2 a {
     display: block;
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .entry .heading {
@@ -233,5 +235,27 @@ th {
 td {
     padding: 0.2ex 1ex;
     border: solid black 1px;
+}
+
+.entry .tags {
+    font-size: x-small;
+    padding-right: 1em;
+    margin-bottom: 1ex;
+}
+
+.entry .tags ul {
+    font-weight: normal;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.entry .tags li {
+    display: inline;
+    font-style: italic;
+}
+.entry .tags li+li:before {
+    display: inline;
+    content: ' • ';
 }
 

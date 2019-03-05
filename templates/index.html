@@ -49,15 +49,14 @@
     {% endblock %}
 
     {% block navigation %}
-    <div id="nav">
+    <nav id="nav">
         <h2>Navigation</h2>
         <ul class="breadcrumb">
             {% for cat in category.breadcrumb[:-1] %}
             <li><a href="{{cat.link}}">{{cat.name}}</a></li>
             {% endfor %}
             <li class="here">
-                {% if view.range %}<a href="{{category.link}}">{{category.name}}</a>
-                {% else %}{{category.name}}{% endif %}
+                {{category.name}} {% if view.range or view.tags %}(<a href="{{category.link}}">Latest entries</a>){% endif %}
             </li>
         </ul>
 
@@ -77,11 +76,11 @@
             {% endfor %}
         </ul>
         {% endif %}
-    </div>
+    </nav>
     {% endblock %}
 
     {% block content %}
-    <div id="entries">
+    <section id="entries">
 
         {% if content.older or content.newer %}
         <div class="nav topnav">
@@ -117,6 +116,18 @@
                 </div>
                 {% endblock %}
             </div>
+
+            {% block entrytags scoped %}
+                <div class="tags">
+                {% if entry.tags %}
+                <ul class="tags">Tags:
+                    {% for tag in entry.tags %}
+                    <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                </div>
+            {% endblock %}
 
             <div class="content">
                 {% block entrybody scoped %}
@@ -154,7 +165,7 @@
         {% endif %}
 
         <div class="expand"></div>
-    </div>
+    </section>
     {% endblock %}
 
 </div>

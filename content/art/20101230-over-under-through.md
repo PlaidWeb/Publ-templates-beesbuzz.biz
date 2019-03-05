@@ -5,7 +5,8 @@ Path-Alias: /d/20101230.php
 Date: 2010-12-30 00:00:00-07:00
 Entry-ID: 4506
 UUID: 47fc7fe8-66a6-4b52-8024-6a367e60eff9
-
+Tag: abstract
+Tag: lithograph
 
 
 ![{scale=1}](over-under-through.jpg "Etched on a milk carton") A milk-carton "lithograph"

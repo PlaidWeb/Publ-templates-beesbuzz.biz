@@ -1,16 +1,23 @@
 {% extends '/index.html' %}
 
-{% block navigation %}
-<div id="nav">
-    <a href="/">back to busybee</a>
-    </div>
-{% endblock %}
+{% block entrytags %}{% endblock %}
 
 {% block entrybody %}
 {% if entry.body %}
 <div class="commentlink">
 <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments"><span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
 </div>
+
+{% if entry.tags %}
+<nav class="tags">
+<ul class="tags">Tags:
+    {% for tag in entry.tags %}
+    <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
+    {% endfor %}
+</ul></nav>
+{% endif %}
+
+
 
 <div class="body p-summary">
 

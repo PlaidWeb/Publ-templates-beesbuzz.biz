@@ -56,18 +56,39 @@ p.comment { text-align: right; font-size: small; font-style: italic; }
 }
 
 .prev {
-float: left;
+    float: left;
 }
 .prev:before {
     content: "<- ";
 }
 
 .next {
-float: right;
+    float: right;
 }
 .next:after {
     content: " ->";
 }
 
 .hidden { display: none; }
+
+.entry .tags {
+    font-size: x-small;
+    padding-right: 1em;
+}
+
+.entry .tags ul {
+    font-weight: normal;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.entry .tags li {
+    display: inline;
+    font-style: italic;
+}
+.entry .tags li+li:before {
+    display: inline;
+    content: ' • ';
+}
 
