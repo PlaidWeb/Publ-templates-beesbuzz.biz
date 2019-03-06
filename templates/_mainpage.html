@@ -18,7 +18,7 @@
     <h1><span>busy</span>bee</h1>
 
     <div id="links">
-        {%- for entry in view(entry_type='sidebar',order='oldest').entries -%}
+        {%- for entry in view(entry_type='sidebar',order='oldest',tag=None).entries -%}
         <a href="{{entry.link}}" {% if entry['link-rel'] %}rel="{{entry['link-rel']}}"{% endif %}
             title="{{entry.title}}" class="{{entry.icon or entry.title.lower()}}"><span>{{entry.title}}</span></a>
         {% endfor -%}
@@ -34,7 +34,8 @@
     </ul>
 
     <div id="entries">
-        <h2>Latest things</h2>
+        <h2>Latest things
+            {%- if view.tags %} <span>(tagged {{view.tags|join(', ')}})</span>{%endif%}</h2>
         <ul>
             {% for entry in view(recurse=True,order='newest',count=5,entry_type_not='sidebar').entries %}
             <li><a href="{{entry.category.link}}">{{entry.category.name}}</a>: <a href="{{entry.link}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
