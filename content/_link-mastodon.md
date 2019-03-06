@@ -1,4 +1,4 @@
-Title: fluffy@queer.party
+Title: Mastodon
 Icon: mastodon
 Redirect-To: https://queer.party/@fluffy
 Entry-Type: sidebar
@@ -7,3 +7,4 @@ Date: 170
 Entry-ID: 5811
 Path-Alias: /mastodon
 Link-Rel: me
+Shaped: 1

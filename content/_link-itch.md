@@ -7,3 +7,4 @@ Entry-Type: sidebar
 Redirect-To: http://fluffy.itch.io
 Status: hidden
 Link-Rel: me
+Shaped: 1

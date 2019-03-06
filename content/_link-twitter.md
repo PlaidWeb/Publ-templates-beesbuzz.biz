@@ -1,4 +1,4 @@
-Title: @fluffy
+Title: Twitter
 Icon: twitter
 Entry-Type: sidebar
 Redirect-To: https://twitter.com/fluffy
