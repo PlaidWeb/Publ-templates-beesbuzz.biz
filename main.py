@@ -1,12 +1,13 @@
 """ Main Publ application """
 
-from dateutil import tz
 
 import os
 import logging
 import logging.handlers
 
 import publ
+from dateutil import tz
+
 
 if os.path.isfile('logging.conf'):
     logging.config.fileConfig('logging.conf')

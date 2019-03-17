@@ -5,17 +5,19 @@ These templates are based on the ones I use on [my website](https://beesbuzz.biz
 This repository also contains some basic content to demonstrate parts of the site in operation. To run the sample site you can clone this repository and, inside your clone, type the following:
 
 ```bash
-pipenv install
+./setup.sh
 ./run.sh
 ```
 
-which will run the sample site at http://localhost:5000
+which will run the sample site at `http://localhost:5000`. Windows users can instead double-click on `winsetup.cmd` and `winrun.cmd`.
+
+Note that to run this you'll need Python (at least version 3.5) and pipenv. See the [Publ getting started guide](http://publ.beesbuzz.biz/manual/328-Getting-started) for more thorough setup instructions.
 
 ## General overview
 
 The root-level `index.html` and `entry.html` handle the generic layout for index and entry pages throughout the site. `feed.xml` is the Atom feed.
 
-The provided `error.html` is just a simple default handler; my actual site also has handlers for `400`, `403`, and `404`. Each of these overrides the `flair` block within the `error` template. The `404.html` shows a tiny example of how to make 404-specific content on the error page.
+The provided `error.html` is just a simple default handler; my actual site also has handlers for `400`, `403`, and `404`. Each of these overrides the `flair` block within the `error` template. The `404.html` in this repository shows a tiny example of how to make 404-specific content on the error page.
 
 `_comment_thread.html` is a template that the other templates use to insert the Disqus comment code. If you want to use this you'll need to change the `DISQUS_SHORTNAME` configuration variable. By default a page will get a thread ID of `publ_{entry-id}`, but this can be overridden with the `Thread-Id` header on the entry file (which I use for legacy entries).
 
