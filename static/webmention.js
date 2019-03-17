@@ -56,7 +56,7 @@ GitHub repo (for latest released versions, issue tracking, etc.):
 
 
 (function() {
-    var refurl = document.currentScript.getAttribute('data-page-url') || window.location.href;
+    var refurl = document.currentScript.getAttribute('data-page-url') || window.location.href.replace(/#.*$/,'');
     var containerID = document.currentScript.getAttribute('data-id') || "webmentions";
     var textMaxWords = document.currentScript.getAttribute('data-wordcount');
 

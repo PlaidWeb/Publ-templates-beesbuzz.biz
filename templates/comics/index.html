@@ -79,6 +79,7 @@
 {% endmacro -%}
 
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="feed" />
     <link rel="alternate" type="application/atom+xml" title="Summary feed" href="feed-summary" />
@@ -103,8 +104,6 @@
     {% endfor %}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@fluffy" />
-
-    {% include '/_webmention.html' %}
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 </head>

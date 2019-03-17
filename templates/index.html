@@ -3,7 +3,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {% block title %}
-    <title>{{ category.name or "busybee"}}{% if view.range %} | {{ view.range }}{% endif %}</title>
+    <title>{{ category.name or "busybee"}}
+    {%- if view.tags -%}
+        , tagged {{','.join(view.tags)}}
+    {%- endif -%}
+    {%- if view.range %} | {{ view.range }}{% endif %}</title>
 {% endblock %}
 
 {% set content = view(entry_type_not='sidebar',count=20) %}
@@ -41,7 +45,11 @@
 
     {% block banner %}
     <div id="banner">
-        <h1>{{ category.name or "busybee" }}</h1>
+        <h1>{{ category.name or "busybee" }}
+        {%- if view.tags %}
+            ({{view.tags|map('title')|join(', ')}})
+        {%- endif -%}
+        </h1>
         {% if category.description %}
         <div id="description">{{category.description}}</div>
         {% endif %}
