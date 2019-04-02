@@ -22,7 +22,9 @@
     <link rel="alternate" type="application/atom+xml" title="Summary feed" href="feed-summary" />
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+{% block webmention %}
     {% include '/_webmention.html' %}
+{% endblock %}
 
 
     {% if category.parent %}

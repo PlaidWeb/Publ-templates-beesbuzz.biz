@@ -66,7 +66,8 @@ GitHub repo (for latest released versions, issue tracking, etc.):
         'repost-of': 'reposted',
         'bookmark-of': 'bookmarked',
         'mention-of': 'mentioned',
-        'rsvp': 'RSVPed'
+        'rsvp': 'RSVPed',
+        'follow-of': 'followed',
     };
 
     var reactEmoji = {
@@ -75,7 +76,8 @@ GitHub repo (for latest released versions, issue tracking, etc.):
         'repost-of': '🔄',
         'bookmark-of': '⭐️',
         'mention-of': '💬',
-        'rsvp': '📅'
+        'rsvp': '📅',
+        'follow-of': '🐜',
     };
 
     function reactImage(r) {
