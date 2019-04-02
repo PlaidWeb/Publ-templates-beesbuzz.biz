@@ -29,6 +29,31 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@fluffy" />
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "theme": "edgeless",
+  "position": "bottom-left",
+  "content": {
+    "message": "This website uses cookies to remember if you've clicked this button.",
+    "dismiss": "I clicked it",
+    "link": "Tell me more",
+    "href": "/privacy"
+  }
+})});
+</script>
+
 </head>
 <body id="{{ template.name }}">
 
@@ -75,20 +100,23 @@
                     <span class="time">{{entry.date.format('h:mm A')}}</span>
                     <span class="ago">{{entry.date.humanize()}}</span></time>
                     <span class="author{{entry.author and '' or ' hidden'}}">
-                    {% if entry.author %}
-                    by
-                        <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
-                    {% else %}
-                        {% include '/_hcard.html' %}
-                    {% endif %}
+                    {%- if entry.author -%}
+                    by <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                    {%- else -%}
+                        {%- include '/_hcard.html' -%}
+                    {%- endif -%}
 
-                    {% for type in ('like-of', 'in-reply-to', 'repost-of', 'bookmark-of', 'mention-of', 'rsvp') %}
-                        {% for link in entry.get_all(type) %}
+                    {%- for type in ('like-of', 'in-reply-to', 'repost-of', 'bookmark-of', 'mention-of', 'rsvp') -%}
+                        {%- for link in entry.get_all(type) -%}
                             <a href="{{link}}" class="u-{{type}}"></a>
-                        {% endfor %}
-                    {% endfor %}
+                        {%- endfor -%}
+                    {%- endfor -%}
+                    <a href="https://fed.brid.gy/"></a>
 
                     </span>
+                    {% if entry.summary %}
+                    <span class="hidden p-summary">{{ entry.summary }}</span>
+                    {% endif %}
                 </div>
                 {% endblock %}
             </header>
@@ -107,7 +135,7 @@
             <section class="content e-content">
                 {% block entrybody %}
                 {% if entry.body %}
-                <div id="preamble" class="body p-summary">
+                <div id="preamble" class="body">
                     {{entry.body(gallery_id=entry.uuid,
                         div_class='images',
                         width=960,
@@ -147,7 +175,6 @@
                 {% include '/_comment_thread.html' %}
             </section>
             {% endblock %}
-
         </article>
 
 

@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 {# Filter out entries which we want to show up in the main flow #}
-{% set TYPEFILTER = ['','newchapter'] %}
-{% set comics = view(entry_type=TYPEFILTER,recurse=True,count=1,order="oldest" if "date" in view.spec else "newest") %}
+{%- set TYPEFILTER = ['','newchapter'] -%}
+{%- set comics = view(entry_type=TYPEFILTER,recurse=True,count=1,order="oldest" if "date" in view.spec else "newest") -%}
 
 {# Find all the categories visible on this page #}
-{% set categories = comics.entries|groupby('category') %}
+{%- set categories = comics.entries|groupby('category') -%}
 
 {# Render a button for the navigation bars #}
-{% macro navButton(size, anchor, button, alt, link, title) %}
+{%- macro navButton(size, anchor, button, alt, link, title) %}
     {{ image('_'~button~'.png').get_img_tag(
             height=size,
             alt_text=alt,
             link=(link ~ ('#' ~ anchor if anchor else '')) if link else None,
             title=title) }}
-{% endmacro %}
+{% endmacro -%}
 
 {# Render an entry button #}
-{% macro navEntry(size, anchor, button, alt, entry) %}
+{%- macro navEntry(size, anchor, button, alt, entry) %}
     {% if entry %}
         {{ navButton(size, anchor, button, alt, entry.archive(category=category,paging=view.paging), entry.category.name~': '~entry.title) }}
     {% else %}
         {{ navButton(size, anchor, button~'-disabled', alt, None, '')}}
     {% endif %}
-{% endmacro %}
+{% endmacro -%}
 
 {# Render a view button #}
-{% macro navView(size, anchor, button, alt, view) %}
+{%- macro navView(size, anchor, button, alt, view) %}
     {% if view %}
         {{ navButton(size, anchor, button, alt, view.link,
             view.first.category.name~': '~view.first.title
@@ -39,10 +39,10 @@
     {% else %}
         {{ navButton(size, anchor, button~'-disabled', alt, None, '') }}
     {% endif %}
-{% endmacro %}
+{% endmacro -%}
 
 {# Render the entire navbar #}
-{% macro navBar(size, mini=False, anchor=None) %}
+{%- macro navBar(size, mini=False, anchor=None) %}
 {% set smol = size*7/8 if mini else size %}
 <ul class="nav_bar">
     <li class="beginning">
@@ -90,6 +90,7 @@
     {% endif %}
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+    {% include '/_webmention.html' %}
 
     <title>
     busybee comics
@@ -106,6 +107,31 @@
     <meta name="twitter:creator" content="@fluffy" />
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "theme": "edgeless",
+  "position": "bottom-left",
+  "content": {
+    "message": "This website uses cookies to remember if you've clicked this button.",
+    "dismiss": "I clicked it",
+    "link": "Tell me more",
+    "href": "/privacy"
+  }
+})});
+</script>
+
 </head>
 <body>
     <div id="container">

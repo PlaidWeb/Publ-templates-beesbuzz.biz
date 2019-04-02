@@ -138,6 +138,7 @@ a:hover {
 }
 
 .entry .tags ul {
+    display: inline;
     font-weight: normal;
     list-style-type: none;
     margin: 0;

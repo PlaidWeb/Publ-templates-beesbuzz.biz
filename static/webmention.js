@@ -196,6 +196,10 @@ GitHub repo (for latest released versions, issue tracking, etc.):
 
     window.addEventListener("load", function() {
         var container = document.getElementById(containerID);
+        if (!container) {
+            // no container, so do nothing
+            return;
+        }
 
         var pageurl = stripurl(refurl);
 

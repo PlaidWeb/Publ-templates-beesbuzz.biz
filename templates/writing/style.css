@@ -77,6 +77,7 @@ p.comment { text-align: right; font-size: small; font-style: italic; }
 }
 
 .entry .tags ul {
+    display: inline;
     font-weight: normal;
     list-style-type: none;
     margin: 0;

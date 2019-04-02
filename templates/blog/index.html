@@ -9,8 +9,8 @@
 </div>
 
 {% if entry.tags %}
-<nav class="tags">
-<ul class="tags">Tags:
+<nav class="tags">Tags:
+<ul class="tags">
     {% for tag in entry.tags %}
     <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
     {% endfor %}

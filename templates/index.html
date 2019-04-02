@@ -22,6 +22,8 @@
     <link rel="alternate" type="application/atom+xml" title="Summary feed" href="feed-summary" />
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+    {% include '/_webmention.html' %}
+
 
     {% if category.parent %}
     <link rel="up" href="{{category.parent.link}}" />
@@ -36,6 +38,31 @@
     {% block scripthooks %}
     {% endblock %}
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "theme": "edgeless",
+  "position": "bottom-left",
+  "content": {
+    "message": "This website uses cookies to remember if you've clicked this button.",
+    "dismiss": "I clicked it",
+    "link": "Tell me more",
+    "href": "/privacy"
+  }
+})});
+</script>
+
 </head>
 
 <body id="{{ template.name }}">
@@ -89,7 +116,7 @@
     {% endblock %}
 
     {% block content %}
-    <section id="entries">
+    <div id="entries">
 
         {% if content.older or content.newer %}
         <div class="nav topnav">
@@ -128,8 +155,8 @@
 
             {% block entrytags scoped %}
                 <div class="tags">
-                {% if entry.tags %}
-                <ul class="tags">Tags:
+                {% if entry.tags %}Tags:
+                <ul class="tags">
                     {% for tag in entry.tags %}
                     <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
                     {% endfor %}
@@ -174,7 +201,7 @@
         {% endif %}
 
         <div class="expand"></div>
-    </section>
+    </div>
     {% endblock %}
 
 </div>
