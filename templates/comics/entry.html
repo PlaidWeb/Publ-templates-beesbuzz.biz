@@ -61,7 +61,7 @@
                     <span class="ago">{{ entry.date.humanize() }}</span>
                 </span>
 
-                {% if entry.summary|trim %}
+                {% if entry.summary %}
                 <div class="hidden p-summary">{{ entry.summary }}</div>
                 {% endif %}
             </div>
@@ -71,6 +71,7 @@
                 <div id="preamble" class="body">
                     {{entry.body(
                         div_class='images',
+                        img_class='u-photo',
                         scale=2,
                         width=960)}}
                 </div>
@@ -80,6 +81,7 @@
                 <div id="more" class="more">
                     {{entry.more(gallery_id=entry.uuid,
                         div_class='images',
+                        img_class='u-photo',
                         width=640,
                         height=640,
                         fullsize_width=3840,
@@ -87,6 +89,8 @@
                         fullsize_quality=35)}}
                 </div>
                 {% endif %}
+
+                <a class="hidden permalink" rel="permalink" title="permalink" href="{{entry.link(absolute=True)}}"></a>
             </div>
 
             <a href="https://fed.brid.gy/"></a>
