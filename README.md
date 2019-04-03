@@ -118,8 +118,6 @@ I have defined some custom headers for this template for better [Webmention](htt
 
 You can use more than one of the above.
 
-
-
 #### Per-category extensions (`(category)/entry.html`)
 
 Several of the categories override parts of the master `entry.html`, primarily to change the way that images are displayed by default.
