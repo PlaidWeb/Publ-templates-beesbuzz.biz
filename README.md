@@ -13,7 +13,31 @@ which will run the sample site at `http://localhost:5000`. Windows users can ins
 
 Note that to run this you'll need Python (at least version 3.5) and pipenv. See the [Publ getting started guide](http://publ.beesbuzz.biz/manual/328-Getting-started) for more thorough setup instructions.
 
-## General overview
+## App setup
+
+The application lives in `main.py`. Really I should standardize on using `app.py` based on how Flask prefers things but it's so ingrained into everything at this point. Maybe someday I'll do a cleanup pass on that.
+
+`main.py` is set up with the following facets:
+
+### Publ configuration
+
+The database is just local SQLite.
+
+If running in debug, there is no cache, otherwise it uses an in-memory cache with a TTL of 60 seconds (that holds up to 500 items).
+
+The index gets a rescan once a day, which is probably not necessary but it doesn't hurt anything either.
+
+### Routing rules
+
+`/favicon.ico` redirects to `/static/favicon.ico`. This could also have been done using `send_file('favicon.ico')` in the current directory to make this more transparent, but it doesn't really matter.
+
+Legacy comics paths like `/d/20060606.php` get redirected to an appropriate date-based view within `/comics/`.
+
+Missing blog entries (which I haven't ported from my old site) get redirected to [a placeholder apology](https://beesbuzz.biz/7821).
+
+ActivityPub requests are redirected to [bridgy fed](https://fed.brid.gy), which serves as a proxy for the ActivityPub identity `@beesbuzz.biz@beesbuzz.biz`. The intention was to support directly publishing my content to subscribers on Mastodon but the experience there isn't great, due to a fairly large impedance mismatch. Oh well.
+
+## Template overview
 
 The root-level `index.html` and `entry.html` handle the generic layout for index and entry pages throughout the site. `feed.xml` is the Atom feed.
 
@@ -93,6 +117,8 @@ I have defined some custom headers for this template for better [Webmention](htt
 * rsvp: Indicates that this entry is... a response of some sort to an invitation? um. I'm not really sure how this is supposed to work, maybe ask [Aaron](https://aaronparecki.com) about it.
 
 You can use more than one of the above.
+
+
 
 #### Per-category extensions (`(category)/entry.html`)
 
@@ -219,4 +245,8 @@ Individual entries can override their stylesheet with the `Stylesheet` entry hea
 ### Stylesheet (`comics/style.css`)
 
 The main interesting thing about this one is that the `h1` link background gets the `_logo.jpg` from the current category's content directory if available; by default this will fall back to the `_logo.jpg` file in the comics directory instead (as part of Publ's standard image lookup rules).
+
+## Other configuration
+
+I have configured my site to be deployed via a [git hook](http://publ.beesbuzz.biz/manual/deploying/441-Continuous-deployment-with-git), and I send out WebSub and Webmention pings using [Pushl](https://github.com/PlaidWeb/Pushl).
 

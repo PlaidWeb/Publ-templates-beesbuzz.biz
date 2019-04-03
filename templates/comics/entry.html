@@ -60,6 +60,10 @@
                 <span class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">{{ entry.date.format('YYYY/MM/DD') }}</time>
                     <span class="ago">{{ entry.date.humanize() }}</span>
                 </span>
+
+                {% if entry.summary|trim %}
+                <div class="hidden p-summary">{{ entry.summary }}</div>
+                {% endif %}
             </div>
 
             <div class="content e-content">
@@ -84,25 +88,28 @@
                 </div>
                 {% endif %}
             </div>
-        </div>
 
-        <div class="author hidden">
-            {% if entry.author %}
-                <a rel="author" href="{{entry['Author-URL'] or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
-            {% else %}
-                {% include '/_hcard.html' %}
-            {% endif %}
-        </div>
+            <a href="https://fed.brid.gy/"></a>
 
-        {% include '/_hcard.html' %}
-    </article>
+            <div class="author hidden">
+                {% if entry.author %}
+                    <a rel="author" href="{{entry['Author-URL'] or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                {% else %}
+                    {% include '/_hcard.html' %}
+                {% endif %}
+            </div>
+
+            {% include '/_hcard.html' %}
+        </article>
+
+
+    </div>
 
     <div id="comments">
         <div class="heading">
         <h2>Comments</h2>
         {% include '/_comment_thread.html' %}
     </div>
-
 </div>
 
 <script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>

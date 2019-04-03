@@ -89,7 +89,8 @@
                     <a href="https://fed.brid.gy/"></a>
 
                     </span>
-                    {% if entry.summary %}
+
+                    {% if entry.summary|trim %}
                     <span class="hidden p-summary">{{ entry.summary }}</span>
                     {% endif %}
                 </div>
