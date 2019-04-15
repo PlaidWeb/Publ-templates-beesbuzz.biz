@@ -90,7 +90,7 @@
                 </div>
                 {% endif %}
 
-                <a class="hidden permalink" rel="permalink" title="permalink" href="{{entry.link(absolute=True)}}"></a>
+                <p class="hidden permalink">Permalink: <a rel="permalink" title="permalink" href="{{entry.link(absolute=True)}}"></a></p>
             </div>
 
             <a href="https://fed.brid.gy/"></a>
@@ -102,8 +102,6 @@
                     {% include '/_hcard.html' %}
                 {% endif %}
             </div>
-
-            {% include '/_hcard.html' %}
         </article>
 
 

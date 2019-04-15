@@ -167,7 +167,7 @@
 
                 {% if entry.body %}
                 <div class="p-summary">
-                    {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link) }}
+                    {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link,prefix="index_") }}
                 </div>
                 {% endif %}
                 {% if entry.more %}

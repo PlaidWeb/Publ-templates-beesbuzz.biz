@@ -10,6 +10,7 @@
     <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+    <link rel="shortcut" href="{{ entry.link(absolute=True,expand=False) }}" />
 
     {% include '/_webmention.html' %}
 
@@ -74,9 +75,10 @@
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                     <span class="time">{{entry.date.format('h:mm A')}}</span>
                     <span class="ago">{{entry.date.humanize()}}</span></time>
-                    <span class="author{{entry.author and '' or ' hidden'}}">
                     {%- if entry.author -%}
-                    by <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                        <span class="author">
+                        by <a rel="author" href="{{entry['Author-URL'] or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                        </span>
                     {%- else -%}
                         {%- include '/_hcard.html' -%}
                     {%- endif -%}
@@ -88,8 +90,6 @@
                     {%- endfor -%}
                     <a href="https://fed.brid.gy/"></a>
 
-                    </span>
-
                     {% if entry.summary %}
                     <span class="hidden p-summary">{{ entry.summary }}</span>
                     {% endif %}
@@ -99,8 +99,8 @@
 
             {% block entrytags %}
                 {% if entry.tags %}
-                <nav class="tags">
-                <ul class="tags">Tags:
+                <nav class="tags">Tags:
+                <ul class="tags">
                     {% for tag in entry.tags %}
                     <li><a rel="tag" href="{{entry.archive(tag=tag)}}">{{tag}}</a></li>
                     {% endfor %}
@@ -108,7 +108,7 @@
                 {% endif %}
             {% endblock %}
 
-            <section class="content e-content">
+            <div class="content e-content">
                 {% block entrybody %}
                 {% if entry.body %}
                 <div id="preamble" class="body">
@@ -139,21 +139,21 @@
                 {% endif %}
                 {% endblock %}
 
-                <a class="hidden" title="permalink" rel="permalink" href="{{entry.link(absolute=True)}}"></a>
-            </section>
+                <p class="hidden permalink">Permalink: <a rel="permalink" title="permalink" href="{{entry.link(absolute=True)}}"></a></p>
+            </div>
 
             {% block webmentions %}
-            <section class="webmentions" id="webmentions"></section>
+            <div class="webmentions" id="webmentions"></div>
             {% endblock %}
 
             {% block comments %}
-            <section class="comments" id="comments">
+            <div class="comments" id="comments">
                 <div class="heading">
                     <h2>Comments</h2>
                 </div>
 
                 {% include '/_comment_thread.html' %}
-            </section>
+            </div>
             {% endblock %}
         </article>
 

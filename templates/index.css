@@ -307,3 +307,33 @@ a:hover {
 }
 
 .hidden { display: none; }
+
+#webring {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 1em;
+}
+#webring span {
+    vertical-align: middle;
+    display: inline-block;
+    background: rgba(255,255,255,.75);
+    border-radius: 4px;
+    border: solid black 1px;
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    padding: 1px 2px;
+}
+
+#webring a {
+    background: black;
+    color: white;
+    border-radius: 50%;
+    border: solid black 1px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+}
+#webring a:hover {
+    background: yellow;
+    color: #007;
+}
