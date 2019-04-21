@@ -7,6 +7,7 @@ name = "pypi"
 gunicorn = "*"
 publ = "*"
 flask-profiler = "*"
+pushl = "*"
 
 [dev-packages]
 

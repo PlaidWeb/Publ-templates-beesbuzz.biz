@@ -248,3 +248,5 @@ The main interesting thing about this one is that the `h1` link background gets 
 
 I have configured my site to be deployed via a [git hook](http://publ.beesbuzz.biz/manual/deploying/441-Continuous-deployment-with-git), and I send out WebSub and Webmention pings using [Pushl](https://github.com/PlaidWeb/Pushl).
 
+I also have pushl installed in the same pipenv, and it is run using the `pushl.sh` script, which is more complicated than it needs to be.
+
