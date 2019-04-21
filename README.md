@@ -196,7 +196,7 @@ This has by far the most complex layout (and unlike most of the site these templ
 {% set comics = view(entry_type=TYPEFILTER,recurse=True,count=1,order="oldest" if "date" in view.spec else "newest") %}
 ```
 
-This provides `TYPEFILTER` as a common list of entry types that should be treated as comics; for our purposes we're using no type and the `newchapter` type as comics.
+This provides `TYPEFILTER` as a common list of entry types that should be treated as comics; for our purposes we're using no type and the `newchapter` type as comics. (This was a page-type hack left over from when before Publ had a tagging system. This will eventually change, when I get around to it.)
 
 The `comics` view includes all entries which fit that filter, including subcategories, and if the view is date-based it will sort oldest-to-newest; otherwise it retains the default newest-to-oldest sort. (This is so that when no date is specified, the default starting point will be the latest comic.)
 
