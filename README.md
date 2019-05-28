@@ -114,7 +114,12 @@ I have defined some custom headers for this template for better [Webmention](htt
 * Repost-of: Indicates that this entry is a repost of the specified URL
 * Bookmark-of: Indicates that this entry collects the specified URL as a resource
 * Mention-of: Indicates that this entry simply mentions the URL (this is also implied without a header though)
-* rsvp: Indicates that this entry is... a response of some sort to an invitation? um. I'm not really sure how this is supposed to work, maybe ask [Aaron](https://aaronparecki.com) about it.
+* RSVP: Indicates that this entry is a response to an invitation. In this case, after the URL you provide an RSVP disposition, such as `yes`, `no`, or `maybe`. For example:
+
+    ```
+    RSVP: http://example.com/cool-party yes
+    RSVP: http://example.com/bad-party no
+    ```
 
 You can use more than one of the above.
 

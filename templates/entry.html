@@ -83,13 +83,6 @@
                         {%- include '/_hcard.html' -%}
                     {%- endif -%}
 
-                    {%- for type in ('like-of', 'in-reply-to', 'repost-of', 'bookmark-of', 'mention-of', 'rsvp') -%}
-                        {%- for link in entry.get_all(type) -%}
-                            <a href="{{link}}" class="u-{{type}}"></a>
-                        {%- endfor -%}
-                    {%- endfor -%}
-                    <a href="https://fed.brid.gy/"></a>
-
                     {% if entry.summary %}
                     <span class="hidden p-summary">{{ entry.summary }}</span>
                     {% endif %}
@@ -107,6 +100,17 @@
                 </ul></nav>
                 {% endif %}
             {% endblock %}
+
+            {%- for type in ('like-of', 'in-reply-to', 'repost-of', 'bookmark-of', 'mention-of') -%}
+                {%- for link in entry.get_all(type) -%}
+                    <a href="{{link}}" class="hidden u-{{type}}"></a>
+                {%- endfor -%}
+            {%- endfor -%}
+
+            {%- for rsvp in entry.get_all('rsvp') -%}
+                <a class="hidden u-in-reply-to p-rsvp" href="{{rsvp.split()[0]}}">{{rsvp.split()[1]}}</a>
+            {%- endfor -%}
+            <a class="hidden" href="https://fed.brid.gy/"></a>
 
             <div class="content e-content">
                 {% block entrybody %}
@@ -138,8 +142,6 @@
                 </div>
                 {% endif %}
                 {% endblock %}
-
-                <p class="hidden permalink">Permalink: <a rel="permalink" title="permalink" href="{{entry.link(absolute=True)}}"></a></p>
             </div>
 
             {% block webmentions %}

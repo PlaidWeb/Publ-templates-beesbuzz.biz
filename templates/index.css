@@ -337,3 +337,6 @@ a:hover {
     background: yellow;
     color: #007;
 }
+
+.inset-right { float: right; }
+.inset-left { float: left; }

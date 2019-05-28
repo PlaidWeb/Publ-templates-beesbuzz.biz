@@ -47,7 +47,6 @@
 {% endif %}
 
 <p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
-<hr><p><i>If you like my work, please consider <a href="//beesbuzz.biz/tipjar">sending me a tip</a>.</i></p>
 ]]>
         </content>
         {% endblock %}
