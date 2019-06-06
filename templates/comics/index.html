@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {# Filter out entries which we want to show up in the main flow #}
-{%- set TYPEFILTER = ['','newchapter'] -%}
+{%- set TYPEFILTER = [''] -%}
 {%- set comics = view(entry_type=TYPEFILTER,recurse=True,count=1,order="oldest" if "date" in view.spec else "newest") -%}
 
 {# Find all the categories visible on this page #}
@@ -52,7 +52,7 @@
     <li class="prev_chapter">
         {{ navEntry(smol, anchor, 'prev_chapter', '[Last Chapter]',
                     comics.first.previous(category=category,
-                                          entry_type='newchapter',
+                                          tag='newchapter',
                                           recurse=True) if comics.first else None)
         }}
     </li>
@@ -65,7 +65,7 @@
     <li class="next_chapter">
         {{ navEntry(smol, anchor, 'next_chapter', '[Next Chapter]',
                     comics.last.next(category=category,
-                                     entry_type='newchapter',
+                                     tag='newchapter',
                                      recurse=True) if comics.last else None)
         }}
     </li>

@@ -17,6 +17,7 @@ date
 flock -n $HOME/var/pushl/run.lock $HOME/.local/bin/pipenv run pushl -rvvc $HOME/var/pushl \
     https://beesbuzz.biz/feed \
     http://publ.beesbuzz.biz/feed \
+    https://tumblr.beesbuzz.biz/rss \
     -s http://beesbuzz.biz/feed
 
 # while we're at it, clean out the log directory

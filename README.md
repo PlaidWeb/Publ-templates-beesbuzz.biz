@@ -15,9 +15,7 @@ Note that to run this you'll need Python (at least version 3.5) and pipenv. See 
 
 ## App setup
 
-The application lives in `main.py`. Really I should standardize on using `app.py` based on how Flask prefers things but it's so ingrained into everything at this point. Maybe someday I'll do a cleanup pass on that.
-
-`main.py` is set up with the following facets:
+The application lives in `app.py`, which is set up with basic logging and the following facets:
 
 ### Publ configuration
 
@@ -197,20 +195,22 @@ This has by far the most complex layout (and unlike most of the site these templ
 
 ```
 {# Filter out entries which we want to show up in the main flow #}
-{% set TYPEFILTER = ['','newchapter'] %}
+{% set TYPEFILTER = [''] %}
 {% set comics = view(entry_type=TYPEFILTER,recurse=True,count=1,order="oldest" if "date" in view.spec else "newest") %}
 ```
 
-This provides `TYPEFILTER` as a common list of entry types that should be treated as comics; for our purposes we're using no type and the `newchapter` type as comics. (This was a page-type hack left over from when before Publ had a tagging system. This will eventually change, when I get around to it.)
+This provides `TYPEFILTER` as a common list of entry types that should be treated as comics; currently that is just the empty/default type. (Previously there was a separate type for `newchapter` back before Publ had a tagging system.)
 
-The `comics` view includes all entries which fit that filter, including subcategories, and if the view is date-based it will sort oldest-to-newest; otherwise it retains the default newest-to-oldest sort. (This is so that when no date is specified, the default starting point will be the latest comic.)
+The `comics` view is restricted to entries that fit the type filter, and includes all subcategories. `count=1` means it will only show the most recent comic unless there's a date filter in place (as date filters take priority over count-based pagination). If there is a date specified in the default view, it will sort oldest-to-newest so they appear in reading order; otherwise they appear newest-to-oldest so that the most recent comic will display by default.
+
+(This could probably be better.)
 
 ```
 {# Find all the categories visible on this page #}
 {% set categories = comics.entries|groupby('category') %}
 ```
 
-This sets up a `categories` grouping which is currently only used for selecting the page stylesheet; if a single series is visible it will use that series stylesheet instead of the default.
+This sets up a `categories` grouping which is currently only used for selecting the page stylesheet; if a single series is visible it will use that series stylesheet instead of the default. The stylesheet mostly just chooses which image to put inside the heading.
 
 The various `macro` sections are all to make the navigation bars easier to manage; they define the following macro functions for the rest of the page:
 
@@ -219,7 +219,7 @@ The various `macro` sections are all to make the navigation bars easier to manag
 * `navView(size, anchor, button, alt, view)`: Make a navigation button that links to the provided view. It does some fancy stuff to set the title text automatically; if there's only a single comic on the view it will provide the comic name, otherwise it will give a date range.
 * `navBar(size, mini, anchor)`: Render a navigation bar with the specified size and link anchor. If `mini` is specified it will omit the "latest" icon and reduce the size of less-used icons by 1/8.
 
-Entries with an `Entry-Type` of `newchapter` will be used for the previous/next chapter links.
+Entries with a tag of `newchapter` will be used for the previous/next chapter links. I use the `Hidden-Tag` variant, so that if I ever get around to adding browseable tags these won't be visible.
 
 #### `<head>` section
 
@@ -231,7 +231,7 @@ The generated OpenGraph card will be a square-aspect excerpt from the top or lef
 
 #### Navigation stuff
 
-The navigation breadcrumb trail shows the parent categories, the current category, then any subcategories. The parent categories' links will link to the current comic view in the context of that category; the subcategory links simply link to the subcategory for now.
+The navigation breadcrumb trail shows the parent categories, the current category, then any subcategories. The parent categories' links will link to the current comic view in the context of that category; the subcategory links simply link to the subcategory for now (as the current comic might not exist within the subcategory).
 
 #### Comic display
 
@@ -253,5 +253,5 @@ The main interesting thing about this one is that the `h1` link background gets 
 
 I have configured my site to be deployed via a [git hook](http://publ.beesbuzz.biz/manual/deploying/441-Continuous-deployment-with-git), and I send out WebSub and Webmention pings using [Pushl](https://github.com/PlaidWeb/Pushl).
 
-I also have pushl installed in the same pipenv, and it is run using the `pushl.sh` script, which is more complicated than it needs to be.
+I also have pushl installed in the same pipenv, and it is run using the `pushl.sh` script.
 
