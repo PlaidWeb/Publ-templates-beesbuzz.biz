@@ -1,16 +1,25 @@
-html {
-    background: #dcf;
-    /* {{image('_layout/carpet.jpg').get_css_background(width=512,uncomment=True)}} */
+:root {
+    --border-color: black;
+    --background-color: #edf;
+    --sidebar-color: rgba(0,0,0,0.2);
+    --shadow-color: rgba(0,0,0,0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --border-color: white;
+        --background-color: #012;
+        --sidebar-color: rgba(255,255,255,0.3);
+        --shadow-color: rgba(255,255,255,0.5);
+    }
+}
+
+body {
+    background: var(--background-color);
     font-family: 'helvetica', sans-serif;
     margin: 0;
     padding: 0;
 }
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
 
 h1 {
     float: left;
@@ -19,7 +28,7 @@ h1 {
     margin: 32px 32px 1em;
     padding: 24px;
     background: white;
-    border: solid black 1px;
+    border: solid var(--border-color) 1px;
     border-radius: 3em;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     box-sizing: border-box;
@@ -34,8 +43,6 @@ h1 span {
     /* {{image('_layout/favicon-big.png').get_css_background(uncomment=True)}} */
 }
 
-
-
 #links {
     float: right;
     margin: 3em 0 0 1ex;
@@ -46,8 +53,8 @@ h1 span {
     vertical-align: top;
     writing-mode: vertical-rl;
     text-orientation: upright;
-    background: rgba(0,0,0,0.2);
-    border: solid black 1px;
+    background: var(--sidebar-color);
+    border: solid var(--border-color) 1px;
     border-right: none;
 }
 
@@ -97,7 +104,7 @@ a:hover {
 #entries {
     display: inline-block;
     background: white;
-    border: solid black 3px;
+    border: solid var(--border-color) 3px;
     border-radius: 16px;
     overflow: hidden;
     font-size: small;
@@ -180,7 +187,7 @@ a:hover {
     height: 160px;
 
     background: white;
-    border: solid black 3px;
+    border: solid var(--border-color) 3px;
     color: black;
     font-size: 130%;
     font-weight: bold;
@@ -193,7 +200,7 @@ a:hover {
 
     overflow: hidden;
 
-    box-shadow: 6px 6px 12px rgba(0,0,0,0.3);
+    box-shadow: 6px 6px 12px var(--shadow-color);
     box-sizing: border-box;
 
     transition: all 0.25s ease;
@@ -221,7 +228,7 @@ a:hover {
     padding: 4px 1em 4px 1ex;
     border-bottom-right-radius: 1em;
     background: rgba(0,0,0,0.5);
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 2px var(--shadow-color);
     border: solid rgba(0,0,0,.2) 1px;
     border-style: none solid solid none;
     text-align: center;
@@ -236,7 +243,7 @@ a:hover {
     background-repeat: no-repeat;
     border-color: #700;
     filter: grayscale(0%);
-    box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
+    box-shadow: 6px 6px 12px var(--shadow-color);
     border-radius: 0;
     border-width: 1px;
 }
@@ -320,7 +327,7 @@ a:hover {
     background: rgba(255,255,255,.75);
     border-radius: 4px;
     border: solid black 1px;
-    box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    box-shadow: 3px 3px 6px var(--shadow-color);
     padding: 1px 2px;
 }
 
@@ -331,7 +338,7 @@ a:hover {
     border: solid black 1px;
     text-decoration: none;
     font-weight: bold;
-    box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    box-shadow: 3px 3px 6px var(--shadow-color);
 }
 #webring a:hover {
     background: yellow;
@@ -340,3 +347,4 @@ a:hover {
 
 .inset-right { float: right; }
 .inset-left { float: left; }
+

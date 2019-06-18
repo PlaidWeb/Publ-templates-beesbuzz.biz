@@ -333,26 +333,28 @@ table {
 
 thead {
     background: #fef;
+    color: black;
 }
 
 tfoot {
     background: #ffe;
     font-weight: bold;
+    color: black;
 }
 
 thead, tbody, tfoot, colgroup {
-    border: solid black 2px;
+    border: solid #777 2px;
 }
 
 th {
     padding: 0.2ex 1ex;
-    border: solid black 2px;
+    border: solid #777 2px;
     text-align: center;
 }
 
 td {
     padding: 0.2ex 1ex;
-    border: solid black 1px;
+    border: solid #777 1px;
 }
 
 blockquote:before {
@@ -372,7 +374,7 @@ blockquote {
     position: relative;
     z-index: 0;
     border: solid #eee 1px;
-    background: #f7f7f7;
+    background: rgba(0,0,0,0.1);
     box-shadow: #999 0 2px 4px;
     padding: 0.25ex 1em;
 }
@@ -381,3 +383,48 @@ blockquote {
 .inset-left { float: left; clear: left; margin-right: 1em; shape-margin: 1em;}
 
 .hidden { display: none; }
+
+@media (prefers-color-scheme: dark) {
+    html {
+        /* {{image('/_layout/plaidbg-darkmode.png').get_css_background(width=192,uncomment=True)}} */
+        background-color: #211;
+    }
+
+    .entry {
+        background: black;
+        color: white;
+        /* {{image('/_layout/plaidlogo-blur-bg-invert.jpg').get_css_background(width=192*1100/1024,uncomment=True)}} */
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    .posted {
+        color: black;
+    }
+
+    .entry .content a, .entry .tags a {
+        color: #f7c;
+    }
+
+    .entry .content a:visited, .entry .tags a:visited {
+        color: #f37;
+    }
+
+    .entry .content a:hover, .entry .tags a:hover {
+        color: #fce;
+    }
+
+    .entry .commentlink a {
+        color: black;
+    }
+
+    #comments h2 {
+        color: black;
+    }
+
+    blockquote {
+        border: solid #333 1px;
+        background: rgba(255,255,255,0.2);
+        box-shadow: #555 0 2px 4px;
+    }
+}

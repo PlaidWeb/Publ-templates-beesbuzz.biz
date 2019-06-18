@@ -10,7 +10,7 @@
         <loc>{{cat.link(absolute=True)}}</loc>
     </url>
 {%- endfor -%}
-{%- for entry in view(recurse=True).entries %}
+{%- for entry in view(recurse=True,entry_type_not='sidebar').entries %}
     <url>
         <loc>{{entry.permalink(absolute=true)}}</loc>
         <lastmod>{{entry.last_modified.isoformat()}}</lastmod>

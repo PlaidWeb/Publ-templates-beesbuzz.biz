@@ -215,26 +215,28 @@ table {
 
 thead {
     background: #fef;
+    color: black;
 }
 
 tfoot {
     background: #ffe;
     font-weight: bold;
+    color: black;
 }
 
 thead, tbody, tfoot, colgroup {
-    border: solid black 2px;
+    border: solid #777 2px;
 }
 
 th {
     padding: 0.2ex 1ex;
-    border: solid black 2px;
+    border: solid #777 2px;
     text-align: center;
 }
 
 td {
     padding: 0.2ex 1ex;
-    border: solid black 1px;
+    border: solid #777 1px;
 }
 
 .entry .tags {
