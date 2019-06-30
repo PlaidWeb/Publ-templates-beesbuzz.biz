@@ -220,7 +220,8 @@ GitHub repo (for latest released versions, issue tracking, etc.):
                 "like-of": collects,
                 "repost-of": collects,
                 "bookmark-of": collects,
-                "mention-of": comments
+                "mention-of": comments,
+                "rsvp": comments
             };
 
             json.children.forEach(function(c) {
