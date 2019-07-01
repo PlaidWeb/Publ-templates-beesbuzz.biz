@@ -166,9 +166,16 @@
                 </div>
 
                 {% if entry.body %}
-                <div class="p-summary">
-                    {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link,prefix="index_") }}
-                </div>
+                {% if entry.cut %}
+                <details>
+                    <summary class="p-summary">{{ entry.cut }}</summary>
+                {% endif %}
+                    <div class="e-content">
+                        {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link,prefix="index_") }}
+                    </div>
+                {% endif %}
+                {% if entry.cut %}
+                </details>
                 {% endif %}
                 {% if entry.more %}
                 <div class="more">

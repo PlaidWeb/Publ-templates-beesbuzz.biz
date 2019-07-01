@@ -475,6 +475,15 @@ ul.subcats >li >div >ul {
 
 #archive #content >ul { padding-left: 1em; }
 
+details summary {
+    background: #ccc;
+    text-align: left;
+    font-size: 110%;
+    padding: 1ex;
+    margin-bottom: 1ex;
+    border-radius: 1em;
+}
+
 @media screen and (max-width:720px) {
     .posted {
         position: static;
