@@ -21,7 +21,7 @@ The application lives in `app.py`, which is set up with basic logging and the fo
 
 The database is just local SQLite.
 
-If running in debug, there is no cache, otherwise it uses an in-memory cache with a TTL of 60 seconds (that holds up to 500 items).
+If running in debug, there is no cache, otherwise it uses a memcached running on localhost.
 
 The index gets a rescan once a day, which is probably not necessary but it doesn't hurt anything either.
 
