@@ -108,7 +108,9 @@
             {%- endfor -%}
 
             {%- for rsvp in entry.get_all('rsvp') -%}
-                <a class="hidden u-in-reply-to p-rsvp" href="{{rsvp.split()[0]}}">{{rsvp.split()[1]}}</a>
+                {% with url,value = rsvp.split() %}
+                <a class="hidden u-in-reply-to" href="{{url}}"><data class="p-rsvp" value="{{value}}"></data></a>
+                {% endwith %}
             {%- endfor -%}
             <a class="hidden" href="https://fed.brid.gy/"></a>
 
