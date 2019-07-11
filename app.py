@@ -29,7 +29,7 @@ logging.info("Setting up")
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
 
 config = {
-    # use SQLite with the persistent index stored locally	
+    # I use SQLite with the persistent index stored locally.
     'database_config': {
         'provider': 'sqlite',
         'filename': os.path.join(APP_PATH, 'index.db')
@@ -39,11 +39,11 @@ config = {
     'timezone': 'US/Pacific',
 
     # I don't expect my content to change more often than every 5 minutes.
-    # I'm running on my own server with plenty of RAM.
+    # I'm running on a server with a local memcached instance.
     'cache': {
-        'CACHE_TYPE': 'simple',
+        'CACHE_TYPE': 'memcached',
         'CACHE_DEFAULT_TIMEOUT': 300,
-        'CACHE_THRESHOLD': 500
+        'CACHE_KEY_PREFIX': 'beesbuzz.biz',
     } if not os.environ.get('FLASK_DEBUG') else {},
 
     # This is probably not necessary but it makes me feel better.
@@ -55,11 +55,12 @@ app = publ.publ(__name__, config)
 
 @app.route('/favicon.ico')
 def favicon():
-    """ Add a route for serving up the favicon. This could also be implemented using flask.send_file(). """
+    """ Add a route for serving up the favicon. This could also be implemented
+    using flask.send_file() and a file stored outside of the content directory. """
     return flask.redirect(flask.url_for('static', filename='favicon.ico'))
 
 
-@app.path_alias_regex(r'/d/([0-9]{8}(_w)?)\.php')
+@app.path_alias_regex(r'/d/([0-9]{6,8}(_w)?)\.php')
 def redirect_date(match):
     """
     This is an example of how to migrate old URLs to new ones; my old site
@@ -116,4 +117,3 @@ if __name__ == "__main__":
     for details.
     """
     app.run(port=os.environ.get('PORT', 5000))
-
