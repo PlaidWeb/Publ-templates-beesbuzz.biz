@@ -22,35 +22,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Usage:
-
-1. Copy this file to your website and put it somewhere sensible
-2. Put a <div id="webmentions"></div> where you want your webmentions to be
-   embedded
-3. Put a <script src="/path/to/webmention.js" async></script>
-   somewhere on your page (typically inside <head> but it doesn't really matter)
-4. You'll probably want to add some CSS rules to your stylesheet, in particular:
-
-    #webmentions img { max-height: 1.2em; margin-right: -1ex; }
-
-You can also pass in some arguments, for example:
-
-    <script href="webmention.js" data-id="webmention-container">
-
-Accepted arguments:
-
-* data-page-url - use this reference URL instead of the current browser location
-* data-id - use this container ID instead of "webmentions"
-* data-wordcount - truncate the reply to this many words (adding an ellipsis to
-    the end of the last word)
-
-This is a quick hack that could be a lot better.
-
 GitHub repo (for latest released versions, issue tracking, etc.):
 
-    http://github.com/PlaidWeb/Publ-site
-
-(look in the static/ subdirectory)
+    http://github.com/PlaidWeb/webmention.js
 
 */
 
@@ -80,6 +54,13 @@ GitHub repo (for latest released versions, issue tracking, etc.):
         'follow-of': '🐜',
     };
 
+    var rsvpEmoji = {
+        'yes': '✅',
+        'no': '❌',
+        'interested': '💡',
+        'maybe': '💭'
+    };
+
     function reactImage(r) {
         var who = (r.author && r.author.name ? r.author.name : r.url.split('/')[2]);
         var response = reactTitle[r['wm-property']] || 'reacted';
@@ -87,7 +68,11 @@ GitHub repo (for latest released versions, issue tracking, etc.):
         if (r.author && r.author.photo) {
             html += '<img src="' + r.author.photo + '">';
         }
-        html += (reactEmoji[r['wm-property']] || '⁉️') + '</a>';
+        html += (reactEmoji[r['wm-property']] || '💥');
+        if (r.rsvp && rsvpEmoji[r.rsvp]) {
+            html += '<sub>' + rsvpEmoji[r.rsvp] + '</sub>';
+        }
+        html += '</a>';
 
         return html;
     }
@@ -183,7 +168,7 @@ GitHub repo (for latest released versions, issue tracking, etc.):
             }).then(function(response) {
                 return response.json();
             }).then(callback).catch(function(error) {
-                console.log("Request failed", error);
+                console.error("Request failed", error);
             });
         } else {
             var oReq = new XMLHttpRequest();
@@ -191,7 +176,7 @@ GitHub repo (for latest released versions, issue tracking, etc.):
                 callback(JSON.parse(data));
             }
             oReq.onerror = function(error) {
-                console.log("Request failed", error);
+                console.error("Request failed", error);
             }
         }
     }
