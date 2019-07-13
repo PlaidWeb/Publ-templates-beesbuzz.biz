@@ -170,6 +170,10 @@ a:hover {
     border-bottom: solid black 1px;
 }
 
+article.private .heading h2 {
+    background: #fcf;
+}
+
 .entry .heading .top-hook {
     display: block;
     width: 12em;
@@ -188,6 +192,10 @@ a:hover {
     background: #ff7;
 }
 
+article.private .heading a:hover {
+    background: #f9f;
+}
+
 .entry .heading .posted {
     position: absolute;
     z-index: 90;
@@ -198,6 +206,10 @@ a:hover {
     font-weight: bold;
     background: #cc7;
     border-bottom-left-radius: 8px;
+}
+
+article.private .heading .posted {
+    background: #c7c;
 }
 
 .entry .posted .ago {
@@ -215,8 +227,10 @@ a:hover {
 .entry .content {
     position: relative;
     padding: 1px 16px 4px;
-    text-align: justify;
-}
+/*    text-align: justify;
+    hyphens: auto;
+    -webkit-hypens: auto;
+*/}
 
 .entry .readmore {
     display: block;
@@ -308,8 +322,16 @@ img {
     display: inline-block;
 }
 
+#entries .nav a.private {
+    background: #fcf;
+}
+
 #entries .nav a:hover {
     background: #ff7;
+}
+
+#entries .nav a.private:hover {
+    background: #f9f;
 }
 
 #entries .nav a, #entries .nav a:visited {
@@ -427,4 +449,30 @@ blockquote {
         background: rgba(255,255,255,0.2);
         box-shadow: #555 0 2px 4px;
     }
+}
+
+#unauthorized {
+    display: inline-block;
+    margin: 1ex 0;
+    padding: 1em;
+    background: #ffc;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+}
+
+#userinfo {
+    display: inline-block;
+    margin: 1ex 0;
+    padding: 1em;
+    background: #cfc;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+}
+
+#userinfo a {
+    font-size: x-small;
+}
+#userinfo a::before {
+    content: '[';
+}
+#userinfo a::after {
+    content: ']';
 }

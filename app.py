@@ -47,10 +47,41 @@ config = {
     } if not os.environ.get('FLASK_DEBUG') else {},
 
     # This is probably not necessary but it makes me feel better.
-    'index_rescan_interval': 86400
+    'index_rescan_interval': 86400,
+
+    # set up private posts
+    'auth': {
+        # Always use SSL in production
+        'AUTH_FORCE_SSL': not os.environ.get('FLASK_DEBUG'),
+
+        # I have an SMTP server running on localhost
+        'SMTP_HOST': 'localhost',
+        'SMTP_PORT': 25,
+        'EMAIL_FROM': 'nobody@beesbuzz.biz',
+        'EMAIL_SUBJECT': 'Sign in to beesbuzz.biz',
+
+        # Identify my site as "busybee" to the Mastodon login flow
+        'MASTODON_NAME': 'busybee',
+        'MASTODON_HOMEPAGE': 'http://beesbuzz.biz/',
+
+        # IndieLogin.com support is waiting on https://github.com/aaronpk/indielogin.com/issues/38
+        # 'INDIELOGIN_CLIENT_ID': 'https://beesbuzz.biz/',
+
+        # if I'm running locally I want access to the `test:` pseudo-users
+        'TEST_ENABLED': os.environ.get('FLASK_DEBUG'),
+    },
 }
 
 app = publ.publ(__name__, config)
+
+# Create a persistent secret session key that's never checked in
+if not os.path.isfile('.sessionkey'):
+    import uuid
+    with open('.sessionkey', 'w') as file:
+        file.write(str(uuid.uuid4()))
+    os.chmod('.sessionkey', 0o600)
+with open('.sessionkey') as file:
+    app.secret_key = file.read()
 
 
 @app.route('/favicon.ico')

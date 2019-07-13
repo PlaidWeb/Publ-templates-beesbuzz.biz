@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block title %}
     <title>{{category.name}}: {{ entry.title(markup=False) }}</title>
+    {% endblock %}
 
     <link rel="stylesheet" href="{{ entry.stylesheet or 'style.css' }}">
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
@@ -31,7 +33,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@fluffy" />
 </head>
-<body id="{{ template.name }}">
+<body id="entry">
+
+{%- macro navlink(e) -%}
+<a href="{{e.link}}" {% if e.private %}class="private"{% endif %}>{{'🔒 ' if e.private else ''}}{{e.title}}</a>
+{%- endmacro -%}
 
 <div id="container">
     <div class="top-hook"></div>
@@ -50,27 +56,24 @@
         <div class="nav topnav">
             <div>
                 <span class="prev">
-                    {% if prev %}
-                    <a href="{{prev.link}}">{{prev.title}}</a>
-                    {% endif %}
+                    {% if prev %}{{ navlink(prev) }}{% endif %}
                 </span>
 
                 &nbsp;
 
                 <span class="next">
-                    {% if next %}
-                    <a href="{{next.link}}">{{next.title}}</a>
-                    {% endif %}
+                    {% if next %}{{ navlink(next) }}{% endif %}
                 </span>
             </div>
         </div>
         {% endif %}
 
-        <article class="h-entry entry">
+        {% block content %}
+        <article class="entry h-entry{{' private' if entry.private else ''}}">
             <header class="heading">
                 {% block heading %}
                 <div class="top-hook"></div>
-                <h2 class="p-name"><a href="{{entry.link}}" class="u-url">{{entry.title}}</a></h2>
+                <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔒 ' if entry.private else ''}}{{entry.title}}</a></h2>
                 <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                     <span class="time">{{entry.date.format('h:mm A')}}</span>
@@ -160,6 +163,7 @@
             </div>
             {% endblock %}
         </article>
+        {% endblock %}
 
 
     </div>

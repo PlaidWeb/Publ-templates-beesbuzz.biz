@@ -48,6 +48,17 @@
     </entry>
     {% endfor %}
 
+    {% for entry in view.unauthorized[:1] %}
+    <entry>
+        <title>🔒 Private entry</title>
+        <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
+        <published>{{entry.date.isoformat()}}</published>
+        <updated>{{entry.last_modified.isoformat()}}</updated>
+        <id>urn:uuid:{{entry.uuid}}</id>
+        <content type="html">This is a private entry.</content>
+    </entry>
+    {% endfor %}
+
     {% for entry in view(before=view.first,after=view.last).deleted %}
     <at:deleted-entry ref="urn:uuid:{{entry.uuid}}" when="{{entry.last_modified.isoformat()}}">
         <link>{{entry.permalink(absolute=True)}}</link>

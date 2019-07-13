@@ -262,3 +262,20 @@ td {
     content: ' • ';
 }
 
+#userinfo {
+    display: inline-block;
+    padding: 1ex;
+    font-size: small;
+}
+
+#userinfo a {
+    font-size: x-small;
+}
+
+#userinfo a::before {
+    content: '[';
+}
+
+#userinfo a::after {
+    content: ']';
+}

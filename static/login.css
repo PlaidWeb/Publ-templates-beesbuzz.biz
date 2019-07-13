@@ -1,0 +1,96 @@
+body {
+    background: #ccccff;
+    font-family: "Helvetica Neue", sans-serif;
+    margin: 0;
+}
+
+#login {
+    background: white;
+    border-radius: 1em 1em 16px 16px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+
+    margin: 3em;
+    overflow: hidden;
+}
+
+#info {
+    font-size: small;
+    color: #333;
+    background: #eee;
+    padding: 16px 1em;
+    border-top: solid #ccc 1px;
+}
+
+h1 {
+    background: #ffc;
+    margin: 0 0 1ex;
+    padding: 1ex 16px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+form,
+#notify {
+    display: inline-block;
+    font-size: large;
+    margin: 1em;
+}
+
+input[type="url"] {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: large;
+}
+
+.description {
+    font-style: italic;
+    color: #555;
+}
+
+a:link {
+    color: #500;
+}
+
+.description a:link {
+    color: #944;
+}
+
+.flashes {
+    color: #700;
+    list-style-type: none;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
+
+.flashes li {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+.flashes li+li::before {
+    content: ' | ';
+}
+
+#powered {
+    font-size: x-small;
+    background: #ddd;
+}
+
+#powered p {
+    margin: 0 16px;
+    padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+    #login {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    #info >ul {
+        list-style-type: none;
+        padding-left: 2em;
+        text-indent: -2em;
+    }
+}
+
