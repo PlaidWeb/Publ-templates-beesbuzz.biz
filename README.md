@@ -1,4 +1,4 @@
-# Publ sample templates
+# Publ templates for http://beesbuzz.biz/
 
 These templates are based on the ones I use on [my website](https://beesbuzz.biz). Here is some documentation on how they are put together.
 
@@ -120,6 +120,8 @@ I have defined some custom headers for this template for better [Webmention](htt
     ```
 
 You can use more than one of the above.
+
+Incoming webmentions are displayed via [webmention.js](https://github.com/PlaidWeb/webmention.js).
 
 #### Per-category extensions (`(category)/entry.html`)
 
