@@ -30,13 +30,12 @@
         <updated>{{entry.last_modified.isoformat()}}</updated>
         <id>urn:uuid:{{entry.uuid}}</id>
         <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
-        <content type="html">
-        {%- filter forceescape -%}
-            {%- include get_template('_feed_entry', entry) -%}
+        <content type="html"><![CDATA[
 
+            {%- include get_template('_feed_entry', entry) -%}
             <p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
-        {%- endfilter -%}
-        </content>
+
+        ]]></content>
         {% for cat in entry.category.breadcrumb -%}
         <category term="{{cat.link(absolute=True)}}" label="{{cat.name}}" />
         {% endfor %}
