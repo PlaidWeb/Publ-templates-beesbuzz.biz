@@ -36,7 +36,7 @@
 <body id="entry">
 
 {%- macro navlink(e) -%}
-<a href="{{e.link}}" {% if e.private %}class="private"{% endif %}>{{'🔒 ' if e.private else ''}}{{e.title}}</a>
+<a href="{{e.link}}" {% if e.private %}class="private"{% endif %}>{{'🔏 ' if e.private else ''}}{{e.title}}</a>
 {%- endmacro -%}
 
 <div id="container">
@@ -73,7 +73,7 @@
             <header class="heading">
                 {% block heading %}
                 <div class="top-hook"></div>
-                <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔒 ' if entry.private else ''}}{{entry.title}}</a></h2>
+                <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title}}</a></h2>
                 <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                     <span class="time">{{entry.date.format('h:mm A')}}</span>

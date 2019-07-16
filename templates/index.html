@@ -120,7 +120,7 @@
             <div class="heading">
                 {% block heading scoped %}
                 <div class="top-hook"></div>
-                <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔒 ' if entry.private else ''}}{{entry.title}}</a></h2>
+                <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title}}</a></h2>
                 <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                     <span class="time">{{entry.date.format('h:mm A')}}</span>
