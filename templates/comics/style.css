@@ -258,10 +258,6 @@ span.error {
     background: #704;
     color: white;
 }
-#comments #isso-thread {
-    border-top: double #704 3px;
-    padding: 1ex;
-}
 
 #entries .News .heading {
     margin: 0;
@@ -540,7 +536,6 @@ details summary {
 
 #comments a:link {
     color: #900;
-    text-decoration: underline !important;
 }
 
 #comments a:visited {
@@ -551,5 +546,28 @@ details summary {
     color: #909;
 }
 
-.author { display: none; }
-.hidden { display: none; }
+#comments #policy {
+    margin: 16px;
+    padding: 16px;
+    font-style: italic;
+    background: #eee;
+    color: #555;
+}
+
+#comments #avatars {
+    font-style: italic;
+    font-size: x-small;
+    color: #555;
+    padding: 0 16px;
+}
+
+#comments #policy a {
+    font-weight: bold;
+}
+
+#comments #isso-thread {
+    padding: 0 16px;
+}
+
+
+.hidden, .heading .author { display: none; }
