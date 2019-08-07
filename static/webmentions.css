@@ -3,6 +3,7 @@
     position: relative;
     z-index: 100;
     line-height: 1.2em;
+    background: #eee;
 }
 
 #webmentions .comments {
@@ -17,6 +18,7 @@
     margin: 0;
     padding: 2px;
     background: #ccc;
+    color: #222;
 }
 
 #webmentions .reacts img {

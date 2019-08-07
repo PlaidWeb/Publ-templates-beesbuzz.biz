@@ -84,6 +84,22 @@ with open('.sessionkey') as file:
     app.secret_key = file.read()
 
 
+# provide a thread ID generator for the comment threads
+def thread_id(item):
+    """ Compute an Isso thread URI for the entry """
+    if not isinstance(item, publ.entry.Entry):
+        raise ValueError("got non-entry object %s" % type(item))
+
+    key = str(item.id)
+    tid = hmac.new(b'SECRET KEY HERE',
+                   key.encode('utf-8')).hexdigest()[:16]
+
+    return f'/{tid}/{key}'
+
+# register the thread ID generator with the templating system
+app.jinja_env.globals.update(thread_id=thread_id)
+
+
 @app.route('/favicon.ico')
 def favicon():
     """ Add a route for serving up the favicon. This could also be implemented

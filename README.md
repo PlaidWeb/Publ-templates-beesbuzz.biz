@@ -41,8 +41,6 @@ The root-level `index.html` and `entry.html` handle the generic layout for index
 
 The provided `error.html` is just a simple default handler; my actual site also has handlers for `400`, `403`, and `404`. Each of these overrides the `flair` block within the `error` template. The `404.html` in this repository shows a tiny example of how to make 404-specific content on the error page.
 
-`_comment_thread.html` is a template that the other templates use to insert the Disqus comment code. If you want to use this you'll need to change the `DISQUS_SHORTNAME` configuration variable. By default a page will get a thread ID of `publ_{entry-id}`, but this can be overridden with the `Thread-Id` header on the entry file (which I use for legacy entries).
-
 `style.css` is the generic stylesheet for sections which have not overridden the stylesheet. It makes use of the `bubbly.css` and `pygments.default.css` libraries, which are stored in the `static` directory.
 
 `robots.txt` is also a template, just to make things simpler. It links to the `sitemap.xml` template.
@@ -187,6 +185,38 @@ UUID: b3c6f3cd-16fc-4cf2-b165-8a059e66d052
 )
 ```
 
+## Comment forms (`_comment_thread.html`)
+
+I currently use [Isso](https://posativ.org/isso/), which is a Disqus-like self-hosted comment system. If you can run Publ on your site you can also run Isso, although the setup is a bit complicated and outside the scope of this writeup.
+
+`_comment_thread.html` is a template that the other templates use to insert the comment embed code. If you want to use this you'll need to change the thread ID generation and the Isso instance URL accordingly. You will also probably want to implement [`app.thread_id`](app.py#L87) so that you can provide [private, signed thread URIs](http://beesbuzz.biz/blog/4678-Proper-comment-privacy-Yay).
+
+### Use with Disqus
+
+When I used Disqus, my `_comment_thread.html` template looked something like this:
+
+```html
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{entry.permalink(absolute=True)}}";  // Replace PAGE_URL with your page's canonical URL variable
+        /* {# NOTE: this doesn't lend itself well to privacy since it makes thread IDs very easy to guess; see the note in README.md #} */
+        this.page.identifier = "{{entry.get('Thread-ID', 'publ_' ~ entry.id)}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = 'https://[DISQUS-SHORTNAME}.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+```
+
+However, Disqus was [pretty bad for private entries](http://beesbuzz.biz/blog/1768-Moving-away-from-Disqus), so I moved away from it. As a partial mitigation for one of the privacy concerns I had been using an ad-hoc mechanism to obscure the Disqus thread IDs, at least, but if you care about privacy, don't use Disqus.
+
 ## Comics section
 
 This has by far the most complex layout (and unlike most of the site these templates stand alone, aside from the Atom feed), and there is a *lot* to take in. Let's break it down piece by piece.
@@ -250,6 +280,7 @@ Individual entries can override their stylesheet with the `Stylesheet` entry hea
 ### Stylesheet (`comics/style.css`)
 
 The main interesting thing about this one is that the `h1` link background gets the `_logo.jpg` from the current category's content directory if available; by default this will fall back to the `_logo.jpg` file in the comics directory instead (as part of Publ's standard image lookup rules).
+
 
 ## Other configuration
 

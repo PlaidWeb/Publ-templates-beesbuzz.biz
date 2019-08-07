@@ -24,13 +24,17 @@
 
     {% for entry in view.entries %}
     <entry>
-        <title>{{entry.category.name + ": " if entry.category.name != category.name}}{{entry.title(markup=False, no_smartquotes=True)}}</title>
+        <title>{{'🔏 ' if entry.private else ''}}{{entry.category.name + ": " if entry.category.name != category.name}}{{entry.title(markup=False, no_smartquotes=True)}}</title>
         <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
         <published>{{entry.date.isoformat()}}</published>
         <updated>{{entry.last_modified.isoformat()}}</updated>
         <id>urn:uuid:{{entry.uuid}}</id>
         <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
         <content type="html"><![CDATA[
+
+		{% if entry.private %}
+		<aside><i><mark>Note:</mark> This is a private entry, so please use discretion in linking to it or mentioning it publicly. Thanks!</i></aside>
+		{% endif %}
 
             {%- include get_template('_feed_entry', entry) -%}
             <p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
@@ -53,7 +57,7 @@
         <updated>{{entry.last_modified.isoformat()}}</updated>
         <id>urn:uuid:{{entry.uuid}}</id>
         <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
-        <content type="html">This is a private entry.</content>
+        <content type="html">This entry has a restricted audience.</content>
     </entry>
     {% endfor %}
 

@@ -66,7 +66,7 @@
             </div>
 
             <div class="commentlink">
-                <a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments">💬 </a><a href="{{thread_id(entry)}}#isso-thread">Comments</a>
             </div>
 
 
@@ -96,5 +96,5 @@
 
 </div>
 
-<script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
+<script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js"></script>
 </body></html>

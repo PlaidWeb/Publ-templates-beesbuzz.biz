@@ -46,13 +46,24 @@
 
             <p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
         ]]></content>
-        {% endblock %}
         {% for cat in entry.category.breadcrumb -%}
         <category term="{{cat.link(absolute=True)}}" label="{{cat.name}}" />
         {% endfor %}
         {% for tag in entry.get_all('tag') %}
         <category term="{{tag}}" />
         {% endfor %}
+    </entry>
+    {% endfor %}
+
+    {% for entry in view.unauthorized[:1] %}
+    <entry>
+        <title>🔏 Private entry [{{entry.title(always_show=True).split()|join(attribute=0)}}]</title>
+        <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
+        <published>{{entry.date.isoformat()}}</published>
+        <updated>{{entry.last_modified.isoformat()}}</updated>
+        <id>urn:uuid:{{entry.uuid}}</id>
+        <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
+        <content type="html">This entry has a restricted audience.</content>
     </entry>
     {% endfor %}
 </feed>

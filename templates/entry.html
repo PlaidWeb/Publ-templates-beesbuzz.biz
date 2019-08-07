@@ -153,6 +153,7 @@
             <div class="webmentions" id="webmentions"></div>
             {% endblock %}
 
+	    {% if not entry['Disable-Comments'] %}
             {% block comments %}
             <div class="comments" id="comments">
                 <div class="heading">
@@ -162,6 +163,7 @@
                 {% include '/_comment_thread.html' %}
             </div>
             {% endblock %}
+	    {% endif %}
         </article>
         {% endblock %}
 

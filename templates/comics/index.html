@@ -168,7 +168,7 @@
                 {% if entry.body %}
                 {% if entry.cut %}
                 <details>
-                    <summary class="p-summary">{{ entry.cut }}</summary>
+                    <summary class="e-summary">{{ entry.cut }}</summary>
                 {% endif %}
                     <div class="e-content">
                         {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link,prefix="index_") }}
@@ -192,7 +192,7 @@
                 {% endif %}
 
                 <div class="commentlink">
-                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments">💬 </a><a href="{{thread_id(entry)}}#isso-thread">Comments</a>
                 </div>
 
 
@@ -222,9 +222,9 @@
                     <span class="posted">{{entry.date.format('YYYY/MM/DD h:mm A')}}</span>
                 </div>
                 <div class="commentlink">
-                    <a title="Comment on {{entry.category.name}}: {{entry.title}}" href="{{entry.link}}#comments">💬 <span class="disqus-comment-count" data-disqus-identifier="{{entry.get('Thread-Id', 'publ_'~entry.id)}}">Comments</span></a>
+                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments">💬 </a><a href="{{thread_id(entry)}}#isso-thread">Comments</a>
                 </div>
-                <div class="content p-summary">
+                <div class="content e-summary">
                     {% if entry.body %}
                     <div class="body">
                         {{entry.body(link=entry.link,width=320,height=320,div_class="inset_left")}}
@@ -245,6 +245,6 @@
 
 {% include '/_hcard.html' %}
 
-    <script id="dsq-count-scr" src="//beesbuzzbiz.disqus.com/count.js" async></script>
+<script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js"></script>
 </body>
 </html>

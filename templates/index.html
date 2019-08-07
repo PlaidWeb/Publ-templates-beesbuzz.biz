@@ -152,7 +152,7 @@
             <div class="content">
                 {% block entrybody scoped %}
                 {% if entry.body %}
-                <div class="body p-summary">
+                <div class="body e-summary">
                 {{ entry.body(max_width=240,
                     max_height=240,
                     link=entry.link,
@@ -192,5 +192,4 @@
 </div>
 
 <script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
-<script id="dsq-count-scr" src="//beesbuzzbiz.disqus.com/count.js" async></script>
 </body></html>

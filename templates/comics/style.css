@@ -258,7 +258,7 @@ span.error {
     background: #704;
     color: white;
 }
-#comments #disqus_thread {
+#comments #isso-thread {
     border-top: double #704 3px;
     padding: 1ex;
 }

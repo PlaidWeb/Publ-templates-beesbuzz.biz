@@ -239,7 +239,26 @@ article.private .heading .posted {
     font-style: italic;
 }
 
-#disqus_thread {
+#comments #policy {
+    margin: 16px;
+    padding: 16px;
+    font-style: italic;
+    background: #eee;
+    color: #555;
+}
+
+#comments #avatars {
+    font-style: italic;
+    font-size: x-small;
+    color: #555;
+    padding: 0 16px;
+}
+
+#comments #policy a {
+    font-weight: bold;
+}
+
+#comments #isso-thread {
     padding: 0 16px;
 }
 
@@ -449,6 +468,7 @@ blockquote {
         background: rgba(255,255,255,0.2);
         box-shadow: #555 0 2px 4px;
     }
+
 }
 
 #unauthorized {
