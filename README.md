@@ -193,12 +193,12 @@ I currently use [Isso](https://posativ.org/isso/), which is a Disqus-like self-h
 
 If you need to update the thread ID key, you can run the script `update-thread-ids.py` against the Isso database.
 
-Also, the `migrations/` directory contains a few random comment-migration scripts that others might find useful:
+Also, the `migrations/` directory contains a few random comment-migration scripts that others might find useful, although keep in mind that this is for preservation of data going back to 2003:
 
-* `disqus-import.py`: Imports threads from Disqus, using the old Disqus thread ID mapping (rather than the page-URI-based scheme that the Isso importer uses)
-* `import-mt-specific.py`: Transfers MT comment threads that weren't mapped correctly due to various things (for example, in my journal comics, many of them were originally posted on my blog before I had a comics section)
+* `disqus-import.py`: Imports threads from Disqus, using the named Disqus thread ID mapping (rather than the page-URI-based scheme that the Isso importer uses)
 * `import-mt.py`: Converts legacy Movable Type comment threads to Isso threads; assumes that the entries have a `Thread-ID: mt_NNNNN` header (where `NNNNN` is the Movable Type entry ID)
-* `reimport-phpbb.py`: Imports comments from phpBB (using `phpbb_integrate`, my old system for shoehorning phpBB 2.x into Movable Type; this is very much a deep cut for things which go back to like ***2003*** or something holy cow)
+* `import-mt-specific.py`: Transfers MT comment threads that weren't mapped correctly due to various things (for example, in my journal comics, many of them were originally posted on my blog before I had a comics section and I never got around to migrating *those* comments either)
+* `reimport-phpbb.py`: Imports comments from phpBB (using `phpbb_integrate`, my ancient system for [shoehorning phpBB 2.x into Movable Type](http://web.archive.org/web/20121014130936/http://beesbuzz.biz/blog/e/2003/10/24-phpbb-integrate.php))
 * `unmangle.py`: Try to unmangle some of the weirder artifacts from the many layers of phpBB &rarr; Disqus &rarr; Isso
 
 For all the above cases I had converted database dumps from MySQL to SQLite using [mysql2sqlite](https://github.com/dumblob/mysql2sqlite).
