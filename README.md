@@ -191,6 +191,18 @@ I currently use [Isso](https://posativ.org/isso/), which is a Disqus-like self-h
 
 `_comment_thread.html` is a template that the other templates use to insert the comment embed code. If you want to use this you'll need to change the thread ID generation and the Isso instance URL accordingly. You will also probably want to implement [`app.thread_id`](app.py#L87) so that you can provide [private, signed thread URIs](http://beesbuzz.biz/blog/4678-Proper-comment-privacy-Yay).
 
+If you need to update the thread ID key, you can run the script `update-thread-ids.py` against the Isso database.
+
+Also, the `migrations/` directory contains a few random comment-migration scripts that others might find useful:
+
+* `disqus-import.py`: Imports threads from Disqus, using the old Disqus thread ID mapping (rather than the page-URI-based scheme that the Isso importer uses)
+* `import-mt-specific.py`: Transfers MT comment threads that weren't mapped correctly due to various things (for example, in my journal comics, many of them were originally posted on my blog before I had a comics section)
+* `import-mt.py`: Converts legacy Movable Type comment threads to Isso threads; assumes that the entries have a `Thread-ID: mt_NNNNN` header (where `NNNNN` is the Movable Type entry ID)
+* `reimport-phpbb.py`: Imports comments from phpBB (using `phpbb_integrate`, my old system for shoehorning phpBB 2.x into Movable Type; this is very much a deep cut for things which go back to like ***2003*** or something holy cow)
+* `unmangle.py`: Try to unmangle some of the weirder artifacts from the many layers of phpBB &rarr; Disqus &rarr; Isso
+
+For all the above cases I had converted database dumps from MySQL to SQLite using [mysql2sqlite](https://github.com/dumblob/mysql2sqlite).
+
 ### Use with Disqus
 
 When I used Disqus, my `_comment_thread.html` template looked something like this:
