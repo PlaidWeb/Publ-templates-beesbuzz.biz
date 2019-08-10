@@ -4,14 +4,14 @@
 <head>
     <title>403 Unauthorized</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{static('login.css')}}">
+    <link rel="stylesheet" href="{{url_for('login',asset='css')}}">
 </head>
 
 <body>
     <div id="login">
         <h1>Authorization Pending</h1>
         <div id="notify">
-        <p>Sorry, <code>{{user.name}}</code>, you don't currently have access to this entry. You can try <a href="{{entry.login}}">logging in as someone else</a> or <a href="{{logout(category.link)}}">logging out entirely</a>.</p>
+        <p>Sorry, <code>{{user.name}}</code>, you don't currently have access to this page. You can try <a href="{{login}}">logging in as someone else</a> or <a href="{{logout(category.link if category else None)}}">logging out entirely</a>.</p>
         <p>I check the logs fairly frequently to grant access to new users, but you can get in touch with me to request access in case I missed something.</p>
     </div>
         <div id="powered">

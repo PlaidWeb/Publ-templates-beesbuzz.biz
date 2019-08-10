@@ -30,6 +30,32 @@
 </head>
 <body id="{{ template.name }}">
 
+{% macro miniNav(entry, alt_text, button) %}
+{% if entry %}
+{{
+    image(button~'.png').get_img_tag(
+        height=32,
+        alt_text=alt_text,
+        link=entry.link,
+        title=entry.title(markup=False)|safe)
+}}
+{% else %}
+{{
+    image(button~'-disabled.png').get_img_tag(
+        height=32,
+        alt_text='')
+}}
+{% endif %}
+{% endmacro %}
+
+{% macro prevComic(entry,category,cat_name) %}
+{{ miniNav(entry.previous(category=category), 'previous in ' ~ cat_name, '_prev_page') }}
+{% endmacro %}
+
+{% macro nextComic(entry,category,cat_name) %}
+{{ miniNav(entry.next(category=category), 'next in ' ~ cat_name, '_next_page') }}
+{% endmacro %}
+
 <div id="container">
     <div id="banner">
         <h1><a href="{{entry.archive}}">busybee comics{{ ': ' ~ category.name if category.basename != 'comics' }}</a></h1>
@@ -44,9 +70,22 @@
 
     <div id="nav_series">
         <ul class="breadcrumb">
-            <li><a href="{{entry.archive(category='comics')}}">All comics</a></li>
+            <li>
+
+                {{prevComic(entry,'comics','All comics')}}
+                <a href="{{entry.archive(category='comics')}}">All comics</a>
+                {{nextComic(entry,'comics','All comics')}}
+
+            </li>
+
             {% for cat in category.breadcrumb[2:] %}
-            <li><a href="{{entry.archive(category=cat)}}">{{cat.name}}</a></li>
+            <li>
+
+                {{prevComic(entry,cat,cat.name)}}
+                <a href="{{entry.archive(category=cat)}}">{{cat.name}}</a>
+                {{nextComic(entry,cat,cat.name)}}
+
+            </li>
             {% endfor %}
         </ul>
     </div>

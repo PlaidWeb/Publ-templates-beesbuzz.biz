@@ -22,8 +22,9 @@
     <id>tag:{{request.host}},{{template.last_modified.format('YYYY-MM-DD')}}:{{category.path or "_all"}}</id>
     <updated>{{view(recurse=True).last_modified.isoformat()}}</updated>
 
-    {% for entry in view.entries %}
+    {% for entry in view.entries(unauthorized=1) %}
     <entry>
+        {% if entry.authorized %}
         <title>{{'🔏 ' if entry.private else ''}}{{entry.category.name + ": " if entry.category.name != category.name}}{{entry.title(markup=False, no_smartquotes=True)}}</title>
         <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
         <published>{{entry.date.isoformat()}}</published>
@@ -46,11 +47,8 @@
         {% for tag in entry.tags %}
         <category term="{{view(tag=tag).link(absolute=True)}}" label="{{tag}}" />
         {% endfor %}
-    </entry>
-    {% endfor %}
 
-    {% for entry in view.unauthorized[:1] %}
-    <entry>
+        {% else %}
         <title>🔏 Private entry [{{entry.title(always_show=True).split()|join(attribute=0)}}]</title>
         <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
         <published>{{entry.date.isoformat()}}</published>
@@ -58,6 +56,8 @@
         <id>urn:uuid:{{entry.uuid}}</id>
         <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
         <content type="html">This entry has a restricted audience.</content>
+        {% endif %}
+
     </entry>
     {% endfor %}
 

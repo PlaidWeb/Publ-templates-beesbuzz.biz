@@ -445,18 +445,38 @@ ul.subcats >li >div >ul {
     border-bottom: double black 3px;
 }
 
+#entry #nav_series .breadcrumb li {
+    background: #ccc;
+    border-radius: 1.5em;
+    border: none;
+    margin: 0 1ex;
+    color: black;
+    min-height: 24px;
+}
+
+#entry #nav_series .breadcrumb li:hover {
+    background: #333;
+}
+
+#entry #nav_series .breadcrumb li:hover a {
+    color: white;
+}
+
 #entry #nav_series .breadcrumb:before {
-    content: "Back to browsing: ";
     padding: 0.5ex;
     font-size: small;
     display: inline-block;
 }
-#entry #nav_series .breadcrumb a {
-    padding: 0.5ex 1em;
+#entry #nav_series .breadcrumb li a {
+    background: transparent;
+    padding: 1ex 0;
+    vertical-align: middle;
     font-size: small;
-    border-radius: 1.5em;
-    border: none;
     font-weight: bold;
+    border: none;
+}
+#entry #nav_series .breadcrumb img {
+    vertical-align: middle;
 }
 
 #archive li.subseries p { display: inline; }

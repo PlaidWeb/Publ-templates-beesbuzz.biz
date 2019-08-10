@@ -111,7 +111,7 @@
 
         {% if user %}
         <div id="userinfo">Hello, <code>{{user.name}}</code>. <a href="{{logout}}">sign out</a></div>
-        {% elif content.unauthorized %}
+        {% elif content.unauthorized(count=1) %}
         <div id="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div>
         {% endif %}
 
