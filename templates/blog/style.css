@@ -1,5 +1,6 @@
 @import url('{{static("pygments.default.css")}}');
 @import url('{{static("webmentions.css")}}');
+@import url('{{static("isso-comments.css")}}');
 
 html {
     /* {{image('/_layout/plaidbg-light.png').get_css_background(width=192,uncomment=True)}} */
@@ -237,29 +238,6 @@ article.private .heading .posted {
     text-align: left;
     font-size: small;
     font-style: italic;
-}
-
-#comments #policy {
-    margin: 16px;
-    padding: 16px;
-    font-style: italic;
-    background: #eee;
-    color: #555;
-}
-
-#comments #avatars {
-    font-style: italic;
-    font-size: x-small;
-    color: #555;
-    padding: 0 16px;
-}
-
-#comments #policy a {
-    font-weight: bold;
-}
-
-#comments #isso-thread {
-    padding: 0 16px;
 }
 
 img {

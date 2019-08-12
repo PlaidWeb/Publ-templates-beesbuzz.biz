@@ -6,6 +6,7 @@ import logging.handlers
 
 import publ
 import flask
+import authl.flask
 
 # This logging configuration is way overcomplicated and is mostly for my own
 # debugging of Publ itself. You don't really have to do this.
@@ -63,6 +64,9 @@ config = {
         # Identify my site as "busybee" to the Mastodon login flow
         'MASTODON_NAME': 'busybee',
         'MASTODON_HOMEPAGE': 'http://beesbuzz.biz/',
+
+        # enable IndieAuth support using the default client_id shim
+        'INDIEAUTH_CLIENT_ID': authl.flask.client_id,
 
         # IndieLogin.com support is waiting on https://github.com/aaronpk/indielogin.com/issues/38
         # 'INDIELOGIN_CLIENT_ID': 'https://beesbuzz.biz/',
