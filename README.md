@@ -25,6 +25,10 @@ If running in debug, there is no cache, otherwise it uses a memcached running on
 
 The index gets a rescan once a day, which is probably not necessary but it doesn't hurt anything either.
 
+### Authentication
+
+For friends-only/private entries, this is configured to support emailed magic links (using the local mail server), Mastodon, and IndieAuth; `test:` URLs are also available when the site is running in debug mode.
+
 ### Routing rules
 
 `/favicon.ico` redirects to `/static/favicon.ico`. This could also have been done using `send_file('favicon.ico')` in the current directory to make this more transparent, but it doesn't really matter.
