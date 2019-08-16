@@ -20,5 +20,5 @@ flock -n $HOME/var/pushl/run.lock $HOME/.local/bin/pipenv run pushl -rvvc $HOME/
     https://tumblr.beesbuzz.biz/rss \
     -s http://beesbuzz.biz/feed http://beesbuzz.biz/feed-summary https://beesbuzz.biz/feed-summary
 
-# while we're at it, clean out the log directory
-find logs -type f -mtime +30 -print -delete
+# while we're at it, clean out the log and pushl cache directory
+find logs $HOME/var/pushl -type f -mtime +30 -print -delete

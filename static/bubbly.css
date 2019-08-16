@@ -1,6 +1,11 @@
 @import url('webmentions.css');
 @import url('isso-comments.css');
 
+html {
+    margin: 0;
+    padding: 0;
+}
+
 #container {
     margin: 3em;
     border-radius: 16px;
@@ -161,49 +166,6 @@ a.readmore {
     font-style: italic;
 }
 
-@media screen and (max-width: 800px) {
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
-    h1 {
-        border-radius: 0;
-        padding: 0;
-        margin: 0;
-    }
-
-    #container {
-        margin: 0;
-        border: none;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-    div.inset-left, div.inset-right, .shaped {
-        float: none;
-        text-align: center;
-        max-width: 100%;
-    }
-
-    .entry .content {
-        padding: 1ex;
-    }
-
-    .entry .posted {
-        padding: 0px 1ex;
-        font-size: x-small;
-    }
-
-    .entry .posted .time {
-        display: none;
-    }
-
-    .entry .heading .top-hook {
-        width: 10em;
-    }
-}
-
 .hidden { display: none; }
 
 table {
@@ -260,9 +222,17 @@ td {
 }
 
 #userinfo {
-    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
     padding: 1ex;
     font-size: small;
+    background: white;
+    color: black;
+    border: black 1px;
+    border-style: none solid solid none;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
 }
 
 #userinfo a {
@@ -275,5 +245,58 @@ td {
 
 #userinfo a::after {
     content: ']';
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    #container {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    div.inset-left, div.inset-right, .shaped {
+        float: none;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .entry .content {
+        padding: 1ex;
+    }
+
+    .entry .posted {
+        padding: 0px 1ex;
+        font-size: x-small;
+    }
+
+    .entry .posted .time {
+        display: none;
+    }
+
+    .entry .heading .top-hook {
+        width: 10em;
+    }
+
+    #userinfo {
+        display: block;
+        position: static;
+        border: none;
+        box-shadow: none;
+	text-align: center;
+	clear: both;
+	border-top: solid black 1px;
+    }
 }
 

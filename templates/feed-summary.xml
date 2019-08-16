@@ -54,16 +54,4 @@
         {% endfor %}
     </entry>
     {% endfor %}
-
-    {% for entry in view.unauthorized[:1] %}
-    <entry>
-        <title>🔏 Private entry [{{entry.title(always_show=True).split()|join(attribute=0)}}]</title>
-        <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
-        <published>{{entry.date.isoformat()}}</published>
-        <updated>{{entry.last_modified.isoformat()}}</updated>
-        <id>urn:uuid:{{entry.uuid}}</id>
-        <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
-        <content type="html">This entry has a restricted audience.</content>
-    </entry>
-    {% endfor %}
 </feed>

@@ -162,6 +162,11 @@ a:hover {
     margin-left: 1em;
 }
 
+#entries .login {
+    font-size: x-small;
+    font-style: italic;
+}
+
 #entries .posted {
     font-size: x-small;
     white-space: nowrap;

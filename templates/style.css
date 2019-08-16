@@ -54,6 +54,7 @@ a:visited {
 p {
     text-align: justify;
     hyphens: auto;
+    -webkit-hyphens: auto;
 }
 
 

@@ -39,10 +39,11 @@
 
     <div id="entries">
         <h2>Latest things
-            {%- if view.tags %} <span>(tagged {{view.tags|join(', ')}})</span>{%endif%}</h2>
+            {%- if view.tags %} <span>(tagged {{view.tags|join(', ')}})</span>{%endif%}
+	    {%- if not user and view(recurse=True).unauthorized(count=1) %} <a class="login" href="{{login}}">login for more</a>{% endif -%}</h2>
         <ul>
             {% for entry in view(recurse=True,order='newest',count=5,entry_type_not='sidebar').entries %}
-            <li><a href="{{entry.category.link}}">{{entry.category.name}}</a>: <a href="{{entry.link}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
+	    <li><a href="{{entry.category.link}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
             {% endfor %}
         </ul>
 

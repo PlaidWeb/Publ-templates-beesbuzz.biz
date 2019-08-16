@@ -22,7 +22,7 @@
     <id>tag:{{request.host}},{{template.last_modified.format('YYYY-MM-DD')}}:{{category.path or "_all"}}</id>
     <updated>{{view(recurse=True).last_modified.isoformat()}}</updated>
 
-    {% for entry in view.entries(unauthorized=1) %}
+    {% for entry in view.entries(unauthorized=1 if not user else 0) %}
     <entry>
         {% if entry.authorized %}
         <title>{{'🔏 ' if entry.private else ''}}{{entry.category.name + ": " if entry.category.name != category.name}}{{entry.title(markup=False, no_smartquotes=True)}}</title>
