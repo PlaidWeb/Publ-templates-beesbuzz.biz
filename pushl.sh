@@ -18,6 +18,7 @@ flock -n $HOME/var/pushl/run.lock $HOME/.local/bin/pipenv run pushl -rvvc $HOME/
     https://beesbuzz.biz/feed \
     http://publ.beesbuzz.biz/feed \
     https://tumblr.beesbuzz.biz/rss \
+    https://novembeat.com/feed \
     -s http://beesbuzz.biz/feed http://beesbuzz.biz/feed-summary https://beesbuzz.biz/feed-summary
 
 # while we're at it, clean out the log and pushl cache directory

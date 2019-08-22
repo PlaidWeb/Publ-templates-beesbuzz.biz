@@ -13,7 +13,7 @@
     <link rel="openid.server" href="https://id.beesbuzz.biz/" />
     <link rel="authorization_endpoint" href="https://auth.beesbuzz.biz/">
     <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
-    <link rel="microsub" href="https://aperture.p3k.io/microsub/330"> 
+    <link rel="microsub" href="https://aperture.p3k.io/microsub/330">
 
     {% include '/_webmention.html' %}
 </head>
@@ -22,7 +22,7 @@
     <h1><span>busy</span>bee</h1>
 
     <div id="links">
-        {%- for entry in view(entry_type='sidebar',order='oldest',tag=None).entries -%}
+        {%- for entry in view(entry_type='sidebar',order='title',tag=None).entries -%}
         <a href="{{entry.link}}" {% if entry['link-rel'] %}rel="{{entry['link-rel']}}"{% endif %}
             title="{{entry.title}}" class="{{entry.icon or entry.title.lower()}}"><span>{{entry.title}}</span></a>
         {% endfor -%}
