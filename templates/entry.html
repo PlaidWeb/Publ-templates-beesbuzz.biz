@@ -111,13 +111,13 @@
                 Repost-Of: http://example.com/bar
 
             -#}
-            {%- for type in (
-                'like-of',
-                'in-reply-to',
-                'repost-of',
-                'bookmark-of',
-                'mention-of',
-                'syndication') -%}
+            {%- for type in ('like-of',
+                             'in-reply-to',
+                             'repost-of',
+                             'bookmark-of',
+                             'mention-of',
+                             'syndication'
+                            ) -%}
                 {%- for link in entry.get_all(type) -%}
                     <a href="{{link}}" class="hidden u-{{type}}"></a>
                 {%- endfor -%}
