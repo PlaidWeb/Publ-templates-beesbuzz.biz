@@ -63,9 +63,9 @@
     </entry>
     {% endfor %}
 
-    {% for entry in view(before=view.first,after=view.last).deleted %}
+    {% for entry in view.deleted %}
     <at:deleted-entry ref="urn:uuid:{{entry.uuid}}" when="{{entry.last_modified.isoformat()}}">
-        <link>{{entry.permalink(absolute=True)}}</link>
+        <link>{{entry.link(absolute=True,expand=False)}}</link>
     </at:deleted-entry>
     {% endfor %}
 </feed>
