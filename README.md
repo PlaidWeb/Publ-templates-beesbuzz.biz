@@ -100,6 +100,7 @@ Other things of note:
 
 * It uses a recursive view; a feed for a category will also include all of the content for its subcategories
 * Items with an `Entry-Type` of `sidebar` will not appear in the feed
+* Items with response-type microformat headers (`in-reply-to`, `bookmark-of`, `like-of`, `rsvp`) will not appear unless there's a URL parameter of `push=1`
 
 ### Entry template (`entry.html`)
 
@@ -121,9 +122,11 @@ I have defined some custom headers for this template for better [Webmention](htt
     RSVP: http://example.com/bad-party no
     ```
 
-You can use more than one of the above.
+You can use more than one of the above, although a lot of external tools will get confused by it so it's best not to.
 
 Incoming webmentions are displayed via [webmention.js](https://github.com/PlaidWeb/webmention.js).
+
+Entries with a `cut` will display the extended text inside a `<details>`, with the cut text as the `<summary>`. This is to give fair warning to folks who are linked directly to the entry from the outside or who are navigating between adjacent entries.
 
 #### Per-category extensions (`(category)/entry.html`)
 
@@ -275,7 +278,7 @@ If only one subcategory's comics are visible, it will use that subcategory's sty
 
 The page title will be the comic's title if there's only one, or a date range if there's multiple.
 
-The generated OpenGraph card will be a square-aspect excerpt from the top or left of the comic.
+The generated OpenGraph card will be a square-aspect excerpt from the top or left of the comic. If there's a CW cut on the entry it'll also get downsized to 32x32 to make it blurry.
 
 #### Navigation stuff
 
@@ -283,7 +286,9 @@ The navigation breadcrumb trail shows the parent categories, the current categor
 
 #### Comic display
 
-This simply displays the comics which match the `TYPEFILTER` (i.e. no type, or a type of `newchapter`). The comic itself will link to the comment page. If there is a cut, the below-cut content gets displayed below, with a thumbnail image gallery if there's images in it.
+This simply displays the comics which match the `TYPEFILTER`. The comic itself will link to the comment page. If there is extended text, the below-cut content gets displayed below, with a thumbnail image gallery if there's images in it.
+
+Also, if the entry has a `Cut` header (for a content warning or the like), the comic will display inside a collapsed `<details>` box, to allow people to use their discretion in looking at it.
 
 #### News box
 
@@ -293,14 +298,33 @@ This displays all entries with an `Entry-Type` of `News` that come after the fir
 
 Individual entries can override their stylesheet with the `Stylesheet` entry header, if so desired. I do not actually use this function.
 
+CW cuts work similarly to the index page; the comic will be hidden behind a `<details>`, and the OpenGraph image excerpt will be blurred.
+
 ### Stylesheet (`comics/style.css`)
 
 The main interesting thing about this one is that the `h1` link background gets the `_logo.jpg` from the current category's content directory if available; by default this will fall back to the `_logo.jpg` file in the comics directory instead (as part of Publ's standard image lookup rules).
 
 
-## Other configuration
+## Other configuration/scripts
 
 I have configured my site to be deployed via a [git hook](http://publ.beesbuzz.biz/manual/deploying/441-Continuous-deployment-with-git), and I send out WebSub and Webmention pings using [Pushl](https://github.com/PlaidWeb/Pushl).
 
-I also have pushl installed in the same pipenv, and it is run using the `pushl.sh` script.
+### `pushl.sh`
 
+This script runs `pushl` on my various feeds in order to push out webmentions to other sites. My own feeds have a `?push=1` parameter so that response-type entries appear.
+
+### `pub.sh`
+
+This is a quick-and-dirty script for generating stub entries for webmention responses. It's a bit fiddly but it lets me use Publ to more easily respond to other things using IndieWeb, as well as on Mastodon via [Bridgy Fed](https://fed.brid.gy). For example, if I want to "like" a post I can say:
+
+```
+./pub.sh like-of https://beesbuzz.biz/blog/7950-Things-I-accomplished-today
+```
+
+or if I want to reply I can say:
+
+```
+vi $(./pub.sh in-reply-to https://beesbuzz.biz/blog/7950-Things-I-accomplished-today)
+```
+
+and then fill in the entry body.

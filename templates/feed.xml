@@ -25,6 +25,7 @@
     <updated>{{view(recurse=True).last_modified.isoformat()}}</updated>
 
     {% for entry in view.entries(unauthorized=1 if not user else 0) %}
+    {%- if request.args.push or not (entry['in-reply-to'] or entry['like-of'] or entry['bookmark-of'] or entry['rsvp']) -%}
     <entry>
         {% if entry.authorized %}
         <title>{{'🔏 ' if entry.private else ''}}{{entry.category.name + ": " if entry.category.name != category.name}}{{entry.title(markup=False, no_smartquotes=True)}}</title>
@@ -61,6 +62,8 @@
         {% endif %}
 
     </entry>
+    {% else %}<!-- chaff: {{entry.link(absolute=True)}} -->
+    {% endif -%}
     {% endfor %}
 
     {% for entry in view.deleted %}

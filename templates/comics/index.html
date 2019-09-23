@@ -100,8 +100,8 @@
     {% endif %}
     </title>
 
-    {% for entry in comics.entries[0:3] %}
-    {{ entry.card(width=800,height=800,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
+    {% for entry in comics.entries[:1] %}
+    {{ entry.card(width=32 if entry.cut else 800,height=32 if entry.cut else 800,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
     {% endfor %}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@fluffy" />
@@ -232,7 +232,7 @@
                     {% endif %}
                     {% if entry.more %}
                     <a class="readmore" href="{{entry.link}}">Read more&hellip;
-                    {%- if entry.get('cut') %} ({{entry.get('cut')}}){% endif %}</a>
+                    {%- if entry.cut %} ({{entry.cut}}){% endif %}</a>
                     {% endif %}
                 </div>
             </div></article>

@@ -1,3 +1,6 @@
+{% if entry.cut %}
+<p><a href="{{entry.link(absolute=True)}}">Show comic ({{entry.cut}})</a></p>
+{% else %}
 {{entry.body(
     width=960,
     scale=2,
@@ -6,10 +9,9 @@
     absolute=True,
     prefix='feed_'
 )}}
+{% endif %}
 
-{% if entry.get('cut') %}
-<p><a href="{{entry.link(absolute=True)}}">Read more...</a> ({{entry.get('cut')}})</p>
-{% else %}
+{% if entry.more %}
 {{entry.more(
     max_width=240,
     max_height=240,

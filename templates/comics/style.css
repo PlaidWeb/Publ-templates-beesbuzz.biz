@@ -51,7 +51,7 @@ img {
     height: auto;
 }
 
-#comics, #entries .Comic, #entries .newchapter {
+#comics, #entries .Comic {
     text-align: center;
 }
 
@@ -202,7 +202,7 @@ img {
     min-height: 100vh;
 }
 
-#comics .more, .Comic .more, .newchapter .more {
+#comics .more, .Comic .more {
     margin: 1ex 5em 1em;
     padding: 1ex 1em;
     background: #cfc;
