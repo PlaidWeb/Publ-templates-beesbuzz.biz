@@ -14,18 +14,12 @@
 {% endif %}
 {% endblock %}
 
-{% block entrymore %}
-{% if entry.more %}
-<div class="more" id="more">
-{%- if entry.cut %}<details><summary>{{entry.cut}}</summary>{% endif -%}
-    {{entry.more(
-        div_class='images',
-        img_class='u-photo',
-        gallery_id=entry.uuid,
-        width=960,
-        height=960,
-        resize="fit")}}
-{%- if entry.cut %}</details>{% endif -%}
-</div>
-{% endif %}
+{% block entrymore_content %}
+{{entry.more(
+    div_class='images',
+    img_class='u-photo',
+    gallery_id=entry.uuid,
+    width=960,
+    height=960,
+    resize="fit")}}
 {% endblock %}

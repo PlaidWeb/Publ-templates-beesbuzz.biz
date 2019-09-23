@@ -170,6 +170,7 @@
                 <div id="more">
 {%- if entry.cut %}<details><summary>{{entry.cut}}</summary>{% endif -%}
 
+                    {% block entrymore_content scoped %}
                     {{entry.more(gallery_id=entry.uuid,
                         div_class='images',
                         img_class='u-photo',
@@ -178,7 +179,7 @@
                         fullsize_width=3840,
                         fullsize_height=2160,
                         fullsize_quality=35)}}
-                    }
+                    {% endblock %}
                 </div>
                 {% endif %}
                 {% endblock %}

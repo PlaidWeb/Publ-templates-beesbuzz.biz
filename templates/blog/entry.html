@@ -1,20 +1,12 @@
 {% extends '/entry.html' %}
 
-{% block entrymore %}
-{% if entry.more %}
-<div id="more">
-{% if entry.cut %}<details><summary>{{entry.cut}}</summary>{% endif %}
-
-    {{entry.more(gallery_id=entry.uuid,
-        div_class='images',
-        img_class='u-photo',
-        width=800,
-        fullsize_width=3840,
-        fullsize_height=2160,
-        fullsize_quality=35)}}
-{% if entry.cut %}</details>{% endif %}
-
-</div>
-{% endif %}
+{% block entrymore_content %}
+{{entry.more(gallery_id=entry.uuid,
+    div_class='images',
+    img_class='u-photo',
+    width=800,
+    fullsize_width=3840,
+    fullsize_height=2160,
+    fullsize_quality=35)}}
 {% endblock %}
 

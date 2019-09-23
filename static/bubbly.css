@@ -64,7 +64,6 @@ html {
 
 .entry .heading .top-hook {
     float: right;
-    width: 13em;
     height: 1em;
     position: relative;
     z-index: 10000;
