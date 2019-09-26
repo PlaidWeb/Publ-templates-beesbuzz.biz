@@ -13,13 +13,13 @@
             height=size,
             alt_text=alt,
             link=(link ~ ('#' ~ anchor if anchor else '')) if link else None,
-            title=title) }}
+            title=title|safe) }}
 {% endmacro -%}
 
 {# Render an entry button #}
 {%- macro navEntry(size, anchor, button, alt, entry) %}
     {% if entry %}
-        {{ navButton(size, anchor, button, alt, entry.archive(category=category,paging=view.paging), entry.category.name~': '~entry.title) }}
+        {{ navButton(size, anchor, button, alt, entry.archive(category=category,paging=view.paging), entry.category.name~': '~entry.title(markup=False)) }}
     {% else %}
         {{ navButton(size, anchor, button~'-disabled', alt, None, '')}}
     {% endif %}
@@ -160,8 +160,8 @@
                          {{entry.date.format('YYYY')}}/<a href="{{entry.archive(paging='month',category=category)}}">{{entry.date.format('MM')}}</a>/<a href="{{entry.archive(paging='day',category=category)}}">{{entry.date.format('DD')}}</a></time>
                          <a class="anchor" href="{{entry.archive(category=category)}}">#</a>
                      </span>
-                    <span class="author">
-                        <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                    <span class="author p-author h-card">
+                        <a rel="author" href="{{entry['author-URL'] or '/'}}" class="u-url p-name">{{entry.author or 'fluffy'}}</a>
                     </span>
                 </div>
 
@@ -192,7 +192,7 @@
                 {% endif %}
 
                 <div class="commentlink">
-                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments">💬 </a><a href="{{thread_id(entry)}}#isso-thread">Comments</a>
+                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a>
                 </div>
 
 
@@ -222,7 +222,7 @@
                     <span class="posted">{{entry.date.format('YYYY/MM/DD h:mm A')}}</span>
                 </div>
                 <div class="commentlink">
-                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{entry.link}}#comments">💬 </a><a href="{{thread_id(entry)}}#isso-thread">Comments</a>
+                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a>
                 </div>
                 <div class="content e-summary">
                     {% if entry.body %}

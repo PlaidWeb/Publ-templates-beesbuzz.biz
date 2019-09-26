@@ -176,6 +176,10 @@ img {
     font-weight: bold;
 }
 
+.commentlink a:before {
+    content: "💬 ";
+}
+
 #news .commentlink a {
     display: block;
     float: right;
