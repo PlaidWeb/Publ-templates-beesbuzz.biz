@@ -21,6 +21,7 @@
     <updated>{{view(recurse=True).last_modified.isoformat()}}</updated>
 
     {% for entry in view.entries %}
+    {%- if request.args.push or not (entry['in-reply-to'] or entry['like-of'] or entry['bookmark-of'] or entry['rsvp']) -%}
     <entry>
         <title>{{entry.title(markup=False,no_smartquotes=True)}}</title>
         <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
@@ -53,5 +54,6 @@
         <category term="{{tag}}" />
         {% endfor %}
     </entry>
+    {% endif %}
     {% endfor %}
 </feed>
