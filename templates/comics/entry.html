@@ -10,6 +10,7 @@
     <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+    <link rel="canonical" href="{{ entry.link(absolute=True,_scheme='https') }}" />
 
     {% include '/_webmention.html' %}
 
