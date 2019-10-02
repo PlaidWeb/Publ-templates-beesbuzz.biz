@@ -150,6 +150,8 @@
             {% endblock %}
 
             <div class="content">
+            {% include '/_indieweb.html' %}
+
                 {% block entrybody scoped %}
                 {% if entry.body %}
                 <div class="body e-summary">

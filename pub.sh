@@ -2,9 +2,9 @@
 # Posts a quick IndieWeb-style response to the blog/chatter category
 # For example:
 #
-# ./respond.sh like-of http://example.com/a-good-post
-# ./repsond.sh rsvp http://example.com/party yes
-# ./respond.sh in-reply-to http://example.com/blahblahblah
+# ./pub.sh like-of http://example.com/a-good-post
+# ./pub.sh rsvp http://example.com/party yes
+# ./pub.sh in-reply-to http://example.com/blahblahblah
 #
 # Prints out the filename so the body can be further edited
 
@@ -16,9 +16,8 @@ fname="$(dirname "$0")/content/blog/chatter/$basename.md"
 echo $fname
 
 cat > $fname << EOF
-Title: $type $url
+Title: $type
 $type: $url $*
 
-$type: [$url]($url)
 
 EOF

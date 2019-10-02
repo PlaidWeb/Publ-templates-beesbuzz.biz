@@ -403,6 +403,46 @@ blockquote {
 
 .hidden { display: none; }
 
+details summary {
+    background: #ddd;
+    text-align: left;
+    padding: 1ex;
+    margin-bottom: 1ex;
+    color: black;
+    font-style: italic;
+}
+
+
+#unauthorized {
+    display: inline-block;
+    margin: 1ex 0;
+    padding: 1em;
+    background: #ffc;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+    color: black;
+}
+
+#userinfo {
+    display: inline-block;
+    margin: 1ex 0;
+    padding: 1em;
+    background: #cfc;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+    color: black;
+}
+
+#userinfo a {
+    font-size: x-small;
+    color: black;
+}
+#userinfo a::before {
+    content: '[';
+}
+#userinfo a::after {
+    content: ']';
+}
+
+
 @media (prefers-color-scheme: dark) {
     html {
         /* {{image('/_layout/plaidbg-darkmode.png').get_css_background(width=192,uncomment=True)}} */
@@ -447,30 +487,4 @@ blockquote {
         box-shadow: #555 0 2px 4px;
     }
 
-}
-
-#unauthorized {
-    display: inline-block;
-    margin: 1ex 0;
-    padding: 1em;
-    background: #ffc;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
-}
-
-#userinfo {
-    display: inline-block;
-    margin: 1ex 0;
-    padding: 1em;
-    background: #cfc;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
-}
-
-#userinfo a {
-    font-size: x-small;
-}
-#userinfo a::before {
-    content: '[';
-}
-#userinfo a::after {
-    content: ']';
 }
