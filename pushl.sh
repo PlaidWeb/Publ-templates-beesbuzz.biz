@@ -14,7 +14,7 @@ fi
 date
 
 # run pushl
-flock -n $HOME/var/pushl/run.lock $HOME/.local/bin/pipenv run pushl -rvvc $HOME/var/pushl \
+flock -n $HOME/var/pushl/run.lock $HOME/.local/bin/pipenv run pushl -rvvkc $HOME/var/pushl \
     https://beesbuzz.biz/feed\?push=1 \
     http://publ.beesbuzz.biz/feed\?push=1 \
     https://tumblr.beesbuzz.biz/rss \

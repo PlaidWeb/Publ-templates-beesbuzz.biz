@@ -5,8 +5,9 @@ Path-Alias: /ko-fi
 Path-Alias: /kofi
 Path-Alias: /tipjar
 Entry-Type: sidebar
-Date: 1
 Link-Rel: me
 Entry-ID: 713
 UUID: 5be746bb-cba2-54be-bfd0-fb4f553a4028
 Shaped: 1
+Date: 2019-06-30 14:07:11-07:00
+

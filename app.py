@@ -3,6 +3,7 @@
 import os
 import logging
 import logging.handlers
+import hmac
 
 import publ
 import flask
