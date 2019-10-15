@@ -109,13 +109,13 @@
             <div class="entry e-content">
                 {% if entry.body %}
                 <div id="preamble">
-                {% if entry.cut %}<details><summary>{{entry.cut}}</summary>{% endif %}
+                {% if entry.cut and not entry['Entry-Type'] %}<details><summary>{{entry.cut}}</summary>{% endif %}
                     {{entry.body(
                         div_class='images',
                         img_class='u-photo',
                         scale=2,
                         width=960)}}
-                {% if entry.cut %}</details>{% endif %}
+                {% if entry.cut and not entry['Entry-Type'] %}</details>{% endif %}
                 </div>
                 {% endif %}
 
@@ -153,6 +153,7 @@
         <div class="heading">
             <h2>Comments</h2>
         </div>
+            <div class="webmentions" id="webmentions"></div>
         {% include '/_comment_thread.html' %}
     </div>
 </div>

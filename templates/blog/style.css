@@ -261,6 +261,8 @@ img {
 
 #comments {
     background: rgba(255,255,255,0.75);
+    clear: both;
+    margin-top: 1ex;
 }
 
 .entry .commentlink {

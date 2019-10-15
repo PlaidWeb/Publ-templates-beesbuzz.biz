@@ -16,7 +16,8 @@ fname="$(dirname "$0")/content/blog/chatter/$basename.md"
 echo $fname
 
 cat > $fname << EOF
-Title: $type
+Status: DRAFT
+Title: $type $url
 $type: $url $*
 
 
