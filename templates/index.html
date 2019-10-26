@@ -12,14 +12,17 @@
 {% endblock %}
 
 {% set content = view(entry_type_not='sidebar',count=20) %}
+{% if category.paging == 'year' and content.is_current %}
+{% set content = content(date=category.last.date_year) %}
+{% endif %}
 
 
 {% block stylesheet %}
     <link rel="stylesheet" href="style.css" />
 {% endblock %}
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}" />
-    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="feed" />
-    <link rel="alternate" type="application/atom+xml" title="Summary feed" href="feed-summary" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
+    <link rel="alternate" type="application/atom+xml" title="Summary feed" href="{{view.link(template='feed-summary')}}" />
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
 {% block webmention %}

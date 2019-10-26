@@ -28,7 +28,7 @@
     {%- if request.args.push or not (entry['in-reply-to'] or entry['like-of'] or entry['bookmark-of'] or entry['rsvp']) -%}
     <entry>
         {% if entry.authorized %}
-        <title>{{'🔏 ' if entry.private else ''}}{{entry.category.name + ": " if entry.category.name != category.name}}{{entry.title(markup=False, no_smartquotes=True)}}</title>
+        <title>{{'🔏 ' if entry.private else ''}}{{entry.category.name ~ ": " if entry.category.name != category.name}}{{entry.title(markup=False, no_smartquotes=True)}}</title>
         <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
         <published>{{entry.date.isoformat()}}</published>
         <updated>{{entry.last_modified.isoformat()}}</updated>
