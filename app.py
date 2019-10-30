@@ -77,8 +77,6 @@ config = {
     },
 }
 
-app = publ.publ(__name__, config)
-
 # Create a persistent secret session key that's never checked in
 if not os.path.isfile('.sessionkey'):
     import uuid
@@ -86,8 +84,9 @@ if not os.path.isfile('.sessionkey'):
         file.write(str(uuid.uuid4()))
     os.chmod('.sessionkey', 0o600)
 with open('.sessionkey') as file:
-    app.secret_key = file.read()
+    config['secret_key'] = file.read()
 
+app = publ.publ(__name__, config)
 
 # provide a thread ID generator for the comment threads
 def thread_id(item):
