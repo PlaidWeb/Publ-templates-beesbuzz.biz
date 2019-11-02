@@ -1,0 +1,41 @@
+            {#- support the common webmention ping types by setting appropriate entry headers, like:
+
+                Like-Of: http://example.com/foo
+                Repost-Of: http://example.com/bar
+
+            -#}
+            {%- for type, label in (('like-of', 'Liked'),
+                             ('in-reply-to', 'Re'),
+                             ('repost-of', 'Repost'),
+                             ('bookmark-of', 'Bookmark'),
+                             ('syndication', ''),
+                            ) -%}
+                {%- for link in entry.get_all(type) -%}
+                    <a href="{{link}}" class="{{'hidden ' if not label else ''}}u-{{type}}">{{label}}: {{link}}</a>
+                {%- endfor -%}
+            {%- endfor -%}
+
+            {#- support RSVP webmentions with a header like:
+
+                RSVP: http://example.com/ yes
+
+            -#}
+            {%- for rsvp in entry.get_all('rsvp') -%}
+                {%- with url,value = rsvp.split() -%}
+                    <a class="u-in-reply-to rsvp-{{value}}" href="{{url}}">RSVP: <data class="p-rsvp">{{value}}</data></a>
+                {%- endwith -%}
+            {%- endfor -%}
+
+            {#- support other mention types with a header like:
+
+                Ping: http://example.com/ u-category
+
+                Unfortunately 'Category:' means something else in Publ so it can't
+                be made a standard ping type.
+            -#}
+            {%- for ping in entry.get_all('ping') -%}
+                {%- with link, class = ping.split() -%}
+                    <a href="{{link}}" class="hidden {{class}}"></a>
+                {%- endwith -%}
+            {%- endfor -%}
+

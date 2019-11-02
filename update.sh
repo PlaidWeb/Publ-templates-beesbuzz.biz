@@ -12,6 +12,7 @@ fi
     find templates static -type f | grep -v static/_img
     echo pushl.sh
     echo pub.sh
+    echo deploy.sh
 ) | while read fname ; do
     if [ -f "$SRCDIR/$fname" ] && ! grep -q $fname exclusions ; then
         cp -v "$SRCDIR/$fname" "$fname"
