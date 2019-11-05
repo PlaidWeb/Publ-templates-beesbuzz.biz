@@ -1,41 +1,52 @@
-            {#- support the common webmention ping types by setting appropriate entry headers, like:
+{#- Support indieweb.xyz pings based on tags; if the category metadata has a Tag: header it will
+    send that as the primary tag, and any tags on the entry itself will also be sent out as well. -#}
+{%- for crumb in category.breadcrumb|reverse %}
+{%- if crumb.tag %}
+<a class="u-syndication" href="https://indieweb.xyz/en/{{crumb.tag|urlencode}}"></a>
+{%- endif %}
+{%- endfor %}
+{%- for tag in entry.tags %}
+<a class="u-syndication" href="https://indieweb.xyz/en/{{tag|urlencode}}"></a>
+{%- endfor %}
 
-                Like-Of: http://example.com/foo
-                Repost-Of: http://example.com/bar
+{#- support the common webmention ping types by setting appropriate entry headers, like:
 
-            -#}
-            {%- for type, label in (('like-of', 'Liked'),
-                             ('in-reply-to', 'Re'),
-                             ('repost-of', 'Repost'),
-                             ('bookmark-of', 'Bookmark'),
-                             ('syndication', ''),
-                            ) -%}
-                {%- for link in entry.get_all(type) -%}
-                    <a href="{{link}}" class="{{'hidden ' if not label else ''}}u-{{type}}">{{label}}: {{link}}</a>
-                {%- endfor -%}
-            {%- endfor -%}
+    Like-Of: http://example.com/foo
+    Repost-Of: http://example.com/bar
 
-            {#- support RSVP webmentions with a header like:
+-#}
+{%- for type, label in (('like-of', 'Liked'),
+                 ('in-reply-to', 'Re'),
+                 ('repost-of', 'Repost'),
+                 ('bookmark-of', 'Bookmark'),
+                 ('syndication', ''),
+                ) -%}
+    {%- for link in entry.get_all(type) -%}
+        <a href="{{link}}" class="{{'hidden ' if not label else ''}}u-{{type}}">{{label}}: {{link}}</a>
+    {%- endfor -%}
+{%- endfor -%}
 
-                RSVP: http://example.com/ yes
+{#- support RSVP webmentions with a header like:
 
-            -#}
-            {%- for rsvp in entry.get_all('rsvp') -%}
-                {%- with url,value = rsvp.split() -%}
-                    <a class="u-in-reply-to rsvp-{{value}}" href="{{url}}">RSVP: <data class="p-rsvp">{{value}}</data></a>
-                {%- endwith -%}
-            {%- endfor -%}
+    RSVP: http://example.com/ yes
 
-            {#- support other mention types with a header like:
+-#}
+{%- for rsvp in entry.get_all('rsvp') -%}
+    {%- with url,value = rsvp.split() -%}
+        <a class="u-in-reply-to rsvp-{{value}}" href="{{url}}">RSVP: <data class="p-rsvp">{{value}}</data></a>
+    {%- endwith -%}
+{%- endfor -%}
 
-                Ping: http://example.com/ u-category
+{#- support other mention types with a header like:
 
-                Unfortunately 'Category:' means something else in Publ so it can't
-                be made a standard ping type.
-            -#}
-            {%- for ping in entry.get_all('ping') -%}
-                {%- with link, class = ping.split() -%}
-                    <a href="{{link}}" class="hidden {{class}}"></a>
-                {%- endwith -%}
-            {%- endfor -%}
+    Ping: http://example.com/ u-category
+
+    Unfortunately 'Category:' means something else in Publ so it can't
+    be made a standard ping type.
+-#}
+{%- for ping in entry.get_all('ping') -%}
+    {%- with link, class = ping.split() -%}
+        <a href="{{link}}" class="hidden {{class}}"></a>
+    {%- endwith -%}
+{%- endfor -%}
 

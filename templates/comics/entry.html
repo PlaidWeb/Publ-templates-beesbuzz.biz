@@ -107,6 +107,8 @@
             </div>
 
             <div class="entry e-content">
+                {% include '/_indieweb.html' %}
+
                 {% if entry.body %}
                 <div id="preamble">
                 {% if entry.cut and not entry['Entry-Type'] %}<details><summary>{{entry.cut}}</summary>{% endif %}
