@@ -90,6 +90,10 @@
                     {% if entry.summary %}
                     <span class="hidden p-summary">{{ entry.summary }}</span>
                     {% endif %}
+
+                    {% for tag in entry.tags %}
+                    <a class="u-syndication" href="https://indieweb.xyz/en/{{tag|urlencode}}"></a>
+                    {% endfor %}
                 </div>
                 {% endblock %}
             </header>
