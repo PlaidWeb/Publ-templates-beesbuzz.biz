@@ -9,22 +9,22 @@
 {% endblock %}
 
 {% block content %}
-{% set content = view(recurse=True,count=30,entry_type_not='sidebar') %}
+{% set view=view(recurse=True) %}
 <div id="entries">
 
-    {% if content.previous or content.next %}
+    {% if view.previous or view.next %}
     <div class="nav topnav">
-        {% if content.previous %}
-        <span class="prev"><a href="{{content.previous.link(template=template)}}">{{content.previous.range}}</a></span>
+        {% if view.previous %}
+        <span class="prev"><a href="{{view.previous.link(template=template)}}">{{view.previous.range}}</a></span>
         {% endif %}
         &nbsp;
-        {% if content.next %}
-        <span class="next"><a href="{{content.next.link(template=template)}}">{{content.next.range}}</a></span>
+        {% if view.next %}
+        <span class="next"><a href="{{view.next.link(template=template)}}">{{view.next.range}}</a></span>
         {% endif %}
     </div>
     {% endif %}
 
-    {% for entry in content.entries %}
+    {% for entry in view.entries %}
     <div class="entry">
         <div class="heading">
             {% block heading scoped %}
@@ -63,14 +63,14 @@
     </div>
     {% endfor %}
 
-    {% if content.previous or content.next %}
+    {% if view.previous or view.next %}
     <div class="nav bottomnav">
-        {% if content.previous %}
-        <span class="prev"><a href="{{content.previous.link(template=template)}}">{{content.previous.range}}</a></span>
+        {% if view.previous %}
+        <span class="prev"><a href="{{view.previous.link(template=template)}}">{{view.previous.range}}</a></span>
         {% endif %}
         &nbsp;
-        {% if content.next %}
-        <span class="next"><a href="{{content.next.link(template=template)}}">{{content.next.range}}</a></span>
+        {% if view.next %}
+        <span class="next"><a href="{{view.next.link(template=template)}}">{{view.next.range}}</a></span>
         {% endif %}
     </div>
     {% endif %}

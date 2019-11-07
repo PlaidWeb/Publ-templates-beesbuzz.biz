@@ -1,3 +1,8 @@
+{%- set view = view(entry_type_not='sidebar',count=20) -%}
+{%- if category.paging == 'year' and view.is_current -%}
+{%- set view = view(date=category.last.date_year) -%}
+{%- endif -%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +15,6 @@
     {%- endif -%}
     {%- if view.range %} | {{ view.range }}{% endif %}</title>
 {% endblock %}
-
-{% set content = view(entry_type_not='sidebar',count=20) %}
-{% if category.paging == 'year' and content.is_current %}
-{% set content = content(date=category.last.date_year) %}
-{% endif %}
 
 
 {% block stylesheet %}
@@ -33,11 +33,11 @@
     {% if category.parent %}
     <link rel="up" href="{{category.parent.link}}" />
     {% endif %}
-    {% if content.previous %}
-    <link rel="previous" href="{{content.previous.link}}" />
+    {% if view.previous %}
+    <link rel="previous" href="{{view.previous.link}}" />
     {% endif %}
-    {% if content.next %}
-    <link rel="next" href="{{content.next.link}}" />
+    {% if view.next %}
+    <link rel="next" href="{{view.next.link}}" />
     {% endif %}
 
     {% block scripthooks %}
@@ -95,17 +95,17 @@
     </nav>
     {% endblock %}
 
-    {% block content %}
+    {% block content scoped %}
     <div id="entries">
 
-        {% if content.older or content.newer %}
+        {% if view.older or view.newer %}
         <div class="nav topnav">
-            {% if content.older %}
-            <span class="prev"><a href="{{content.older}}">{{ view.spec.date and content.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+            {% if view.older %}
+            <span class="prev"><a href="{{view.older}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
             {% endif %}
             &nbsp;
-            {% if content.newer %}
-            <span class="next"><a href="{{content.newer}}">{{ view.spec.date and content.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
+            {% if view.newer %}
+            <span class="next"><a href="{{view.newer}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
             {% endif %}
         </div>
         {% endif %}
@@ -114,11 +114,11 @@
 
         {% if user %}
         <div id="userinfo">Hello, <code>{{user.name}}</code>. <a href="{{logout}}">sign out</a></div>
-        {% elif content.unauthorized(count=1) %}
+        {% elif view.unauthorized(count=1) %}
         <div id="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div>
         {% endif %}
 
-        {% for entry in content.entries %}
+        {% for entry in view.entries %}
         <article class="entry h-entry{{' private' if entry.private else ''}}">
             <div class="heading">
                 {% block heading scoped %}
@@ -178,14 +178,14 @@
         {% endfor %}
         {% endblock %}
 
-        {% if content.older or content.newer %}
+        {% if view.older or view.newer %}
         <div class="nav bottomnav">
-            {% if content.older %}
-            <span class="prev"><a href="{{content.older}}">{{ view.spec.date and content.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+            {% if view.older %}
+            <span class="prev"><a href="{{view.older}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
             {% endif %}
             &nbsp;
-            {% if content.newer %}
-            <span class="next"><a href="{{content.newer}}">{{ view.spec.date and content.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
+            {% if view.newer %}
+            <span class="next"><a href="{{view.newer}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
             {% endif %}
         </div>
         {% endif %}
