@@ -13,7 +13,7 @@
     {%- if view.tags -%}
         , tagged {{','.join(view.tags)}}
     {%- endif -%}
-    {%- if view.range %} | {{ view.range }}{% endif %}</title>
+    {%- if not view.is_current and view.range %} | {{ view.range }}{% endif %}</title>
 {% endblock %}
 
 
