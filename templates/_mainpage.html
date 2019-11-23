@@ -31,7 +31,9 @@
     <div id="content">
     <ul id="categories">
         {% for cat in category.subcats %}
-        <li class="{{cat.basename}}"><a href="{{cat.link}}"><span>{{cat['sort-name'] or cat.name}}</span></a></li>
+        {% if not cat.hidden %}
+        <li class="{{cat.basename}}"><a href="{{cat.link}}"><span>{{cat['display-name'] or cat['sort-name'] or cat.name}}</span></a></li>
+        {% endif %}
         {% endfor %}
 
         <li class="store"><a href="https://biz.beesbuzz.biz" title="Buy my stuff!"><span>Store</span></a></li>

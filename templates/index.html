@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {% block title %}
-    <title>{{ category.name or "busybee"}}
+    <title>{{ category.name(markup=False) or "busybee"}}
     {%- if view.tags -%}
         , tagged {{','.join(view.tags)}}
     {%- endif -%}

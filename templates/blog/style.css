@@ -444,6 +444,10 @@ details summary {
     content: ']';
 }
 
+.footnotes {
+    font-size: small;
+}
+
 
 @media (prefers-color-scheme: dark) {
     html {

@@ -96,7 +96,7 @@
 
             {% block entrytags %}
                 {% if entry.tags %}
-                <nav class="tags">Tags:
+                <nav class="tags" id="tags">Tags:
                 <ul class="tags">
                     {% for tag in entry.tags %}
                     <li><a rel="tag" href="{{entry.archive(tag=tag)}}">{{tag}}</a></li>
