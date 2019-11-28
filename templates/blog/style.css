@@ -376,6 +376,7 @@ th {
 td {
     padding: 0.2ex 1ex;
     border: solid #777 1px;
+    font-variant-numeric: tabular-nums;
 }
 
 blockquote:before {
@@ -446,6 +447,21 @@ details summary {
 
 .footnotes {
     font-size: small;
+    border-top: dashed black 1px;
+}
+
+.footnotes li {
+    transition: background-color color 0.25s ease;
+}
+
+:target {
+    background: #cef;
+    color: black;
+}
+
+/* backwards compat rule for footnote layout; can go away with publ v0.5.11 */
+.footnotes hr {
+    display: none;
 }
 
 
