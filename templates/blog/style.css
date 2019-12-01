@@ -510,3 +510,28 @@ details summary {
     }
 
 }
+
+article.react {
+    display: inline-block;
+    background: white;
+    border: solid black 1px;
+    padding: 0.5ex;
+    border-radius: 100%;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+    width: 1.2em;
+    height: 1.2em;
+    text-align: center;
+}
+
+article.react a {
+    text-decoration: none;
+    text-shadow: black 0px 0px 1px, black 0px 0px 1px;
+    position: relative;
+}
+
+article.react data {
+    position: absolute;
+    font-size: 80%;
+    left: 1.5ex;
+    top: 0.5ex;
+}

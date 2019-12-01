@@ -122,6 +122,7 @@
         {% endif %}
 
         {% for entry in view.entries %}
+        {% if entry.body() or entry.more() %}{# has a body, which means there's text to display #}
         <article class="entry h-entry{{' private' if entry.private else ''}}">
             <div class="heading">
                 {% block heading scoped %}
@@ -178,6 +179,25 @@
                 {% endblock %}
             </div>
         </article>
+        {% else %}
+        <article class="react h-entry{{' private' if entry.private else ''}}">
+            {# there's no body so this must be a reaction post #}
+            {%- for type, icon, label in (('like-of', '❤️', 'Liked'),
+                             ('bookmark-of', '⭐️', 'Bookmarked'),
+                            ) -%}
+                {%- for link in entry.get_all(type) -%}
+                    <a href="{{link}}" class="u-{{type}}" title="{{label}}: {{entry.title}}">{{icon}}</a>
+                {%- endfor -%}
+            {%- endfor -%}
+            {%- for rsvp in entry.get_all('rsvp') -%}
+                {%- with url,value = rsvp.split() -%}
+                    <a class="u-in-reply-to" href="{{url}}" title="RSVP: {{entry.title}} {{value}}">📅<data class="rsvp rsvp-{{value}} p-rsvp" value="{{value}}">{{
+                        {'yes':'✅','no':'❌','interested':'💡','maybe':'💭'}[value]
+                    }}</data></a>
+                {%- endwith -%}
+            {%- endfor -%}
+        </article>
+        {% endif %}
         {% endfor %}
         {% endblock %}
 
