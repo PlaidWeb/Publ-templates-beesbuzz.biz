@@ -187,14 +187,14 @@
                              ('bookmark-of', '⭐️', 'Bookmarked'),
                             ) -%}
                 {%- for link in entry.get_all(type) -%}
-                    <a href="{{link}}" class="u-{{type}}" title="{{label}}: {{entry.title}}">{{icon}}</a>
+                    <a href="{{link}}" class="u-{{type}}">{{icon}} {{entry.title}}</a>
                 {%- endfor -%}
             {%- endfor -%}
             {%- for rsvp in entry.get_all('rsvp') -%}
                 {%- with url,value = rsvp.split() -%}
                     <a class="u-in-reply-to" href="{{url}}" title="RSVP: {{entry.title}} {{value}}">📅<data class="rsvp rsvp-{{value}} p-rsvp" value="{{value}}">{{
                         {'yes':'✅','no':'❌','interested':'💡','maybe':'💭'}[value]
-                    }}</data></a>
+                    }}</data> {{entry.title}}</a>
                 {%- endwith -%}
             {%- endfor -%}
         </article>
