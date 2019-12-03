@@ -106,9 +106,18 @@ Other things of note:
 
 Entries can override their individual stylesheet by setting a `Stylesheet` header.
 
-Subcategories can remove comments entirely by overriding the `comments` block.
+Entries with a `cut` will display the extended text inside a `<details>`, with the cut text as the `<summary>`. This is to give fair warning to folks who are linked directly to the entry from the outside or who are navigating between adjacent entries.
 
-I have defined some custom headers for this template for better [Webmention](http://indieweb.org/Webmention) support:
+Comments can be disabled on an individual entry by setting a `Disable-Comments` header, e.g.
+
+```
+Title: Please don't reply to this post
+Disable-Comments: asdf
+```
+
+#### Webmention support
+
+There are some custom reply-context headers for this template for better outgoing [Webmention](http://indieweb.org/Webmention) support:
 
 * Like-of: Indicates that this entry "likes" the specified URL
 * In-reply-to: Indicates that this entry is a reply to the specified URL
@@ -122,15 +131,15 @@ I have defined some custom headers for this template for better [Webmention](htt
     RSVP: http://example.com/bad-party no
     ```
 
-You can use more than one of the above, although a lot of external tools will get confused by it so it's best not to.
+In general you should only have one reply context header; more than one is *technically* supported but it can cause weird things to happen.
 
-Incoming webmentions are displayed via [webmention.js](https://github.com/PlaidWeb/webmention.js).
-
-Entries with a `cut` will display the extended text inside a `<details>`, with the cut text as the `<summary>`. This is to give fair warning to folks who are linked directly to the entry from the outside or who are navigating between adjacent entries.
+The entry template includes [`_webmention.html`](#incoming-webmention) for incoming webmention support.
 
 #### Per-category extensions (`(category)/entry.html`)
 
 Several of the categories override parts of the master `entry.html`, primarily to change the way that images are displayed by default.
+
+Subcategories can remove comments entirely by overriding the `comments` block, although no categories currently do this.
 
 ## Main/landing page (`_mainpage.html`, `index.css`)
 
@@ -161,7 +170,7 @@ UUID: bfec3987-2754-47b0-b6f5-0231b1b35672
 Path-Alias: /twitter
 ```
 
-Given the CSS fragment generated in `index.css`, this will get its link icon with the content file `_layout/twitter.png`. It also goes ahead and sets up a path-alias such that if someone visits [/twitter](https://beesbuzz.biz/twitter) they get redirected to my Twitter page. (This is useful in that now on other pages I can simply link to `/twitter` and if I ever change my Twitter username those links will remain valid.)
+Given the CSS fragment generated in `index.css`, this will get its link icon with the content file `_layout/twitter.png`. It also goes ahead and sets up a path-alias such that if someone visits [/twitter](https://beesbuzz.biz/twitter) they get redirected to my Twitter page. (This is useful in that now on other pages I can simply link to `/twitter` and if I ever change my Twitter username for some reason -- [unlikely as that is](https://twitter.com/fluffy/status/1140411704414621696) -- those links will remain valid.)
 
 The `Date` field on the link entries is simply used to order them.
 
@@ -234,7 +243,19 @@ When I used Disqus, my `_comment_thread.html` template looked something like thi
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 ```
 
-However, Disqus was [pretty bad for private entries](http://beesbuzz.biz/blog/1768-Moving-away-from-Disqus), so I moved away from it. As a partial mitigation for one of the privacy concerns I had been using an ad-hoc mechanism to obscure the Disqus thread IDs, at least, but if you care about privacy, don't use Disqus.
+However, Disqus was [pretty bad for private entries](http://beesbuzz.biz/blog/1768-Moving-away-from-Disqus), so I moved away from it. As a partial mitigation for one of the privacy concerns I had been using an ad-hoc mechanism to obscure the Disqus thread IDs, but it was ultimately ineffective. If you care about privacy, don't use Disqus.
+
+## <span id="incoming-webmention">Incoming webmentions (`/_webmention.html`, `/static/webmention.js`)</span>
+
+Incoming webmentions are displayed via [webmention.js](https://github.com/PlaidWeb/webmention.js).
+
+Entries can register additional source URLs using one or more `Old-URL` headers, e.g.:
+
+```
+Title: This title has changed
+Entry-ID: 1234
+Old-URL: https://blog.example.com/blog/1234-This-is-the-old-title
+```
 
 ## Comics section
 

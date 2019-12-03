@@ -4,4 +4,6 @@
 <link rel="pingback" href="https://webmention.io/DOMAIN_GOES_HERE/xmlrpc" />
 <link rel="webmention" href="https://webmention.io/DOMAIN_GOES_HERE/webmention" />
 -->
-<script src="{{static('webmention.js')}}" async></script>
+<script src="{{static('webmention.js')}}" {% if entry and entry['old-url'] -%}
+    data-add-urls="{{entry.get_all('old-url')|join('|')}}" {% endif -%}
+    async></script>
