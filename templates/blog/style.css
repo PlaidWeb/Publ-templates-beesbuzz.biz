@@ -415,23 +415,23 @@ details summary {
     font-style: italic;
 }
 
+#userinfo {
+    margin: 1ex 0 2em;
+}
 
-#unauthorized {
+#userinfo div {
     display: inline-block;
-    margin: 1ex 0;
     padding: 1em;
-    background: #ffc;
     box-shadow: 0 3px 5px rgba(0,0,0,0.25);
     color: black;
 }
 
-#userinfo {
-    display: inline-block;
-    margin: 1ex 0;
-    padding: 1em;
+#userinfo .hello {
     background: #cfc;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
-    color: black;
+}
+
+#userinfo .unauthorized {
+    background: #ffc;
 }
 
 #userinfo a {
@@ -454,7 +454,7 @@ details summary {
     transition: background-color color 0.25s ease;
 }
 
-:target {
+.footnotes :target {
     background: #cef;
     color: black;
 }
@@ -462,6 +462,46 @@ details summary {
 /* backwards compat rule for footnote layout; can go away with publ v0.5.11 */
 .footnotes hr {
     display: none;
+}
+
+article.react {
+    display: inline-block;
+    border: solid black 1px;
+    border-radius: 3em;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+    margin: 0 1ex 1ex 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+article.react a.hidden {
+    display: none;
+}
+
+article.react a {
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    position: relative;
+    padding: 1ex 1.5ex;
+    background: white;
+}
+
+article.react a:hover {
+    background: #ffc;
+    color: #700;
+}
+
+article.react data {
+    margin-right: -1ex;
+    position: relative;
+    font-size: 80%;
+    left: -.5ex;
+    top: 1ex;
+}
+
+article.react span {
+    text-shadow: black -1px 0px 0px, black 0px -1px 0px, black 1px 0px 0px, black 0px 1px 0px;
 }
 
 
@@ -511,35 +551,3 @@ details summary {
 
 }
 
-article.react {
-    display: inline-block;
-    background: white;
-    border: solid black 1px;
-    padding: 0.5ex 1ex;
-    border-radius: 1em;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
-    margin: 0 1ex 1ex 0;
-    /*width: 1.2em;*/
-    height: 1.2em;
-    text-align: center;
-}
-
-article.react a::first-letter {
-    text-decoration: none;
-    position: relative;
-}
-
-article.react a {
-    color: black;
-    text-decoration: none;
-    position: relative;
-}
-
-article.react data {
-    margin-right: -1ex;
-    position: relative;
-    font-size: 80%;
-    left: -.5ex;
-    top: 1ex;
-    text-shadow: black 0px 0px 1px, black 0px 0px 1px;
-}

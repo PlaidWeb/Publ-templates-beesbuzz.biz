@@ -154,7 +154,7 @@
             <article class="h-entry comic">
                 <div class="heading">
                     <h2>{% if entry.category.path != category.path %}<a href="{{entry.archive(paging=view.paging)}}" class="p-category">{{entry.category.name}}</a>:{% endif %}
-                    <a href="{{entry.link}}" class="h-name u-url">{{entry.title}}</a>
+                    <a href="{{entry.link}}" class="p-name u-url">{{entry.title}}</a>
                     </h2>
                     <span class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
                          {{entry.date.format('YYYY')}}/<a href="{{entry.archive(paging='month',category=category)}}">{{entry.date.format('MM')}}</a>/<a href="{{entry.archive(paging='day',category=category)}}">{{entry.date.format('DD')}}</a></time>
@@ -218,6 +218,7 @@
             <article class="h-entry">
             <div class="entry">
                 <div class="heading">
+                    <a class="u-url" href="{{entry.link}}"></a>
                     <h3 class="p-name">{{entry.title}}</h3>
                     <span class="posted">{{entry.date.format('YYYY/MM/DD h:mm A')}}</span>
                 </div>

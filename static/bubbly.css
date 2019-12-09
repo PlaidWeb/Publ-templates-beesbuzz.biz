@@ -256,7 +256,7 @@ td {
     transition: background-color color 0.25s ease;
 }
 
-:target {
+.footnotes :target {
     background: #cef;
     color: black;
 }

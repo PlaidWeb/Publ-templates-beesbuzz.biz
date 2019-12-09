@@ -55,7 +55,7 @@
     <div class="top-hook"></div>
 
     {% block banner %}
-    <div id="banner">
+    <heading id="banner">
         <h1>{{ category.name or "busybee" }}
         {%- if view.tags %}
             ({{view.tags|map('title')|join(', ')}})
@@ -64,7 +64,7 @@
         {% if category.description %}
         <div id="description">{{category.description}}</div>
         {% endif %}
-    </div>
+    </heading>
     {% endblock %}
 
     {% block navigation %}
@@ -99,7 +99,7 @@
     {% endblock %}
 
     {% block content scoped %}
-    <div id="entries">
+    <section id="entries">
 
         {% if view.older or view.newer %}
         <div class="nav topnav">
@@ -115,11 +115,13 @@
 
         {% block entries %}
 
+        <div id="userinfo">
         {% if user %}
-        <div id="userinfo">Hello, <code>{{user.name}}</code>. <a href="{{logout}}">sign out</a></div>
+        <div class="hello">Hello, <code>{{user.name}}</code>. <a href="{{logout}}">sign out</a></div>
         {% elif view.unauthorized(count=1) %}
-        <div id="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div>
+        <div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div>
         {% endif %}
+        </div>
 
         {% for entry in view.entries %}
         {% if entry.body() or entry.more() %}{# has a body, which means there's text to display #}
@@ -187,14 +189,14 @@
                              ('bookmark-of', '⭐️', 'Bookmarked'),
                             ) -%}
                 {%- for link in entry.get_all(type) -%}
-                    <a href="{{link}}" class="u-{{type}}">{{icon}} {{entry.title}}</a>
+                    <a href="{{link}}" class="u-{{type}}"><span>{{icon}}</span> {{entry.title}}</a>
                 {%- endfor -%}
             {%- endfor -%}
             {%- for rsvp in entry.get_all('rsvp') -%}
                 {%- with url,value = rsvp.split() -%}
-                    <a class="u-in-reply-to" href="{{url}}" title="RSVP: {{entry.title}} {{value}}">📅<data class="rsvp rsvp-{{value}} p-rsvp" value="{{value}}">{{
+                    <a class="u-in-reply-to" href="{{url}}" title="RSVP: {{entry.title}} {{value}}"><span>📅<data class="rsvp rsvp-{{value}} p-rsvp" value="{{value}}">{{
                         {'yes':'✅','no':'❌','interested':'💡','maybe':'💭'}[value]
-                    }}</data> {{entry.title}}</a>
+                    }}</data></span> {{entry.title}}</a>
                 {%- endwith -%}
             {%- endfor -%}
         </article>
@@ -215,7 +217,7 @@
         {% endif %}
 
         <div class="expand"></div>
-    </div>
+    </section>
     {% endblock %}
 
 </div>
