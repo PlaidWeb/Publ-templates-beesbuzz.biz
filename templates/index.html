@@ -75,7 +75,7 @@
             <li><a href="{{cat.link}}">{{cat.name}}</a></li>
             {% endfor %}
             <li class="here">
-                {{category.name}} {% if view.range or view.tags %}(<a href="{{category.link}}">Latest entries</a>){% endif %}
+                {{category.name}} {% if view.newer or view.tags %}(<a href="{{category.link}}">Latest entries</a>){% endif %}
             </li>
         </ul>
 
