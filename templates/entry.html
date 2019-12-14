@@ -26,10 +26,10 @@
     {% endif %}
 
     {% block scripthooks %}
-    {% endblock %}
     {% if entry.math %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML" async></script>
     {% endif %}
+    {% endblock %}
 
     {{ entry.card(width=800,height=800) }}
     <meta property="og:type" content="website" />
