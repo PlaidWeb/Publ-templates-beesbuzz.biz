@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 gunicorn = "*"
 publ = "*"
-flask-profiler = "*"
+python-memcached = "*"
 pushl = "*"
 
 [dev-packages]
