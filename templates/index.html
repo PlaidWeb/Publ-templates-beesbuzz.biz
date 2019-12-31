@@ -81,7 +81,7 @@
         {% if category.subcats %}
         <ul class="subcats">
             {% for subcat in category.subcats %}
-            <li><a href="{{subcat.link}}">{{subcat.name}}</a></li>
+            <li><a href="{{subcat.link}}" title="{{subcat.description(markup=False)}}">{{subcat.name}}</a></li>
             {% endfor %}
         </ul>
         {% endif %}
@@ -90,7 +90,7 @@
         {% if sidebar.entries %}
         <ul class="sidebar">
             {% for entry in sidebar.entries %}
-            <li><a href="{{entry.link}}">{{entry.title}}</a></li>
+            <li><a href="{{entry.link}}" title="{{entry.summary}}">{{entry.title}}</a></li>
             {% endfor %}
         </ul>
         {% endif %}

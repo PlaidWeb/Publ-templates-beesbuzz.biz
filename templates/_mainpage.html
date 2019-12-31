@@ -32,7 +32,7 @@
     <ul id="categories">
         {% for cat in category.subcats %}
         {% if not cat.hidden %}
-        <li class="{{cat.basename}}"><a href="{{cat.link}}"><span>{{cat['display-name'] or cat['sort-name'] or cat.name}}</span></a></li>
+        <li class="{{cat.basename}}"><a href="{{cat.link}}" title="{{cat.description(markup=False)}}"><span>{{cat['display-name'] or cat['sort-name'] or cat.name}}</span></a></li>
         {% endif %}
         {% endfor %}
 
@@ -46,7 +46,7 @@
 	    {%- if not user and latest.unauthorized(count=1) %} <a class="login" href="{{login}}">login for more</a>{% endif -%}</h2>
         <ul>
             {% for entry in latest.entries %}
-	    <li><a href="{{entry.category.link}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
+	    <li><a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
             {% endfor %}
         </ul>
 
