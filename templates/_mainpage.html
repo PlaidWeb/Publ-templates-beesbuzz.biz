@@ -24,7 +24,7 @@
     <div id="links">
         {%- for entry in view(entry_type='sidebar',order='title',tag=None).entries -%}
         <a href="{{entry.link}}" {% if entry['link-rel'] %}rel="{{entry['link-rel']}}"{% endif %}
-            title="{{entry.title}}" class="{{entry.icon or entry.title.lower()}}"><span>{{entry.title}}</span></a>
+            title="{{entry.title(markup=False)}}" class="{{entry.icon or entry.title(markup=False).lower()}}"><span>{{entry.title}}</span></a>
         {% endfor -%}
     </div>
 
