@@ -16,6 +16,7 @@ date
 # run pushl
 mkdir -p $HOME/var/pushl
 flock -n $HOME/var/pushl/run.lock $HOME/.local/bin/pipenv run pushl \
+    --max-connections 10 \
     -rvvkc $HOME/var/pushl \
     https://beesbuzz.biz/feed\?push=1 \
     https://publ.beesbuzz.biz/feed\?push=1 \
