@@ -4,14 +4,17 @@
 
 cd "$(dirname $0)"
 
+# see where in the history we are now
+PREV=$(git rev-parse --short HEAD)
+
 git pull --ff-only || exit 1
 
-if git diff --name-only HEAD@{1} | grep -q Pipfile.lock ; then
+if git diff --name-only $PREV | grep -q Pipfile.lock ; then
     echo "Pipfile.lock changed; redeploying"
     pipenv install || exit 1
     # Completely restart the service, in case gunicorn updated
     systemctl --user restart beesbuzz.biz.service
-elif grep -qE '^(templates/|app\.py)' ; then
+elif git diff --name-only $PREV | grep -qE '^(templates/|app\.py)' ; then
     echo "Detected template or config change; restarting web services"
     # Just tell gunicorn to restart, if possible
     systemctl --user reload-or-restart beesbuzz.biz.service
