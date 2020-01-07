@@ -1,6 +1,5 @@
 #!/bin/sh
-# deploy.sh - post-update deploy script
-# see http://publ.beesbuzz.biz/441 for more information
+# wrapper script to pull the latest site content and redeploy
 
 cd "$(dirname $0)"
 
@@ -9,15 +8,19 @@ PREV=$(git rev-parse --short HEAD)
 
 git pull --ff-only || exit 1
 
+if git diff --name-only $PREV | grep -qE '^(templates/|app\.py)' ; then
+    echo "Configuration or template change detected"
+    disposition=reload-or-restart
+fi
+
 if git diff --name-only $PREV | grep -q Pipfile.lock ; then
-    echo "Pipfile.lock changed; redeploying"
+    echo "Pipfile.lock changed"
     pipenv install || exit 1
-    # Completely restart the service, in case gunicorn updated
-    systemctl --user restart beesbuzz.biz.service
-elif git diff --name-only $PREV | grep -qE '^(templates/|app\.py)' ; then
-    echo "Detected template or config change; restarting web services"
-    # Just tell gunicorn to restart, if possible
-    systemctl --user reload-or-restart beesbuzz.biz.service
+    disposition=restart
+fi
+
+if [ "$1" != "nokill" ] && [ ! -z "$disposition" ] ; then
+    systemctl --user $disposition beesbuzz.biz.service
 fi
 
 # Wait for the socket to exist before trying to run push
