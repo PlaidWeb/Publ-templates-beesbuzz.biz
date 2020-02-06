@@ -15,14 +15,16 @@
     Repost-Of: http://example.com/bar
 
 -#}
-{%- for type, label in (('like-of', 'Liked'),
-                 ('in-reply-to', 'Re'),
-                 ('repost-of', 'Repost'),
-                 ('bookmark-of', 'Bookmark'),
+{%- for type, label in (('like-of', '❤️'),
+                 ('in-reply-to', '💬'),
+                 ('repost-of', '🔄'),
+                 ('bookmark-of', '⭐️'),
                  ('syndication', ''),
                 ) -%}
-    {%- for link in entry.get_all(type) -%}
-        <a href="{{link}}" class="{{'hidden ' if not label else ''}}u-{{type}}">{{label}}: {{link}}</a>
+    {%- for note in entry.get_all(type) -%}
+        {%- with url,_,title = note.partition(' ') -%}
+        <a href="{{url}}" class="{{'hidden ' if not label else ''}}u-{{type}}">{{label}} {{title if title else entry.title}}</a>
+        {%- endwith -%}
     {%- endfor -%}
 {%- endfor -%}
 

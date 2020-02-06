@@ -184,8 +184,9 @@
         <article class="react h-entry{{' private' if entry.private else ''}}">
             {# there's no body so this must be a reaction post #}
             <a href="{{entry.link}}" class="u-url p-title hidden">{{entry.title}}</a>
-            {%- for type, icon, label in (('like-of', '❤️', 'Liked'),
+            {%- for type, icon, label in (
                              ('bookmark-of', '⭐️', 'Bookmarked'),
+                            ('like-of', '❤️', 'Liked'),
                             ) -%}
                 {%- for link in entry.get_all(type) -%}
                     <a href="{{link}}" class="u-{{type}}"><span>{{icon}}</span> {{entry.title}}</a>
