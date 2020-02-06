@@ -1,0 +1,21 @@
+{% extends '/entry.html' %}
+
+{% block entrytags %}
+{{super()}}
+{% if entry.toc %}
+<nav id="toc">
+    <h2>Table of Contents</h2>
+    {{entry.toc(max_depth=2)}}
+</nav>
+{% endif %}
+{% endblock %}
+
+{% block entrymore_content %}
+{{entry.more(
+    div_class='images',
+    gallery_id=entry.uuid,
+    width=960,
+    height=960,
+    resize="fit",
+    heading_link_class="toc_link")}}
+{% endblock %}

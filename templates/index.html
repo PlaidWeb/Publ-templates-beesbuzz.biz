@@ -125,7 +125,7 @@
         {% for entry in view.entries %}
         {% if entry.body() or entry.more() %}{# has a body, which means there's text to display #}
         <article class="entry h-entry{{' private' if entry.private else ''}}">
-            <div class="heading">
+            <header class="heading">
                 {% block heading scoped %}
                 <div class="top-hook"></div>
                 <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title}}</a></h2>
@@ -143,7 +143,7 @@
                     {% endif %}
                 </div>
                 {% endblock %}
-            </div>
+            </header>
 
             {% block entrytags scoped %}
                 <div class="tags">

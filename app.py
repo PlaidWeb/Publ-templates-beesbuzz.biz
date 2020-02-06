@@ -29,7 +29,7 @@ config = {
     # I'm running on a server with a local memcached instance.
     'cache': {
         'CACHE_TYPE': 'memcached',
-        'CACHE_DEFAULT_TIMEOUT': 300,
+        'CACHE_DEFAULT_TIMEOUT': 3613,
         'CACHE_KEY_PREFIX': 'beesbuzz.biz',
     } if not os.environ.get('FLASK_DEBUG') else {
         'CACHE_NO_NULL_WARNING': True

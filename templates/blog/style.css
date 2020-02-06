@@ -508,6 +508,11 @@ pre {
     overflow: auto;
 }
 
+.image-more {
+    display: block;
+    font-size: small;
+}
+
 @media (prefers-color-scheme: dark) {
     html {
         /* {{image('/_layout/plaidbg-darkmode.png').get_css_background(width=192,uncomment=True)}} */
@@ -540,6 +545,10 @@ pre {
 
     .entry .commentlink a {
         color: black;
+    }
+
+    *:hover >a.toc_link:after {
+        color: white;
     }
 
     #comments h2 {

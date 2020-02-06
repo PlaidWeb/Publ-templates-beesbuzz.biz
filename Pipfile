@@ -8,6 +8,7 @@ gunicorn = "*"
 publ = "*"
 python-memcached = "*"
 pushl = "*"
+watchdog = "==0.9.0"
 
 [dev-packages]
 

@@ -26,9 +26,15 @@
 
 <div class="body e-summary">
 
-{{ entry.body(max_width=720,
+{{ entry.body(max_width=360,
+    max_height=360,
+    resize="fill",
     link=entry.link,
     prefix="index_",
+    count=4,
+    more_link=entry.link,
+    more_text='See all {count} images',
+    more_class='image-more',
     div_class="images") }}
 
 

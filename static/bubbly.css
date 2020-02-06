@@ -39,16 +39,31 @@ html {
     clear: both;
 }
 
-.entry h2 {
+header h2 {
     margin: 0;
     padding: 0;
 }
 
-.entry h2 a {
+header h2 a {
     display: block;
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+a.toc_link:before {
+    position: absolute;
+    font-size: 67%;
+    margin-top: .33em;
+    margin-left: -1.5ex;
+    text-decoration: none;
+    content: '#';
+    color: #777;
+}
+
+*:hover >a.toc_link:before {
+    color: black;
+    text-shadow: white 0 0 1px;
 }
 
 .entry .heading {
@@ -301,6 +316,11 @@ td {
 
     .entry .heading .top-hook {
         width: 10em;
+    }
+
+    *:hover >a.toc_link:before {
+        color: white;
+        text-shadow: black 0 0 1px;
     }
 
     #userinfo {

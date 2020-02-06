@@ -115,13 +115,16 @@
                 {% block entrybody %}
                 {% if entry.body %}
                 <div id="preamble" class="body">
+                    {% block entrybody_content scoped %}
                     {{entry.body(gallery_id=entry.uuid,
                         div_class='images',
                         width=960,
                         height=640,
                         fullsize_width=3840,
                         fullsize_height=2160,
-                        fullsize_quality=35)}}
+                        fullsize_quality=35,
+                        heading_link_class='toc_link')}}
+                    {% endblock %}
                 </div>
                 {% endif %}
                 {% endblock %}
@@ -138,7 +141,8 @@
                         height=360,
                         fullsize_width=3840,
                         fullsize_height=2160,
-                        fullsize_quality=35)}}
+                        fullsize_quality=35,
+                        heading_link_class='toc_link')}}
                     {% endblock %}
                 </div>
                 {% endif %}
