@@ -513,6 +513,12 @@ pre {
     font-size: small;
 }
 
+.via {
+    font-size: small;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
 @media (prefers-color-scheme: dark) {
     html {
         /* {{image('/_layout/plaidbg-darkmode.png').get_css_background(width=192,uncomment=True)}} */

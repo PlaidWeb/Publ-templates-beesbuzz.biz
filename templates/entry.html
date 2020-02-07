@@ -165,6 +165,16 @@
 
 {%- if entry.cut %}</details>{% endif -%}
 
+                {%- if entry.via %}
+                <p class="via">(via
+                    {% for via in entry.get_all('via') %}
+                    {% with url, _, label = via.partition(' ') -%}
+                    <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>{% if loop.index < loop.length %}, {% endif -%}
+                    {%- endwith -%}
+                    {%- endfor -%}
+                )</p>
+                {%- endif -%}
+
             </div>
 
             {% block webmentions %}

@@ -161,28 +161,38 @@
             {% include '/_indieweb.html' %}
 
                 {% block entrybody scoped %}
-                {% if entry.body %}
-                <div class="body e-summary">
-                {{ entry.body(max_width=240,
-                    max_height=240,
-                    link=entry.link,
-                    resize="fill",
-                    count=1,
-                    prefix="index_",
-                    div_class="thumb") }}
-                </div>
-                {% endif %}
+                    {% if entry.body %}
+                    <div class="body e-summary">
+                    {{ entry.body(max_width=240,
+                        max_height=240,
+                        link=entry.link,
+                        resize="fill",
+                        count=1,
+                        prefix="index_",
+                        div_class="thumb") }}
+                    </div>
+                    {% endif %}
 
-                {% if entry.more %}
-                <a class="readmore" rel="self" href="{{ entry.link }}#more">Read more...</a>
-                {% endif %}
+                    {% if entry.more %}
+                    <a class="readmore" rel="self" href="{{ entry.link }}#more">Read more...</a>
+                    {% endif %}
 
                 {% endblock %}
+
+                {%- if entry.via %}
+                <p class="via">(via
+                    {% for via in entry.get_all('via') %}
+                    {% with url, _, label = via.partition(' ') -%}
+                    <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>{% if loop.index < loop.length %}, {% endif -%}
+                    {%- endwith -%}
+                    {%- endfor -%}
+                )</p>
+                {%- endif -%}
             </div>
         </article>
         {% else %}
+        {# there's no body so this must be a reaction post #}
         <article class="react h-entry{{' private' if entry.private else ''}}">
-            {# there's no body so this must be a reaction post #}
             <a href="{{entry.link}}" class="u-url p-title hidden">{{entry.title}}</a>
             {%- for type, icon, label in (
                              ('bookmark-of', '⭐️', 'Bookmarked'),
@@ -199,6 +209,16 @@
                     }}</data></span> {{entry.title}}</a>
                 {%- endwith -%}
             {%- endfor -%}
+
+                {%- if entry.via %}
+                <p class="via hidden">(via
+                    {% for via in entry.get_all('via') %}
+                    {% with url, _, label = via.partition(' ') -%}
+                    <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>{% if loop.index < loop.length %}, {% endif -%}
+                    {%- endwith -%}
+                    {%- endfor -%}
+                )</p>
+                {%- endif -%}
         </article>
         {% endif %}
         {% endfor %}
