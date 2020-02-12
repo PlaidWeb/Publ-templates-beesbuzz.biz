@@ -519,6 +519,27 @@ pre {
     margin-bottom: 0;
 }
 
+.spoiler {
+    color: black;
+    background: black;
+    border: dotted white 1px;
+}
+
+.spoiler * {
+    color: black;
+    background: black;
+}
+
+.spoiler:hover {
+    color: white;
+    background: black;
+    border: solid black 1px;
+}
+
+.spoiler:hover a {
+    color: #f7c;
+}
+
 @media (prefers-color-scheme: dark) {
     html {
         /* {{image('/_layout/plaidbg-darkmode.png').get_css_background(width=192,uncomment=True)}} */

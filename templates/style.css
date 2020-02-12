@@ -44,6 +44,10 @@ a:visited {
     color: white;
 }
 
+#banner h1 {
+    background: black;
+}
+
 .entry .heading h2 a,
 .entry .heading h2 a:visited {
     color: white;
