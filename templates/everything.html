@@ -10,10 +10,10 @@
 
 {% block content %}
 {% set view=view(recurse=True) %}
-<div id="entries">
+<section id="entries">
 
     {% if view.previous or view.next %}
-    <div class="nav topnav">
+    <nav class="nav topnav">
         {% if view.previous %}
         <span class="prev"><a href="{{view.previous.link(template=template)}}">{{view.previous.range}}</a></span>
         {% endif %}
@@ -21,12 +21,12 @@
         {% if view.next %}
         <span class="next"><a href="{{view.next.link(template=template)}}">{{view.next.range}}</a></span>
         {% endif %}
-    </div>
+    </nav>
     {% endif %}
 
     {% for entry in view.entries %}
-    <div class="entry">
-        <div class="heading">
+    <article class="entry">
+        <header class="heading">
             {% block heading scoped %}
             <div class="top-hook"></div>
             <h2><a href="{{entry.link}}">{{entry.title}}</a></h2>
@@ -39,7 +39,7 @@
                 {% endif %}
             </div>
             {% endblock %}
-        </div>
+        </header>
 
         <div class="content">
             {% block entrybody scoped %}
@@ -49,6 +49,8 @@
                 max_height=240,
                 link=entry.link,
                 resize="fill",
+                fill_crop_x=0,
+                fill_crop_y=0,
                 count=1,
                 div_class="thumb") }}
             </div>
@@ -60,11 +62,11 @@
 
             {% endblock %}
         </div>
-    </div>
+    </article>
     {% endfor %}
 
     {% if view.previous or view.next %}
-    <div class="nav bottomnav">
+    <nav class="nav bottomnav">
         {% if view.previous %}
         <span class="prev"><a href="{{view.previous.link(template=template)}}">{{view.previous.range}}</a></span>
         {% endif %}
@@ -72,10 +74,10 @@
         {% if view.next %}
         <span class="next"><a href="{{view.next.link(template=template)}}">{{view.next.range}}</a></span>
         {% endif %}
-    </div>
+    </nav>
     {% endif %}
 
     <div class="expand"></div>
-</div>
+</section>
 {% endblock %}
 

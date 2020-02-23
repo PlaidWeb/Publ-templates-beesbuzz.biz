@@ -16,6 +16,9 @@
     {%- if not view.is_current and view.range %} | {{ view.range }}{% endif %}</title>
 {% endblock %}
 
+{% block favicon %}
+{% include get_template('_favicon.html', category) %}
+{% endblock %}
 
 {% block stylesheet %}
     <link rel="stylesheet" href="style.css" />
@@ -23,8 +26,6 @@
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}" />
     <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
     <link rel="alternate" type="application/atom+xml" title="Summary feed" href="{{view.link(template='feed-summary')}}" />
-    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
-    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
 {% block webmention %}
     {% include '/_webmention.html' %}
 {% endblock %}

@@ -17,11 +17,11 @@
 {% endblock %}
 
 {% block content %}
-<div id="entries">
-    <div class="entry">
-        <div class="heading">
+<section id="entries">
+    <article class="entry">
+        <header class="heading">
             <h2><a href="{{category.link}}">{{category.name}}</a></h2>
-        </div>
+        </header>
 
         {% if category.parent %}
         <h3>Parent categories</h3>
@@ -52,6 +52,6 @@
             </ul>
             {% endif %}
         </div>
-    </div>
-</div>
+    </article>
+</section>
 {% endblock %}

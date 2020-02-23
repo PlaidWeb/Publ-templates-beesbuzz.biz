@@ -4,35 +4,42 @@ Entry-ID: 7312
 UUID: ea27ba28-2630-49b2-a68f-8af76ada9928
 Path-Alias: /about
 Path-Alias: /contact
-Path-Unalias: /fluffy
-Path-Unalias: /fluffy/
+Path-Canonical: /about
+Path-Alias: /faq
 Status: HIDDEN
+Disable-Comments: true
+Last-Modified: 2020-02-23 01:41:18+00:00
+
+![{scale=2,img_class="inset-right",shape=True,gallery_id=None}](_layout/bronze-1F41D.png)
 
 Hi! Welcome to my little corner of the web, where I share my various creative
 output.
 
-I can't seem to work on the same sort of thing for very long at a time, and so I
-love to keep on learning how to do new things.  Some of it is decent, some of it
-is bad, and some of it's pretty okay, but all of it is mine in some way.
+
+### About me
+
+* Initial release: `(time_t)266699460`
+* Sex: neutrois
+* Gender: nonbinary gal
+* Pronouns: she/her or they/them
+* Favorite colors: purple, red, sometimes blue
+* Favorite pattern: buffalo plaid
+* Furry: Yeah kind of?
+
+Career-wise I'm a software engineer at a [publishing concern](https://maven.io/), but I also like to draw, make music, and make and play video games. Someday I'll figure out how to find the right balance between all those things.
+
+In my professional life I've worked on a lot of the software that lives behind the scenes of products and websites you've probably used. So that's pretty cool, I guess. These days I'm trying to focus more on things that improve overall quality of life, particularly around my own accessibility issues due to [fibromyalgia](/blog/?tag=fibromyalgia).
+
+### About this site
 
 Because I do so many different things and all of them need to be presented in
 different ways, I ended up writing my own content management system,
 [Publ](http://publ.beesbuzz.biz). I like to think it does things differently
 enough from other CMSes to make it worthwhile, both from a flexibility and a
 performance/scalability standpoint. It is [open source](https://github.com
-/fluffy-critter/Publ).
+/PlaidWeb/Publ).
 
-### About me
-
-I'm just some random person in Seattle, who lives with an integer number of cats.
-
-I used to work in the software industry for companies you have probably heard
-of, and it's very likely you've used software I worked on without even knowing
-it. For now I'm just doing my own thing and living off my savings and the
-[kindness of strangers](/patreon).
-
-If you would like to hire me to do something, please get in touch and we can try
-to work something out. My terms are pretty flexible!
+I have also provided [my site templates](https://github.com/PlaidWeb/Publ-templates-beesbuzz.biz) as a reference; if you notice any issues with this website that could be addressed there, feel free to [open an issue](https://github.com/PlaidWeb/Publ-templates-beesbuzz.biz/issues).
 
 ### Contact options
 
@@ -42,4 +49,3 @@ If you would like to get in touch with me, here's some choices:
 * Real-time chat: [Discord](/discord)
 * Social media: [Mastodon](/mastodon), [Twitter](/twitter), and [Tumblr](/tumblr)
 
-Or I guess you can post a comment below, since I forgot to disable comments here. Oops.
