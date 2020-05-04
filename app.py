@@ -56,9 +56,16 @@ config = {
         # enable IndieAuth support using the default client_id shim
         'INDIEAUTH_CLIENT_ID': authl.flask.client_id,
 
+        # Twitter API keys are configured in the environment via systemd unit
+        'TWITTER_CLIENT_KEY': os.environ.get('TWITTER_CLIENT_KEY'),
+        'TWITTER_CLIENT_SECRET': os.environ.get('TWITTER_CLIENT_SECRET'),
+
         # if I'm running locally I want access to the `test:` pseudo-users
         'TEST_ENABLED': os.environ.get('FLASK_DEBUG'),
     },
+
+    # Keep 3 months of authentication logs
+    'auth_log_prune_age': 86400 * 90,
 }
 
 app = publ.Publ(__name__, config)
@@ -72,9 +79,13 @@ if not os.path.isfile('.sessionkey'):
 with open('.sessionkey') as file:
     app.secret_key = file.read()
 
-# provide a thread ID generator for the comment threads
 def thread_id(item):
-    """ Compute an Isso thread URI for the entry """
+    """ Compute an Isso thread URI for the entry.
+
+    This allows me to use Isso for comments on private entries without
+    having to worry about people guessing the secret thread ID; If they can
+    see the thread ID it's because they have access to the entry already.
+    """
     if not isinstance(item, publ.entry.Entry):
         raise ValueError("got non-entry object %s" % type(item))
 
@@ -119,6 +130,20 @@ def redirect_blog_entry(match):
     """
     return flask.url_for('entry', entry_id=7821), False
 
+
+@app.path_alias_regex(r'/([^/]+)/.*rss.php')
+def redirect_subfeed(match):
+    """
+    URL migration: my site used to have per-category/subcategory RSS feeds
+    as /category/path/rss.php. Many of the categories have Path-Aliases
+    in their respective .cat files, but some of the old subcategories no
+    longer apply, so now I just bulk-redirect all unaccounted-for subcategories
+    to the top-level category's feed.
+    """
+    return flask.url_for(
+        'category',
+        category=match.group(1),
+        template='feed'), True
 
 @app.path_alias_regex(r'/\.well-known/(host-meta|webfinger).*')
 def redirect_bridgy(match):

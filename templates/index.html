@@ -115,13 +115,11 @@
 
         {% block entries %}
 
-        <div id="userinfo">
         {% if user %}
-        <div class="hello">Hello, <code>{{user.name}}</code>. <a href="{{logout}}">sign out</a></div>
+        <div id="userinfo"><div class="hello">Hello, <code>{{user.name}}</code>. <a href="{{logout}}">sign out</a></div></div>
         {% elif view.unauthorized(count=1) %}
-        <div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div>
+        <div id="userinfo"><div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div></div>
         {% endif %}
-        </div>
 
         {% for entry in view.entries %}
         {% if entry.body() or entry.more() %}{# has a body, which means there's text to display #}

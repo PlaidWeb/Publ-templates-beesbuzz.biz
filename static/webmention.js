@@ -61,6 +61,16 @@ Allowed parameters:
         but allows certain spoofing attacks. If you would like to prevent
         spoofing, set this to 1.
 
+    sort-by:
+
+        What to order the responses by; defaults to 'published'. See
+        https://github.com/aaronpk/webmention.io#api
+
+    sort-dir:
+
+        The order to sort the responses by; defaults to 'up' (i.e. oldest
+        first). See https://github.com/aaronpk/webmention.io#api
+
 A more detailed example:
 
 <script src="/path/to/webmention.js"
@@ -86,6 +96,8 @@ A more detailed example:
     var textMaxWords = getCfg('wordcount');
     var maxWebmentions = getCfg('max-webmentions', 30);
     var mentionSource = getCfg('prevent-spoofing') ? 'wm-source' : 'url';
+    var sortBy = getCfg('sort-by', 'published');
+    var sortDir = getCfg('sort-dir', 'up');
 
     var reactTitle = {
         'in-reply-to': 'replied',
@@ -125,7 +137,7 @@ A more detailed example:
                            ? r.author.name
                            : r.url.split('/')[2]);
         var response = reactTitle[r['wm-property']] || 'reacted';
-        var html = '<a class="reaction" rel="nofollow" title="' + who + ' ' +
+        var html = '<a class="reaction" rel="nofollow ugc" title="' + who + ' ' +
             response + '" href="' + r[mentionSource] + '">';
         if (r.author && r.author.photo) {
             html += '<img src="' + entities(r.author.photo) + '">';
@@ -170,7 +182,7 @@ A more detailed example:
 
             html += reactImage(c);
 
-            html += ' <a class="source" rel="nofollow" href="' +
+            html += ' <a class="source" rel="nofollow ugc" href="' +
                 c[mentionSource] + '">';
             if (c.author && c.author.name) {
                 html += entities(c.author.name);
@@ -264,7 +276,7 @@ A more detailed example:
         }
 
         var apiURL = 'https://webmention.io/api/mentions.jf2?per-page=' +
-            maxWebmentions;
+            maxWebmentions + '&sort-by=' + sortBy + '&sort-dir=' + sortDir;
 
         pages.forEach(function (path) {
             apiURL += '&target[]=' + encodeURIComponent('http:' + path) +

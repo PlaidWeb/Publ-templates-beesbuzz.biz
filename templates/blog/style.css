@@ -420,10 +420,10 @@ details summary {
 }
 
 #userinfo div {
-    display: inline-block;
     padding: 1em;
     box-shadow: 0 3px 5px rgba(0,0,0,0.25);
     color: black;
+    display: inline-block;
 }
 
 #userinfo .hello {
@@ -538,55 +538,5 @@ pre {
 
 .spoiler:hover a {
     color: #f7c;
-}
-
-@media (prefers-color-scheme: dark) {
-    html {
-        /* {{image('/_layout/plaidbg-darkmode.png').get_css_background(width=192,uncomment=True)}} */
-        background-color: #211;
-    }
-
-    .entry {
-        background: black;
-        color: white;
-        /* {{image('/_layout/plaidlogo-blur-bg-invert.jpg').get_css_background(width=192*1100/1024,uncomment=True)}} */
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-    }
-
-    .posted {
-        color: black;
-    }
-
-    .entry .content a, .entry .tags a {
-        color: #f7c;
-    }
-
-    .entry .content a:visited, .entry .tags a:visited {
-        color: #f37;
-    }
-
-    .entry .content a:hover, .entry .tags a:hover {
-        color: #fce;
-    }
-
-    .entry .commentlink a {
-        color: black;
-    }
-
-    *:hover >a.toc_link:after {
-        color: white;
-    }
-
-    #comments h2 {
-        color: black;
-    }
-
-    blockquote {
-        border: solid #333 1px;
-        background: rgba(255,255,255,0.2);
-        box-shadow: #555 0 2px 4px;
-    }
-
 }
 

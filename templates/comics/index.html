@@ -90,6 +90,13 @@
     {% endif %}
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+
+    {% if comics.older %}
+    <link rel="prev" href="{{comics.older}}">
+    {% endif %}
+    {% if comics.newer %}
+    <link rel="next" href="{{comics.newer}}">
+    {% endif %}
     {% include '/_webmention.html' %}
 
     <title>

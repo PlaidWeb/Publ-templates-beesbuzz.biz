@@ -236,7 +236,7 @@ td {
     content: ' • ';
 }
 
-#userinfo {
+#userinfo div {
     position: absolute;
     top: 0;
     left: 0;

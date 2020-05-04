@@ -89,32 +89,3 @@ p {
 .images {
     text-align: center;
 }
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background: #333;
-    }
-
-    #banner {
-        background: #300;
-    }
-
-    #container {
-        background: black;
-        color: white;
-    }
-
-    a:link {
-        color: #f99;
-    }
-
-    a:hover {
-        color: #fcc;
-    }
-
-    a:visited {
-        color: #f77;
-    }
-
-    th { color: black; }
-}
