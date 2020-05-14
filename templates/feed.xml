@@ -11,14 +11,15 @@
     <link href="{{ view.link(template='feed',absolute=True) }}" rel="self" />
     {% if not view.is_current %}
     <link href="{{ view.current.link(template='feed',absolute=True) }}" rel="current" />
-    <fh:archive />
+    <fh:archive/>
     {% endif %}
+
     <link href="https://busybee.superfeedr.com" rel="hub" />
-    {% if view.next %}
-    <link href="{{ view.next.first.archive('month','feed',category=category,absolute=True) }}" rel="prev-archive" />
+    {% if view.older %}
+    <link href="{{ view.older.link(template='feed',absolute=True) }}" rel="prev-archive" />
     {% endif %}
-    {% if view.previous %}
-    <link href="{{ view.previous.last.archive('month','feed',category=category,absolute=True) }}" rel="next-archive" />
+    {% if view.newer %}
+    <link href="{{ view.newer.link(template='feed',absolute=True) }}" rel="next-archive" />
     {% endif %}
     <link href="{{ category.link(absolute=True) }}" />
     <id>tag:{{request.host}},{{template.last_modified.format('YYYY-MM-DD')}}:{{category.path or "_all"}}</id>
