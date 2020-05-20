@@ -9,9 +9,7 @@
     prefix='feed_',
     img_class='u-photo'
 )}}
-{% endif %}
 
-{% if entry.more %}
 {{entry.more(
     max_width=240,
     max_height=240,
@@ -19,4 +17,11 @@
     resize="fill",
     absolute=True,
 )}}
+
+{% for tscript in entry.attachments(entry_type='transcript') %}
+<h3>Transcript</h3>
+{{tscript.body(absolute=True)}}
+{{tscript.more(absolute=True)}}
+{% endfor %}
+
 {% endif %}

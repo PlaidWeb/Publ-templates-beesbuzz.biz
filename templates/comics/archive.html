@@ -90,7 +90,7 @@
             <h3>Entries</h3>
             <div>
             <ul>
-                {% for entry in view(order='oldest').entries %}
+                {% for entry in view(order='oldest',entry_type_not=['transcript','About']).entries %}
                 <li class="{{entry.entry_type or 'Comic'}}">
                     <a href="{{entry.link if entry.entry_type in ['News','Recap'] else entry.archive}}">{{entry.title}}</a> <span class="posted">({{entry.date.format('YYYY/MM/DD')}})</span>
                 </li>

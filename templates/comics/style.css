@@ -574,3 +574,35 @@ details summary {
 }
 
 .hidden, .heading .author { display: none; }
+
+.transcript details {
+    display: inline-block;
+    text-align: left;
+    padding: 1ex;
+}
+
+.transcript div {
+    margin: 0;
+    padding: 1ex;
+    background: #eee;
+    border-radius: 0 0 1ex 1ex;
+}
+
+.transcript p {
+    margin: 0;
+    padding: 0;
+    padding-left: 3em;
+    text-indent: -3em;
+}
+
+.transcript summary {
+    text-align: center;
+    padding-left: 3em;
+    padding-right: 3em;
+    margin-bottom: 0;
+}
+
+.transcript details[open] summary {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}

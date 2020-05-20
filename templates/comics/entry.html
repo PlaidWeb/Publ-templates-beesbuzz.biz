@@ -50,11 +50,11 @@
 {% endmacro %}
 
 {% macro prevComic(entry,category,cat_name) %}
-{{ miniNav(entry.previous(category=category), 'previous in ' ~ cat_name, '_prev_page') }}
+{{ miniNav(entry.previous(category=category,is_attached=False), 'previous in ' ~ cat_name, '_prev_page') }}
 {% endmacro %}
 
 {% macro nextComic(entry,category,cat_name) %}
-{{ miniNav(entry.next(category=category), 'next in ' ~ cat_name, '_next_page') }}
+{{ miniNav(entry.next(category=category,is_attached=False), 'next in ' ~ cat_name, '_next_page') }}
 {% endmacro %}
 
 <div id="container">
@@ -145,6 +145,13 @@
                     {% include '/_hcard.html' %}
                 {% endif %}
             </div>
+
+            {% for attachment in entry.attachments %}
+            <section class="{{attachment.entry_type}}" id="attach-{{attachment.id}}">
+            <details><summary>{{attachment.entry_type.title()}}</summary>
+            <div>{{ attachment.body }}</div>
+            </details></section>
+            {% endfor %}
         </article>
 
 

@@ -5,5 +5,6 @@ UUID: 505005b0-2a4e-5688-aaa0-b143c6f3cd97
 Tag: heñlo
 Tag: inverse
 Tag: newchapter
+Attach: ../sample transcript.md
 
 ![](sample comic.jpg "it has popup text")
