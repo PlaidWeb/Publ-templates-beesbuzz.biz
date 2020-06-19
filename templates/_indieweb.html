@@ -2,11 +2,11 @@
     send that as the primary tag, and any tags on the entry itself will also be sent out as well. -#}
 {%- for crumb in category.breadcrumb|reverse %}
 {%- if crumb.tag %}
-<a class="u-syndication" href="https://indieweb.xyz/en/{{crumb.tag|urlencode}}"></a>
+<a class="u-syndication" href="https://indieweb.xyz/en/{{crumb.tag|urlencode}}" tabindex="-1"></a>
 {%- endif %}
 {%- endfor %}
 {%- for tag in entry.tags %}
-<a class="u-syndication" href="https://indieweb.xyz/en/{{tag|urlencode}}"></a>
+<a class="u-syndication" href="https://indieweb.xyz/en/{{tag|urlencode}}" tabindex="-1"></a>
 {%- endfor %}
 
 {#- support the common webmention ping types by setting appropriate entry headers, like:
@@ -48,7 +48,7 @@
 -#}
 {%- for ping in entry.get_all('ping') -%}
     {%- with link, class = ping.split() -%}
-        <a href="{{link}}" class="hidden {{class}}"></a>
+        <a href="{{link}}" class="hidden {{class}}" tabindex="-1"></a>
     {%- endwith -%}
 {%- endfor -%}
 
