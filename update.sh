@@ -10,6 +10,7 @@ fi
 
 (
     find templates static -type f | grep -v static/_img
+    echo run.sh
     echo pushl.sh
     echo pub.sh
     echo deploy.sh

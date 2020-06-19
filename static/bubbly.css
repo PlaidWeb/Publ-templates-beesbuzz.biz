@@ -3,13 +3,14 @@
 
 html {
     margin: 0;
-    padding: 0;
+    padding: 0 3em;
 }
 
 #container {
-    margin: 3em;
+    margin: 3em auto;
     border-radius: 16px;
     overflow: hidden;
+    max-width: 55em;
 }
 
 #container h1 {
@@ -277,6 +278,11 @@ td {
 }
 
 @media screen and (max-width: 800px) {
+    html {
+        margin: 0;
+        padding: 0;
+    }
+
     body {
         margin: 0;
         padding: 0;

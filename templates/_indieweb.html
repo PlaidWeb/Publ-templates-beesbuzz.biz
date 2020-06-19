@@ -1,15 +1,4 @@
-{#- Support indieweb.xyz pings based on tags; if the category metadata has a Tag: header it will
-    send that as the primary tag, and any tags on the entry itself will also be sent out as well. -#}
-{%- for crumb in category.breadcrumb|reverse %}
-{%- if crumb.tag %}
-<a class="u-syndication" href="https://indieweb.xyz/en/{{crumb.tag|urlencode}}" tabindex="-1"></a>
-{%- endif %}
-{%- endfor %}
-{%- for tag in entry.tags %}
-<a class="u-syndication" href="https://indieweb.xyz/en/{{tag|urlencode}}" tabindex="-1"></a>
-{%- endfor %}
-
-{#- support the common webmention ping types by setting appropriate entry headers, like:
+{#- Support the common webmention ping types by setting appropriate entry headers, like:
 
     Like-Of: http://example.com/foo
     Repost-Of: http://example.com/bar
@@ -39,16 +28,31 @@
     {%- endwith -%}
 {%- endfor -%}
 
+
+{#- Support indieweb.xyz pings based on tags; if the category metadata has a Tag: header it will
+    send that as the primary tag, and any tags on the entry itself will also be sent out as well. -#}
+<ul class="hidden">
+{%- for crumb in category.breadcrumb|reverse %}
+{%- if crumb.tag %}
+<li>indieweb: <a class="u-category" href="https://indieweb.xyz/en/{{crumb.tag|urlencode}}">#{{crumb.tag}}</a></li>
+{%- endif %}
+{%- endfor %}
+{%- for tag in entry.tags %}
+<li>indieweb: <a class="u-syndication" href="https://indieweb.xyz/en/{{tag|urlencode}}">{{tag}}</a></li>
+{%- endfor %}
+
 {#- support other mention types with a header like:
 
-    Ping: http://example.com/ u-category
+    Ping: http://example.com/ category
 
     Unfortunately 'Category:' means something else in Publ so it can't
     be made a standard ping type.
 -#}
 {%- for ping in entry.get_all('ping') -%}
     {%- with link, class = ping.split() -%}
-        <a href="{{link}}" class="hidden {{class}}" tabindex="-1"></a>
+        <li><a href="{{link}}" class="u-{{class}}">{{class}}</a></li>
     {%- endwith -%}
 {%- endfor -%}
+
+</ul>
 

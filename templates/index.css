@@ -72,11 +72,12 @@ a:hover {
 
 #links a {
     display: inline-block;
-    width: 48px;
-    height: 48px;
-    background-size: contain;
-    margin: 1px;
-    padding: 0;
+    width: 64px;
+    height: 64px;
+    background-size: 48px 48px;
+    background-position: 50% 50%;
+    margin: -8px;
+    padding: 2px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     transition: all 0.25s ease;
@@ -90,15 +91,18 @@ a:hover {
     display: none;
 }
 
-/* {% for link in view(entry_type='sidebar').entries %}{% set icon=link.icon or link.title.lower() %} */
+/* {% for link in view(entry_type='sidebar').entries %}
+{%- set icon=link.icon or link.title.lower() %}
+{%- set iconfmt=link.get('icon-format', '.svg') %} */
 #links .{{icon}} {
-    /*{{image('_layout/'~icon~'.png').get_css_background(uncomment=True,width=48,height=48)}}*/
+    /*{{image('_layout/'~icon~iconfmt).get_css_background(uncomment=True,width=64,height=64)}}*/
 }
 /* {% endfor %} */
 
 #links a:hover {
     background-color: rgba(255,255,255,0.3);
     box-shadow: 0 0 8px rgba(255,255,255,0.3);
+    background-size: 64px 64px;
 }
 
 #entries {
@@ -301,8 +305,13 @@ a:hover {
 
     #links a {
         clear: left;
-        width: 32px;
-        height: 32px;
+        width: 48px;
+        height: 48px;
+        background-size: 32px 32px;
+    }
+
+    #links a:hover {
+        background-size: 48px 48px;
     }
 
     #content {

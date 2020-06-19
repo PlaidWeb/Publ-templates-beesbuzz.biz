@@ -8,7 +8,7 @@ PREV=$(git rev-parse --short HEAD)
 
 git pull --ff-only || exit 1
 
-if git diff --name-only $PREV | grep -qE '^(templates/|app\.py)' ; then
+if git diff --name-only $PREV | grep -qE '^(templates/|app\.py|users\.cfg)' ; then
     echo "Configuration or template change detected"
     disposition=reload-or-restart
 fi
@@ -23,6 +23,10 @@ if [ "$1" != "nokill" ] && [ ! -z "$disposition" ] ; then
     systemctl --user $disposition beesbuzz.biz.service
 fi
 
+# Wait for the content to reindex
+echo "Updating the content index..."
+pipenv run flask publ reindex
+
 # Wait for the socket to exist before trying to run push
 count=0
 while [ $count -lt 5 ] && [ ! -S $HOME/.vhosts/beesbuzz.biz ] ; do
@@ -32,5 +36,5 @@ while [ $count -lt 5 ] && [ ! -S $HOME/.vhosts/beesbuzz.biz ] ; do
 done
 
 echo "Sending push notifications"
-nohup ./pushl.sh
+./pushl.sh
 

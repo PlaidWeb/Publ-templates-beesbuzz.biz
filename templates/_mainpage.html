@@ -12,7 +12,7 @@
 
     <link rel="openid.server" href="https://id.beesbuzz.biz/" />
     <link rel="authorization_endpoint" href="https://auth.beesbuzz.biz/">
-    <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+    <link rel="token_endpoint" href="{{token_endpoint}}">
     <link rel="microsub" href="https://aperture.p3k.io/microsub/330">
 
     {% include '/_webmention.html' %}
@@ -42,7 +42,7 @@
     <div id="entries">
         <h2>Latest things
             {%- if view.tags %} <span>(tagged {{view.tags|join(', ')}})</span>{%endif%}
-            {% set latest=view(recurse=True,order='newest',count=5,entry_type_not='sidebar',category_not='blog/chatter') %}
+            {% set latest=view(recurse=True,order='newest',count=5,entry_type_not=['sidebar','transcript'],category_not='blog/chatter') %}
 	    {%- if not user and latest.unauthorized(count=1) %} <a class="login" href="{{login}}">login for more</a>{% endif -%}</h2>
         <ul>
             {% for entry in latest.entries %}

@@ -31,7 +31,7 @@ a:active { color: #700; }
 #nav ul.breadcrumb .here { text-align: center; font-weight: bold; }
 #nav ul.subcats { text-align: right; }
 
-.entry { border: black 1px; border-style: solid none none; margin-bottom: 1ex; }
+.entry { border: black 1px; border-style: solid none none; max-width: 55em; margin: 0 auto 1ex;}
 .intro { border: black 1px; border-style: solid none dashed; }
 .extend { border-bottom: solid black 1px; }
 

@@ -54,6 +54,18 @@ a:hover {
 
 #entries {
     clear: both;
+    max-width: 50em;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        padding: 0;
+    }
+
+    #entries {
+        margin: 0;
+    }
 }
 
 #banner h1 {
@@ -77,6 +89,7 @@ a:hover {
 }
 
 #nav {
+    position: absolute;
     float: right;
     top: 0;
     right: 0;
