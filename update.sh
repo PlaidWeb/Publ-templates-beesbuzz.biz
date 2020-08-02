@@ -3,8 +3,8 @@
 
 SRCDIR=$HOME/Documents/beesbuzz.biz
 
-if [ $(GIT_DIR=$SRCDIR/.git git rev-parse --abbrev-ref HEAD) != 'master' ] ; then
-    echo "Error: beesbuzz.biz working directory is not on branch master"
+if [ $(GIT_DIR=$SRCDIR/.git git rev-parse --abbrev-ref HEAD) != 'main' ] ; then
+    echo "Error: beesbuzz.biz working directory is not on branch main"
     exit 1
 fi
 

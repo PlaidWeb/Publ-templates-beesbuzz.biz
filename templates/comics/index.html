@@ -175,7 +175,7 @@
                 {% if entry.body %}
                 {% if entry.cut %}
                 <details>
-                    <summary class="e-summary">{{ entry.cut }}</summary>
+                    <summary class="e-summary p-content-warning">{{ entry.cut }}</summary>
                 {% endif %}
                     <div class="e-content">
                         {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link,prefix="index_") }}

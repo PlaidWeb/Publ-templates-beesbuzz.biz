@@ -17,7 +17,7 @@ echo $fname
 
 cat > $fname << EOF
 Status: DRAFT
-Title: $type $url
+Title:
 $type: $url $*
 
 

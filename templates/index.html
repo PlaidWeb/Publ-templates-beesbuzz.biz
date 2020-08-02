@@ -1,4 +1,4 @@
-{%- set view = view(entry_type_not='sidebar',count=20) -%}
+{%- set view = view(entry_type='',is_attached=False,count=20) -%}
 {%- if category.paging == 'year' and view.is_current -%}
 {%- set view = view(date=category.last.date_year) -%}
 {%- endif -%}
@@ -75,7 +75,7 @@
             <li><a href="{{cat.link}}">{{cat.name}}</a></li>
             {% endfor %}
             <li class="here">
-                {{category.name}} {% if view.newer or view.tags %}(<a href="{{category.link}}">Latest entries</a>){% endif %}
+                {{category.name}} {% if view.newer or view.tags or template.name != 'index' %}(<a href="{{category.link}}">Latest entries</a>){% endif %}
             </li>
         </ul>
 
@@ -116,7 +116,7 @@
         {% block entries %}
 
         {% if user %}
-        <div id="userinfo"><div class="hello">Hello, <code>{{user.name}}</code>. <a href="{{logout}}">sign out</a></div></div>
+        <div id="userinfo"><div class="hello">Hello, <a href="{{category.link(template='profile')}}">{{user.name}}</a>. <a href="{{logout}}">sign out</a></div></div>
         {% elif view.unauthorized(count=1) %}
         <div id="userinfo"><div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div></div>
         {% endif %}
@@ -192,7 +192,7 @@
         {% else %}
         {# there's no body so this must be a reaction post #}
         <article class="react h-entry{{' private' if entry.private else ''}}">
-            <a href="{{entry.link}}" class="u-url p-title hidden">{{entry.title}}</a>
+            <a href="{{entry.link}}" class="u-url p-name hidden">{{entry.title}}</a>
             {%- for type, icon, label in (
                              ('bookmark-of', '⭐️', 'Bookmarked'),
                             ('like-of', '❤️', 'Liked'),

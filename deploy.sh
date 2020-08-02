@@ -35,6 +35,10 @@ while [ $count -lt 5 ] && [ ! -S $HOME/.vhosts/beesbuzz.biz ] ; do
     sleep $count
 done
 
+# pushed feeds relevant to this deployment only
 echo "Sending push notifications"
-./pushl.sh
-
+pipenv run pushl -rvvkc $HOME/var/pushl \
+    https://beesbuzz.biz/feed\?push=1 \
+    https://beesbuzz.biz/feed-summary \
+    http://beesbuzz.biz/feed \
+    http://beesbuzz.biz/feed-summary

@@ -3,9 +3,9 @@
 {% block entrybody_content %}
 {{entry.body(gallery_id=entry.uuid,
     div_class='images',
-    width=480,
-    height=480,
-    resize='fill',
+    width=750,
+    height=750,
+    resize='fit',
     fullsize_width=3840,
     fullsize_height=2160,
     fullsize_quality=35,
@@ -15,8 +15,8 @@
 {% block entrymore_content %}
 {{entry.more(gallery_id=entry.uuid,
     div_class='images',
-    width=640,
-    height=640,
+    width=750,
+    height=750,
     resize='fit',
     fullsize_width=3840,
     fullsize_height=2160,

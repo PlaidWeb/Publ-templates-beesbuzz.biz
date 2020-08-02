@@ -588,6 +588,9 @@ details summary {
     border-radius: 0 0 1ex 1ex;
 }
 
+.transcript h3 { font-size: 110%; }
+.transcript h4 { font-size: 105%; }
+
 .transcript p {
     margin: 0;
     padding: 0;

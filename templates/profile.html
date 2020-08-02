@@ -1,0 +1,82 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>User profile{% if user %} for {{user.name}}{% endif %}</title>
+    <style>
+        .avatar img {
+            float: right;
+            max-width: 25%;
+            height: auto;
+            margin: 0 0 1ex 1em;
+            border-radius: 1ex;
+            z-index: 1000;
+            position: relative;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+<section id="entries">
+    <article class="entry">
+    {% if user %}
+        <header class="heading"><h2>Hello, {{user.name}}!</h2></header>
+
+        <section class="content">
+        <p>You seem to be logged into this website with the identity <code>{{user.humanize}}</code>. That's great!</p>
+
+        {% if user.profile %}
+            <p>When you logged in, your identity provider gave me some information about you. Here's the other stuff
+            I know about you from that.</p>
+
+            {% if user.profile.avatar %}
+            <a class="avatar" data-lightbox="avatar" href="{{user.profile.avatar}}" title="{{user.name}}'s avatar"><img src="{{user.profile.avatar}}" alt="avatar" title="{{user.name}}'s avatar"></a>
+            {% endif %}
+
+            {% if user.profile.bio %}
+            <p>You describe yourself as:</p>
+            <blockquote cite="{{user.identity}}"><p>{{user.profile.bio}}</p></blockquote>
+            {% endif %}
+
+            {% if user.profile.email %}
+            <p>Your email address is <a href="mailto:{{user.profile.email}}">{{user.profile.email}}</a>. Don't worry, I promise not to spam you! (And nobody else on the site can see this.)</p>
+            {% endif %}
+
+            {% if user.profile.pronouns %}
+            <p>You describe your pronouns as: {{user.profile.pronouns}}. That's cool! I'll try to remember that.</p>
+            {% endif %}
+
+            {% if user.profile.homepage %}
+            <p>Apparently you have <a href="{{user.profile.homepage}}">a website</a>.
+                {% if user.profile.homepage == user.identity %}It seems to be the same as <a href="{{user.identity}}">your identity URL</a>.
+                {% else %}It's different than <a href="{{user.identity}}">your identity URL</a>. Neat!</p>
+                {% endif %}
+            {% endif %}
+
+            <p>Anyway, thanks for letting me get to know you a bit better.</p>
+        {% elif not user.last_login %}
+            <p>I didn't see when you last logged in, so I didn't get your user profile. That's too bad. If you <a href="{{logout(redir=login())}}">log out and back in again</a> I might know a bit more. But no big deal if you don't.</p>
+        {% else %}
+            <p>When you logged in I didn't seem to get any additional information about you. That's fine though!</p>
+        {% endif %}
+
+        {% if user.is_admin %}
+            <p>Also you're an admin of this site. Don't let the power go to your head!</p>
+        {% elif 'friends' in user.groups %}
+            <p>I also trust you with a bunch of my private content on <a href="/blog/">my blog</a>. Please be careful with it!</p>
+        {% elif 'followers' in user.groups %}
+            <p>I've also seen you around enough to give you access to some non-public content on <a href="/blog/">my blog</a>. Please handle it with care!</p>
+        {% endif %}
+        </section>
+
+    {% else %}
+
+   <header class="heading"><h2>Hello, friend!</h2></header>
+
+   <section class="content">
+    <p>You don't seem to be logged in right now. If you like, you can <a href="{{login}}">log in</a> and then I'll know a bit more about you, and you'll get access to more things. But it's up to you. No pressure either way!</p>
+    </section>
+    {% endif %}
+    </article>
+</section>
+{% endblock %}

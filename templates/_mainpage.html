@@ -23,7 +23,7 @@
 
     <div id="links">
         {%- for entry in view(entry_type='sidebar',order='title',tag=None).entries -%}
-        <a href="{{entry.link}}" {% if entry['link-rel'] %}rel="{{entry['link-rel']}}"{% endif %}
+        <a href="{{entry.permalink if entry['Use-Permalink'] else entry.link}}" {% if entry['link-rel'] %}rel="{{entry['link-rel']}}"{% endif %}
             title="{{entry.title(markup=False)}}" class="{{entry.icon or entry.title(markup=False).lower()}}"><span>{{entry.title}}</span></a>
         {% endfor -%}
     </div>
@@ -36,7 +36,7 @@
         {% endif %}
         {% endfor %}
 
-        <li class="store"><a href="https://biz.beesbuzz.biz" title="Buy my stuff!"><span>Store</span></a></li>
+        <li class="store"><a href="https://biz.beesbuzz.biz" title="Buy my stuff!"><span>Shop</span></a></li>
     </ul>
 
     <div id="entries">

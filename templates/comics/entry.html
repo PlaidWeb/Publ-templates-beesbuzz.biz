@@ -111,7 +111,7 @@
 
                 {% if entry.body %}
                 <div id="preamble">
-                {% if entry.cut and not entry['Entry-Type'] %}<details><summary>{{entry.cut}}</summary>{% endif %}
+                {% if entry.cut and not entry['Entry-Type'] %}<details><summary class="p-content-warning">{{entry.cut}}</summary>{% endif %}
                     {{entry.body(
                         div_class='images',
                         img_class='u-photo',
