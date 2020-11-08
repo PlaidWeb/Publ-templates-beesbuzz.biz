@@ -8,238 +8,228 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-{% block title %}
-    <title>{{ category.name(markup=False) or "busybee"}}
-    {%- if view.tags -%}
-        , tagged {{','.join(view.tags)}}
-    {%- endif -%}
-    {%- if not view.is_current and view.range %} | {{ view.range }}{% endif %}</title>
-{% endblock %}
+    {%- block title -%}<title>
+        {{ category.name(markup=False) or "busybee"}}
+        {%- if view.tags -%}
+            , tagged {{','.join(view.tags)}}
+        {%- endif -%}
+        {%- if not view.is_current and view.range %} | {{ view.range }}{% endif %}
+    </title>{%- endblock -%}
 
-{% block favicon %}
-{% include get_template('_favicon.html', category) %}
-{% endblock %}
+    {%- block metatags -%}
+        {%- if category.description -%}
+            <meta name="description" content="{{category.description(markup=False)}}">
+        {%- endif -%}
+    {%- endblock -%}
 
-{% block stylesheet %}
-    <link rel="stylesheet" href="style.css" />
-{% endblock %}
+    {%- block favicon -%}
+        {%- include get_template('_favicon.html', category) -%}
+    {%- endblock -%}
+
+    {%- block stylesheet -%}
+        <link rel="stylesheet" href="style.css" />
+    {%- endblock -%}
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}" />
     <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
     <link rel="alternate" type="application/atom+xml" title="Summary feed" href="{{view.link(template='feed-summary')}}" />
-{% block webmention %}
-    {% include '/_webmention.html' %}
-{% endblock %}
+    <link rel="canonical" href="{{view.link(absolute=True,_scheme='https')}}" />
+    {%- block webmention -%}
+        {%- include '/_webmention.html' -%}
+    {%- endblock -%}
 
+    {%- if category.parent -%}
+        <link rel="up" href="{{category.parent.link}}" />
+    {%- endif -%}
+    {%- if view.previous -%}
+        <link rel="previous" href="{{view.previous.link}}" />
+    {%- endif -%}
+    {%- if view.next -%}
+        <link rel="next" href="{{view.next.link}}" />
+    {%- endif -%}
 
-    {% if category.parent %}
-    <link rel="up" href="{{category.parent.link}}" />
-    {% endif %}
-    {% if view.previous %}
-    <link rel="previous" href="{{view.previous.link}}" />
-    {% endif %}
-    {% if view.next %}
-    <link rel="next" href="{{view.next.link}}" />
-    {% endif %}
-
-    {% block scripthooks %}
-    {% if view.entries|selectattr('math')|first %}
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
-    {% endif %}
-    {% endblock %}
+    {%- block scripthooks -%}
+        {%- if view.entries|selectattr('math')|first -%}
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+        {%- endif -%}
+    {%- endblock -%}
 </head>
 
 <body id="{{ template.name }}">
 
-
-<div id="container">
+<main id="container">
     <div class="top-hook"></div>
 
-    {% block banner %}
-    <heading id="banner">
-        <h1>{{ category.name or "busybee" }}
-        {%- if view.tags %}
-            ({{view.tags|map('title')|join(', ')}})
-        {%- endif -%}
-        </h1>
-        {% if category.description %}
-        <div id="description">{{category.description}}</div>
-        {% endif %}
-    </heading>
-    {% endblock %}
+    {%- block banner -%}<heading id="banner">
+        <div class="top-hook"></div>
 
-    {% block navigation %}
-    <nav id="nav">
+        <h1>{{ category.name or "busybee" }}
+            {%- if view.tags %}
+                ({{view.tags|map('title')|join(', ')}})
+            {%- endif -%}
+        </h1>
+
+        {%- if category.description -%}
+            <div id="description">{{category.description}}</div>
+        {%- endif -%}
+    </heading>{%- endblock -%}
+
+    {%- block navigation -%}<nav id="nav">
         <h2>Navigation</h2>
+
         <ul class="breadcrumb">
-            {% for cat in category.breadcrumb[:-1] %}
-            <li><a href="{{cat.link}}">{{cat.name}}</a></li>
-            {% endfor %}
+            {%- for cat in category.breadcrumb[:-1] -%}
+                <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+            {%- endfor -%}
             <li class="here">
                 {{category.name}} {% if view.newer or view.tags or template.name != 'index' %}(<a href="{{category.link}}">Latest entries</a>){% endif %}
             </li>
         </ul>
 
-        {% if category.subcats %}
-        <ul class="subcats">
+        {% if category.subcats -%}<ul class="subcats">
             {% for subcat in category.subcats %}
             <li><a href="{{subcat.link}}" title="{{subcat.description(markup=False)}}">{{subcat.name}}</a></li>
             {% endfor %}
-        </ul>
-        {% endif %}
+        </ul>{%- endif -%}
 
-        {% set sidebar = get_view(category=category,entry_type='sidebar',order='title') %}
-        {% if sidebar.entries %}
-        <ul class="sidebar">
-            {% for entry in sidebar.entries %}
-            <li><a href="{{entry.link}}" title="{{entry.summary}}">{{entry.title}}</a></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </nav>
-    {% endblock %}
+        {%- set sidebar = get_view(category=category,entry_type='sidebar',order='title') -%}
+        {%- if sidebar.entries -%}<ul class="sidebar">
+            {%- for entry in sidebar.entries -%}
+                <li><a href="{{entry.link}}" title="{{entry.summary}}">{{entry.title}}</a></li>
+            {%- endfor -%}
+        </ul>{% endif %}
+    </nav>{%- endblock -%}
 
-    {% block content scoped %}
-    <section id="entries">
+    {%- block content scoped -%}<section id="entries">
 
-        {% if view.older or view.newer %}
-        <div class="nav topnav">
-            {% if view.older %}
-            <span class="prev"><a href="{{view.older}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
-            {% endif %}
+        {%- if view.older or view.newer -%}<nav class="nav topnav">
+
+            {%- if view.older -%}
+                <span class="prev"><a href="{{view.older}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+            {%- endif -%}
+
             &nbsp;
-            {% if view.newer %}
-            <span class="next"><a href="{{view.newer}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
-            {% endif %}
-        </div>
-        {% endif %}
 
-        {% block entries %}
+            {%- if view.newer -%}
+                <span class="next"><a href="{{view.newer}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
+            {%- endif -%}
+        </nav>{% endif %}
 
-        {% if user %}
-        <div id="userinfo"><div class="hello">Hello, <a href="{{category.link(template='profile')}}">{{user.name}}</a>. <a href="{{logout}}">sign out</a></div></div>
+        {%- if user -%}
+            <div id="userinfo"><div class="hello">Hello, <a href="{{category.link(template='profile')}}">{{user.name}}</a>. <a href="{{logout}}">sign out</a></div></div>
         {% elif view.unauthorized(count=1) %}
-        <div id="userinfo"><div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div></div>
-        {% endif %}
+            <div id="userinfo"><div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}">log in</a>.</div></div>
+        {%- endif -%}
 
-        {% for entry in view.entries %}
-        {% if entry.body() or entry.more() %}{# has a body, which means there's text to display #}
-        <article class="entry h-entry{{' private' if entry.private else ''}}">
-            <header class="heading">
-                {% block heading scoped %}
-                <div class="top-hook"></div>
-                <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title}}</a></h2>
-                <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
-                    <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
-                    <span class="time">{{entry.date.format('h:mm A')}}</span>
-                    <span class="ago">{{entry.date.humanize()}}</span></time>
-                    {% if entry.author %}
-                    by
-                    <span class="author">
-                        <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
-                    </span>
-                    {% else %}
-                        {% include '/_hcard.html' %}
-                    {% endif %}
-                </div>
-                {% endblock %}
-            </header>
+        {%- block entries -%}{%- for entry in view.entries -%}
+            {%- if entry.body() or entry.more() -%}
+                {#- has a body, which means there's text to display -#}
+                <article class="entry h-entry{{' private' if entry.private else ''}}">
+                    {%- block heading scoped -%}<header class="heading">
+                        <div class="top-hook"></div>
 
-            {% block entrytags scoped %}
-                <div class="tags">
-                {% if entry.tags %}Tags:
-                <ul class="tags">
-                    {% for tag in entry.tags %}
-                    <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                </div>
-            {% endblock %}
+                        <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title or '(no title)'}}</a></h2>
 
-            <div class="content">
-            {% include '/_indieweb.html' %}
+                        <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
+                            <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
+                            <span class="time">{{entry.date.format('h:mm A')}}</span>
+                            <span class="ago">{{entry.date.humanize()}}</span></time>
+                            {%- if entry.author %}by
+                                <span class="author">
+                                    <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                                </span>
+                            {%- else -%}
+                                {%- include '/_hcard.html' -%}
+                            {%- endif -%}
+                        </div>
+                    </header>{%- endblock -%}
 
-                {% block entrybody scoped %}
-                    {% if entry.body %}
-                    <div class="body e-summary">
-                    {{ entry.body(max_width=240,
-                        max_height=240,
-                        link=entry.link,
-                        resize="fill",
-                        count=1,
-                        prefix="index_",
-                        div_class="thumb") }}
+                    {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">Tags:
+                        <ul class="tags">{%- for tag in entry.tags -%}
+                            <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
+                        {%- endfor -%}</ul>
+                    </nav>{%- endblock -%}{%- endif -%}
+
+                    <div class="content">
+                        {%- include '/_indieweb.html' -%}
+
+                        <div class="e-summary">{%- block summary scoped -%}
+                            {%- if entry.body -%}{%- block entrybody scoped -%}
+                                {{ entry.body(max_width=240,
+                                    max_height=240,
+                                    link=entry.link,
+                                    resize="fill",
+                                    count=1,
+                                    prefix="index_",
+                                    figure_class="thumb") }}
+                            {%- endblock -%}{%- endif -%}
+
+                            {%- if entry.more -%}
+                                <a class="readmore" rel="self" href="{{ entry.link }}#more">Read more&hellip;
+
+                                {%- if entry.get('cut') %}
+                                    ({{entry.get('cut')}})
+                                {%- endif -%}
+                                </a>
+                            {%- endif -%}
+
+                            {%- if entry.via %}<p class="via">(via
+                                {% for via in entry.get_all('via') %}{% with url, _, label = via.partition(' ') -%}
+                                    <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>
+                                    {%- if loop.index < loop.length %}, {% endif -%}
+                                {%- endwith -%}{%- endfor -%}
+                            )</p>{%- endif -%}
+                        {%- endblock -%}</div>
                     </div>
-                    {% endif %}
-
-                    {% if entry.more %}
-                    <a class="readmore" rel="self" href="{{ entry.link }}#more">Read more...</a>
-                    {% endif %}
-
-                {% endblock %}
-
-                {%- if entry.via %}
-                <p class="via">(via
-                    {% for via in entry.get_all('via') %}
-                    {% with url, _, label = via.partition(' ') -%}
-                    <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>{% if loop.index < loop.length %}, {% endif -%}
-                    {%- endwith -%}
+                </article>
+            {%- else -%}
+                {# there's no body so this must be a reaction post #}
+                <article class="react h-entry{{' private' if entry.private else ''}}">
+                    <a href="{{entry.link}}" class="u-url p-name hidden">{{entry.title}}</a>
+                    {%- for type, icon, label in (
+                                     ('bookmark-of', '⭐️', 'Bookmarked'),
+                                    ('like-of', '❤️', 'Liked'),
+                                    ) -%}
+                        {%- for link in entry.get_all(type) -%}
+                            <a href="{{link}}" class="u-{{type}}"><span>{{icon}}</span> {{entry.title}}</a>
+                        {%- endfor -%}
                     {%- endfor -%}
-                )</p>
-                {%- endif -%}
-            </div>
-        </article>
-        {% else %}
-        {# there's no body so this must be a reaction post #}
-        <article class="react h-entry{{' private' if entry.private else ''}}">
-            <a href="{{entry.link}}" class="u-url p-name hidden">{{entry.title}}</a>
-            {%- for type, icon, label in (
-                             ('bookmark-of', '⭐️', 'Bookmarked'),
-                            ('like-of', '❤️', 'Liked'),
-                            ) -%}
-                {%- for link in entry.get_all(type) -%}
-                    <a href="{{link}}" class="u-{{type}}"><span>{{icon}}</span> {{entry.title}}</a>
-                {%- endfor -%}
-            {%- endfor -%}
-            {%- for rsvp in entry.get_all('rsvp') -%}
-                {%- with url,value = rsvp.split() -%}
-                    <a class="u-in-reply-to" href="{{url}}" title="RSVP: {{entry.title}} {{value}}"><span>📅<data class="rsvp rsvp-{{value}} p-rsvp" value="{{value}}">{{
-                        {'yes':'✅','no':'❌','interested':'💡','maybe':'💭'}[value]
-                    }}</data></span> {{entry.title}}</a>
-                {%- endwith -%}
-            {%- endfor -%}
-
-                {%- if entry.via %}
-                <p class="via hidden">(via
-                    {% for via in entry.get_all('via') %}
-                    {% with url, _, label = via.partition(' ') -%}
-                    <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>{% if loop.index < loop.length %}, {% endif -%}
-                    {%- endwith -%}
+                    {%- for rsvp in entry.get_all('rsvp') -%}
+                        {%- with url,value = rsvp.split() -%}
+                            <a class="u-in-reply-to" href="{{url}}" title="RSVP: {{entry.title}} {{value}}"><span>📅<data class="rsvp rsvp-{{value}} p-rsvp" value="{{value}}">{{
+                                {'yes':'✅','no':'❌','interested':'💡','maybe':'💭'}[value]
+                            }}</data></span> {{entry.title}}</a>
+                        {%- endwith -%}
                     {%- endfor -%}
-                )</p>
-                {%- endif -%}
-        </article>
-        {% endif %}
-        {% endfor %}
-        {% endblock %}
 
-        {% if view.older or view.newer %}
-        <div class="nav bottomnav">
-            {% if view.older %}
-            <span class="prev"><a href="{{view.older}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
-            {% endif %}
+                    {%- if entry.via %}
+                    <p class="via hidden">(via
+                        {% for via in entry.get_all('via') %}
+                        {% with url, _, label = via.partition(' ') -%}
+                        <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>{% if loop.index < loop.length %}, {% endif -%}
+                        {%- endwith -%}
+                        {%- endfor -%}
+                    )</p>
+                    {%- endif -%}
+                </article>
+            {%- endif -%}
+        {%- endfor -%}{%- endblock -%}
+
+        {%- if view.older or view.newer -%}<nav class="nav bottomnav">
+            {%- if view.older -%}
+                <span class="prev"><a href="{{view.older}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+            {%- endif -%}
+
             &nbsp;
-            {% if view.newer %}
-            <span class="next"><a href="{{view.newer}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
-            {% endif %}
-        </div>
-        {% endif %}
+
+            {%- if view.newer -%}
+                <span class="next"><a href="{{view.newer}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
+            {%- endif -%}
+        </nav>{%- endif -%}
 
         <div class="expand"></div>
-    </section>
-    {% endblock %}
+    </section>{%- endblock -%}
 
-</div>
+</main>
 
 <script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
 </body></html>

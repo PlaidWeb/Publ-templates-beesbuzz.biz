@@ -15,12 +15,14 @@ import arrow
 mt = sqlite3.connect(sys.argv[1])
 isso = sqlite3.connect(sys.argv[2])
 
+
 @orm.db_session()
 def do_one(entry_id, mt_id):
     with app.app.test_request_context():
         record = model.Entry.get(id=entry_id)
         e = entry.Entry(record)
         migrate(e, mt_id)
+
 
 def get_thread(entry, old_id):
     uri = app.thread_id(entry)
@@ -39,6 +41,7 @@ def get_thread(entry, old_id):
 
     thread, = thread
     return thread
+
 
 def migrate(entry, mt_id):
     print(entry.id, entry.title)

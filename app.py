@@ -79,6 +79,7 @@ if not os.path.isfile('.sessionkey'):
 with open('.sessionkey') as file:
     app.secret_key = file.read()
 
+
 def thread_id(item):
     """ Compute an Isso thread URI for the entry.
 
@@ -95,40 +96,57 @@ def thread_id(item):
 
     return f'/{tid}/{key}'
 
+
 # register the thread ID generator with the templating system
 app.jinja_env.globals.update(thread_id=thread_id)
 
 
 @app.route('/favicon.ico')
 def favicon():
-    """ Add a route for serving up the favicon. This could also be implemented
-    using flask.send_file() and a file stored outside of the content directory. """
+    """
+    Add a route for serving up an old-style favicon. This could also be
+    implemented using flask.send_file() and a file stored outside of the content
+    directory.
+
+    If you want to get really fancy you could do:
+
+        return flask.redirect(
+            publ.image.get_image('favicon.png', ())
+                .get_rendition(format='ico',width=32,height=32)[0])
+
+    which will dynamically render the file 'favicon.png' in the content
+    directory root into a 32x32 .ico file, although this is extreme overkill.
+    """
     return flask.redirect(flask.url_for('static', filename='favicon.ico'))
 
 
-@app.path_alias_regex(r'/d/([0-9]{6,8}(_w)?)\.php')
-def redirect_date(match):
+@app.path_alias_regex(r'/(d|comics)/(.*/)?(?P<date>[0-9]{6,8}(_w)?)\.php')
+def redirect_comics(match):
     """
     This is an example of how to migrate old URLs to new ones; my old site
     had date-based views like:
 
-    http://beesbuzz.biz/d/201006.php
+        http://beesbuzz.biz/d/201006.php
 
     which this now turns into:
 
-    http://beesbuzz.biz/comics/?date=201006
+        http://beesbuzz.biz/comics/?date=201006
+
+    This also handles the occasional case of a legacy news post that did a
+    relative link to the old URL.
     """
-    return flask.url_for('category', category='comics', date=match.group(1)), True
+    return flask.url_for('category', category='comics', date=match.group('date')), True
 
 
 @app.path_alias_regex(r'/blog/e/')
-def redirect_blog_entry(match):
+@app.path_alias_regex(r'/forum/')
+def redirect_blog_content(match):
     """
-    Another URL migration example; this redirects legacy blog content
-    to the 'missing content' entry if another page hasn't already claimed the
-    legacy path.
+    Another URL migration example; this redirects legacy blog and forum content
+    to the latest archive.org snapshot if another page hasn't already claimed
+    the legacy path.
     """
-    return flask.url_for('entry', entry_id=7821), False
+    return 'https://web.archive.org/web/*/' + flask.request.url, False
 
 
 @app.path_alias_regex(r'/([^/]+)/.*rss.php')
@@ -145,6 +163,18 @@ def redirect_subfeed(match):
         category=match.group(1),
         template='feed'), True
 
+
+@app.after_request
+def add_webmention_endpoint(response):
+    """
+    This publishes a webmention endpoint for everything, including error pages
+    (necessary for receiving pings to private entries) and image resources.
+    Please fix the endpoint URL before uncommenting this.
+    """
+    #response.headers.add('link', '<https://webmention.io/DOMAIN_GOES_HERE/webmention>; rel="webmention"')
+    return response
+
+
 @app.path_alias_regex(r'/\.well-known/(host-meta|webfinger).*')
 def redirect_bridgy(match):
     """
@@ -153,4 +183,3 @@ def redirect_bridgy(match):
     at @beesbuzz.biz@beesbuzz.biz on Mastodon et al if you want.
     """
     return 'https://fed.brid.gy' + flask.request.full_path, False
-

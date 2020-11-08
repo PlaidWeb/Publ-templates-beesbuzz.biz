@@ -12,6 +12,10 @@ body {
     color: white;
 }
 
+#description {
+    background: #333;
+}
+
 a:link {
     color: #600;
 }

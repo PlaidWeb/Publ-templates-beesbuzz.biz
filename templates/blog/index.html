@@ -1,51 +1,14 @@
 {% extends '/index.html' %}
 
-{% block entrytags %}{% endblock %}
-
 {% block scripthooks %}
-{{super()}}
-<script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js"></script>
+    {{super()}}
+    <script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js" defer></script>
 {% endblock %}
 
-{% block entrybody %}
-{% if entry.body %}
-<div class="commentlink">
-<a title="Comment on {{entry.category.name}}: {{entry.title|forceescape}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a>
-</div>
-
-{% if entry.tags %}
-<nav class="tags">Tags:
-<ul class="tags">
-    {% for tag in entry.tags %}
-    <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
-    {% endfor %}
-</ul></nav>
-{% endif %}
-
-
-
-<div class="body e-summary">
-
-{{ entry.body(max_width=360,
-    max_height=360,
-    resize="fill",
-    link=entry.link,
-    prefix="index_",
-    count=4,
-    more_link=entry.link,
-    more_text='See all {count} images',
-    more_class='image-more',
-    div_class="images") }}
-
-
-</div>
-{% endif %}
-
-
-
-{% if entry.more %}
-<a class="readmore" href="{{ entry.link }}#more">Read more&hellip;
-{%- if entry.get('cut') %} ({{entry.get('cut')}}){% endif %}</a>
-{% endif %}
-
+{% block heading %}
+    {{super()}}
+    <div class="commentlink">
+    <a title="Comment on {{entry.category.name}}: {{entry.title|forceescape}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a>
+    </div>
 {% endblock %}
+

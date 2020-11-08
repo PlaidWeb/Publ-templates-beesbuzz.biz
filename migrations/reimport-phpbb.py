@@ -12,12 +12,14 @@ import struct
 phpbb = sqlite3.connect(sys.argv[1])
 isso = sqlite3.connect(sys.argv[2])
 
+
 @orm.db_session()
 def do_all():
     with app.app.test_request_context():
         for record in model.Entry.select():
             e = entry.Entry(record)
             migrate(e)
+
 
 def get_thread(entry, old_id):
     uri = app.thread_id(entry)
@@ -36,6 +38,7 @@ def get_thread(entry, old_id):
 
     thread, = thread
     return thread
+
 
 def migrate(entry):
     old_id = entry.get('thread-id')
@@ -70,9 +73,10 @@ def migrate(entry):
         if not username:
             username = 'Anonymous'
 
-        post_text = ('<p>' + bbcode.render_html(post_text) + '</p>').replace('<br /><br />', '</p><p>')
+        post_text = ('<p>' + bbcode.render_html(post_text) +
+                     '</p>').replace('<br /><br />', '</p><p>')
 
-        remote_addr = socket.inet_ntoa(struct.pack("!I", int(remote_addr,16)))
+        remote_addr = socket.inet_ntoa(struct.pack("!I", int(remote_addr, 16)))
 
         print(f'{username} ({email}, {website}), {remote_addr} @ {date}:\n{post_text}')
         isso.cursor().execute("""

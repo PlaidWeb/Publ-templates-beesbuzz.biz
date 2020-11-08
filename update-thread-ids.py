@@ -15,6 +15,7 @@ from pony import orm
 
 db = sqlite3.connect(sys.argv[1])
 
+
 @orm.db_session()
 def update_thread(tid, uri):
     match = re.match(r'/[a-f0-9]{16}/([0-9]*)$', uri)
@@ -32,7 +33,9 @@ def update_thread(tid, uri):
         new_uri = app.thread_id(e)
         if new_uri != uri:
             print(uri, '\t->', new_uri)
-            db.cursor().execute('UPDATE threads SET uri=?, title=? where id=?', (app.thread_id(e), record.title, tid))
+            db.cursor().execute('UPDATE threads SET uri=?, title=? where id=?',
+                                (app.thread_id(e), record.title, tid))
+
 
 for row in db.cursor().execute('SELECT id,uri FROM threads'):
     tid, uri = row

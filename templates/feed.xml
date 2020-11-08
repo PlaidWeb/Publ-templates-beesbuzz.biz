@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-{%- set view = view(recurse=True,count=20,entry_type_not="sidebar",is_attached=False) -%}
+{%- set view = view(recurse=True,count=20,entry_type_not=["sidebar","meta"],is_attached=False) -%}
 
 <feed xmlns="http://www.w3.org/2005/Atom"
     xmlns:fh="http://purl.org/syndication/history/1.0"
@@ -26,7 +26,9 @@
     <updated>{{view(recurse=True).last_modified.isoformat()}}</updated>
 
     {% for entry in view.entries(unauthorized=1 if not user else 0) %}
-    {%- if request.args.push or not (entry['in-reply-to'] or entry['like-of'] or entry['rsvp']) -%}
+    {%- if (request.args.push
+            or not (entry['in-reply-to'] or entry['like-of'] or entry['rsvp']))
+        and (entry.authorized or not entry.get('direct-message')) -%}
     <entry>
         {% if entry.authorized %}
         <title>{{'🔏 ' if entry.private else ''}}{{entry.category.name ~ ": " if entry.category.name != category.name}}{{entry.title(markup=False, smartquotes=False)}}</title>

@@ -1,9 +1,6 @@
 {% extends '/index.html' %}
 
 {% block entrybody %}
-
-{% if entry.body %}
-<div class="body e-summary">
 {{ entry.body(max_width=360,
     max_height=240,
     link=entry.link() ~ "#preamble",
@@ -11,11 +8,4 @@
     count=1,
     div_class="thumb",
     prefix="index_") }}
-</div>
-{% endif %}
-
-{% if entry.more %}
-<a class="readmore" href="{{entry.link}}#more">Read more...
-{%- if entry.get('cut') %} ({{entry.get('cut')}}){% endif %}</a>
-{% endif %}
 {% endblock %}

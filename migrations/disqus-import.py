@@ -12,6 +12,7 @@ from time import mktime, strptime
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
+
 @orm.db_session
 def build_uri_map():
     """ Map Disqus thread-ids to tuple of (isso_uri, title) """
@@ -22,6 +23,7 @@ def build_uri_map():
             thread_id = e.get('thread-id', 'publ_{}'.format(record.id))
             uri_map[thread_id] = (app.thread_id(e), record.title)
         return uri_map
+
 
 def parse_disqus(xmlfile, isso_db):
     ns = '{http://disqus.com}'
@@ -34,7 +36,6 @@ def parse_disqus(xmlfile, isso_db):
 
     # map disqus dsq:id -> isso tid
     thread_map = {}
-
 
     for thread in tree.findall(ns + 'thread'):
         dsq_id = thread.attrib.get(internals + 'id')
@@ -54,7 +55,8 @@ def parse_disqus(xmlfile, isso_db):
             LOGGER.info("  Already have a thread for %s", thread_id)
             continue
 
-        cursor.execute('INSERT INTO threads (uri,title) VALUES (?,?)', (isso_uri, title))
+        cursor.execute(
+            'INSERT INTO threads (uri,title) VALUES (?,?)', (isso_uri, title))
         thread_map[dsq_id] = cursor.lastrowid
 
     # map disqus post id to isso id
@@ -81,11 +83,13 @@ def parse_disqus(xmlfile, isso_db):
             post.find(ns + 'message').text,
             1 if post.find(ns + 'isDeleted').text == "false" else 4
         )
-        cursor.execute("INSERT INTO comments (tid, parent, author, created, remote_addr, text, voters, mode) VALUES (?,?,?,?,'0.0.0.0',?,'',?)", values)
+        cursor.execute(
+            "INSERT INTO comments (tid, parent, author, created, remote_addr, text, voters, mode) VALUES (?,?,?,?,'0.0.0.0',?,'',?)", values)
         post_map[post.attrib.get(internals + 'id')] = cursor.lastrowid
         LOGGER.info("%s -> %s", cursor.lastrowid, values)
 
     LOGGER.info("Inserted %d posts", len(post_map))
+
 
 isso_db = sqlite3.connect(sys.argv[2])
 parse_disqus(sys.argv[1], isso_db)

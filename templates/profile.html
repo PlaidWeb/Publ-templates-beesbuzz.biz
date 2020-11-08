@@ -23,7 +23,8 @@
         <header class="heading"><h2>Hello, {{user.name}}!</h2></header>
 
         <section class="content">
-        <p>You seem to be logged into this website with the identity <code>{{user.humanize}}</code>. That's great!</p>
+            <p>You seem to be logged into this website with the identity <code>{{user.humanize}}</code>. That's great!
+            {% if user.last_login %}If this isn't how you want me to know you (or if something looks outdated), try <a href="{{logout(redir=login())}}">logging out and back in</a>. Don't worry, I'll wait.{% endif %}</p>
 
         {% if user.profile %}
             <p>When you logged in, your identity provider gave me some information about you. Here's the other stuff
@@ -67,6 +68,14 @@
         {% elif 'followers' in user.groups %}
             <p>I've also seen you around enough to give you access to some non-public content on <a href="/blog/">my blog</a>. Please handle it with care!</p>
         {% endif %}
+
+            <details><summary>Bearer token</summary>
+            <p>The following HTTP header will allow web requests to be made on your behalf without logging in:</p>
+
+            <figure><pre>Authorization: Bearer {{user.token(lifetime=86400*30)}}</pre></figure>
+
+            <p>This token is valid until {{arrow.get().shift(days=30).format()}}. Please do not share this with anyone else.</p>
+
         </section>
 
     {% else %}

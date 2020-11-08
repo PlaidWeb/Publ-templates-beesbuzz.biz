@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {%- block title -%}
-    <title>{{category.name}}: {{ entry.title(markup=False) }}</title>
+        <title>{{category.name}}: {{ entry.title(markup=False) }}</title>
     {%- endblock -%}
 
     <link rel="stylesheet" href="{{ entry.stylesheet or 'style.css' }}">
@@ -38,52 +38,46 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@fluffy" />
+    <meta name="description" content="{{entry.summary}}" />
 </head>
 <body id="entry">
 
 {%- macro navlink(e) -%}
-<a href="{{e.link}}" {%- if e.private -%}class="private"{%- endif -%}>{{'🔏 ' if e.private else ''}}{{e.title}}</a>
+    <a href="{{e.link}}" {%- if e.private -%}class="private"{%- endif -%}>{{'🔏 ' if e.private else ''}}{{e.title}}</a>
 {%- endmacro -%}
 
-<div id="container">
+<main id="container">
     <div class="top-hook"></div>
 
-    <div id="banner">
+    {%- block banner -%}<heading id="banner">
         <div class="top-hook"></div>
         <h1><a href="{{category.link}}">{{category.name}}</a></h1>
-    </div>
+    </heading>{%- endblock -%}
 
-    <div id="entries">
+    <section id="entries">
         <div class="top-hook"></div>
 
         {%- if prev or next -%}
-        <div class="nav topnav">
-            <div>
-                <span class="prev">
-                    {%- if prev -%}{{ navlink(prev) }}{%- endif -%}
-                </span>
+            <div class="nav topnav">
+                <div>
+                    <span class="prev">
+                        {%- if prev -%}{{ navlink(prev) }}{%- endif -%}
+                    </span>
 
-                &nbsp;
+                    &nbsp;
 
-                <span class="next">
-                    {%- if next -%}{{ navlink(next) }}{%- endif -%}
-                </span>
+                    <span class="next">
+                        {%- if next -%}{{ navlink(next) }}{%- endif -%}
+                    </span>
+                </div>
             </div>
-        </div>
         {%- endif -%}
 
-        {%- block content -%}
-        {%- set vars=namespace() -%}
-        {%- for note_type in ('like-of', 'in-reply-to', 'repost-of', 'bookmark-of', 'rsvp', 'ping') -%}
-            {%- if entry.get(note_type) -%}
-                {%- set vars.is_note = note_type -%}
-            {%- endif -%}
-        {%- endfor -%}
-        <article class="entry h-entry{{' private' if entry.private else ''}}">
+        {%- block content -%}<article class="entry h-entry{{' private' if entry.private else ''}}">
             <header class="heading">
                 {%- block heading scoped -%}
                 <div class="top-hook"></div>
-                <h2><a href="{{entry.link}}" class="u-url{{ '' if vars.is_note else ' p-name'}}">{{'🔏 ' if entry.private else ''}}{{entry.title}}</a></h2>
+                <h2><a href="{{entry.link}}" class="u-url{{ '' if entry.get('rsvp') else ' p-name'}}">{{'🔏 ' if entry.private else ''}}{{entry.title}}</a></h2>
                 <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
                     <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                     <span class="time">{{entry.date.format('h:mm A')}}</span>
@@ -117,97 +111,78 @@
             <a class="hidden" href="https://fed.brid.gy/"></a>
 
             <div class="content">
-            {%- include '/_indieweb.html' -%}
+                {%- include '/_indieweb.html' -%}
                 <div class="e-content">
+                    {%- block entrybody -%}{%- if entry.body -%}<div id="preamble" class="body">
+                            {%- block entrybody_content scoped -%}
+                            {{entry.body(gallery_id=entry.uuid,
+                                div_class='images',
+                                width=960,
+                                height=640,
+                                fullsize_width=3840,
+                                fullsize_height=2160,
+                                fullsize_quality=35,
+                                heading_link_class='toc_link')}}
+                            {%- endblock -%}
+                    </div>{%- endif -%}{%- endblock -%}
 
-                {%- block entrybody -%}
-                {%- if entry.body -%}
-                <div id="preamble" class="body">
-                    {%- block entrybody_content scoped -%}
-                    {{entry.body(gallery_id=entry.uuid,
-                        div_class='images',
-                        width=960,
-                        height=640,
-                        fullsize_width=3840,
-                        fullsize_height=2160,
-                        fullsize_quality=35,
-                        heading_link_class='toc_link')}}
+                    {%- block entrymore -%}
+                        {%- if entry.more -%}<div id="more">
+                            {%- if entry.cut -%}<details><summary class="p-content-warning">{{entry.cut}}</summary>{%- endif -%}
+
+                            {%- block entrymore_content scoped -%}
+                                {{entry.more(gallery_id=entry.uuid,
+                                    div_class='images',
+                                    width=360,
+                                    height=360,
+                                    fullsize_width=3840,
+                                    fullsize_height=2160,
+                                    fullsize_quality=35,
+                                    heading_link_class='toc_link')}}
+                            {%- endblock -%}
+
+                            {%- block entryfootnotes -%}{%- if entry.footnotes -%}
+                                <div class="footnotes">{%- block entryfootnotes_content scoped -%}
+                                    {{ entry.footnotes(gallery_id=entry.uuid ~ '_footnotes',
+                                        width=360,
+                                        height=360,
+                                        fullsize_width=3840,
+                                        fullsize_height=2160,
+                                        fullsize_quality=35) }}
+                                {%- endblock -%}</div>
+                            {%- endif -%}{%- endblock -%}
+
+                            {%- if entry.cut -%}</details>{%- endif -%}
+
+                        </div>{%- endif -%}
+
+                        {%- if entry.via -%}<p class="via">(via
+                            {% for via in entry.get_all('via') -%}
+                            {%- with url, _, label = via.partition(' ') -%}
+                            <span class="via h-cite"><a class="u-url u-repost-of p-name" href="{{url}}">{{label}}</a></span>{%- if loop.index < loop.length -%}, {% endif -%}
+                            {%- endwith -%}
+                            {%- endfor -%}
+                        )</p>{%- endif -%}
                     {%- endblock -%}
-                </div>
-                {%- endif -%}
-                {%- endblock -%}
 
-                {%- block entrymore -%}
-                {%- if entry.more -%}
-                <div id="more">
-{%- if entry.cut -%}<details><summary class="p-content-warning">{{entry.cut}}</summary>{%- endif -%}
-
-                    {%- block entrymore_content scoped -%}
-                    {{entry.more(gallery_id=entry.uuid,
-                        div_class='images',
-                        width=360,
-                        height=360,
-                        fullsize_width=3840,
-                        fullsize_height=2160,
-                        fullsize_quality=35,
-                        heading_link_class='toc_link')}}
+                    {%- block webmentions -%}
+                        <div class="webmentions" id="webmentions"></div>
                     {%- endblock -%}
+
+            	    {%- if not entry['Disable-Comments'] -%}
+                        {%- block comments -%}<div class="comments" id="comments">
+                            <div class="heading">
+                                <h2>Comments</h2>
+                            </div>
+
+                            {%- include '/_comment_thread.html' -%}
+                        </div>{%- endblock -%}
+            	    {%- endif -%}
                 </div>
-                {%- endif -%}
-                {%- endblock -%}
-
-                {%- block entryfootnotes -%}
-                {%- if entry.footnotes -%}
-                <div class="footnotes">
-                    {%- block entryfootnotes_content scoped -%}
-                    {{ entry.footnotes(gallery_id=entry.uuid ~ '_footnotes',
-                        width=360,
-                        height=360,
-                        fullsize_width=3840,
-                        fullsize_height=2160,
-                        fullsize_quality=35) }}
-                    {%- endblock -%}
-                </div>
-                {%- endif -%}
-                {%- endblock -%}
-
-{%- if entry.cut -%}</details>{%- endif -%}
-
-                </div>
-                {%- if entry.via -%}
-                <p class="via">(via
-                    {%- for via in entry.get_all('via') -%}
-                    {%- with url, _, label = via.partition(' ') -%}
-                    <span class="via h-cite"><a class="u-url u-repost-of p-name" href="{{url}}">{{label}}</a></span>{%- if loop.index < loop.length -%}, {%- endif -%}
-                    {%- endwith -%}
-                    {%- endfor -%}
-                )</p>
-                {%- endif -%}
-
             </div>
-
-            {%- block webmentions -%}
-            <div class="webmentions" id="webmentions"></div>
-            {%- endblock -%}
-
-	    {%- if not entry['Disable-Comments'] -%}
-            {%- block comments -%}
-            <div class="comments" id="comments">
-                <div class="heading">
-                    <h2>Comments</h2>
-                </div>
-
-                {%- include '/_comment_thread.html' -%}
-            </div>
-            {%- endblock -%}
-	    {%- endif -%}
-        </article>
-        {%- endblock -%}
-
-
-    </div>
-
-</div>
+        </article>{%- endblock -%}
+    </section>
+</main>
 
 <script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>
 </body></html>

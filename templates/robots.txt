@@ -1,1 +1,4 @@
+User-Agent: *
+Disallow: /_login/
+
 Sitemap: https://beesbuzz.biz/sitemap.xml

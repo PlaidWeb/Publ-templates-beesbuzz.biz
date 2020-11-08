@@ -90,6 +90,7 @@
     {% endif %}
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+    <link rel="canonical" href="{{view.link(absolute=True,_scheme='https')}}" />
 
     {% if comics.older %}
     <link rel="prev" href="{{comics.older}}">
@@ -112,6 +113,8 @@
     {% endfor %}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@fluffy" />
+
+    <meta name="description" content="Comics for {{comics.range}}" />
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 </head>
