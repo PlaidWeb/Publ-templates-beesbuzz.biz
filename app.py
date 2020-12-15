@@ -92,7 +92,7 @@ def thread_id(item):
 
     key = str(item.id)
     tid = hmac.new(b'SECRET KEY HERE',
-                   key.encode('utf-8')).hexdigest()[:16]
+                   key.encode('utf-8'), 'md5').hexdigest()[:16]
 
     return f'/{tid}/{key}'
 

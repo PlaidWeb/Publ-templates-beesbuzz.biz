@@ -3,3 +3,4 @@ index.db
 logs/
 static/_img/
 .sessionkey
+__pycache__
