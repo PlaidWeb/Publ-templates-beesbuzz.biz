@@ -100,6 +100,14 @@ def thread_id(item):
 # register the thread ID generator with the templating system
 app.jinja_env.globals.update(thread_id=thread_id)
 
+@app.template_filter('hashtag')
+def make_hashtag(words : str):
+    """ Adds a custom Jinja filter to turn a sentence into a #HashTag. Used
+    in feed-twitter.xml """
+    words = words.replace("'", '')
+    words = re.split(r'[^a-zA-Z0-9]+', words)
+
+    return ''.join([w.title() if w.islower() else w for w in words])
 
 @app.route('/favicon.ico')
 def favicon():

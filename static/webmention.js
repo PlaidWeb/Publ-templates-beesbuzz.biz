@@ -2,7 +2,7 @@
 
 Simple thing for embedding webmentions from webmention.io into a page, client-side.
 
-(c)2018 fluffy (http://beesbuzz.biz)
+(c)2018-2020 fluffy (http://beesbuzz.biz)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -94,7 +94,7 @@ A more detailed example:
     var addurls = getCfg('add-urls', undefined);
     var containerID = getCfg('data-id', "webmentions");
     var textMaxWords = getCfg('wordcount');
-    var maxWebmentions = getCfg('max-webmentions', 300);
+    var maxWebmentions = getCfg('max-webmentions', 30);
     var mentionSource = getCfg('prevent-spoofing') ? 'wm-source' : 'url';
     var sortBy = getCfg('sort-by', 'published');
     var sortDir = getCfg('sort-dir', 'up');
@@ -129,7 +129,8 @@ A more detailed example:
     function entities(text) {
         return text.replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
     }
 
     function reactImage(r) {

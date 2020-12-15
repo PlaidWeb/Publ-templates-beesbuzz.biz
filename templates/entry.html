@@ -164,22 +164,22 @@
                             {%- endfor -%}
                         )</p>{%- endif -%}
                     {%- endblock -%}
-
-                    {%- block webmentions -%}
-                        <div class="webmentions" id="webmentions"></div>
-                    {%- endblock -%}
-
-            	    {%- if not entry['Disable-Comments'] -%}
-                        {%- block comments -%}<div class="comments" id="comments">
-                            <div class="heading">
-                                <h2>Comments</h2>
-                            </div>
-
-                            {%- include '/_comment_thread.html' -%}
-                        </div>{%- endblock -%}
-            	    {%- endif -%}
                 </div>
             </div>
+
+            {%- block webmentions -%}
+                <div class="webmentions" id="webmentions"></div>
+            {%- endblock -%}
+
+            {%- if not entry['Disable-Comments'] -%}
+                {%- block comments -%}<div class="comments" id="comments">
+                    <div class="heading">
+                        <h2>Comments</h2>
+                    </div>
+
+                    {%- include '/_comment_thread.html' -%}
+                </div>{%- endblock -%}
+            {%- endif -%}
         </article>{%- endblock -%}
     </section>
 </main>

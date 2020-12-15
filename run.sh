@@ -1,4 +1,5 @@
 #!/bin/sh
 
-pipenv run flask publ reindex
-FLASK_DEBUG=1 FLASK_ENV=development pipenv run flask run
+poetry install
+poetry run flask publ reindex
+FLASK_DEBUG=1 FLASK_ENV=development poetry run flask run

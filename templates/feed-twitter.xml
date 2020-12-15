@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+{%- set view = view(recurse=True,count=20,entry_type_not=["sidebar","meta"],is_attached=False) -%}
+
+<feed xmlns="http://www.w3.org/2005/Atom"
+    xmlns:fh="http://purl.org/syndication/history/1.0"
+    xmlns:at="http://purl.org/atompub/tombstones/1.0">
+
+    <title>{{"busybee: " ~ category.name if category.parent else category.name}}</title>
+    <subtitle>Art, music, comics, and more</subtitle>
+    <link href="{{ view.link(template='feed',absolute=True) }}" rel="self" />
+    {% if not view.is_current %}
+    <link href="{{ view.current.link(template='feed',absolute=True) }}" rel="current" />
+    <fh:archive/>
+    {% endif %}
+
+    <link href="https://busybee.superfeedr.com" rel="hub" />
+    {% if view.older %}
+    <link href="{{ view.older.link(template='feed',absolute=True) }}" rel="prev-archive" />
+    {% endif %}
+    {% if view.newer %}
+    <link href="{{ view.newer.link(template='feed',absolute=True) }}" rel="next-archive" />
+    {% endif %}
+    <link href="{{ category.link(absolute=True) }}" />
+    <id>tag:{{request.host}},{{template.last_modified.format('YYYY-MM-DD')}}:{{category.path or "_all"}}</id>
+    <updated>{{view(recurse=True).last_modified.isoformat()}}</updated>
+
+    {% for entry in view.entries(unauthorized=1 if not user else 0) %}
+    {%- if (request.args.push
+            or not (entry['in-reply-to'] or entry['like-of'] or entry['rsvp']))
+        and (entry.authorized or not entry.get('direct-message')) -%}
+    <entry>
+        {% if entry.authorized %}
+        <title>{{'🔏 ' if entry.private else ''}}{{entry.category.name ~ ": " if entry.category.name != category.name}}{{entry.title(markup=False, smartquotes=False)}}</title>
+        <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
+        <published>{{entry.date.isoformat()}}</published>
+        <updated>{{entry.last_modified.isoformat()}}</updated>
+        <id>urn:uuid:{{entry.uuid}}</id>
+        <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
+        <content type="html"><![CDATA[
+        <p>{% for tag in entry.tags %} #{{tag|hashtag}}{% endfor %}</p>
+
+            {%- include get_template('_feed_entry', entry) -%}
+        ]]></content>
+
+        {% else %}
+        <title>🔏 Private entry [{{entry.title(always_show=True).split()|join(attribute=0)}}]</title>
+        <link href="{{ entry.permalink(absolute=True) }}" rel="alternate" type="text/html" />
+        <published>{{entry.date.isoformat()}}</published>
+        <updated>{{entry.last_modified.isoformat()}}</updated>
+        <id>urn:uuid:{{entry.uuid}}</id>
+        <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
+        <content type="html">This entry has a restricted audience.</content>
+        {% endif %}
+
+    </entry>
+    {% else %}<!-- chaff: {{entry.link(absolute=True)}} -->
+    {% endif -%}
+    {% endfor %}
+
+    {% for entry in view.deleted %}
+    <at:deleted-entry ref="urn:uuid:{{entry.uuid}}" when="{{entry.last_modified.isoformat()}}">
+        <link>{{entry.link(absolute=True,expand=False)}}</link>
+    </at:deleted-entry>
+    {% endfor %}
+</feed>
