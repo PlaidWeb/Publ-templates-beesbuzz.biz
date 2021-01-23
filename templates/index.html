@@ -116,7 +116,7 @@
 
         {%- if user -%}
             <div id="userinfo"><div class="hello">Hello, <a href="{{category.link(template='profile')}}">{{user.name}}</a>. <a href="{{logout}}">sign out</a></div></div>
-        {% elif view.unauthorized(count=1) %}
+        {% elif view.has_unauthorized %}
             <div id="userinfo"><div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}" rel="nofollow">log in</a>.</div></div>
         {%- endif -%}
 
