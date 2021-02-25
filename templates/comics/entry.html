@@ -53,11 +53,11 @@
 {% endmacro %}
 
 {% macro prevComic(entry,category,cat_name) %}
-{{ miniNav(entry.previous(category=category,is_attached=False,entry_type=''), 'previous in ' ~ cat_name, '_prev_page') }}
+{{ miniNav(entry.previous(category=category,recurse=True,is_attached=False,entry_type=''), 'previous in ' ~ cat_name, '_prev_page') }}
 {% endmacro %}
 
 {% macro nextComic(entry,category,cat_name) %}
-{{ miniNav(entry.next(category=category,is_attached=False,entry_type=''), 'next in ' ~ cat_name, '_next_page') }}
+{{ miniNav(entry.next(category=category,recurse=True,is_attached=False,entry_type=''), 'next in ' ~ cat_name, '_next_page') }}
 {% endmacro %}
 
 <div id="container">

@@ -43,7 +43,7 @@
 <body id="entry">
 
 {%- macro navlink(e) -%}
-    <a href="{{e.link}}" {%- if e.private -%}class="private"{%- endif -%}>{{'🔏 ' if e.private else ''}}{{e.title}}</a>
+    <a href="{{e.link}}" {% if e.private %}class="private"{% endif %}>{{'🔏 ' if e.private else ''}}{{e.title}}</a>
 {%- endmacro -%}
 
 <main id="container">
