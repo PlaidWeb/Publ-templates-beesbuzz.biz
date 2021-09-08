@@ -39,8 +39,6 @@
         <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
         <content type="html"><![CDATA[
         <p>{% for tag in entry.tags %} #{{tag|hashtag}}{% endfor %}</p>
-
-            {%- include get_template('_feed_entry', entry) -%}
         ]]></content>
 
         {% else %}

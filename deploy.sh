@@ -2,6 +2,7 @@
 # wrapper script to pull the latest site content and redeploy
 
 cd "$(dirname $0)"
+PATH=$PATH:$HOME/.poetry/bin
 
 # see where in the history we are now
 PREV=$(git rev-parse --short HEAD)
@@ -36,9 +37,11 @@ while [ $count -lt 5 ] && [ ! -S $HOME/.vhosts/beesbuzz.biz ] ; do
 done
 
 # pushed feeds relevant to this deployment only
-echo "Sending push notifications"
-poetry run pushl -rvvkc $HOME/var/pushl \
-    https://beesbuzz.biz/feed\?push=1 \
-    https://beesbuzz.biz/feed-summary \
-    http://beesbuzz.biz/feed \
-    http://beesbuzz.biz/feed-summary
+# echo "Sending push notifications"
+# poetry run pushl -rvvkc $HOME/var/pushl \
+#     https://beesbuzz.biz/feed\?push=1 \
+#     https://beesbuzz.biz/feed-summary \
+#     http://beesbuzz.biz/feed \
+#     http://beesbuzz.biz/feed-summary
+
+$HOME/pushl/pushl.sh

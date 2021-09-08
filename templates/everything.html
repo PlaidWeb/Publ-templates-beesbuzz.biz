@@ -10,7 +10,7 @@
 
 {% block content %}
 {% set view=view(recurse=True) %}
-<section id="entries">
+<section id="entries" class="h-feed">
 
     {% if view.previous or view.next %}
     <nav class="nav topnav">
@@ -25,7 +25,7 @@
     {% endif %}
 
     {% for entry in view.entries %}
-    <article class="entry">
+    <article class="entry h-entry">
         <header class="heading">
             {% block heading scoped %}
             <div class="top-hook"></div>

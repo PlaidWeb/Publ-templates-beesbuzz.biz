@@ -2,25 +2,14 @@
 
 {% block entrybody_content %}
 {{entry.body(gallery_id=entry.uuid,
-    div_class='images',
     width=750,
-    height=750,
-    resize='fit',
-    fullsize_width=3840,
-    fullsize_height=2160,
-    fullsize_quality=35,
-    heading_link_class='toc_link')}}
+    height=750)}}
 {% endblock %}
 
 {% block entrymore_content %}
 {{entry.more(gallery_id=entry.uuid,
-    div_class='images',
+    figure='images',
     width=750,
-    height=750,
-    resize='fit',
-    fullsize_width=3840,
-    fullsize_height=2160,
-    fullsize_quality=35,
-    heading_link_class='toc_link')}}
+    height=750)}}
 {% endblock %}
 

@@ -37,6 +37,7 @@
         <updated>{{entry.last_modified.isoformat()}}</updated>
         <id>urn:uuid:{{entry.uuid}}</id>
         <author><name>{{ entry.author if entry.author else "fluffy" }}</name></author>
+        <summary type="html"><![CDATA[{{entry.summary}}]]></summary>
         <content type="html"><![CDATA[
 
 		{% if entry.private %}

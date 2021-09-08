@@ -98,6 +98,7 @@
     <div id="entries">
 
         <article class="h-entry {{ entry.entry_type or 'Comic' }}">
+            <data class="p-uid" value="{{entry.uuid}}">
             <div class="heading">
                 <h2 class="p-name"><a href="{{entry.link}}" class="u-url">{{entry.title}}</a></h2>
                 <span class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">{{ entry.date.format('YYYY/MM/DD') }}</time>
@@ -116,8 +117,6 @@
                 <div id="preamble">
                 {% if entry.cut and not entry['Entry-Type'] %}<details><summary class="p-content-warning">{{entry.cut}}</summary>{% endif %}
                     {{entry.body(
-                        div_class='images',
-                        img_class='u-photo',
                         scale=2,
                         width=960)}}
                 {% if entry.cut and not entry['Entry-Type'] %}</details>{% endif %}
@@ -126,13 +125,11 @@
 
                 {% if entry.more %}
                 <div id="more" class="more">
-                    {{entry.more(gallery_id=entry.uuid,
-                        div_class='images',
+                    {{entry.more(
+                        gallery_id=entry.uuid,
                         width=640,
-                        height=640,
-                        fullsize_width=3840,
-                        fullsize_height=2160,
-                        fullsize_quality=35)}}
+                        height=640
+                        )}}
                 </div>
                 {% endif %}
 

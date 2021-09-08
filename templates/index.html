@@ -31,7 +31,7 @@
     {%- endblock -%}
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}" />
     <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
-    <link rel="alternate" type="application/atom+xml" title="Summary feed" href="{{view.link(template='feed-summary')}}" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
     <link rel="canonical" href="{{view.link(absolute=True,_scheme='https')}}" />
     {%- block webmention -%}
         {%- include '/_webmention.html' -%}
@@ -64,7 +64,7 @@
 
         <h1>{{ category.name or "busybee" }}
             {%- if view.tags %}
-                ({{view.tags|map('title')|join(', ')}})
+                ({{view.tags|join(', ')}})
             {%- endif -%}
         </h1>
 
@@ -99,7 +99,7 @@
         </ul>{% endif %}
     </nav>{%- endblock -%}
 
-    {%- block content scoped -%}<section id="entries">
+    {%- block content scoped -%}<section id="entries" class="h-feed">
 
         {%- if view.older or view.newer -%}<nav class="nav topnav">
 
@@ -124,6 +124,7 @@
             {%- if entry.body() or entry.more() -%}
                 {#- has a body, which means there's text to display -#}
                 <article class="entry h-entry{{' private' if entry.private else ''}}">
+                    <data class="p-uid" value="{{entry.uuid}}">
                     {%- block heading scoped -%}<header class="heading">
                         <div class="top-hook"></div>
 

@@ -74,6 +74,7 @@
         {%- endif -%}
 
         {%- block content -%}<article class="entry h-entry{{' private' if entry.private else ''}}">
+            <data class="p-uid" value="{{entry.uuid}}">
             <header class="heading">
                 {%- block heading scoped -%}
                 <div class="top-hook"></div>
@@ -115,14 +116,7 @@
                 <div class="e-content">
                     {%- block entrybody -%}{%- if entry.body -%}<div id="preamble" class="body">
                             {%- block entrybody_content scoped -%}
-                            {{entry.body(gallery_id=entry.uuid,
-                                div_class='images',
-                                width=960,
-                                height=640,
-                                fullsize_width=3840,
-                                fullsize_height=2160,
-                                fullsize_quality=35,
-                                heading_link_class='toc_link')}}
+                            {{entry.body(gallery_id=entry.uuid)}}
                             {%- endblock -%}
                     </div>{%- endif -%}{%- endblock -%}
 
@@ -131,14 +125,7 @@
                             {%- if entry.cut -%}<details><summary class="p-content-warning">{{entry.cut}}</summary>{%- endif -%}
 
                             {%- block entrymore_content scoped -%}
-                                {{entry.more(gallery_id=entry.uuid,
-                                    div_class='images',
-                                    width=360,
-                                    height=360,
-                                    fullsize_width=3840,
-                                    fullsize_height=2160,
-                                    fullsize_quality=35,
-                                    heading_link_class='toc_link')}}
+                                {{entry.more(gallery_id=entry.uuid)}}
                             {%- endblock -%}
 
                             {%- if entry.cut -%}</details>{%- endif -%}
@@ -148,10 +135,7 @@
                             <div class="footnotes">{%- block entryfootnotes_content scoped -%}
                                 {{ entry.footnotes(gallery_id=entry.uuid ~ '_footnotes',
                                     width=360,
-                                    height=360,
-                                    fullsize_width=3840,
-                                    fullsize_height=2160,
-                                    fullsize_quality=35) }}
+                                    height=360) }}
                             {%- endblock -%}</div>
                         {%- endif -%}{%- endblock -%}
 

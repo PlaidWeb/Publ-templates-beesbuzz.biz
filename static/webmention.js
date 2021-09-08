@@ -1,8 +1,8 @@
-﻿/* webmention.js
+/* webmention.js
 
 Simple thing for embedding webmentions from webmention.io into a page, client-side.
 
-(c)2018-2020 fluffy (http://beesbuzz.biz)
+(c)2018-2021 fluffy (http://beesbuzz.biz)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@ SOFTWARE.
 
 GitHub repo (for latest released versions, issue tracking, etc.):
 
-    http://github.com/PlaidWeb/webmention.js
+    https://github.com/PlaidWeb/webmention.js
 
 Basic usage:
 
@@ -59,7 +59,7 @@ Allowed parameters:
         By default, Webmentions render using the mf2 'url' element, which plays
         nicely with webmention bridges (such as brid.gy and telegraph)
         but allows certain spoofing attacks. If you would like to prevent
-        spoofing, set this to 1.
+        spoofing, set this to a non-empty string (e.g. "true").
 
     sort-by:
 
@@ -73,270 +73,381 @@ Allowed parameters:
 
     comments-are-reactions:
 
-        If set to "true", will display comment-type responses
+        If set to a non-empty string (e.g. "true"), will display comment-type responses
         (replies/mentions/etc.) as being part of the reactions
         (favorites/bookmarks/etc.) instead of in a separate comment list.
-        Defaults to "false".
 
 A more detailed example:
 
-<script src="/path/to/webmention.js"
+<!-- If you want to translate the UI -->
+<script src="/path/to/umd/i18next.js"></script>
+<script>
+    // Setup i18next as described in https://www.i18next.com/overview/getting-started#basic-sample
+</script>
+<!-- Otherwise, only using the following is fine -->
+<script src="/path/to/webmention.min.js"
     data-id="webmentionContainer"
     data-wordcount="30"
-    data-prevent-spoofing="1"
-    data-responses-are-reactions="true"
+    data-prevent-spoofing="true"
+    data-comments-are-reactions="true"
     />
 
 */
 
 
 (function () {
-    "use strict";
+  "use strict";
 
-    function getCfg(key, dfl) {
-        return document.currentScript.getAttribute("data-" + key) || dfl;
+  // Shim i18next
+  window.i18next = window.i18next || {
+    t: function t(/** @type {string} */key) { return key; }
+  }
+  const t = window.i18next.t.bind(window.i18next);
+
+  /**
+   * Read the configuration value.
+   *
+   * @param {string} key The configuration key.
+   * @param {string} dfl The default value.
+   * @returns {string}
+   */
+  function getCfg(key, dfl) {
+    return document.currentScript.getAttribute("data-" + key) || dfl;
+  }
+
+  const refurl = getCfg("page-url", window.location.href.replace(/#.*$/, ""));
+  const addurls = getCfg("add-urls", undefined);
+  const containerID = getCfg("id", "webmentions");
+  /** @type {Number} */
+  const textMaxWords = getCfg("wordcount");
+  const maxWebmentions = getCfg("max-webmentions", 30);
+  const mentionSource = getCfg("prevent-spoofing") ? "wm-source" : "url";
+  const sortBy = getCfg("sort-by", "published");
+  const sortDir = getCfg("sort-dir", "up");
+  /** @type {boolean} */
+  const commentsAreReactions = getCfg("comments-are-reactions");
+
+  /**
+   * @typedef MentionType
+   * @type {"in-reply-to"|"like-of"|"repost-of"|"bookmark-of"|"mention-of"|"rsvp"|"follow-of"}
+   */
+
+  /**
+   * Maps a reaction to a hover title.
+   *
+   * @type {Record<MentionType, string>}
+   */
+  const reactTitle = {
+    "in-reply-to": t("replied"),
+    "like-of": t("liked"),
+    "repost-of": t("reposted"),
+    "bookmark-of": t("bookmarked"),
+    "mention-of": t("mentioned"),
+    "rsvp": t("RSVPed"),
+    "follow-of": t("followed")
+  };
+
+  /**
+   * Maps a reaction to an emoji.
+   *
+   * @type {Record<MentionType, string>}
+   */
+  const reactEmoji = {
+    "in-reply-to": "💬",
+    "like-of": "❤️",
+    "repost-of": "🔄",
+    "bookmark-of": "⭐️",
+    "mention-of": "💬",
+    "rsvp": "📅",
+    "follow-of": "🐜"
+  };
+
+  /**
+   * @typedef RSVPEmoji
+   * @type {"yes"|"no"|"interested"|"maybe"|null}
+   */
+
+  /**
+   * Maps a RSVP to an emoji.
+   *
+   * @type {Record<RSVPEmoji, string>}
+   */
+  const rsvpEmoji = {
+    "yes": "✅",
+    "no": "❌",
+    "interested": "💡",
+    "maybe": "💭"
+  };
+
+  /**
+   * HTML escapes the string.
+   *
+   * @param {string} text The string to be escaped.
+   * @returns {string}
+   */
+  function entities(text) {
+    return text.replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  /**
+   * Creates the markup for an reaction image.
+   *
+   * @param {Reaction} r
+   * @param {boolean} isComment
+   * @returns {string}
+   */
+  function reactImage(r, isComment) {
+    const who = entities(
+      r.author?.name ?? r.url.split("/")[2]
+    );
+    /** @type {string} */
+    let response = reactTitle[r["wm-property"]] || t("reacted");
+    if (!isComment && r.content && r.content.text) {
+      response += ": " + extractComment(r);
     }
 
-    var refurl = getCfg('page-url',
-                        window.location.href.replace(/#.*$/, ''));
-    var addurls = getCfg('add-urls', undefined);
-    var containerID = getCfg('id', "webmentions");
-    var textMaxWords = getCfg('wordcount');
-    var maxWebmentions = getCfg('max-webmentions', 30);
-    var mentionSource = getCfg('prevent-spoofing') ? 'wm-source' : 'url';
-    var sortBy = getCfg('sort-by', 'published');
-    var sortDir = getCfg('sort-dir', 'up');
-    var commentsAreReactions = (getCfg('comments-are-reactions', 'false') == 'true');
-
-    var reactTitle = {
-        'in-reply-to': 'replied',
-        'like-of': 'liked',
-        'repost-of': 'reposted',
-        'bookmark-of': 'bookmarked',
-        'mention-of': 'mentioned',
-        'rsvp': 'RSVPed',
-        'follow-of': 'followed'
-    };
-
-    var reactEmoji = {
-        'in-reply-to': '💬',
-        'like-of': '❤️',
-        'repost-of': '🔄',
-        'bookmark-of': '⭐️',
-        'mention-of': '💬',
-        'rsvp': '📅',
-        'follow-of': '🐜'
-    };
-
-    var rsvpEmoji = {
-        'yes': '✅',
-        'no': '❌',
-        'interested': '💡',
-        'maybe': '💭'
-    };
-
-    function entities(text) {
-        return text.replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
+    let authorPhoto = '';
+    if (r.author && r.author.photo) {
+      authorPhoto = `
+        <img
+          src="${entities(r.author.photo)}"
+          loading="lazy"
+          decoding="async"
+          alt="${who}"
+        >
+      `;
     }
 
-    function reactImage(r, isComment) {
-        var who = entities((r.author && r.author.name)
-                           ? r.author.name
-                           : r.url.split('/')[2]);
-        var response = reactTitle[r['wm-property']] || 'reacted';
-        if (!isComment && r.content && r.content.text) {
-            response += ": " + extractComment(r);
-        }
-        var html = '<a class="reaction" rel="nofollow ugc" title="' + who + ' ' +
-            response + '" href="' + r[mentionSource] + '">';
-        if (r.author && r.author.photo) {
-            html += '<img src="' + entities(r.author.photo) + '">';
-        }
-        html += (reactEmoji[r['wm-property']] || '💥');
-        if (r.rsvp && rsvpEmoji[r.rsvp]) {
-            html += '<sub>' + rsvpEmoji[r.rsvp] + '</sub>';
-        }
-        html += '</a>';
-
-        return html;
+    let rsvp = '';
+    if (r.rsvp && rsvpEmoji[r.rsvp]) {
+      rsvp = `<sub>${rsvpEmoji[r.rsvp]}</sub>`;
     }
 
-    // strip the protocol off a URL
-    function stripurl(url) {
-        return url.substr(url.indexOf('//'));
-    }
+    return`
+      <a
+        class="reaction"
+        rel="nofollow ugc"
+        title="${who} ${response}"
+        href="${r[mentionSource]}"
+      >
+        ${authorPhoto}
+        ${(reactEmoji[r['wm-property']] || '💥')}
+        ${rsvp}
+      </a>
+    `;
+  }
 
-    // Deduplicate multiple mentions from the same source URL
-    function dedupe(mentions) {
-        var filtered = [];
-        var seen = {};
+  /**
+   * Strip the protocol off a URL.
+   *
+   * @param {string} url The URL to strip protocol off.
+   * @returns {string}
+   */
+  function stripurl(url) {
+    return url.substr(url.indexOf('//'));
+  }
 
-        mentions.forEach(function(r) {
-            // Strip off the protocol (i.e. treat http and https the same)
-            var source = stripurl(r.url);
-            if (!seen[source]) {
-                filtered.push(r);
-                seen[source] = true;
-            }
-        });
+  /**
+   * Deduplicate multiple mentions from the same source URL.
+   *
+   * @param {Array<Reaction>} mentions Mentions of the source URL.
+   * @return {Array<Reaction>}
+   */
+  function dedupe(mentions) {
+    /** @type {Array<Reaction>} */
+    const filtered = [];
+    /** @type {Record<string, boolean>} */
+    const seen = {};
 
-        return filtered;
-    }
-
-    function extractComment(c) {
-        var text = entities(c.content.text);
-
-        if (textMaxWords) {
-            var words = text.replace(/\s+/g,' ')
-                .split(' ', textMaxWords + 1);
-            if (words.length > textMaxWords) {
-                words[textMaxWords - 1] += '&hellip;';
-                words = words.slice(0, textMaxWords);
-                text = words.join(' ');
-            }
-        }
-
-        return text;
-    }
-
-    function formatComments(comments) {
-        var html = '<h2>' + comments.length + ' Response' +
-            (comments.length > 1 ? 's' : '') +
-            '</h2><ul class="comments">';
-        comments.forEach(function(c) {
-            html += '<li>';
-
-            html += reactImage(c, true);
-
-            html += ' <a class="source" rel="nofollow ugc" href="' +
-                c[mentionSource] + '">';
-            if (c.author && c.author.name) {
-                html += entities(c.author.name);
-            } else {
-                html += entities(c.url.split('/')[2]);
-            }
-            html += '</a>: ';
-
-            var linkclass;
-            var linktext;
-            if (c.name) {
-                linkclass = "name";
-                linktext = c.name;
-            } else if (c.content && c.content.text) {
-                linkclass = "text";
-                linktext = extractComment(c);
-            } else {
-                linkclass = "name";
-                linktext = "(mention)";
-            }
-
-            html += '<span class="' + linkclass + '">' + linktext + '</span>';
-
-            html += '</li>';
-        });
-        html += '</ul>';
-
-        return html;
-    }
-
-    function formatReactions(reacts) {
-        var html = '<h2>' + reacts.length + ' Reaction' +
-            (reacts.length > 1 ? 's' : '') +
-            '</h2><ul class="reacts">';
-
-        reacts.forEach(function(r) {
-            html += reactImage(r);
-        });
-
-        return html;
-    }
-
-    function getData(url, callback) {
-        if (window.fetch) {
-            window.fetch(url).then(function(response) {
-                if (response.status >= 200 && response.status < 300) {
-                    return Promise.resolve(response);
-                } else {
-                    return Promise.reject(new Error(response.statusText));
-                }
-            }).then(function(response) {
-                return response.json();
-            }).then(callback).catch(function(error) {
-                console.error("Request failed", error);
-            });
-        } else {
-            var oReq = new XMLHttpRequest();
-            oReq.onload = function(data) {
-                callback(JSON.parse(data));
-            };
-            oReq.onerror = function(error) {
-                console.error("Request failed", error);
-            };
-        }
-    }
-
-    window.addEventListener("load", function () {
-        var container = document.getElementById(containerID);
-        if (!container) {
-            // no container, so do nothing
-            return;
-        }
-
-        var pages = [stripurl(refurl)];
-        if (!!addurls) {
-            addurls.split('|').forEach(function (url) {
-                pages.push(stripurl(url));
-            })
-        }
-
-        var apiURL = 'https://webmention.io/api/mentions.jf2?per-page=' +
-            maxWebmentions + '&sort-by=' + sortBy + '&sort-dir=' + sortDir;
-
-        pages.forEach(function (path) {
-            apiURL += '&target[]=' + encodeURIComponent('http:' + path) +
-                '&target[]=' + encodeURIComponent('https:' + path);
-        });
-
-        getData(apiURL, function(json) {
-            var html = '';
-
-            var comments = [];
-            var collects = [];
-            if (commentsAreReactions) {
-                comments = collects;
-            }
-
-            var mapping = {
-                "in-reply-to": comments,
-                "like-of": collects,
-                "repost-of": collects,
-                "bookmark-of": collects,
-                "mention-of": comments,
-                "rsvp": comments
-            };
-
-            json.children.forEach(function(c) {
-                var store = mapping[c['wm-property']];
-                if (store) {
-                    store.push(c);
-                }
-            });
-
-            // format the comment-type things
-            if (comments.length > 0 && comments !== collects) {
-                html += formatComments(dedupe(comments));
-            }
-
-            // format the other reactions
-            if (collects.length > 0) {
-                html += formatReactions(dedupe(collects));
-            }
-
-            container.innerHTML = html;
-        });
+    mentions.forEach(function(r) {
+      // Strip off the protocol (i.e. treat http and https the same)
+      const source = stripurl(r.url);
+      if (!seen[source]) {
+        filtered.push(r);
+        seen[source] = true;
+      }
     });
 
+    return filtered;
+  }
+
+  /**
+   * Extract comments from a reaction.
+   *
+   * @param {Reactions} c
+   * @returns string
+   */
+  function extractComment(c) {
+    let text = entities(c.content.text);
+
+    if (textMaxWords) {
+      let words = text.replace(/\s+/g,' ').split(' ', textMaxWords + 1);
+      if (words.length > textMaxWords) {
+        words[textMaxWords - 1] += '&hellip;';
+        words = words.slice(0, textMaxWords);
+        text = words.join(' ');
+      }
+    }
+
+    return text;
+  }
+
+  /**
+   * Format comments as HTML.
+   *
+   * @param {Array<Reaction>} comments The comments to format.
+   * @returns string
+   */
+  function formatComments(comments) {
+    const headline = `<h2>${t('Responses')}</h2>`;
+    const markup = comments
+      .map((c) => {
+        const image = reactImage(c, true);
+
+        let source = entities(c.url.split('/')[2]);
+        if (c.author && c.author.name) {
+          source = entities(c.author.name);
+        }
+        const link = `<a class="source" rel="nofollow ugc" href="${c[mentionSource]}">${source}</a>`;
+
+        let linkclass = "name";
+        let linktext = `(${t("mention")})`;
+        if (c.name) {
+          linkclass = "name";
+          linktext = c.name;
+        } else if (c.content && c.content.text) {
+          linkclass = "text";
+          linktext = extractComment(c);
+        }
+
+        const type = `<span class="${linkclass}">${linktext}</span>`;
+
+        return `<li>${image} ${link} ${type}</li>`;
+      })
+    .join('');
+    return `
+      ${headline}
+      <ul class="comments">${markup}</ul>
+    `;
+  }
+
+  /**
+   * @typedef {Object} Reaction
+   * @property {string}      url
+   * @property {Object?}     author
+   * @property {string?}     author.name
+   * @property {string?}     author.photo
+   * @property {Object?}     content
+   * @property {string?}     content.text
+   * @property {RSVPEmoji?}  rsvp
+   * @property {MentionType?} wm-property
+   * @property {string?}     wm-source
+   */
+
+  /**
+   * Formats a list of reactions as HTML.
+   *
+   * @param {Array<Reaction>} reacts List of reactions to format
+   * @returns string
+   */
+  function formatReactions(reacts) {
+    const headline = `<h2>${t('Reactions')}</h2>`;
+
+    const markup = reacts.map((r) => reactImage(r)).join('');
+
+    return `
+      ${headline}
+      <ul class="reacts">${markup}</ul>
+    `;
+  }
+
+  /**
+   * @typedef WebmentionResponse
+   * @type {Object}
+   * @property {Array<Reaction>} children
+   */
+
+  /**
+   * Register event listener.
+   */
+  window.addEventListener("load", async function () {
+    const container = document.getElementById(containerID);
+    if (!container) {
+      // no container, so do nothing
+      return;
+    }
+
+    const pages = [stripurl(refurl)];
+    if (!!addurls) {
+      addurls.split('|').forEach(function (url) {
+        pages.push(stripurl(url));
+      });
+    }
+
+    let apiURL = `https://webmention.io/api/mentions.jf2?per-page=${maxWebmentions}&sort-by=${sortBy}&sort-dir=${sortDir}`;
+
+    pages.forEach(function (path) {
+      apiURL += `&target[]=${encodeURIComponent('http:' + path)}&target[]=${encodeURIComponent('https:' + path)}`;
+    });
+
+    /** @type {WebmentionResponse} */
+    let json = {};
+    try {
+      const response = await window.fetch(apiURL);
+      if (response.status >= 200 && response.status < 300) {
+        json = await response.json();
+      } else {
+        console.error("Could not parse response");
+        new Error(response.statusText);
+      }
+    } catch(error) {
+      // Purposefully not escalate further, i.e. no UI update
+      console.error("Request failed", error);
+    }
+
+    /** @type {Array<Reaction>} */
+    let comments = [];
+    /** @type {Array<Reaction>} */
+    const collects = [];
+
+    if (commentsAreReactions) {
+      comments = collects;
+    }
+
+    /** @type {Record<MentionType, Array<Reaction>>} */
+    const mapping = {
+      "in-reply-to": comments,
+      "like-of": collects,
+      "repost-of": collects,
+      "bookmark-of": collects,
+      "follow-of": collects,
+      "mention-of": comments,
+      "rsvp": comments
+    };
+
+    json.children.forEach(function(child) {
+      // Map each mention into its respective container
+      const store = mapping[child['wm-property']];
+      if (store) {
+        store.push(child);
+      }
+    });
+
+    // format the comment-type things
+    let formattedComments = '';
+    if (comments.length > 0 && comments !== collects) {
+      formattedComments = formatComments(dedupe(comments));
+    }
+
+    // format the other reactions
+    let reactions = '';
+    if (collects.length > 0) {
+      reactions = formatReactions(dedupe(collects));
+    }
+
+    container.innerHTML = `${formattedComments}${reactions}`;
+  });
 }());

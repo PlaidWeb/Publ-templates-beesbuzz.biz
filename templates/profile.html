@@ -54,6 +54,12 @@
                 {% endif %}
             {% endif %}
 
+            {% if user.profile.endpoints %}
+            <p>You also have support for <a href="https://indieweb.org/">IndieWeb</a> interoperability! Cool!
+                In particular I see the following protocols: {{ user.profile.endpoints.keys() | join(', ') }}
+            </p>
+            {% endif %}
+
             <p>Anyway, thanks for letting me get to know you a bit better.</p>
         {% elif not user.last_login %}
             <p>I didn't see when you last logged in, so I didn't get your user profile. That's too bad. If you <a href="{{logout(redir=login())}}">log out and back in again</a> I might know a bit more. But no big deal if you don't.</p>
@@ -72,9 +78,14 @@
             <details><summary>Bearer token</summary>
             <p>The following HTTP header will allow web requests to be made on your behalf without logging in:</p>
 
-            <figure><pre>Authorization: Bearer {{user.token(lifetime=86400*30)}}</pre></figure>
+            <figure class="blockcode"><pre>Authorization: Bearer {{user.token(lifetime=86400*30)}}</pre></figure>
 
-            <p>This token is valid until {{arrow.get().shift(days=30).format()}}. Please do not share this with anyone else.</p>
+            <p>This token is valid <time datetime="{{arrow.get().shift(days=30).format()}}">for 30 days</time>. Please do not share this with anyone else.</p>
+            {% if user.profile and user.profile.endpoints and user.profile.endpoints.ticket_endpoint %}
+                <p>It also looks like you support <a href="https://indieweb.org/IndieAuth_Ticket_Auth">Ticket Auth</a>! Cool! Maybe you could try <a href="{{token_endpoint}}?me={{user.identity}}">sending a ticket request</a>.</p>
+            {% else %}
+                <p>Also, if you support <a href="https://indieweb.org/IndieAuth_Ticket_Auth">Ticket Auth</a>, you can try <a href="{{token_endpoint}}?me={{user.identity}}">sending a ticket request</a>.</p>
+            {% endif %}
 
         </section>
 
@@ -84,6 +95,10 @@
 
    <section class="content">
     <p>You don't seem to be logged in right now. If you like, you can <a href="{{login}}">log in</a> and then I'll know a bit more about you, and you'll get access to more things. But it's up to you. No pressure either way!</p>
+
+    <p>If you support <a href="https://indieweb.org/IndieAuth_Ticket_Auth">Ticket Auth</a>, you can try sending a ticket request with the following form:</p>
+
+    <form method="POST" action="{{token_endpoint}}"><input type="url" name="me" placeholder="Profile URL" size=50><input type="submit" value="Go!"></form>
     </section>
     {% endif %}
     </article>

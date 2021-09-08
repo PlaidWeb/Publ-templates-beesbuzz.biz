@@ -81,8 +81,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="feed" />
-    <link rel="alternate" type="application/atom+xml" title="Summary feed" href="feed-summary" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
     {% if categories|count == 1 %}
     <link rel="stylesheet" href="{{categories[0].grouper.link(template='style.css')}}" />
     {% else %}

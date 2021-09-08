@@ -278,6 +278,31 @@ td {
     color: black;
 }
 
+summary {
+    display:  inline-block;
+    border: solid rgba(0,0,0,0.25) 1px;
+    border-radius: 1ex;
+    padding: 1ex;
+    background: rgba(255,0,0,0.1);
+    font-weight: bold;
+}
+details[open] summary {
+    background: rgba(0,255,0,0.1);
+}
+summary::marker {
+    display: none;
+}
+
+details summary::after {
+    content: " (Content hidden, select to reveal)";
+    font-size:  80%;
+    font-style: italic;
+    font-weight:  normal;
+}
+details[open] summary::after {
+    content:  "";
+}
+
 @media screen and (max-width: 800px) {
     html {
         margin: 0;

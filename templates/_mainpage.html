@@ -6,7 +6,8 @@
 
     {% set content = view(entry_type_not='sidebar',count=20) %}
     <link rel="stylesheet" href="index.css" />
-    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
 
     {% include '_favicon.html' %}
 
@@ -44,8 +45,21 @@
 	    {%- if not user and latest.unauthorized(count=1) %} <a class="login" href="{{login}}">login for more</a>{% endif -%}</h2>
         <ul>
             {% for entry in latest.entries %}
+            {% if entry.body %}
 	    <li><a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
+        {% else %}
+                    {%- for type, icon, label in (
+                                     ('bookmark-of', '⭐️', 'Bookmarked'),
+                                    ('like-of', '❤️', 'Liked'),
+                                    ) -%}
+                        {%- for link in entry.get_all(type) -%}
+                            <li><a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %}{{icon}} <a href="{{link}}" class="u-{{type}}">{{entry.title}}</a></li>
+                        {%- endfor -%}
+                    {%- endfor -%}
+                {% endif %}
             {% endfor %}
+        }
+        }
         </ul>
 
         <ul id="siteinfo">

@@ -9,11 +9,11 @@
     <subtitle>Art, music, comics, and more</subtitle>
     <link href="{{ view.link(template='feed-summary',absolute=True) }}" rel="self" />
     <link href="{{ category.link(template='feed-summary',absolute=True) }}" rel="current" />
-    {% if view.next %}
-    <link href="{{ view.next.first.archive('month','feed-summary',absolute=True) }}" rel="prev-archive" />
+    {% if view.older %}
+    <link href="{{ view.older.link(template='feed-summary',absolute=True) }}" rel="prev-archive" />
     {% endif %}
-    {% if view.previous %}
-    <link href="{{ view.previous.last.archive('month','feed-summary',absolute=True) }}" rel="next-archive" />
+    {% if view.newer %}
+    <link href="{{ view.newer.link(template='feed-summary',absolute=True) }}" rel="next-archive" />
     {% endif %}
     <link href="{{ category.link(absolute=True) }}" />
     {% if request.args %}<fh:archive />{% endif %}
