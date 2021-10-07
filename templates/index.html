@@ -94,7 +94,7 @@
         {%- set sidebar = get_view(category=category,entry_type='sidebar',order='title') -%}
         {%- if sidebar.entries -%}<ul class="sidebar">
             {%- for entry in sidebar.entries -%}
-                <li><a href="{{entry.link}}" title="{{entry.summary}}">{{entry.title}}</a></li>
+                <li><a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{entry.title}}</a></li>
             {%- endfor -%}
         </ul>{% endif %}
     </nav>{%- endblock -%}
@@ -130,10 +130,14 @@
 
                         <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title or '(no title)'}}</a></h2>
 
-                        <div class="posted"><time class="dt-published" datetime="{{entry.date.isoformat()}}">
-                            <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
-                            <span class="time">{{entry.date.format('h:mm A')}}</span>
-                            <span class="ago">{{entry.date.humanize()}}</span></time>
+                        <div class="posted">
+                            <time class="dt-published" datetime="{{entry.date.isoformat()}}">
+                                <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
+                                <span class="time">{{entry.date.format('h:mm A')}}</span>
+                                {% if (arrow.get() - entry.date).days > 0 %}
+                                <span class="ago">{{entry.date.humanize()}}</span>
+                                {% endif %}
+                            </time>
                             {%- if entry.author %}by
                                 <span class="author">
                                     <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>

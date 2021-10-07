@@ -39,14 +39,18 @@
     </ul>
 
     <div id="entries">
-        <h2>Latest things
+        {% set latest=view(recurse=True,order='newest',count=5,entry_type_not=['sidebar','transcript'],category_not='blog/chatter') %}
+        <h2><a href="{{view.link(template='everything')}}">Latest things</a>
             {%- if view.tags %} <span>(tagged {{view.tags|join(', ')}})</span>{%endif%}
-            {% set latest=view(recurse=True,order='newest',count=5,entry_type_not=['sidebar','transcript'],category_not='blog/chatter') %}
-	    {%- if not user and latest.unauthorized(count=1) %} <a class="login" href="{{login}}">login for more</a>{% endif -%}</h2>
+	    {%- if not user and latest.has_unauthorized %} <a class="login" href="{{login}}">login for more</a>{% endif -%}</h2>
         <ul>
             {% for entry in latest.entries %}
             {% if entry.body %}
-	    <li><a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary}}">{{ entry.title }}</a> <span class="posted">({{entry.date.humanize()}})</span></li>
+	    <li><a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{ entry.title }}</a>
+                                    {% if (arrow.get() - entry.date).days > 0 %}
+                        <span class="posted">{{entry.date.humanize()}}</span>
+                        {% endif %}
+        </li>
         {% else %}
                     {%- for type, icon, label in (
                                      ('bookmark-of', '⭐️', 'Bookmarked'),
@@ -58,8 +62,6 @@
                     {%- endfor -%}
                 {% endif %}
             {% endfor %}
-        }
-        }
         </ul>
 
         <ul id="siteinfo">

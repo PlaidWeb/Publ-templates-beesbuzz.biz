@@ -1,15 +1,5 @@
 {% extends '/entry.html' %}
 
-{% block entrytags %}
-{{super()}}
-{% if entry.toc %}
-<nav id="toc">
-    <h2>Table of Contents</h2>
-    {{entry.toc(max_depth=entry.get('TOC-max-depth',2)|int)}}
-</nav>
-{% endif %}
-{% endblock %}
-
 {% block entrymore_content %}
 {{entry.more(
     gallery_id=entry.uuid,

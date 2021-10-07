@@ -143,44 +143,14 @@ iframe {
     font-weight: bold;
 }
 
-#toc {
-    float: right;
-    font-size: small;
-    background: white;
-    color: black;
-    border: dotted black 1px;
-    border-right: none;
-    margin: 0 0 1ex 2em;
-}
-
 #toc h2 {
-    margin: 0;
-    padding: 0.5ex 0.5ex 0;
     background: #ccf;
 }
-
-#toc ol {
-    list-style-type: none;
-    padding: 0 1em;
-}
-
-#toc ol ol {
-    padding-right: 0;
-}
-
 
 blockquote {
     border-left: solid rgba(0,0,0,0.25) 3px;
     margin-left: 2em;
     padding-left: 1.5ex;
-}
-
-.inset-left, .inset-right { shape-margin: 1em; }
-.inset-left {
-    margin-right: 1em;
-}
-.inset-right {
-    margin-left: 1em;
 }
 
 .shaped {

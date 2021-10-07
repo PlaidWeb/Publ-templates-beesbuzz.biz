@@ -93,3 +93,8 @@ p {
 .images {
     text-align: center;
 }
+
+#toc h2 {
+    color: white;
+    background: black;
+}

@@ -579,3 +579,9 @@ pre {
     color: rgba(0,0,0,0.5);
 }
 
+a[href*="amzn.to"]::before {
+    content: '($)';
+    text-decoration: none;
+    color: rgba(0,63,0,.75);
+    font-size: x-small;
+}

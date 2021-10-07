@@ -116,7 +116,8 @@ a:hover {
     padding: 0;
     box-shadow: 6px 6px 12px rgba(0,0,0,0.3);
     vertical-align: top;
-    max-width: 320px;
+    min-width: 240px;
+    max-width: 496px;
     box-sizing: border-box;
     transition: all 0.25s ease;
 }
@@ -132,6 +133,11 @@ a:hover {
     margin: 0;
     padding: 0.25ex 12px 0;
     background: #ccc;
+    color: black;
+}
+
+#entries h2 a:first-child {
+    text-decoration: none;
     color: black;
 }
 
@@ -171,10 +177,19 @@ a:hover {
     font-style: italic;
 }
 
+#entries .login::before {
+    content: '[';;
+}
+#entries .login::after {
+    content: ']';;
+}
+
 #entries .posted {
     font-size: x-small;
     white-space: nowrap;
 }
+#entries .posted::before { content: '('; }
+#entries .posted::after { content: ')'; }
 
 #content {
 }

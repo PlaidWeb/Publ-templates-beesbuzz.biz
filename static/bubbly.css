@@ -41,6 +41,31 @@ html {
     clear: both;
 }
 
+#toc {
+    float: right;
+    font-size: small;
+    background: white;
+    color: black;
+    border: dotted black 1px;
+    border-right: none;
+    margin: 0 0 1ex 2em;
+}
+
+#toc h2 {
+    margin: 0;
+    padding: 0.5ex 0.5ex 0;
+}
+
+#toc ol {
+    list-style-type: none;
+    padding: 0 1em;
+}
+
+#toc ol ol {
+    padding-right: 0;
+}
+
+
 header h2 {
     margin: 0;
     padding: 0;
@@ -364,5 +389,18 @@ details[open] summary::after {
 	clear: both;
 	border-top: solid black 1px;
     }
+
+    nav#toc {
+        float: none;
+        max-width: 100%;
+        margin: 0;
+        border: none;
+    }
+}
+
+a[href*="amzn.to"]::before {
+    content: '($)';
+    text-decoration: none;
+    color: rgba(0,127,0,.5);
 }
 
