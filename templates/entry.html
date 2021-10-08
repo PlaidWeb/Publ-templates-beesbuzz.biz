@@ -83,9 +83,7 @@
                     <time class="dt-published" datetime="{{entry.date.isoformat()}}">
                         <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                         <span class="time">{{entry.date.format('h:mm A')}}</span>
-                        {% if (arrow.get() - entry.date).days > 0 %}
                         <span class="ago">{{entry.date.humanize()}}</span>
-                        {% endif %}
                     </time>
                     {%- if entry.author -%}
                         <span class="author">
@@ -114,7 +112,7 @@
             {%- endblock -%}
 
             {%- block toc -%}
-                {% if entry.toc %}
+                {% if entry.get('show-toc') %}
                 <nav id="toc">
                     <h2>Table of Contents</h2>
                     {{entry.toc(max_depth=entry.get('TOC-max-depth',2)|int)}}

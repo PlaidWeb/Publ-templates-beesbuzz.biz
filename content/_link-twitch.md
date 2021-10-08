@@ -1,4 +1,6 @@
 Title: twitch.tv
+xStatus: HIDDEN
+Path-Alias: /twitch
 Icon: twitch
 Redirect-To: http://twitch.tv/fluffycritter
 Date: 2018-05-24 17:45:58-07:00

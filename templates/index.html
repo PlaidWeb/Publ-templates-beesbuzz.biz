@@ -134,9 +134,7 @@
                             <time class="dt-published" datetime="{{entry.date.isoformat()}}">
                                 <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
                                 <span class="time">{{entry.date.format('h:mm A')}}</span>
-                                {% if (arrow.get() - entry.date).days > 0 %}
                                 <span class="ago">{{entry.date.humanize()}}</span>
-                                {% endif %}
                             </time>
                             {%- if entry.author %}by
                                 <span class="author">

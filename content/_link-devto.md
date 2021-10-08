@@ -1,6 +1,8 @@
+Status: HIDDEN
 Redirect-To: https://dev.to/fluffy
+status: hidden
 Title: dev.to
-Icon: devto
+icon: devto
 Path-Alias: /dev.to
 Entry-Type: sidebar
 Link-Rel: me

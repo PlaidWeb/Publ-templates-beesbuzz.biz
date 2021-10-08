@@ -2,6 +2,8 @@ Title: A sample article
 Date: 2020-02-05 21:38:34-08:00
 Entry-ID: 142
 UUID: d25d2d94-c7e4-5246-a299-d060cad62273
+Show-Toc: sure
+Toc-Max-Depth: 1
 
 This is an article. Here is the boring preamble.
 

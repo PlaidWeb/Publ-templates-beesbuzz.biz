@@ -68,7 +68,7 @@ tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>
 
 [[package]]
 name = "authl"
-version = "0.4.6"
+version = "0.5.2"
 description = "Framework-agnostic authentication wrapper"
 category = "main"
 optional = false
@@ -77,7 +77,7 @@ python-versions = ">=3.6,<4.0"
 [package.dependencies]
 beautifulsoup4 = ">=4.9.1,<5.0.0"
 expiringdict = ">=1.2.1,<2.0.0"
-itsdangerous = ">=1.1.0,<2.0.0"
+itsdangerous = ">=1.1.0"
 "mastodon.py" = ">=1.5.1,<2.0.0"
 mf2py = ">=1.1.2,<2.0.0"
 requests = ">=2.24.0,<3.0.0"
@@ -397,7 +397,7 @@ python-versions = "*"
 
 [[package]]
 name = "publ"
-version = "0.6.14"
+version = "0.7.3"
 description = "A flexible web-based publishing framework"
 category = "main"
 optional = false
@@ -406,7 +406,7 @@ python-versions = ">=3.6,<4.0"
 [package.dependencies]
 arrow = ">=0.17.0,<0.18.0"
 atomicwrites = ">=1.4.0,<2.0.0"
-authl = ">=0.4.2,<0.5.0"
+authl = ">=0.5.0,<0.6.0"
 awesome-slugify = ">=1.6.5,<2.0.0"
 Flask = ">=1.1.2,<2.0.0"
 Flask-Caching = ">=1.9.0,<2.0.0"
@@ -415,7 +415,7 @@ Pillow = ">=8.0.1,<9.0.0"
 pony = ">=0.7.14,<0.8.0"
 Pygments = ">=2.7.3,<3.0.0"
 watchdog = ">=1.0.2,<2.0.0"
-Werkzeug = ">=1.0.1,<2.0.0"
+Whoosh = ">=2.7.4,<3.0.0"
 
 [[package]]
 name = "pushl"
@@ -622,6 +622,14 @@ dev = ["pytest", "pytest-timeout", "coverage", "tox", "sphinx", "pallets-sphinx-
 watchdog = ["watchdog"]
 
 [[package]]
+name = "whoosh"
+version = "2.7.4"
+description = "Fast, pure-Python full text indexing, search, and spell checking library."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "yarl"
 version = "1.7.0"
 description = "Yet another URL library"
@@ -636,7 +644,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e83cff529ecc935c25f647893ac75f8878d9f15b8b589d1fa86dab6a39bd2639"
+content-hash = "587d69f5d0543359e491d3baed2704d34aaec538803de9a63e83180135bf2f58"
 
 [metadata.files]
 aiohttp = [
@@ -698,8 +706,8 @@ attrs = [
     {file = "attrs-21.2.0.tar.gz", hash = "sha256:ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"},
 ]
 authl = [
-    {file = "Authl-0.4.6-py3-none-any.whl", hash = "sha256:a8f4dfbad5d38d36b4406b9036f83ef04bf07d777cb50481b5ad85e92bcebaca"},
-    {file = "Authl-0.4.6.tar.gz", hash = "sha256:a5937f8281a0d97d32faa7bb75fb313bca87cffd70074399ee13a5887d0f0c52"},
+    {file = "Authl-0.5.2-py3-none-any.whl", hash = "sha256:d092859766b76b4666036f90645abfd02a6eed922b7f6a539cdce42cc8ffa286"},
+    {file = "Authl-0.5.2.tar.gz", hash = "sha256:c4a737c976f0a8c0e6b2b8f4b79c29cfcbf75a93e58ee26b4a1e509f48595393"},
 ]
 awesome-slugify = [
     {file = "awesome-slugify-1.6.5.tar.gz", hash = "sha256:bbdec3fa2187917473a2efad092b57f7125a55f841a7cf6a1773178d32ccfd71"},
@@ -1028,8 +1036,8 @@ pony = [
     {file = "pony-0.7.14.tar.gz", hash = "sha256:2f01e84e79ea7a14040225cb6c079bb266e7ba147346356c266490b18c77ce82"},
 ]
 publ = [
-    {file = "Publ-0.6.14-py3-none-any.whl", hash = "sha256:40cb55c5174efc089159a3b5da69ff2b012d9ed480c1b4ad53fa9914117281b0"},
-    {file = "Publ-0.6.14.tar.gz", hash = "sha256:2360110eef104db66cb148e21b14b797ac35d47a079ae2a41b9538757126a644"},
+    {file = "Publ-0.7.3-py3-none-any.whl", hash = "sha256:ae2d20c53ddacddd78097d2a529cf3e939825eb86f475751abb1a7eb4ce7715d"},
+    {file = "Publ-0.7.3.tar.gz", hash = "sha256:2bc3d0a7fa15981e3df2244ddd6b4249a2f9a48ff077c41f9c5379f2b25b2402"},
 ]
 pushl = [
     {file = "Pushl-0.3.3-py3-none-any.whl", hash = "sha256:08e5c9e41496ad62cdf8a96c71bad70258bef9b9b72b89ccf580e049b0af9926"},
@@ -1164,6 +1172,11 @@ webencodings = [
 werkzeug = [
     {file = "Werkzeug-1.0.1-py2.py3-none-any.whl", hash = "sha256:2de2a5db0baeae7b2d2664949077c2ac63fbd16d98da0ff71837f7d1dea3fd43"},
     {file = "Werkzeug-1.0.1.tar.gz", hash = "sha256:6c80b1e5ad3665290ea39320b91e1be1e0d5f60652b964a3070216de83d2e47c"},
+]
+whoosh = [
+    {file = "Whoosh-2.7.4-py2.py3-none-any.whl", hash = "sha256:aa39c3c3426e3fd107dcb4bde64ca1e276a65a889d9085a6e4b54ba82420a852"},
+    {file = "Whoosh-2.7.4.tar.gz", hash = "sha256:7ca5633dbfa9e0e0fa400d3151a8a0c4bec53bd2ecedc0a67705b17565c31a83"},
+    {file = "Whoosh-2.7.4.zip", hash = "sha256:e0857375f63e9041e03fedd5b7541f97cf78917ac1b6b06c1fcc9b45375dda69"},
 ]
 yarl = [
     {file = "yarl-1.7.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:e35d8230e4b08d86ea65c32450533b906a8267a87b873f2954adeaecede85169"},

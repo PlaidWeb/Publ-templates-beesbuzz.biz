@@ -25,8 +25,10 @@ config = {
     # West coast is best coast
     'timezone': 'US/Pacific',
 
-    # I don't expect my content to change more often than every 5 minutes.
     # I'm running on a server with a local memcached instance.
+    # Publ automatically invalidates the cache for content changes,
+    # so the cache timeout mostly is just there so that humanized
+    # dates (e.g. "1 hour ago") update relatively often.
     'cache': {
         'CACHE_TYPE': 'memcached',
         'CACHE_DEFAULT_TIMEOUT': 3613,
@@ -46,7 +48,7 @@ config = {
         # I have an SMTP server running on localhost
         'SMTP_HOST': 'localhost',
         'SMTP_PORT': 25,
-        'EMAIL_FROM': 'nobody@beesbuzz.biz',
+        'EMAIL_FROM': 'nobody@example.com',
         'EMAIL_SUBJECT': 'Sign in to beesbuzz.biz',
 
         # Identify my site as "busybee" to the Mastodon login flow
@@ -70,7 +72,9 @@ config = {
 
 app = publ.Publ(__name__, config)
 
-# Create a persistent secret session key that's never checked in
+# Create a persistent secret session key that's never checked in.
+# If this site were running behind a load balancer this file would need to
+# be shared amongst all of the backing instances.
 if not os.path.isfile('.sessionkey'):
     import uuid
     with open('.sessionkey', 'w') as file:

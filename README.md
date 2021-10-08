@@ -2,32 +2,44 @@
 
 These templates are based on the ones I use on [my website](https://beesbuzz.biz). Here is some documentation on how they are put together.
 
-This repository also contains some basic content to demonstrate parts of the site in operation. To run the sample site you can clone this repository and, inside your clone, type the following:
+This repository also contains some basic content to demonstrate parts of the site in operation.
 
-```bash
-./setup.sh
-./run.sh
-```
+To run the sample site, you can do the following:
 
-which will run the sample site at `http://localhost:5000`. Windows users can instead double-click on `winsetup.cmd` and `winrun.cmd`.
+1. Install [Python](https://python.org/) (at least version 3.6) and [Poetry](https://python-poetry.org/)
+2. Clone this repository
+3. Run `run.sh` (Linux, macOS, WSL, Cygwin) or `winrun.cmd` (Windows)
+4. Point a browser to `http://localhost:5000`
 
-Note that to run this you'll need Python (at least version 3.5) and pipenv. See the [Publ getting started guide](http://publ.beesbuzz.biz/manual/328-Getting-started) for more thorough setup instructions.
+See the [Publ getting started guide](https://publ.plaidweb.site/manual/328-Getting-started) for more thorough setup instructions.
 
 ## App setup
 
 The application lives in `app.py`, which is set up with basic logging and the following facets:
 
+### Run scripts
+
+The `run.sh` script installs the current package versions (namely Publ and its dependencies) and indexes all new content (`flask publ reindex`).
+
+The `fix_dates.py` script goes through and renames my content files to make them easier to find based on date and/or entry ID, and also makes it obvious if I've forgotten about a draft entry or if an entry's been deleted. As of Publ v0.7.4 a similar thing can be done as a Publ built-in with e.g.
+
+```sh
+poetry run flask normalize -a
+```
+
+but I don't especially like changing the filenames quite so substantially.
+
 ### Publ configuration
 
-The database is just local SQLite.
+The database is just local SQLite (yes, even in production; it's actually faster than MySQL or Postgres!).
 
-If running in debug, there is no cache, otherwise it uses a memcached running on localhost.
+If running in debug, there is no cache, otherwise it uses a memcached running on localhost. The cache itself doesn't really do much to speed up the site (as the hit rate is pretty low most of the time), but it does help to  mitigate heavy load spikes whenever Hacker News decides to pay me a visit or whatever.
 
 The index gets a rescan once a day, which is probably not necessary but it doesn't hurt anything either.
 
 ### Authentication
 
-For friends-only/private entries, this is configured to support emailed magic links (using the local mail server), Mastodon, and IndieAuth; `test:` URLs are also available when the site is running in debug mode.
+For friends-only/private entries, this sample site is configured to support emailed magic links (using the local mail server), Mastodon, and IndieAuth; `test:` URLs are also available when the site is running in debug mode. If you have a Twitter API key you can also set the `TWITTER_CLIENT_KEY` and `TWITTER_CLIENT_SECRET` environment variables accordingly, and then people can sign in with Twitter as well.
 
 ### Routing rules
 
@@ -172,7 +184,7 @@ Path-Alias: /twitter
 
 Given the CSS fragment generated in `index.css`, this will get its link icon with the content file `_layout/twitter.png`. It also goes ahead and sets up a path-alias such that if someone visits [/twitter](https://beesbuzz.biz/twitter) they get redirected to my Twitter page. (This is useful in that now on other pages I can simply link to `/twitter` and if I ever change my Twitter username for some reason -- [unlikely as that is](https://twitter.com/fluffy/status/1140411704414621696) -- those links will remain valid.)
 
-The `Date` field on the link entries is simply used to order them.
+The sidebar is sorted using the `Sort-Title` attribute.
 
 The `#categories li.{{cat.basename}}` rule works similarly to the link fragments; it simply generates CSS rules for each top-level site category where the background image is set to, for example, `_layout/cat-comics.jpg`.
 
@@ -243,7 +255,7 @@ When I used Disqus, my `_comment_thread.html` template looked something like thi
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 ```
 
-However, Disqus was [pretty bad for private entries](http://beesbuzz.biz/blog/1768-Moving-away-from-Disqus), so I moved away from it. As a partial mitigation for one of the privacy concerns I had been using an ad-hoc mechanism to obscure the Disqus thread IDs, but it was ultimately ineffective. If you care about privacy, don't use Disqus.
+However, Disqus was [pretty bad for private entries](http://beesbuzz.biz/blog/1768-Moving-away-from-Disqus), so I moved away from it. As a partial mitigation for one of the privacy concerns I had been using an ad-hoc mechanism to obscure the Disqus thread IDs, but it was ultimately ineffective. If you care about privacy, don't use Disqus. Currently I use [isso](https://posativ.org/isso/), but at some point I will probably build a more purpose-specific commenting system.
 
 ## <span id="incoming-webmention">Incoming webmentions (`/_webmention.html`, `/static/webmention.js`)</span>
 

@@ -47,9 +47,7 @@
             {% for entry in latest.entries %}
             {% if entry.body %}
 	    <li><a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{ entry.title }}</a>
-                                    {% if (arrow.get() - entry.date).days > 0 %}
                         <span class="posted">{{entry.date.humanize()}}</span>
-                        {% endif %}
         </li>
         {% else %}
                     {%- for type, icon, label in (
