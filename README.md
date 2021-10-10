@@ -21,7 +21,13 @@ The application lives in `app.py`, which is set up with basic logging and the fo
 
 The `run.sh` script installs the current package versions (namely Publ and its dependencies) and indexes all new content (`flask publ reindex`).
 
-The `fix_dates.py` script goes through and renames my content files to make them easier to find based on date and/or entry ID, and also makes it obvious if I've forgotten about a draft entry or if an entry's been deleted. As of Publ v0.7.4 a similar thing can be done as a Publ built-in with e.g.
+The `fix_dates.py` script goes through and renames my content files to make them easier to find based on date and/or entry ID, and also makes it obvious if I've forgotten about a draft entry or if an entry's been deleted. This script can be run with
+
+```sh
+poetry run python fix_dates.py
+```
+
+As of Publ v0.7.4 a similar thing can be done as a Publ built-in with e.g.
 
 ```sh
 poetry run flask normalize -a

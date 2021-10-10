@@ -10,7 +10,7 @@ html {
     margin: 3em auto;
     border-radius: 16px;
     overflow: hidden;
-    max-width: 55em;
+    max-width: 65em;
 }
 
 #container h1 {
@@ -352,10 +352,8 @@ details[open] summary::after {
         border-radius: 0;
     }
 
-    div.inset-left, div.inset-right, .shaped {
-        float: none;
-        text-align: center;
-        max-width: 100%;
+    .inset-left, .inset-right {
+        max-width: 50%;
     }
 
     .entry .content {
@@ -404,3 +402,14 @@ a[href*="amzn.to"]::before {
     color: rgba(0,127,0,.5);
 }
 
+.react {
+    display: inline-block;
+    padding: 1ex;
+    border: dotted black 1px;
+    margin: 1ex;
+    border-radius: 1em;
+}
+
+iframe {
+    max-width: 100%;
+}
