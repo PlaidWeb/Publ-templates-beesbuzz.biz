@@ -12,7 +12,42 @@
             z-index: 1000;
             position: relative;
         }
+
+        #token {
+            max-width: 80%;
+            text-overflow: ellipsis;
+            font-family: Monaco, Monospace;
+        }
+
+        details[open] {
+            border: dotted black 1px;
+            border-radius: 1ex;
+        }
+        details[open] >div {
+            padding: 0 1em;
+        }
+        details[open] summary {
+            border-top-style: none;
+            border-left-style: none;
+        }
     </style>
+
+    <script>
+        window.addEventListener("load", () => {
+            var token = document.getElementById("token");
+            token.addEventListener("focus", () => {
+                token.setSelectionRange(0, token.value.length)
+            });
+        })
+
+        function copyToken() {
+            if (navigator.clipboard) {
+                var token = document.getElementById("token");
+                navigator.clipboard.writeText(token.value);
+                document.getElementById("copyButton").innerHTML = "Copied";
+            }
+        }
+    </script>
 {% endblock %}
 
 
@@ -75,12 +110,17 @@
             <p>I've also seen you around enough to give you access to some non-public content on <a href="/blog/">my blog</a>. Please handle it with care!</p>
         {% endif %}
 
-            <details><summary>Bearer token</summary>
-            <p>The following HTTP header will allow web requests to be made on your behalf without logging in:</p>
+            <details><summary>Bearer token</summary><div>
+                <p>The following HTTP header will allow web requests to be made on your behalf without logging in:</p>
 
-            <figure class="blockcode"><pre>Authorization: Bearer {{user.token(lifetime=86400*30)}}</pre></figure>
+                {% set token = 'Authorization: Bearer ' ~ user.token(lifetime=86400*30) %}
+                <input id="token" size="{{token|length}}" type="text" value="{{token}}" readonly>
+                <button id="copyButton" onclick="copyToken()" title="Copy to clipboard">📋</button>
 
-            <p>This token is valid <time datetime="{{arrow.get().shift(days=30).format()}}">for 30 days</time>. Please do not share this with anyone else.</p>
+                <p>This token is valid <time datetime="{{arrow.get().shift(days=30).format()}}">for 30 days</time>. Please do not share this with anyone else.</p>
+
+            </div></details>
+
             {% if user.profile and user.profile.endpoints and user.profile.endpoints.ticket_endpoint %}
                 <p>It also looks like you support <a href="https://indieweb.org/IndieAuth_Ticket_Auth">Ticket Auth</a>! Cool! Maybe you could try <a href="{{token_endpoint}}?me={{user.identity}}">sending a ticket request</a>.</p>
             {% else %}
