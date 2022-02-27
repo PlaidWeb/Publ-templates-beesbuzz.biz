@@ -110,7 +110,7 @@
             <p>I've also seen you around enough to give you access to some non-public content on <a href="/blog/">my blog</a>. Please handle it with care!</p>
         {% endif %}
 
-            <details><summary>Bearer token</summary><div>
+            <details id="bearer"><summary>Bearer token</summary><div>
                 <p>The following HTTP header will allow web requests to be made on your behalf without logging in:</p>
 
                 {% set token = 'Authorization: Bearer ' ~ user.token(lifetime=86400*30) %}

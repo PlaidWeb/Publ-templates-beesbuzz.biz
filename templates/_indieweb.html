@@ -29,18 +29,6 @@
 {%- endfor -%}
 
 
-{#- Support indieweb.xyz pings based on tags; if the category metadata has a Tag: header it will
-    send that as the primary tag, and any tags on the entry itself will also be sent out as well. -#}
-<ul class="hidden">
-{%- for crumb in category.breadcrumb|reverse %}
-{%- if crumb.tag %}
-<li>indieweb: <a class="u-category" href="https://indieweb.xyz/en/{{crumb.tag|urlencode}}">#{{crumb.tag}}</a></li>
-{%- endif %}
-{%- endfor %}
-{%- for tag in entry.tags %}
-<li>indieweb: <a class="u-syndication p-category" href="https://indieweb.xyz/en/{{tag|urlencode}}">{{tag}}</a></li>
-{%- endfor %}
-
 {#- support other mention types with a header like:
 
     Ping: http://example.com/ category
@@ -48,11 +36,13 @@
     Unfortunately 'Category:' means something else in Publ so it can't
     be made a standard ping type.
 -#}
+{% if entry.ping %}
+<ul class="hidden">
 {%- for ping in entry.get_all('ping') -%}
     {%- with link, class = ping.split() -%}
         <li><a href="{{link}}" class="u-{{class}}">{{class}}</a></li>
     {%- endwith -%}
 {%- endfor -%}
-
 </ul>
+{% endif %}
 
