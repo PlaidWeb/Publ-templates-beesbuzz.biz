@@ -33,6 +33,12 @@
     <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
     <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
     <link rel="canonical" href="{{view.link(absolute=True,_scheme='https')}}" />
+
+    {% if view.has_unauthorized and not user %}
+    {# provide an authorization link for feed reader discovery purposes #}
+    <link href="{{ login(category.link(template='profile')) }}" rel="authorization" />
+    {% endif %}
+
     {%- block webmention -%}
         {%- include '/_webmention.html' -%}
     {%- endblock -%}

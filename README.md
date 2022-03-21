@@ -78,6 +78,7 @@ A few things of note in the `index.html` template:
 * It does a relative link to `style.css` for its stylesheet; this means that it will use the dynamically-generated stylesheet for the category.
 * Similarly it does a relative link to the `feed` template, so if someone points their RSS reader at a category page they only subscribe to that category (and its subcategories).
 * Entries with an `Entry-Type` of `sidebar` will appear in the navigation section, rather than in the main content flow
+* If a user is logged out and there are unauthorized entries that would potentially be visible, it displays a login link, and also provides a `<link rel="authorization">` with the hopes that eventually social readers will support that as a UI cue
 
 #### Articles extensions (`articles/index.html`)
 
@@ -119,6 +120,7 @@ Other things of note:
 * It uses a recursive view; a feed for a category will also include all of the content for its subcategories
 * Items with an `Entry-Type` of `sidebar` will not appear in the feed
 * Items with response-type microformat headers (`in-reply-to`, `bookmark-of`, `like-of`, `rsvp`) will not appear unless there's a URL parameter of `push=1`
+* If a user is logged out and there are unauthorized entries that would potentially be visible, it displays a stub entry to indicate that login is possible, and also a `<link rel="authorization">` on the feed with the hopes that eventually social readers will support that as a UI cue
 
 ### Entry template (`entry.html`)
 

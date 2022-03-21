@@ -40,6 +40,10 @@ config = {
     # This is probably not necessary but it makes me feel better.
     'index_rescan_interval': 86400,
 
+    # If running in production, don't enable the watchdog; this allows me to more
+    # easily work on entries "live"
+    'index_enable_watchdog': bool(os.environ.get('FLASK_DEBUG')),
+
     # set up private posts
     'auth': {
         # Always use SSL in production
