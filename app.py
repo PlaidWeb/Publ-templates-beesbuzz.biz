@@ -238,7 +238,8 @@ def access_request(entry_id: int):
             password=config['auth'].get('SMTP_PASSWORD'),
             use_ssl=config['auth'].get('SMTP_USE_SSL'),
         )
-        send_func = simple_sendmail(connector, config['auth']['EMAIL_FROM'], f"Access request: {entry.link()}")
+        send_func = simple_sendmail(connector, config['auth']['EMAIL_FROM'],
+            f"Access request for {user.humanize}")
 
         msg = email.message.EmailMessage()
         msg['To'] = 'admin@example.com.FIXME'
