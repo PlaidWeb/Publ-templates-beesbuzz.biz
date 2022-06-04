@@ -7,6 +7,7 @@
     {% set content = view(entry_type_not='sidebar',count=20) %}
     <link rel="stylesheet" href="index.css" />
     <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
+    <link rel="alternate" type="text/mf2+html" title="mf2 feed (full content)" href="{{view.link(template='everything')}}" />
     <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
 
     {% include '_favicon.html' %}
@@ -24,6 +25,7 @@
         {%- for entry in view(entry_type='sidebar',order='title',tag=None).entries -%}
         <a href="{{entry.permalink if entry['Use-Permalink'] else entry.link}}" {% if entry['link-rel'] %}rel="{{entry['link-rel']}}"{% endif %}
             title="{{entry.title(markup=False)}}" class="{{entry.icon or entry.title(markup=False).lower()}}"><span>{{entry.title}}</span></a>
+            {{entry.body}}
         {% endfor -%}
     </div>
 

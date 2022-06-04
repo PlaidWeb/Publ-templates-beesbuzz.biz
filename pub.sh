@@ -11,9 +11,9 @@
 type=$1; shift
 url=$1; shift
 
-basename="$(date +%Y%m%d) $type $(printf '%s' "$url" | tr -cs '[a-zA-Z0-9_\-\n]' _ | sed 's/_+/_/g;s/_$//g')"
+basename="$(date +%Y%m%d) $type_$(printf '%s' "$url" | tr -cs '[a-zA-Z0-9_\-\n]' _ | sed 's/_+/_/g;s/_$//g')"
 fname="$(dirname "$0")/content/blog/chatter/$basename.md"
-echo $fname
+printf "'%s'" "$fname"
 
 cat > $fname << EOF
 Status: DRAFT

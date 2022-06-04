@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>403 Unauthorized</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{url_for('login',asset='css')}}">
-    </head>
-    <body>
-        <div id="login">
-            <h1>Authorization Pending</h1>
-            <div id="notify">
-                <p>Sorry, <code>{{user.name}}</code>, you don't currently have access to this page. You can try <a href="{{logout}}">logging in as someone else</a>, or you can <a href="{{category.link}}">try reading something else</a>.</p>
-                <p>I check the logs fairly frequently to grant access to new users, but you can get in touch with me to request access in case I missed something or if the <a href="{{category.link(template='profile')}}">identity you used</a> isn't one I'm likely to recognize (e.g. you logged in using email but I only know you on Twitter, or we've never interacted before).</p>
-            </div>
-            <div id="powered">
-                <p>Powered by <a href="https://github.com/PlaidWeb/Authl">Authl</a></p>
-            </div>
+
+<head>
+    <title>403 Unauthorized</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('login',asset='css')}}">
+</head>
+
+<body>
+    <div id="login">
+        <h1>Authorization Pending</h1>
+        <div id="notify">
+            <p>Sorry, <code>{{user.name}}</code>, you don't currently have access to this page. You can try <a href="{{logout}}">logging in as someone else</a>, or you can <a href="{{entry.category.link}}">try reading something else</a>.</p>
+            <p>I check the logs fairly frequently to grant access to new users, but you can get in touch with me to request access in case I missed something or if the <a href="{{entry.category.link(template='profile')}}">identity you used</a> isn't one I'm likely to recognize (e.g. you logged in using email but I only know you on Twitter, or we've never interacted before).</p>
+            {% if 'no-requests' not in user.groups %}
+            <p>If you already know how to get in touch with me, please use that means of communication; otherwise, you can use the form below:</p>
+            <form method="POST" action="/_access_request/{{entry.id}}">
+                <fieldset>
+                    <legend>Access request</legend>
+
+                    Name (required): <input type="text" name="name" style="min-width:50%" placeholder="Your name here" required><br>
+
+                    Email (optional, but recommended): <input type="email" name="email" style="min-width:50%" placeholder="alice@example.com"><br>
+
+                    <textarea cols=80 rows=25 name="reason" placeholder="Anything I should know about you and your request" required></textarea><br>
+
+                    <input type="submit" value="Send request">
+                </fieldset>
+            </form>
+            {% endif %}
         </div>
-    </body>
+        <div id="powered">
+            <p>Powered by <a href="https://github.com/PlaidWeb/Authl">Authl</a></p>
+        </div>
+    </div>
+</body>
+
 </html>

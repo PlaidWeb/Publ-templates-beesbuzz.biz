@@ -59,7 +59,7 @@
 
         <section class="content">
             <p>You seem to be logged into this website with the identity <code>{{user.humanize}}</code>. That's great!
-            {% if user.last_login %}If this isn't how you want me to know you (or if something looks outdated), try <a href="{{logout(redir=login())}}">logging out and back in</a>. Don't worry, I'll wait.{% endif %}</p>
+            {% if user.last_login %}If this isn't how you want me to know you (or if something looks outdated), try <a href="{{logout(redir=login(request.path ~ '?cb=' ~ (range(1,100000)|random)))}}">logging out and back in</a>. Don't worry, I'll wait.{% endif %}</p>
 
         {% if user.profile %}
             <p>When you logged in, your identity provider gave me some information about you. Here's the other stuff
@@ -97,7 +97,7 @@
 
             <p>Anyway, thanks for letting me get to know you a bit better.</p>
         {% elif not user.last_login %}
-            <p>I didn't see when you last logged in, so I didn't get your user profile. That's too bad. If you <a href="{{logout(redir=login())}}">log out and back in again</a> I might know a bit more. But no big deal if you don't.</p>
+            <p>I didn't see when you last logged in, so I didn't get your user profile. That's too bad. If you <a href="{{logout(redir=login(request.path ~ '?cb=' ~ (range(1,100000)|random)))}}">log out and back in again</a> I might know a bit more. But no big deal if you don't.</p>
         {% else %}
             <p>When you logged in I didn't seem to get any additional information about you. That's fine though!</p>
         {% endif %}

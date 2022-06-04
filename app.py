@@ -199,3 +199,63 @@ def redirect_bridgy(match):
     at @beesbuzz.biz@beesbuzz.biz on Mastodon et al if you want.
     """
     return 'https://fed.brid.gy' + flask.request.full_path, False
+
+@app.route('/_access_request/<int:entry_id>', methods=['POST'])
+def access_request(entry_id: int):
+    """
+    This is the handler for the _unauthorized template's access request form.
+    Given an impassioned plea for access to an entry, this sends an email to
+    the admin of the site (their email address given in msg['To'], below) with
+    the logged-in user's identity and the form contents.
+
+    The code here leverages Authl's sendmail wrapper, just because it already
+    exists. There's no particular reason to use that aside from convenience.
+    It could just as well write into a database row or the like.
+    """
+    import publ.model, publ.user, publ.entry
+    from authl.handlers.email_addr import smtplib_connector, simple_sendmail
+    import email.message
+    from flask import request
+
+    from pony import orm
+
+    with orm.db_session():
+        entry_obj = publ.model.Entry.get(id=entry_id)
+        if not entry_obj:
+            return 400, "Missing entry"
+        entry = publ.entry.Entry.load(entry_obj)
+
+        user = publ.user.get_active()
+        if not user:
+            return 400, "Missing user"
+        if 'no-requests' in user.groups:
+            return 403, "Sorry, try again later"
+
+        connector = smtplib_connector(
+            hostname=config['auth']['SMTP_HOST'],
+            port=config['auth']['SMTP_PORT'],
+            username=config['auth'].get('SMTP_USERNAME'),
+            password=config['auth'].get('SMTP_PASSWORD'),
+            use_ssl=config['auth'].get('SMTP_USE_SSL'),
+        )
+        send_func = simple_sendmail(connector, config['auth']['EMAIL_FROM'], f"Access request: {entry.link()}")
+
+        msg = email.message.EmailMessage()
+        msg['To'] = 'admin@example.com.FIXME'
+
+        if request.form['email']:
+            msg['Reply-To'] = request.form['email']
+
+        msg.set_content(
+            f"""
+Entry: {entry.link(absolute=True)}
+Name: {request.form['name']}
+Identity: {user.identity} ({user.humanize})
+Email: {request.form.get('email') or "Not provided"}
+
+{request.form.get('reason') or "No reason given"}
+            """)
+
+    send_func(msg)
+
+    return "Message sent."

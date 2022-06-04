@@ -52,12 +52,19 @@
             {%- include get_template('_feed_entry', entry) -%}
             <p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
 
-        ]]></content>
+        ]]>
+
+
+        {% for tag in entry.tags %}
+        <a rel="tag" href="{{entry.archive(tag=tag,absolute=True)}}">#{{tag}}</a>
+        {% endfor %}
+
+        </content>
         {% for cat in entry.category.breadcrumb[1:] -%}
-        <category term="{{cat.name|hashtag}}" />
+        <category term="{{cat.name|hashtag}}" label="{{cat.name}}" />
         {% endfor %}
         {% for tag in entry.tags %}
-        <category term="{{tag|hashtag}}" />
+        <category term="{{tag|hashtag}}" label="{{tag}}" />
         {% endfor %}
 
         {% else %}
@@ -71,7 +78,7 @@
         {% endif %}
 
     </entry>
-    {% else %}<!-- chaff: {{entry.link(absolute=True)}} -->
+    {% else %}<!-- suppressed note: {{entry.link(absolute=True)}} -->
     {% endif -%}
     {% endfor %}
 
