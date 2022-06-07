@@ -11,8 +11,8 @@
     <div id="login">
         <h1>Authorization Pending</h1>
         <div id="notify">
-            <p>Sorry, <code>{{user.name}}</code>, you don't currently have access to this page. You can try <a href="{{logout}}">logging in as someone else</a>, or you can <a href="{{entry.category.link}}">try reading something else</a>.</p>
-            <p>I check the logs fairly frequently to grant access to new users, but you can get in touch with me to request access in case I missed something or if the <a href="{{entry.category.link(template='profile')}}">identity you used</a> isn't one I'm likely to recognize (e.g. you logged in using email but I only know you on Twitter, or we've never interacted before).</p>
+            <p>Sorry, <code>{{user.name}}</code>, you don't currently have access to this page. You can try <a href="{{logout}}">logging in as someone else</a>, or you can <a href="{{entry.category.link if entry else category.link}}">try reading something else</a>.</p>
+            <p>I check the logs fairly frequently to grant access to new users, but you can get in touch with me to request access in case I missed something or if the <a href="{{(entry.category if entry else category).link(template='profile')}}">identity you used</a> isn't one I'm likely to recognize (e.g. you logged in using email but I only know you on Twitter, or we've never interacted before).</p>
             {% if 'no-requests' not in user.groups %}
             <p>If you already know how to get in touch with me, please use that means of communication; otherwise, you can use the form below:</p>
             <form method="POST" action="/_access_request/{{entry.id}}">
