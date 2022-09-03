@@ -30,7 +30,9 @@
 
     {%- block scripthooks -%}
     {%- if entry.math -%}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML" async></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>      
     {%- endif -%}
     {%- endblock -%}
 
@@ -120,7 +122,7 @@
                 {% endif %}
             {%- endblock -%}
 
-            <a class="hidden" href="https://fed.brid.gy/"></a>
+            {% if entry.date > arrow.now().shift(days=-7) %}<a class="hidden" href="https://fed.brid.gy/"></a>{% endif %}
 
             <div class="content">
                 {%- include '/_indieweb.html' -%}

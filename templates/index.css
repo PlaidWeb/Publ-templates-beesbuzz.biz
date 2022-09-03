@@ -32,7 +32,6 @@ h1 {
     border-radius: 3em;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     box-sizing: border-box;
-    transition: all 0.25s ease;
 }
 h1 span {
     background-size: 1em 1em;
@@ -46,7 +45,6 @@ h1 span {
 #links {
     float: right;
     margin: 3em 0 0 1ex;
-    margin-right: 0;
     padding: 8px 4px;
     border-radius: 8px 0 0 8px;
     text-align: left;
@@ -57,6 +55,7 @@ h1 span {
     border: solid var(--border-color) 1px;
     border-right: none;
     max-height: 80vh;
+    overflow-x: hidden;
 }
 
 a:link {
@@ -81,7 +80,10 @@ a:hover {
     padding: 2px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transition: all 0.25s ease;
+
+    transition: background-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-size 0.25s ease;
 }
 
 #content {
@@ -120,7 +122,10 @@ a:hover {
     min-width: 240px;
     max-width: 496px;
     box-sizing: border-box;
-    transition: all 0.25s ease;
+
+    transition: border 0.25s ease,
+        border-radius 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 #entries:hover {
@@ -228,7 +233,13 @@ a:hover {
     box-shadow: 6px 6px 12px var(--shadow-color);
     box-sizing: border-box;
 
-    transition: all 0.25s ease;
+    transition: background-size 0.25s ease,
+        border-color 0.25s ease,
+        border-color 0.25s ease,
+        filter 0.25s ease,
+        box-shadow 0.25s ease,
+        border-radius 0.25s ease,
+        border-width 0.25s ease;
 }
 
 #categories li a {
@@ -238,7 +249,6 @@ a:hover {
     height: 100%;
     text-decoration: none;
     color: black;
-    transition: all 0.25s ease;
     text-shadow: 1px 0 0 white,
         0 1px 0 white,
         -1px 0 0 white,
@@ -257,8 +267,6 @@ a:hover {
     border: solid rgba(0,0,0,.2) 1px;
     border-style: none solid solid none;
     text-align: center;
-
-    transition: all 0.25s ease;
 }
 
 #categories li:hover {
@@ -314,8 +322,9 @@ a:hover {
         margin: 0 1em 1em;
         border: none;
         border-bottom: solid black 1px;
+        border-left: solid black 1px;
         vertical-align: top;
-        border-radius: 0;
+        border-radius: 0 0 0 8px;
         margin: 0;
     }
 

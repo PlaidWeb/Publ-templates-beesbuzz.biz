@@ -155,7 +155,7 @@ A more detailed example:
   const reactEmoji = {
     "in-reply-to": "💬",
     "like-of": "❤️",
-    "repost-of": "🔄",
+    "repost-of": "↩️",
     "bookmark-of": "⭐️",
     "mention-of": "💬",
     "rsvp": "📅",
