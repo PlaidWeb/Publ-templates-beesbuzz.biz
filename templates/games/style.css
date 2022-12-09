@@ -9,6 +9,13 @@ html {
     color: white;
 }
 
+.tags { font-size: x-small; }
+.tags ul {display: inline; margin:0; padding:0; list-style-type: none;}
+.tags li { display: inline; margin: 0 0 0 1em; padding: 0; }
+.tags a { text-decoration: none; }
+.tags a::before { content:'['; color: white; }
+.tags a::after { content:']'; color: white;}
+
 #container {
     background: black;
     margin: 3em;

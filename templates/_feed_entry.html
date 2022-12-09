@@ -1,3 +1,5 @@
+{%- include '/_indieweb.html' -%}
+
 {{entry.body(
     max_width=640,
     max_height=640,
@@ -20,3 +22,11 @@
 <hr/>{{entry.footnotes}}
 {% endif %}
 {% endif %}
+
+{%- if entry.via -%}<p class="via">(via
+    {% for via in entry.get_all('via') -%}
+    {%- with url, _, label = via.partition(' ') -%}
+    <span class="via h-cite"><a class="u-url u-repost-of p-name" href="{{url}}">{{label}}</a></span>{%- if loop.index < loop.length -%}, {% endif -%}
+    {%- endwith -%}
+    {%- endfor -%}
+)</p>{%- endif -%}

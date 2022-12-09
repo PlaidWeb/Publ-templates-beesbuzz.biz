@@ -9,10 +9,11 @@
                  ('repost-of', '🔄'),
                  ('bookmark-of', '⭐️'),
                  ('syndication', ''),
+                 ('quote-of', '❝')
                 ) -%}
     {%- for note in entry.get_all(type) -%}
         {%- with url,_,title = note.partition(' ') -%}
-        <a href="{{url}}" title="{{type}}{{' '~title if title else ''}}" class="{{'hidden' if not label else 'ping'}} u-{{type}}">{{label}} {{title if title else entry.title}}</a>
+        <a href="{{url}}" title="{{type}}{{' '~title if title else ''}}" class="{{'hidden' if not label else 'ping'}} u-{{type}}">{% if label %}{{label}} {{title if title else entry.title}}{% endif %}</a>
         {%- endwith -%}
     {%- endfor -%}
 {%- endfor -%}
