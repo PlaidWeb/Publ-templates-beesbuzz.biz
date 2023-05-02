@@ -113,12 +113,17 @@
             <div class="entry e-content">
                 {% include '/_indieweb.html' %}
 
+                {% for parent in entry.attached %}
+                <p>Original entry: <a href="{{parent.link}}">{{parent.title}}</a></p>
+                {% endfor %}
+
                 {% if entry.body %}
                 <div id="preamble">
                 {% if entry.cut and not entry['Entry-Type'] %}<details><summary class="p-content-warning">{{entry.cut}}</summary>{% endif %}
                     {{entry.body(
                         scale=2,
-                        width=960)}}
+                        width=960,
+                        format='webp')}}
                 {% if entry.cut and not entry['Entry-Type'] %}</details>{% endif %}
                 </div>
                 {% endif %}
@@ -145,6 +150,7 @@
                     {% include '/_hcard.html' %}
                 {% endif %}
             </div>
+
 
             {% for attachment in entry.attachments %}
             <section class="{{attachment.entry_type}}" id="attach-{{attachment.id}}">

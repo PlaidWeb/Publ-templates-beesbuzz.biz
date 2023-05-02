@@ -116,6 +116,14 @@
 
     <meta name="description" content="Comics for {{comics.range}}" />
 
+    <meta property="og:title" content="{{category.name}}" />
+    {% if category.description %}
+    <meta property="og:description" content="{{category.description}}" />
+    {% endif %}
+    <meta property="og:site_name" content="busybee" />
+    <meta property="og:type" content="webpage" />
+    <meta property="og:profile:first_name" content="fluffy" />
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 </head>
 <body>
@@ -181,7 +189,7 @@
                     <summary class="e-summary p-content-warning">{{ entry.cut }}</summary>
                 {% endif %}
                     <div class="e-content">
-                        {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link,prefix="index_") }}
+                        {{ entry.body(scale=2,width=960,resize='fit',div_class='panels',link=entry.link,prefix="index_",format='webp') }}
                     </div>
                 {% endif %}
                 {% if entry.cut %}

@@ -1,4 +1,4 @@
-{%- set view = view(entry_type='',is_attached=False,count=20) -%}
+{%- set view = view(entry_type='',is_attached=False,count=20,tag_filter='ALL') -%}
 {%- if category.paging == 'year' and view.is_current -%}
 {%- set view = view(date=category.last.date_year) -%}
 {%- endif -%}
@@ -45,22 +45,30 @@
     {%- endblock -%}
 
     {%- if category.parent -%}
-        <link rel="up" href="{{category.parent.link}}" />
+        <link rel="up" href="{{category.parent.link(template=template)}}" />
     {%- endif -%}
     {%- if view.previous -%}
-        <link rel="previous" href="{{view.previous.link}}" />
+        <link rel="previous" href="{{view.previous.link(template=template)}}" />
     {%- endif -%}
     {%- if view.next -%}
-        <link rel="next" href="{{view.next.link}}" />
+        <link rel="next" href="{{view.next.link(template=template)}}" />
     {%- endif -%}
 
     {%- block scripthooks -%}
         {%- if view.entries|selectattr('math')|first -%}
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script id="MathJax-script" async
-                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>      
+                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         {%- endif -%}
     {%- endblock -%}
+
+    <meta property="og:title" content="{{category.name}}" />
+    {% if category.description %}
+    <meta property="og:description" content="{{category.description}}" />
+    {% endif %}
+    <meta property="og:site_name" content="busybee" />
+    <meta property="og:type" content="webpage" />
+    <meta property="og:profile:first_name" content="fluffy" />
 </head>
 
 <body id="{{ template.name }}">
@@ -82,8 +90,9 @@
         {%- endif -%}
     </heading>{%- endblock -%}
 
-    {%- block navigation -%}<nav id="nav">
+    {%- block navigation scoped -%}<nav id="nav">
         <h2>Navigation</h2>
+
 
         <ul class="breadcrumb">
             {%- for cat in category.breadcrumb[:-1] -%}
@@ -108,6 +117,14 @@
             {%- endfor -%}
         </ul>{% endif %}
         {%- endblock -%}
+
+        {% block search_form %}
+        <form id="search" method="GET" action="search">
+            <input type="text" name="q" value="{{request.args.q}}" placeholder="Search text">
+            <input type="submit" value="Search">
+        </form>
+        {% endblock %}
+
     </nav>{%- endblock -%}
 
     {%- block content scoped -%}<section id="entries">
@@ -115,13 +132,13 @@
         {%- if view.older or view.newer -%}<nav class="nav topnav">
 
             {%- if view.older -%}
-                <span class="prev"><a href="{{view.older}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+                <span class="prev"><a href="{{view.older.link(template=template)}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
             {%- endif -%}
 
             &nbsp;
 
             {%- if view.newer -%}
-                <span class="next"><a href="{{view.newer}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
+                <span class="next"><a href="{{view.newer.link(template=template)}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
             {%- endif -%}
         </nav>{% endif %}
 

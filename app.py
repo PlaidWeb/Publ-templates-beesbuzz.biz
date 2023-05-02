@@ -72,9 +72,9 @@ config = {
 
     # Keep 3 months of authentication logs
     'auth_log_prune_age': 86400 * 90,
-}
 
-app = publ.Publ(__name__, config)
+    'search_index': 'search'
+}
 
 # Create a persistent secret session key that's never checked in.
 # If this site were running behind a load balancer this file would need to
@@ -85,7 +85,9 @@ if not os.path.isfile('.sessionkey'):
         file.write(str(uuid.uuid4()))
     os.chmod('.sessionkey', 0o600)
 with open('.sessionkey') as file:
-    app.secret_key = file.read()
+    config['secret_key'] = file.read()
+
+app = publ.Publ(__name__, config)
 
 
 def thread_id(item):

@@ -16,6 +16,13 @@
     <link rel="authorization_endpoint" href="https://auth.beesbuzz.biz/" />
 
     <link rel="canonical" href="https://beesbuzz.biz/" />
+
+    <meta property="og:title" content="busybee" />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile:first_name" content="fluffy" />
+    <meta property="og:image" content="{{static('headshot.jpg')}}" />
+    <meta property="og:description" content="A personal website run by a multifaceted weirdo" />
+
 </head>
 <body id="{{ template.name }}">
 
@@ -63,6 +70,13 @@
                 {% endif %}
             {% endfor %}
         </ul>
+
+        {% block search_form %}
+        <form id="search" method="GET" action="search">
+            <input type="text" name="q" value="{{request.args.q}}" placeholder="Search text">
+            <input type="submit" value="Search">
+        </form>
+        {% endblock %}
 
         <ul id="siteinfo">
             <li><a href="/about">About/contact</a></li>

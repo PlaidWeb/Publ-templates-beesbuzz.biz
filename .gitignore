@@ -4,3 +4,5 @@ logs/
 static/_img/
 .sessionkey
 __pycache__
+.python-version
+search/

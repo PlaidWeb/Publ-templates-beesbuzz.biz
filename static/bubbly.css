@@ -396,10 +396,10 @@ details[open] summary::after {
     }
 }
 
-a[href*="amzn.to"]::before {
+a[href*="amzn.to"]::after, .affiliate-link::after {
     content: '($)';
-    text-decoration: none;
     color: rgba(0,127,0,.5);
+    font-size: x-small;
 }
 
 .react {

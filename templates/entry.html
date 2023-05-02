@@ -7,7 +7,7 @@
         <title>{{category.name}}: {{ entry.title(markup=False) }}</title>
     {%- endblock -%}
 
-    <link rel="stylesheet" href="{{ entry.stylesheet or 'style.css' }}">
+    <link rel="stylesheet" href="{{ entry.stylesheet or category.link(template='style.css') }}">
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
     <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
@@ -32,7 +32,7 @@
     {%- if entry.math -%}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>      
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     {%- endif -%}
     {%- endblock -%}
 

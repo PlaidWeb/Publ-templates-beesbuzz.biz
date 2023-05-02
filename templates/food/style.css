@@ -7,3 +7,8 @@
     font-size: medium;
 }
 
+img { margin: 0; padding: 0; }
+
+.inset-left, .inset-right, .images {
+    line-height: 0;
+}

@@ -5,9 +5,9 @@ description = ""
 authors = ["fluffy <fluffy@beesbuzz.biz>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 gunicorn = "^20.0.4"
-publ = {version="^0.7.9", extras=["auth"]}
+publ = {version = "^0.7.22", extras = ["auth", "search"]}
 python-memcached = "^1.59"
 pushl = "^0.3.0"
 

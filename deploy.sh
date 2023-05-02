@@ -2,7 +2,7 @@
 # wrapper script to pull the latest site content and redeploy
 
 cd "$(dirname $0)"
-PATH=$PATH:$HOME/.poetry/bin
+PATH=$PATH:$HOME/.local/bin
 
 # see where in the history we are now
 PREV=$(git rev-parse --short HEAD)

@@ -1,0 +1,135 @@
+{%- extends 'index.html' -%}
+
+{%- block title -%}<title>
+    {{ category.name(markup=False) or "busybee"}}
+    {%- if request.args.q -%}
+        &mdash; {{request.args.q}}
+    {%- endif -%}
+</title>{%- endblock -%}
+
+{%- block content scoped -%}<section id="entries">
+    {% if request.args.q %}
+    {%- set results = search(request.args.q, category=category, recurse=True, count=20) -%}
+    {% endif %}
+
+    {%- if user -%}
+        <div id="userinfo"><div class="hello">Hello, <a href="{{category.link(template='profile')}}">{{user.name}}</a>. <a href="{{logout}}">sign out</a></div></div>
+    {% elif results and results.has_unauthorized %}
+        <div id="userinfo"><div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}" rel="nofollow">log in</a>.</div></div>
+    {%- endif -%}
+
+    {%- if results -%}{%- for entry in results.entries -%}
+        {# hack to handle comic transcripts more cleanly #}
+        {% if entry.attached %}{% set entry=entry.attached[0] %}{% endif %}
+
+        {%- if entry.body() or entry.more() -%}
+            {#- has a body, which means there's text to display -#}
+            <article class="entry h-entry{{' private' if entry.private else ''}}">
+                <data class="p-uid" value="{{entry.uuid}}">
+                {%- block heading scoped -%}<header class="heading">
+                    <div class="top-hook"></div>
+
+                    <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title or '(no title)'}}</a></h2>
+
+                    <div class="posted">
+                        <time class="dt-published" datetime="{{entry.date.isoformat()}}">
+                            <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
+                            <span class="time">{{entry.date.format('h:mm A')}}</span>
+                            <span class="ago">{{entry.date.humanize()}}</span>
+                        </time>
+                        {%- if entry.author %}by
+                            <span class="author">
+                                <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                            </span>
+                        {%- else -%}
+                            {%- include '/_hcard.html' -%}
+                        {%- endif -%}
+                    </div>
+                </header>{%- endblock -%}
+
+                {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">Tags:
+                    <ul class="tags">{%- for tag in entry.tags -%}
+                        <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
+                    {%- endfor -%}</ul>
+                </nav>{%- endblock -%}{%- endif -%}
+
+                <div class="content">
+                    {%- include '/_indieweb.html' -%}
+
+                    <div class="{{'e-summary' if entry.more else 'e-content'}}">{%- block summary scoped -%}
+                        {%- if entry.body -%}{%- block entrybody scoped -%}
+                            {{ entry.body(max_width=240,
+                                max_height=240,
+                                link=entry.link,
+                                resize="fill",
+                                count=1,
+                                prefix="index_",
+                                figure_class="thumb") }}
+                        {%- endblock -%}{%- endif -%}
+                    </div>{%- endblock -%}
+
+                    {%- if entry.more -%}
+                        <a class="u-continued readmore" rel="self" href="{{ entry.link }}#more">Read more&hellip;
+
+                        {%- if entry.get('cut') %}
+                            ({{entry.get('cut')}})
+                        {%- endif -%}
+                        </a>
+                    {%- endif -%}
+
+                    {%- if entry.via %}<p class="via">(via
+                        {% for via in entry.get_all('via') %}{% with url, _, label = via.partition(' ') -%}
+                            <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>
+                            {%- if loop.index < loop.length %}, {% endif -%}
+                        {%- endwith -%}{%- endfor -%}
+                    )</p>{%- endif -%}
+                </div>
+            </article>
+        {%- else -%}
+            {# there's no body so this must be a reaction post #}
+            <article class="react h-entry{{' private' if entry.private else ''}}">
+                <a href="{{entry.link}}" class="u-url p-name hidden">{{entry.title}}</a>
+                {%- for type, icon, label in (
+                                 ('bookmark-of', '⭐️', 'Bookmarked'),
+                                ('like-of', '❤️', 'Liked'),
+                                ) -%}
+                    {%- for link in entry.get_all(type) -%}
+                        <a href="{{link}}" class="u-{{type}}"><span>{{icon}}</span> {{entry.title}}</a>
+                    {%- endfor -%}
+                {%- endfor -%}
+                {%- for rsvp in entry.get_all('rsvp') -%}
+                    {%- with url,value = rsvp.split() -%}
+                        <a class="u-in-reply-to" href="{{url}}" title="RSVP: {{entry.title}} {{value}}"><span>📅<data class="rsvp rsvp-{{value}} p-rsvp" value="{{value}}">{{
+                            {'yes':'✅','no':'❌','interested':'💡','maybe':'💭'}[value]
+                        }}</data></span> {{entry.title}}</a>
+                    {%- endwith -%}
+                {%- endfor -%}
+
+                {%- if entry.via %}
+                <p class="via hidden">(via
+                    {% for via in entry.get_all('via') %}
+                    {% with url, _, label = via.partition(' ') -%}
+                    <span class="via h-cite"><a class="u-url p-name" href="{{url}}">{{label}}</a></span>{% if loop.index < loop.length %}, {% endif -%}
+                    {%- endwith -%}
+                    {%- endfor -%}
+                )</p>
+                {%- endif -%}
+            </article>
+        {%- endif -%}
+    {%- endfor -%}
+    {% else %}
+            <article class="entry">
+                <header class="heading">
+                    <div class="top-hook"></div>
+
+                    <h2>No results found</h2>
+                </header>
+
+                <div class="content">
+                    Please try a different search query.
+                </div>
+            </article>
+    {%- endif -%}
+
+    <div class="expand"></div>
+</section>{%- endblock -%}
