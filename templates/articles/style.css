@@ -1,7 +1,6 @@
-@import url('{{static("pygments.default.css")}}');
-@import url('{{static("bubbly.css")}}');
+@import url('{{static("modern.css")}}');
 
-body {
+html {
     background: #ccc;
 }
 
@@ -9,142 +8,53 @@ a { color: #900; }
 a:visited { color: #833; }
 a:hover { color: #c11; }
 
-#container {
+main {
     border: solid black 1px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
     background: white;
     color: black;
 }
 
-#container #banner {
-    background: #007;
-    color: white;
-}
-
-#description {
-    position: absolute;
-    right: 1ex;
-    bottom: 0;
-    font-style: italic;
-    color: rgba(255,255,255,0.75);
-}
-
-#container h1 a,
-#container h1 a:visited {
-    color: white;
-}
-
-#container h1 {
+#banner {
     background: #07a;
+    color: white;
 }
 
-.entry .heading {
+#banner a,
+#banner a:visited {
+    color: white;
+}
+
+#navigation {
+    background: white;
+}
+
+article header {
     background: #09c;
     color: white;
     box-shadow: 0 5px 3px rgba(0,0,0,0.2);
     text-align: left;
-    margin-top: 1ex;
-    padding-left: 3em;
 }
 
-#index .thumb img {
-    margin-bottom: 1em;
+#index .thumb img, #everything .thumb img {
     box-shadow: 4px 4px 6px rgba(0,0,0,0.25);
+    float: left;
+    margin: 0 1em 1ex 0;
 }
 
-.entry .heading h2 a,
-.entry .heading h2 a:visited {
-    color: white;
+article header a,
+article header a:visited {
+    color: #ffc;
     height: 100%;
     padding: 1ex 0;
     margin-left: -3em;
     padding-left: 3em;
-}
-
-.entry .heading h2 a:hover {
-    background: #05a;
-}
-
-.content h2, .content h3, .content h4 {
-    border-bottom: solid black 1px;
-}
-
-.entry .heading .posted {
-    background: rgba(255,255,255,0.3);
-    padding: 1ex;
-    border-bottom-left-radius: 5px;
-}
-
-#index .entry .body img {
-    float: left;
-    margin-right: 1em;
-}
-
-#entry .images {
-    text-align: center;
-}
-
-#entry .images img {
-    margin: 1ex;
-    box-sizing: border-box;
-}
-
-.entry .posted .ago {
-    color: rgba(255,255,255,0.8);
-    font-style: italic;
-}
-
-p {
-    text-align: justify;
-    hyphens: auto;
-}
-
-iframe {
-    max-width: 100%;
-    display: inline-block;
-}
-
-#nav .sidebar {
-    float: right;
-    padding-right: 2em;
-}
-
-#entries .nav {
-    margin: 1em 0;
-    font-size: small;
-}
-
-#entries .nav a {
-    display: inline-block;
-    background: #074;
-    border-radius: 1.2em;
-    padding: 0.1em 1em 0.3em;
-    margin: 1ex;
-    color: white;
-    font-family: helvetica, sans-serif;
     text-decoration: none;
+    text-shadow: -1px 0px 0px rgba(0,0,0,0.25), 1px 0px 0px rgba(0,0,0,0.25);
 }
 
-#entries .nav a:hover {
-    background: #470;
-}
-
-#entries .nav a, #entries .nav a:visited {
-    color: white;
-}
-
-#entries .nav .prev a:before {
-    content: '« ';
-    font-weight: bold;
-}
-
-#entries .nav .next a:after {
-    content: ' »';
-    font-weight: bold;
-}
-
-#toc h2 {
-    background: #ccf;
+article header a:hover {
+    color: #ff9;
 }
 
 blockquote {

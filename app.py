@@ -119,6 +119,28 @@ def make_hashtag(words : str):
 
     return ''.join([w.title() if w.islower() else w for w in words])
 
+@app.template_filter('shuffle')
+def filter_shuffle(seq):
+    try:
+        result = list(seq)
+        random.shuffle(result)
+        return result
+    except:
+        return seq
+
+@app.template_filter('sort_latest')
+def filter_sort_latest(seq):
+    try:
+        result = list(seq)
+        def get_latest_date(cc):
+            ee = cc.last()
+            return ee.date if ee else None
+        result.sort(key=get_latest_date,reverse=True)
+        return result
+    except:
+        logging.exception("Couldn't sort list %s", seq)
+        return seq
+
 @app.route('/favicon.ico')
 def favicon():
     """

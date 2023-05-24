@@ -47,8 +47,8 @@
 
             <p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
         ]]></content>
-        {% for cat in entry.category.breadcrumb -%}
-        <category term="{{cat.link(absolute=True)}}" label="{{cat.name}}" />
+        {% for cat in entry.category.breadcrumb[1:] -%}
+        <category term="{{cat['display-name'] or cat.name|hashtag}}" label="{{cat.name|strip_html}}" />
         {% endfor %}
         {% for tag in entry.get_all('tag') %}
         <category term="{{tag}}" />

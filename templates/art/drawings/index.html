@@ -1,4 +1,4 @@
-{% extends '/index.html' %}
+{%- extends 'index.html' -%}
 
 {% block entrybody %}
 {{ entry.body(max_height=240, max_width=480,
@@ -9,5 +9,6 @@
     count=4,
     more_link=entry.link,
     more_text='See all {count} images',
-    more_class='more-images') }}
+    more_class='more-images'
+    ) }}
 {% endblock %}

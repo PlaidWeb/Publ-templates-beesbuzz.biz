@@ -1,3 +1,5 @@
+{%- import '/_indieweb.html' as indieweb -%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,70 +30,63 @@
 
     <h1><span>busy</span>bee</h1>
 
-    <div id="links">
-        {%- for entry in view(entry_type='sidebar',order='title',tag=None).entries -%}
+    <nav id="links">
+        {%- for entry in view(entry_type='linkbar',order='title',tag=None).entries -%}
         <a href="{{entry.permalink if entry['Use-Permalink'] else entry.link}}" {% if entry['link-rel'] %}rel="{{entry['link-rel']}}"{% endif %}
             title="{{entry.title(markup=False)}}" class="{{entry.icon or entry.title(markup=False).lower()}}"><span>{{entry.title}}</span></a>
             {{entry.body}}
         {% endfor -%}
-    </div>
+    </nav>
 
-    <div id="content">
-    <ul id="categories">
-        {% for cat in category.subcats %}
+    <section id="content">
+    <ul>
+        {% for cat in category.subcats|sort_latest %}
         {% if not cat.hidden %}
-        <li class="{{cat.basename}}"><a href="{{cat.link}}" title="{{cat.description(markup=False)}}"><span>{{cat['display-name'] or cat['sort-name'] or cat.name}}</span></a></li>
+        <li class="category cat_{{cat.basename}}"><a href="{{cat.link}}" title="{{cat.description(markup=False)}}"><span>{{cat['display-name'] or cat.name}}</span></a></li>
         {% endif %}
         {% endfor %}
 
-        <li class="store"><a href="https://biz.beesbuzz.biz" title="Buy my stuff!"><span>Shop</span></a></li>
-    </ul>
+        <li class="category store"><a href="https://biz.beesbuzz.biz" title="Buy my stuff!"><span>Shop</span></a></li>
 
-    <div id="entries">
-        {% set latest=view(recurse=True,order='newest',count=5,entry_type_not=['sidebar','transcript'],category_not='blog/chatter') %}
-        <h2><a href="{{view.link(template='everything')}}">Latest things</a>
-            {%- if view.tags %} <span>(tagged {{view.tags|join(', ')}})</span>{%endif%}
-	    {%- if not user and latest.has_unauthorized %} <a class="login" href="{{login}}">login for more</a>{% endif -%}</h2>
-        <ul>
-            {% for entry in latest.entries %}
-            {% if entry.body %}
-	    <li><a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{ entry.title }}</a>
-                        <span class="posted">{{entry.date.humanize()}}</span>
+        <li id="latest">
+            {% set latest=view(recurse=True,order='newest',count=7,entry_type_not=['linkbar','sidebar','transcript'],category_not='blog/chatter') %}
+            <h2><a href="{{view.link(template='everything')}}">Latest things</a>
+                {%- if view.tags %} <span>(tagged {{view.tags|join(', ')}})</span>{%endif%}
+    	    {%- if not user and latest.has_unauthorized %} <a class="login" href="{{login}}">login for more</a>{% endif -%}
+
+            </h2>
+            <ul class="entries">
+                {% for entry in latest.entries %}
+        	    <li>{{indieweb.render_pings(entry,False)}}<a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{ entry.title }}</a>
+                                <span class="posted">{{entry.date.humanize()}}</span>
+                </li>
+                {% endfor %}
+            </ul>
+
+            {% block search_form %}
+            {% if search %}
+            <form id="search" method="GET" action="search">
+                <input type="text" name="q" value="{{request.args.q}}" placeholder="Search text">
+                <input type="submit" value="Search">
+            </form>
+            {% endif %}
+            {% endblock %}
+
+            <ul id="siteinfo">
+                <li><a href="/about">About/contact</a></li>
+                <li><a href="/legal">Legal/privacy</a></li>
+                <li><a href="/sitemap">Site map</a></li>
+            </ul>
         </li>
-        {% else %}
-                    {%- for type, icon, label in (
-                                     ('bookmark-of', '⭐️', 'Bookmarked'),
-                                    ('like-of', '❤️', 'Liked'),
-                                    ) -%}
-                        {%- for link in entry.get_all(type) -%}
-                            <li><a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %}{{icon}} <a href="{{link}}" class="u-{{type}}">{{entry.title}}</a></li>
-                        {%- endfor -%}
-                    {%- endfor -%}
-                {% endif %}
-            {% endfor %}
-        </ul>
-
-        {% block search_form %}
-        <form id="search" method="GET" action="search">
-            <input type="text" name="q" value="{{request.args.q}}" placeholder="Search text">
-            <input type="submit" value="Search">
-        </form>
-        {% endblock %}
-
-        <ul id="siteinfo">
-            <li><a href="/about">About/contact</a></li>
-            <li><a href="/legal">Legal/privacy</a></li>
-            <li><a href="/sitemap">Site map</a></li>
-        </ul>
-    </div>
-    </div>
+    </ul>
+    </section>
 
 {% include '/_hcard.html' %}
 
 <div id="webring">
-      <a href="https://xn--sr8hvo.ws/%F0%9F%90%9D%F0%9F%92%9C/previous">←</a>
+      <a href="https://xn--sr8hvo.ws/previous">←</a>
   <span>🕸💍</span>
-  <a href="https://xn--sr8hvo.ws/%F0%9F%90%9D%F0%9F%92%9C/next">→</a>
+  <a href="https://xn--sr8hvo.ws/next">→</a>
 </div>
 
 </body></html>

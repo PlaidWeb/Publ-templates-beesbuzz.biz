@@ -2,8 +2,6 @@
     margin: 0;
     position: relative;
     z-index: 100;
-    line-height: 1.2em;
-    background: #eee;
 }
 
 #webmentions .comments {
@@ -13,14 +11,9 @@
     font-size: 80%;
 }
 
-#webmentions h2 {
-    font-size: medium;
-    margin: 0;
-    padding: 2px;
-    background: #ccc;
-    color: #222;
+#webmentions .reacts {
+    line-height: 1.2em;
 }
-
 #webmentions .reacts img {
     margin: 3px -1ex 1px 0;
 }

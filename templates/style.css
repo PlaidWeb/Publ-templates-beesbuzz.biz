@@ -1,100 +1,46 @@
-@import url('{{static("pygments.default.css")}}');
-@import url('{{static("bubbly.css")}}');
+@import url('{{static("modern.css")}}');
 
-body {
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    background: #ccc;
-    color: black;
+html {
+    background: #ddd;
 }
 
-#banner {
-    background: black;
-    color: white;
-}
-
-#description {
-    background: #333;
-}
-
-a:link {
-    color: #600;
-}
-a:visited {
-    color: #933;
-}
-
-#container {
-    border:  solid black 1px;
+main {
     background: white;
 }
 
-#nav .sidebar {
-    float: right;
-    border-left: solid black 1px;
-    padding: 1ex;
+#banner {
+    background: #ddd;
 }
 
-#nav .sidebar li:before {
-    content: '• ';
+#navigation {
+    background: white;
 }
 
-.entry .heading {
-    background: #600;
-    color: white;
+article header,
+article.react {
+    background: #eee;
 }
 
-#container h1 a,
-#container h1 a:visited {
-    color: white;
+a {
+    color: #007;
 }
 
-#banner h1 {
-    background: black;
+a:visited {
+    color: #306;
 }
 
-.entry .heading h2 a,
-.entry .heading h2 a:visited {
-    color: white;
-    height: 100%;
-    padding: 1ex 1em;
+a:hover, a:active {
+    color: #75c;
 }
 
-p {
-    text-align: justify;
-    hyphens: auto;
-    -webkit-hyphens: auto;
+article.private header,
+#entry article.private header {
+    background-color: #edf;
 }
 
-
-.entry .heading h2 a:hover {
-    background-color: #800;
-}
-
-#sitemap .subcats li >p { display: inline; }
-
-#entries .topnav {
-    border-top: dotted black 1px;
-}
-
-#entries .nav .prev a {
-    margin-left: 1em;
-}
-#entries .nav .prev a:before {
-    content: '« ';
-}
-
-#entries .nav .next a {
-    margin-right: 1em;
-}
-#entries .nav .next a:after {
-    content: ' »';
-}
-
-.images {
-    text-align: center;
-}
-
-#toc h2 {
-    color: white;
-    background: black;
+nav .private {
+    border-radius: 1ex;
+    background-color: #edf;
+    border: dotted black 1px;
+    padding: 0 .5ex;
 }

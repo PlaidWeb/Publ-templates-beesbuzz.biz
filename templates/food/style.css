@@ -1,14 +1,62 @@
-@import url('../style.css');
+@import url('{{static("modern.css")}}');
 
-#nav .sidebar:before {
-    color: black;
-    font-weight: bold;
-    content: "Sites I like:";
-    font-size: medium;
+html {
+    background: black;
 }
 
-img { margin: 0; padding: 0; }
+#banner {
+    background: #530;
+    color: white;
+}
 
-.inset-left, .inset-right, .images {
-    line-height: 0;
+#banner li::before {
+    color: rgba(255,255,255,0.25);
+}
+
+#banner a {
+    color: #ff9;
+    text-shadow: -1px 0px 0px black,
+    1px 0px 0px black,
+    0px -1px 0px black,
+    0px 1px 0px black;
+}
+
+#banner a:hover {
+    color: #770;
+
+    text-shadow: -1px 0px 0px white,
+    1px 0px 0px white,
+    0px -1px 0px white,
+    0px 1px 0px white;
+}
+
+#navigation {
+    background: white;
+}
+
+article header,
+article.react {
+    background:#eca;
+}
+
+main {
+    background: white;
+    color: black;
+}
+
+a, a:visited {
+    color: #965;
+}
+
+a:active, a:hover {
+    color: #c87;
+}
+
+header .ping {
+    text-shadow: -1px 0px 0px black,
+    1px 0px 0px black,
+    0px -1px 0px black,
+    0px 1px 0px black,
+    3px 3px 3px rgba(0,0,0,0.25);
+
 }

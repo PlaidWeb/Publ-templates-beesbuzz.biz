@@ -1,14 +1,20 @@
-{% extends '/index.html' %}
+{%- extends '/index.html' -%}
 
-{% block scripthooks %}
-    {{super()}}
-    <script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js" defer></script>
+{% block top_hook %}
+<div id="plaidlogo"></div>
 {% endblock %}
 
-{% block heading %}
-    {{super()}}
-    <div class="commentlink">
-    <a title="Comment on {{entry.category.name}}: {{entry.title|forceescape}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a>
+{%- block banner -%}<header id="banner">
+    <div class="inner">
+    <h1><ul class="breadcrumb">
+        {%- for cat in category.breadcrumb[:-1] -%}
+        <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+        {%- endfor -%}
+        <li class="here">{{category.name}}</li>
+    </ul></h1>
+
+    {%- if category.description -%}
+        {{category.description}}
+    {%- endif -%}
     </div>
-{% endblock %}
-
+</header>{%- endblock -%}

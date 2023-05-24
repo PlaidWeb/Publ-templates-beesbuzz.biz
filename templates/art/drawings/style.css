@@ -1,70 +1,39 @@
 @import url('../style.css');
 
-#index #entries .entry {
+#index article,
+#everything article {
     display: inline-block;
     border: dotted black 1px;
     margin: 1ex;
-    clear: none;
+    border-radius: 1em;
+    overflow: hidden;
 }
 
-
-#index .posted { display: none; }
-#index .entry:hover .posted {
-    display: inline-block; bottom: 0; right: 0; z-index: 100;
-    border-top-left-radius: 5px;
-}
-
-#index .posted .time, #index .posted .ago { display: none; }
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-#entries .entry:first-child .heading {
-    border-radius: 0;
-}
-
-#index #entries h2 {
-    position: relative;
-    z-index: 20;
-}
-
-#index #entries .entry:hover h2 a:after {
-    content: ' # ';
-    font-size: 50%;
-    font-weight: normal;
-    color: #700;
-    text-shadow: none;
-    position: absolute;
-    border-bottom-left-radius: 5px;
-    top: 0;
-    right: 0;
-    padding: 0 1ex;
-    background: #eee;
-    z-index: 10;
-}
-
-#index #entries .entry:hover .heading {
-    background: #555;
-}
-#index #entries .entry h2:hover a {
-    color: #ff7;
-}
-
-#index .thumb img {
-    margin: 4px;
-}
-
-#index .entry .thumb img:hover {
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-    border: solid rgba(128,128,128,1) 1px
-}
-
-.more-images {
-    display: block;
-    font-size: small;
+#index article .content,
+#everything article .content {
     margin: 0;
     padding: 0;
-    font-style: italic;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+#index .readmore,
+#everything .readmore {
+    margin: 0;
+    padding: 0;
+    float: none;
+    text-align: right;
+}
+
+#index .posted,
+#everything .posted {
+    display: none;
+}
+
+#index article .tags,
+#everything article .tags {
+    display: none;
 }

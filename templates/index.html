@@ -1,11 +1,12 @@
-{%- set view = view(entry_type='',is_attached=False,count=20,tag_filter='ALL') -%}
-{%- if category.paging == 'year' and view.is_current -%}
-{%- set view = view(date=category.last.date_year) -%}
-{%- endif -%}
+{%- set view = view(entry_type='',is_attached=False,tag_filter='ALL') -%}
+{%- from get_template('_view_config', category) import view with context -%}
+{%- import '/_indieweb.html' as indieweb -%}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<!-- {{view.spec|safe }} -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {%- block title -%}<title>
@@ -27,13 +28,14 @@
     {%- endblock -%}
 
     {%- block stylesheet -%}
-        <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{{category.link(template='style.css')}}" />
     {%- endblock -%}
+
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}" />
     <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
     <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
     <link rel="alternate" type="text/mf2+html" title="mf2 feed (full content)" href="{{view.link(template='everything')}}" />
-    <link rel="canonical" href="{{view.link(absolute=True,_scheme='https')}}" />
+    <link rel="canonical" href="{{view.link(template=template,absolute=True,_scheme='https')}}" />
 
     {% if view.has_unauthorized and not user %}
     {# provide an authorization link for feed reader discovery purposes #}
@@ -56,15 +58,16 @@
 
     {%- block scripthooks -%}
         {%- if view.entries|selectattr('math')|first -%}
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async
-                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async
+                    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         {%- endif -%}
+        <script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js" defer></script>
     {%- endblock -%}
 
     <meta property="og:title" content="{{category.name}}" />
     {% if category.description %}
-    <meta property="og:description" content="{{category.description}}" />
+    <meta property="og:description" content="{{category.description(markup=False)}}" />
     {% endif %}
     <meta property="og:site_name" content="busybee" />
     <meta property="og:type" content="webpage" />
@@ -73,96 +76,160 @@
 
 <body id="{{ template.name }}">
 
-<main id="container">
-    <div class="top-hook"></div>
+{%- block top_hook -%}
+{%- endblock -%}
 
-    {%- block banner -%}<heading id="banner">
-        <div class="top-hook"></div>
-
-        <h1>{{ category.name or "busybee" }}
-            {%- if view.tags %}
-                ({{view.tags|join(', ')}})
-            {%- endif -%}
-        </h1>
+<main>
+    {%- block banner -%}<header id="banner">
+        <h1><ul class="breadcrumb">
+            {%- for cat in category.breadcrumb[:-1] -%}
+            <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+            {%- endfor -%}
+            <li class="here">{{category.name}}</li>
+        </ul></h1>
 
         {%- if category.description -%}
-            <div id="description">{{category.description}}</div>
+            {{category.description}}
         {%- endif -%}
-    </heading>{%- endblock -%}
+    </header>{%- endblock -%}
 
-    {%- block navigation scoped -%}<nav id="nav">
-        <h2>Navigation</h2>
+    {%- block content_topnav scoped -%}
+    {%- if view.older or view.newer -%}<nav class="paging top">
+        <ul>
+        {%- if view.older -%}
+            <li class="prev"><a href="{{view.older.link(template=template)}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></li>
+        {%- endif -%}
+        {%- if view.newer -%}
+            <li class="next"><a href="{{view.newer.link(template=template)}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></li>
+        {%- endif -%}
+        </ul>
+    </nav>{%- endif -%}
+    {%- endblock -%}
 
 
+    {%- block navigation scoped -%}
+    <nav id="navigation">
+        <h2>{%- block navigation_title -%}Navigation{%- endblock -%}</h2>
+
+        {%- block navigation_breadcrumb -%}
+        {% if category.breadcrumb[:-1] -%}
+        <section id="breadcrumb">
         <ul class="breadcrumb">
             {%- for cat in category.breadcrumb[:-1] -%}
-                <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+            <li><a href="{{cat.link(template=template if template.name != 'index' else '')}}" title="{{cat.description(markup=False)}}">{{cat.name}}</a></li>
             {%- endfor -%}
-            <li class="here">
-                {{category.name}} {% if view.newer or view.tags or template.name != 'index' %}(<a href="{{category.link}}">Latest entries</a>){% endif %}
+            <li class="here">{{category.name}}
             </li>
         </ul>
+        {%- if not view.is_current -%}
+        <p class="now"><a href="{{view.current.link(template=template)}}">Show latest entries</a></p>{%- endif -%}
+        </section>
+        {%- endif -%}
+        {%- endblock -%}
 
-        {% if category.subcats -%}<ul class="subcats">
+        {%- block subcategories -%}
+        {% if category.subcats -%}
+        <section id="subcategories">
+        <h3>{%- block subcategories_title -%}Subcategories{%- endblock -%}</h3>
+        <ul>
+            {%- block subcategories_everything -%}
+            <li class="everything"><a href="{{view.link(template='everything')}}">Show everything</a></li>
+            {%- endblock -%}
             {% for subcat in category.subcats %}
-            <li><a href="{{subcat.link}}" title="{{subcat.description(markup=False)}}">{{subcat.name}}</a></li>
+            <li><a href="{{subcat.link(template=template if template.name != 'index' else '')}}" title="{{subcat.description(markup=False)}}">{{subcat.name}}</a></li>
             {% endfor %}
-        </ul>{%- endif -%}
+        </ul>
+        </section>
+        {%- endif -%}
+        {%- endblock -%}
 
         {%- block sidebar -%}
         {%- set sidebar = get_view(category=category,entry_type='sidebar',order='title') -%}
-        {%- if sidebar.entries -%}<ul class="sidebar">
+        {%- if sidebar.entries -%}
+        <section id="sidebar">
+        <h3>{%- block sidebar_title -%}Sidebar{%- endblock -%}</h3>
+        <ul>
             {%- for entry in sidebar.entries -%}
-                <li><a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{entry.title}}</a></li>
+            <li><a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{entry.title}}</a></li>
             {%- endfor -%}
-        </ul>{% endif %}
+        </ul>
+        </section>
+        {%- endif -%}
         {%- endblock -%}
 
+        {% block tag_browser scoped %}
+        {%- if category.tags -%}
+        <section id="tags">
+        <h3>{%- block tags_title -%}Topic Tags{%- endblock -%}</h3>
+
+        {% macro tag_link(view) -%}
+        {{view.link(template=template,all_tags=1 if request.args.all_tags else None)}}
+        {%- endmacro %}
+
+        <ul>
+        {% if view.tags %}
+        <li class="clear"><a href="{{tag_link(view(tag=None))}}">Clear filter</a></li>
+        {% endif %}
+
+        {% set tags = category.tags(tag=view.spec.tag if view.spec.tag else None,tag_filter='ALL')|sort(attribute='count',reverse=True) %}
+        {% for name,count in tags %}
+        {% if (request.args.all_tags or loop.index < 10 or name in view.tags)
+            and count > 1 %}
+        <li class="{{name in view.tags and 'selected' or ''}}"><a rel="nofollow" href="{{tag_link(view.tag_toggle(name))}}">{{name}}</a> ({{count}})</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if request.args.all_tags %}
+        <li class="top-only"><a rel="nofollow" href="{{view.link(template=template)}}">Top tags only</a></li>
+        {% elif tags|length > 10 %}
+        <li class="all"><a rel="nofollow" href="{{view.link(template=template,all_tags=1)}}">Show all tags</a></li>
+        {% endif %}
+        </ul>
+        </section>
+        {% endif %}
+        {% endblock %}
+
         {% block search_form %}
+        {%- if search -%}
         <form id="search" method="GET" action="search">
             <input type="text" name="q" value="{{request.args.q}}" placeholder="Search text">
             <input type="submit" value="Search">
         </form>
+        {%- endif -%}
         {% endblock %}
 
     </nav>{%- endblock -%}
 
-    {%- block content scoped -%}<section id="entries">
-
-        {%- if view.older or view.newer -%}<nav class="nav topnav">
-
-            {%- if view.older -%}
-                <span class="prev"><a href="{{view.older.link(template=template)}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+    {%- block content scoped -%}
+    <section id="content" class="h-feed">
+        {%- block userinfo scoped -%}
+            {%- if user -%}
+                <aside id="userinfo" class="hello">Hello, <a href="{{view.link(template='profile',t=template if template.name != 'index' else None)}}">{{user.name}}</a>. <a class="logout" href="{{logout}}">sign out</a></aside>
+            {% elif view.has_unauthorized %}
+                <aside id="userinfo" class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}" rel="nofollow">log in</a>.</aside>
             {%- endif -%}
+        {%- endblock -%}
 
-            &nbsp;
-
-            {%- if view.newer -%}
-                <span class="next"><a href="{{view.newer.link(template=template)}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
-            {%- endif -%}
-        </nav>{% endif %}
-
-        {%- if user -%}
-            <div id="userinfo"><div class="hello">Hello, <a href="{{category.link(template='profile')}}">{{user.name}}</a>. <a href="{{logout}}">sign out</a></div></div>
-        {% elif view.has_unauthorized %}
-            <div id="userinfo"><div class="unauthorized">There is additional content you may be able to see if you <a href="{{login}}" rel="nofollow">log in</a>.</div></div>
-        {%- endif -%}
-
-        {%- block entries -%}{%- for entry in view.entries -%}
-            {%- if entry.body() or entry.more() -%}
+        {%- block entries -%}
+        {%- for entry in view.entries -%}
+            {%- if entry.body or entry.more -%}
                 {#- has a body, which means there's text to display -#}
-                <article class="entry h-entry{{' private' if entry.private else ''}}">
-                    <data class="p-uid" value="{{entry.uuid}}">
-                    {%- block heading scoped -%}<header class="heading">
-                        <div class="top-hook"></div>
-
-                        <h2><a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title or '(no title)'}}</a></h2>
+                <article class="content h-entry{{' private' if entry.private else ''}}">
+                    <data class="p-uid" value="{{entry.uuid}}"></data>
+                    {%- block entry_heading scoped -%}<header>
+                        <h2>
+                            {{indieweb.render_pings(entry,False)}}
+                            <a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title or '(no title)'}}</a>
+                            {% if entry.category != category %}
+                            <a class="subcat" href="{{view.link(category=entry.category)}}">{{entry.category.name}}</a>
+                            {% endif %}
+                        </h2>
 
                         <div class="posted">
                             <time class="dt-published" datetime="{{entry.date.isoformat()}}">
-                                <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
+                                <span class="date">{{entry.date.format('MMMM D, YYYY')}}</span>
                                 <span class="time">{{entry.date.format('h:mm A')}}</span>
-                                <span class="ago">{{entry.date.humanize()}}</span>
+                                <span class="ago">({{entry.date.humanize()}})</span>
                             </time>
                             {%- if entry.author %}by
                                 <span class="author">
@@ -171,17 +238,18 @@
                             {%- else -%}
                                 {%- include '/_hcard.html' -%}
                             {%- endif -%}
+
+                            <span class="comment-link"><a title="Comment on {{entry.category.name}}: {{entry.title|forceescape}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a>
                         </div>
                     </header>{%- endblock -%}
 
-                    {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">Tags:
-                        <ul class="tags">{%- for tag in entry.tags -%}
-                            <li><a rel="tag" href="{{view(tag=tag)}}">{{tag}}</a></li>
+                    {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">
+                        <ul>{%- for tag in entry.tags -%}
+                            <li><a rel="tag" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
                         {%- endfor -%}</ul>
                     </nav>{%- endblock -%}{%- endif -%}
 
                     <div class="content">
-                        {%- include '/_indieweb.html' -%}
 
                         <div class="{{'e-summary' if entry.more else 'e-content'}}">{%- block summary scoped -%}
                             {%- if entry.body -%}{%- block entrybody scoped -%}
@@ -196,12 +264,12 @@
                         </div>{%- endblock -%}
 
                         {%- if entry.more -%}
-                            <a class="u-continued readmore" rel="self" href="{{ entry.link }}#more">Read more&hellip;
+                            <p class="readmore"><a class="u-continued" rel="self" href="{{ entry.link }}#more">Read more&hellip;
 
                             {%- if entry.get('cut') %}
                                 ({{entry.get('cut')}})
                             {%- endif -%}
-                            </a>
+                            </a></p>
                         {%- endif -%}
 
                         {%- if entry.via %}<p class="via">(via
@@ -215,22 +283,12 @@
             {%- else -%}
                 {# there's no body so this must be a reaction post #}
                 <article class="react h-entry{{' private' if entry.private else ''}}">
-                    <a href="{{entry.link}}" class="u-url p-name hidden">{{entry.title}}</a>
-                    {%- for type, icon, label in (
-                                     ('bookmark-of', '⭐️', 'Bookmarked'),
-                                    ('like-of', '❤️', 'Liked'),
-                                    ) -%}
-                        {%- for link in entry.get_all(type) -%}
-                            <a href="{{link}}" class="u-{{type}}"><span>{{icon}}</span> {{entry.title}}</a>
-                        {%- endfor -%}
-                    {%- endfor -%}
-                    {%- for rsvp in entry.get_all('rsvp') -%}
-                        {%- with url,value = rsvp.split() -%}
-                            <a class="u-in-reply-to" href="{{url}}" title="RSVP: {{entry.title}} {{value}}"><span>📅<data class="rsvp rsvp-{{value}} p-rsvp" value="{{value}}">{{
-                                {'yes':'✅','no':'❌','interested':'💡','maybe':'💭'}[value]
-                            }}</data></span> {{entry.title}}</a>
-                        {%- endwith -%}
-                    {%- endfor -%}
+                    <header>
+                    <h2>
+                        {{indieweb.render_pings(entry,False)}}
+                        <a href="{{entry.link}}" class="u-url p-name">{{entry.title}}</a>
+                    </h2>
+                    </header>
 
                     {%- if entry.via %}
                     <p class="via hidden">(via
@@ -245,19 +303,18 @@
             {%- endif -%}
         {%- endfor -%}{%- endblock -%}
 
-        {%- if view.older or view.newer -%}<nav class="nav bottomnav">
+        {%- block content_bottomnav scoped -%}
+        {%- if view.older or view.newer -%}<nav class="paging bottom">
+            <ul>
             {%- if view.older -%}
-                <span class="prev"><a href="{{view.older}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></span>
+                <li class="prev"><a href="{{view.older.link(template=template)}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></li>
             {%- endif -%}
-
-            &nbsp;
-
             {%- if view.newer -%}
-                <span class="next"><a href="{{view.newer}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></span>
+                <li class="next"><a  href="{{view.newer.link(template=template)}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></li>
             {%- endif -%}
+            </ul>
         </nav>{%- endif -%}
-
-        <div class="expand"></div>
+        {%- endblock -%}
     </section>{%- endblock -%}
 
 </main>

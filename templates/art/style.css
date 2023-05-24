@@ -1,224 +1,75 @@
-@import url('{{static("bubbly.css")}}');
+@import url('{{static("modern.css")}}');
 
 html {
-    background: #222;
-    color: white;
-    font-family: "helvetica", "lucida sans", "arial", "sans-serif";
-}
-
-
-h1 {
-    color: white;
     background: black;
-    padding: 0.2ex 0;
 }
 
-h1 a,
-h2 a,
-h1 a:visited,
-h2 a:visited {
-    color: white;
-    text-decoration: none;
-}
-
-
-body#entry .intro {
-    display: block;
-    background: #333;
-    color: white;
-    padding: 0.5ex;
-    margin: 0px 0px 1ex;
-}
-
-#container {
+main {
     background: white;
     color: black;
-    box-shadow: 0px 0px 10px #f37;
+    border-color: #555;
 }
 
-#entries .heading {
-    color: white;
-    background: #777;
-    text-shadow: 0px 0px 3px black,
-    1px 1px 1px black,
-    1px -1px 1px black,
-    -1px 1px 1px black,
-    -1px -1px 1px black;
+#banner {
+    background: #333;
+    color: #ccc;
 }
 
-#entries .heading .posted {
-    position: absolute;
-    top: auto;
-    bottom: -1ex;
-    right: 1em;
-    font-size: small;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 0.5ex;
-    border: black 1px;
-    border-radius: 1ex;
+#banner li::before {
+    color: #999;
 }
 
-.posted .time {
-    display: none;
-}
-
-#entries h2 {
-    margin: 0;
-    padding: 0.5ex;
-}
-
-#entries h2 a {
-    display: block;
-    color: white;
-    padding: 0;
-}
-
-a:link {
-    color: #c00;
-}
-
-a:visited {
-    color: #733;
+a {
+    color: #900;
 }
 
 a:hover {
-    color: #f00;
+    color: #c55;
 }
 
-a:active {
-    color: #c00;
+#navigation {
+    background: white;
 }
 
-h1 a,
-h1 a:visited {
-    color: white;
+#banner a {
+    color: #f44;
+    text-shadow: -1px 0px 0px black,
+    1px 0px 0px black,
+    0px -1px 0px black,
+    0px 1px 0px black;
 }
 
-.images {
-    text-align: center;
-    clear: both;
+#banner a:hover {
+    color: #300;
+    text-shadow: -1px 0px 0px rgba(255,255,255,0.5),
+    1px 0px 0px rgba(255,255,255,0.5),
+    0px -1px 0px rgba(255,255,255,0.5),
+    0px 1px 0px rgba(255,255,255,0.5);
 }
 
-.images img,
-.thumb img {
-    vertical-align: middle;
+article header {
+    background: #ddd;
+}
+
+article {
+    text-align: left;
+    hyphens: none;
 }
 
 .images img {
     margin: 1ex;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border: dotted rgba(0,0,0,0.1) 1px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.25);
 }
 
-.thumb img {
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.25);
-    border: solid rgba(128,128,128,0.5) 1px
-}
-
-#index .thumb {
+#index .images,
+#everything .images {
     float: left;
-    margin: 0 1em 1em 0;
-}
-
-.topnav,
-.bottomnav {
-    margin: .5ex 0;
-    font-size: small;
-}
-
-.topnav a,
-.bottomnav a {
-    text-decoration: none;
-    margin: 0 1em;
-}
-
-.topnav .prev,
-.bottomnav .prev {
-    left: 1em;
-}
-
-.topnav .prev a:before,
-.bottomnav .prev a:before {
-    content: "← ";
-}
-
-.topnav .next,
-.bottomnav .next {
-    right: 1em;
-}
-
-.topnav .next a:after,
-.bottomnav .next a:after {
-    content: " →";
-}
-
-.topnav,
-.bottomnav {
-    clear: both;
-}
-
-
-.bottomnav {
-    border: none;
-    border-top: solid #700 1px;
-}
-
-#description {
-    text-align: center;
-    font-size: small;
-    font-style: italic;
-    border-bottom: solid black 1px;
     margin: 0;
-    padding: 0 1em;
-    background: #ccc;
+    padding: 0;
 }
 
-#nav h2 {
-    display: none;
+#index article .images + p,
+#everything article .images + p {
+    padding-top: 1em;
 }
-
-#nav {
-    border-bottom: solid #300 1px;
-    vertical-align: middle;
-}
-
-#nav .subcats {
-    vertical-align: middle;
-    border-left: dotted black 1px;
-    margin-left: 1em;
-    padding-left: 1em;
-}
-
-#nav .subcats a {
-    border: dotted #777 1px;
-    color: #333;
-    background: #eee;
-    display: inline-block;
-    margin: 1ex 0 1ex;
-    padding: 0.5ex;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: small;
-    border-radius: 1ex;
-}
-
-#nav .subcats a:hover {
-    border: solid white 1px;
-    color: white;
-    background: #333;
-}
-
-.entry {
-    position: relative;
-    overflow: hidden;
-}
-.entry .readmore {
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
-    font-style: italic;
-}
-
-.entry .readmore a {
-    text-decoration: none;
-}
-

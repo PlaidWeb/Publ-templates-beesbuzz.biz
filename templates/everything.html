@@ -1,19 +1,6 @@
-{% extends '/index.html' %}
-{% set view=view(recurse=True) %}
+{% extends get_template('index.html',category) %}
+{% set view=view(count=25,recurse=True) %}
 
-{% block title %}
-<title>{{category.name}}: Entries for {{view(recurse=True,count=30).range}}</title>
-{% endblock %}
-
-{% block banner %}
-<div id="banner"><h1>{{category.name}}: Entries for {{view(recurse=True,count=30,entry_type_not='sidebar').range}}</h1></div>
-{% endblock %}
-
-{% block content scoped %}
-<div class="h-feed">
-    {{super()}}
-</div>
-{% endblock %}
-
-{% block sidebar %}
-{% endblock %}
+{%- block subcategories_everything -%}
+<li class="nothing"><a href="{{view.link(template='index')}}">Show this level only</a></li>
+{%- endblock -%}

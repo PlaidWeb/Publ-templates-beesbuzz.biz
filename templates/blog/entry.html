@@ -1,15 +1,34 @@
 {% extends '/entry.html' %}
 
+{% block top_hook %}
+<div id="plaidlogo"></div>
+{% endblock %}
+
+{%- block banner -%}<header id="banner">
+    <div class="inner">
+    <h1><ul class="breadcrumb">
+        {%- for cat in category.breadcrumb[:] -%}
+        <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+        {%- endfor -%}
+    </ul></h1>
+
+    {%- if category.description -%}
+        {{category.description}}
+    {%- endif -%}
+    </div>
+</header>{%- endblock -%}
+
+
 {% block entrybody_content %}
 {{entry.body(gallery_id=entry.uuid,
-    width=750,
-    height=750)}}
+    max_width=750,
+    max_height=750)}}
 {% endblock %}
 
 {% block entrymore_content %}
 {{entry.more(gallery_id=entry.uuid,
     figure='images',
-    width=750,
-    height=750)}}
+    max_width=750,
+    max_height=750)}}
 {% endblock %}
 

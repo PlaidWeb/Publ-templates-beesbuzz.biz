@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends get_template('index.html', category) %}
 
 {% block title %}
     <title>User profile{% if user %} for {{user.name}}{% endif %}</title>
@@ -6,6 +6,7 @@
         .avatar img {
             float: right;
             max-width: 25%;
+            max-width: 160px;
             height: auto;
             margin: 0 0 1ex 1em;
             border-radius: 1ex;
@@ -50,14 +51,23 @@
     </script>
 {% endblock %}
 
+{% block navigation %}
+{% endblock %}
+{% block content_topnav %}
+<nav class="paging top">
+<ul><li class="prev"><a href="{{view.link(template=request.args.t)}}">Back to {{category.name}}</a></li></ul>
+</nav>
+{% endblock %}
+{% block content_bottomnav %}
+{% endblock %}
 
 {% block content %}
-<section id="entries">
-    <article class="entry">
+<section id="content">
+    <article>
     {% if user %}
-        <header class="heading"><h2>Hello, {{user.name}}!</h2></header>
+        <header><h2>Hello, {{user.name}}!</h2></header>
 
-        <section class="content">
+        <div class="content">
             <p>You seem to be logged into this website with the identity <code>{{user.humanize}}</code>. That's great!
             {% if user.last_login %}If this isn't how you want me to know you (or if something looks outdated), try <a href="{{logout(redir=login(request.path ~ '?cb=' ~ (range(1,100000)|random)))}}">logging out and back in</a>. Don't worry, I'll wait.{% endif %}</p>
 
@@ -91,8 +101,12 @@
 
             {% if user.profile.endpoints %}
             <p>You also have support for <a href="https://indieweb.org/">IndieWeb</a> interoperability! Cool!
-                In particular I see the following protocols: {{ user.profile.endpoints.keys() | join(', ') }}
-            </p>
+                In particular I see the following protocols:</p>
+                <ul>
+                {% for key in user.profile.endpoints.keys() %}
+                <li><code>{{key}}</code></li>
+                {% endfor %}
+            </ul>
             {% endif %}
 
             <p>Anyway, thanks for letting me get to know you a bit better.</p>
@@ -127,19 +141,19 @@
                 <p>Also, if you support <a href="https://indieweb.org/IndieAuth_Ticket_Auth">Ticket Auth</a>, you can try <a href="{{token_endpoint}}?me={{user.identity}}">sending a ticket request</a>.</p>
             {% endif %}
 
-        </section>
+        </div>
 
     {% else %}
 
-   <header class="heading"><h2>Hello, friend!</h2></header>
+   <header><h2>Hello, friend!</h2></header>
 
-   <section class="content">
+   <div class="content">
     <p>You don't seem to be logged in right now. If you like, you can <a href="{{login}}">log in</a> and then I'll know a bit more about you, and you'll get access to more things. But it's up to you. No pressure either way!</p>
 
     <p>If you support <a href="https://indieweb.org/IndieAuth_Ticket_Auth">Ticket Auth</a>, you can try sending a ticket request with the following form:</p>
 
     <form method="POST" action="{{token_endpoint}}"><input type="url" name="me" placeholder="Profile URL" size=50><input type="submit" value="Go!"></form>
-    </section>
+    </div>
     {% endif %}
     </article>
 </section>

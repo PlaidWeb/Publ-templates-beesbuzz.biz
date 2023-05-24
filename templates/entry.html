@@ -1,3 +1,8 @@
+{%- import '/_indieweb.html' as indieweb -%}
+
+{% block top_hook %}
+{% endblock %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +12,16 @@
         <title>{{category.name}}: {{ entry.title(markup=False) }}</title>
     {%- endblock -%}
 
+    {%- block stylesheet -%}
     <link rel="stylesheet" href="{{ entry.stylesheet or category.link(template='style.css') }}">
+    {%- endblock -%}
+
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
     <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
     <link rel="shortcut" href="{{ entry.link(absolute=True,expand=False) }}" />
     <link rel="canonical" href="{{ entry.link(absolute=True,_scheme='https') }}" />
-
-    {%- include '/_webmention.html' -%}
 
     {%- set prev = entry.previous(entry_type='') -%}
     {%- set next = entry.next(entry_type='') -%}
@@ -29,11 +35,12 @@
     {%- endif -%}
 
     {%- block scripthooks -%}
-    {%- if entry.math -%}
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    {%- endif -%}
+        {%- include '/_webmention.html' -%}
+        {%- if entry.math -%}
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        {%- endif -%}
     {%- endblock -%}
 
     {{ entry.card(width=800,height=800) }}
@@ -48,64 +55,60 @@
     <a href="{{e.link}}" {% if e.private %}class="private"{% endif %}>{{'🔏 ' if e.private else ''}}{{e.title}}</a>
 {%- endmacro -%}
 
-<main id="container">
-    <div class="top-hook"></div>
+<main>
+    {%- block banner -%}<header id="banner">
+        <h1><ul class="breadcrumb">
+            {%- for cat in category.breadcrumb -%}
+            <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+            {%- endfor -%}
+        </ul></h1>
 
-    {%- block banner -%}<heading id="banner">
-        <div class="top-hook"></div>
-        <h1><a href="{{category.link}}">{{category.name}}</a></h1>
-    </heading>{%- endblock -%}
-
-    <section id="entries">
-        <div class="top-hook"></div>
-
-        {%- if prev or next -%}
-            <div class="nav topnav">
-                <div>
-                    <span class="prev">
-                        {%- if prev -%}{{ navlink(prev) }}{%- endif -%}
-                    </span>
-
-                    &nbsp;
-
-                    <span class="next">
-                        {%- if next -%}{{ navlink(next) }}{%- endif -%}
-                    </span>
-                </div>
-            </div>
+        {%- if category.description -%}
+            {{category.description}}
         {%- endif -%}
+    </header>{%- endblock -%}
 
-        {%- block content -%}<article class="entry h-entry{{' private' if entry.private else ''}}">
-            <data class="p-uid" value="{{entry.uuid}}">
-            <header class="heading">
-                {%- block heading scoped -%}
-                <div class="top-hook"></div>
-                <h2><a href="{{entry.link}}" class="u-url{{ '' if entry.get('rsvp') else ' p-name'}}">{{'🔏 ' if entry.private else ''}}{{entry.title}}</a></h2>
+    {%- block paging scoped -%}
+    {%- if prev or next -%}<nav class="paging top">
+        <ul>
+            {%- if prev -%}<li class="prev">{{ navlink(prev) }}</li>{%- endif -%}
+            {%- if next -%}<li class="next">{{ navlink(next) }}</li>{%- endif -%}
+        </ul>
+    </nav>{%- endif -%}
+    {%- endblock -%}
+
+    <section id="content">
+        {%- block content -%}
+        <article class="entry h-entry{{' private' if entry.private else ''}}">
+            <data class="p-uid" value="{{entry.uuid}}"></data>
+            {%- block entry_heading scoped -%}<header>
+                <h2>
+                    <a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title or '(no title)'}}</a>
+                    {% if entry.category != category %}
+                    <a class="subcat" href="{{category.link(category=entry.category)}}">{{entry.category.name}}</a>
+                    {% endif %}
+                </h2>
+
                 <div class="posted">
                     <time class="dt-published" datetime="{{entry.date.isoformat()}}">
-                        <span class="date">{{entry.date.format('YYYY/MM/DD')}}</span>
+                        <span class="date">{{entry.date.format('MMMM D, YYYY')}}</span>
                         <span class="time">{{entry.date.format('h:mm A')}}</span>
-                        <span class="ago">{{entry.date.humanize()}}</span>
+                        <span class="ago">({{entry.date.humanize()}})</span>
                     </time>
-                    {%- if entry.author -%}
+                    {%- if entry.author %}by
                         <span class="author">
-                        by <a rel="author" href="{{entry['Author-URL'] or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
+                            <a rel="author" href="{{entry.authorURL or '/'}}" class="p-author h-card">{{entry.author or 'fluffy'}}</a>
                         </span>
                     {%- else -%}
                         {%- include '/_hcard.html' -%}
                     {%- endif -%}
-
-                    {%- if entry.summary -%}
-                    <span class="hidden p-summary">{{ entry.summary }}</span>
-                    {%- endif -%}
                 </div>
-                {%- endblock -%}
-            </header>
+            </header>{%- endblock -%}
 
             {%- block entrytags -%}
                 {%- if entry.tags -%}
-                <nav class="tags" id="tags">Tags:
-                <ul class="tags">
+                <nav class="tags">
+                <ul>
                     {%- for tag in entry.tags -%}
                     <li><a rel="tag" href="{{entry.archive(tag=tag)}}">{{tag}}</a></li>
                     {%- endfor -%}
@@ -114,69 +117,76 @@
             {%- endblock -%}
 
             {%- block toc -%}
-                {% if entry.get('show-toc') %}
-                <nav id="toc">
-                    <h2>Table of Contents</h2>
-                    {{entry.toc(max_depth=entry.get('TOC-max-depth',2)|int)}}
-                </nav>
-                {% endif %}
+            {% if entry.get('show-toc') %}
+            <nav id="toc">
+                <h2>Table of Contents</h2>
+                {{entry.toc(max_depth=entry.get('TOC-max-depth',2)|int)}}
+            </nav>
+            {% endif %}
             {%- endblock -%}
 
-            {% if entry.date > arrow.now().shift(days=-7) %}<a class="hidden" href="https://fed.brid.gy/"></a>{% endif %}
 
-            <div class="content">
-                {%- include '/_indieweb.html' -%}
-                <div class="e-content">
-                    {%- block entrybody -%}{%- if entry.body -%}<div id="preamble" class="body">
-                            {%- block entrybody_content scoped -%}
-                            {{entry.body(gallery_id=entry.uuid, max_width=800)}}
-                            {%- endblock -%}
-                    </div>{%- endif -%}{%- endblock -%}
+            <div class="content e-content">
 
-                    {%- block entrymore -%}
-                        {%- if entry.more -%}<div id="more">
-                            {%- if entry.cut -%}<details><summary class="p-content-warning">{{entry.cut}}</summary>{%- endif -%}
+                {{indieweb.render_pings(entry,True)}}
 
-                            {%- block entrymore_content scoped -%}
-                                {{entry.more(gallery_id=entry.uuid, max_width=800)}}
-                            {%- endblock -%}
+                {%- block entrybody -%}{%- if entry.body -%}<div id="preamble" class="body">
+                        {%- block entrybody_content scoped -%}
+                        {{entry.body(gallery_id=entry.uuid, max_width=800)}}
+                        {%- endblock -%}
+                </div>{%- endif -%}{%- endblock -%}
 
-                            {%- if entry.cut -%}</details>{%- endif -%}
-                        </div>{%- endif -%}
+                {%- block entrymore -%}
+                    {%- if entry.more -%}<div id="more">
+                        {%- if entry.cut -%}<details><summary class="p-content-warning">{{entry.cut}}</summary>{%- endif -%}
 
-                        {%- block entryfootnotes -%}{%- if entry.footnotes -%}
-                            <div class="footnotes">{%- block entryfootnotes_content scoped -%}
-                                {{ entry.footnotes(gallery_id=entry.uuid ~ '_footnotes',
-                                    width=360,
-                                    height=360) }}
-                            {%- endblock -%}</div>
-                        {%- endif -%}{%- endblock -%}
+                        {%- block entrymore_content scoped -%}
+                            {{entry.more(gallery_id=entry.uuid, max_width=800)}}
+                        {%- endblock -%}
 
-                        {%- if entry.via -%}<p class="via">(via
-                            {% for via in entry.get_all('via') -%}
-                            {%- with url, _, label = via.partition(' ') -%}
-                            <span class="via h-cite"><a class="u-url u-repost-of p-name" href="{{url}}">{{label}}</a></span>{%- if loop.index < loop.length -%}, {% endif -%}
-                            {%- endwith -%}
-                            {%- endfor -%}
-                        )</p>{%- endif -%}
-                    {%- endblock -%}
-                </div>
+                        {%- if entry.cut -%}</details>{%- endif -%}
+                    </div>{%- endif -%}
+
+                    {%- block entryfootnotes -%}{%- if entry.footnotes -%}
+                        <div class="footnotes">{%- block entryfootnotes_content scoped -%}
+                            {{ entry.footnotes(gallery_id=entry.uuid ~ '_footnotes',
+                                width=360,
+                                height=360) }}
+                        {%- endblock -%}</div>
+                    {%- endif -%}{%- endblock -%}
+
+                    {%- if entry.via -%}<p class="via">(via
+                        {% for via in entry.get_all('via') -%}
+                        {%- with url, _, label = via.partition(' ') -%}
+                        <span class="via h-cite"><a class="u-url u-repost-of p-name" href="{{url}}">{{label}}</a></span>{%- if loop.index < loop.length -%}, {% endif -%}
+                        {%- endwith -%}
+                        {%- endfor -%}
+                    )</p>{%- endif -%}
+                {%- endblock -%}
             </div>
 
-            {%- block webmentions -%}
-                <div class="webmentions" id="webmentions"></div>
-            {%- endblock -%}
+            </article>
 
-            {%- if not entry['Disable-Comments'] -%}
-                {%- block comments -%}<div class="comments" id="comments">
-                    <div class="heading">
-                        <h2>Comments</h2>
-                    </div>
-
-                    {%- include '/_comment_thread.html' -%}
-                </div>{%- endblock -%}
-            {%- endif -%}
+            {% if entry.date > arrow.now().shift(days=-7) %}<a class="hidden" href="https://fed.brid.gy/"></a>{% endif %}
         </article>{%- endblock -%}
+
+
+        {%- block webmentions -%}
+            <section class="webmentions" id="webmentions"></section>
+        {%- endblock -%}
+
+        {%- if not entry['Disable-Comments'] -%}
+            {%- block comments -%}<section class="comments" id="comments">
+                <header>
+                    <h2>Comments</h2>
+                </header>
+
+                <div class="thread">
+                {%- include '/_comment_thread.html' -%}
+                </div>
+            </section>{%- endblock -%}
+        {%- endif -%}
+
     </section>
 </main>
 

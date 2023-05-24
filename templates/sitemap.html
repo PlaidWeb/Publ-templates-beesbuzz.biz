@@ -1,11 +1,11 @@
 {% extends '/index.html' %}
 
 {% block title %}
-<title>Site map for {{category.name}}</title>
+<title>Site map for {{category.name(markup=False)}}</title>
 {% endblock %}
 
 {% block banner %}
-<div id="banner"><h1>Site map for {{category.name}}</h1></div>
+<header id="banner"><h1>Site map for {{category.name}}</h1></header>
 {% endblock %}
 
 {% block scripthooks %}
@@ -17,25 +17,25 @@
 {% endblock %}
 
 {% block content %}
-<section id="entries">
-    <article class="entry">
-        <header class="heading">
+<section id="content">
+    <article>
+        <header>
             <h2><a href="{{category.link}}">{{category.name}}</a></h2>
         </header>
 
-        {% if category.parent %}
-        <h3>Parent categories</h3>
-        <ul>
-            {% for cat in category.breadcrumb[:-1] %}
-            <li><a href="{{cat.link}}">{{cat.name}}</a>
-                {{cat.description}}
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-
         <div class="content">
             {{category.description}}
+
+            {% if category.parent %}
+            <h3>Parent categories</h3>
+            <ul>
+                {% for cat in category.breadcrumb[:-1] %}
+                <li><a href="{{cat.link}}">{{cat.name}}</a>
+                    {{cat.description}}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
 
             {% if category.subcats %}
             <h3>Subcategories</h3>
@@ -43,7 +43,7 @@
             <ul class="subcats">
                 {% for subcat in category.subcats recursive %}
                 <li><a href="{{subcat.link}}">{{ subcat.name }}</a>{% if subcat.description %}:
-                    {{ subcat.description }}{% endif %}
+                    {{ subcat.description|first_paragraph(True) }}{% endif %}
                     {% if subcat.subcats %}
                     <ul>{{ loop(subcat.subcats)}}</ul>
                     {% endif %}
@@ -52,6 +52,8 @@
             </ul>
             {% endif %}
         </div>
+
+
     </article>
 </section>
 {% endblock %}

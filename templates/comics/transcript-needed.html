@@ -1,0 +1,5 @@
+<ul>
+{% for entry in view(recurse=True,entry_type='',has_attachments=False,is_attached=False,order="oldest") %}
+<li><a href="{{entry.link}}">{{entry.category.basename}}: {{entry.title}}</a></li>
+{% endfor %}
+</ul>
