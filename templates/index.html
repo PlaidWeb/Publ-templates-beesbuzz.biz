@@ -28,18 +28,18 @@
     {%- endblock -%}
 
     {%- block stylesheet -%}
-    <link rel="stylesheet" href="{{category.link(template='style.css')}}" />
+    <link rel="stylesheet" href="{{category.link(template='style.css')}}">
     {%- endblock -%}
 
-    <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}" />
-    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
-    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
-    <link rel="alternate" type="text/mf2+html" title="mf2 feed (full content)" href="{{view.link(template='everything')}}" />
-    <link rel="canonical" href="{{view.link(template=template,absolute=True,_scheme='https')}}" />
+    <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}">
+    <link rel="alternate" type="text/mf2+html" title="mf2 feed (full content)" href="{{view.link(template='everything')}}">
+    <link rel="canonical" href="{{view.link(template=template,absolute=True,_scheme='https')}}">
 
     {% if view.has_unauthorized and not user %}
     {# provide an authorization link for feed reader discovery purposes #}
-    <link href="{{ login(category.link(template='profile')) }}" rel="authorization" />
+    <link href="{{ login(category.link(template='profile')) }}" rel="authorization">
     {% endif %}
 
     {%- block webmention -%}
@@ -47,13 +47,13 @@
     {%- endblock -%}
 
     {%- if category.parent -%}
-        <link rel="up" href="{{category.parent.link(template=template)}}" />
+        <link rel="up" href="{{category.parent.link(template=template)}}">
     {%- endif -%}
     {%- if view.previous -%}
-        <link rel="previous" href="{{view.previous.link(template=template)}}" />
+        <link rel="previous" href="{{view.previous.link(template=template)}}">
     {%- endif -%}
     {%- if view.next -%}
-        <link rel="next" href="{{view.next.link(template=template)}}" />
+        <link rel="next" href="{{view.next.link(template=template)}}">
     {%- endif -%}
 
     {%- block scripthooks -%}
@@ -65,13 +65,13 @@
         <script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js" defer></script>
     {%- endblock -%}
 
-    <meta property="og:title" content="{{category.name}}" />
+    <meta property="og:title" content="{{category.name}}">
     {% if category.description %}
-    <meta property="og:description" content="{{category.description(markup=False)}}" />
+    <meta property="og:description" content="{{category.description(markup=False)}}">
     {% endif %}
-    <meta property="og:site_name" content="busybee" />
-    <meta property="og:type" content="webpage" />
-    <meta property="og:profile:first_name" content="fluffy" />
+    <meta property="og:site_name" content="busybee">
+    <meta property="og:type" content="webpage">
+    <meta property="og:profile:first_name" content="fluffy">
 </head>
 
 <body id="{{ template.name }}">
@@ -81,12 +81,12 @@
 
 <main>
     {%- block banner -%}<header id="banner">
-        <h1><ul class="breadcrumb">
-            {%- for cat in category.breadcrumb[:-1] -%}
-            <li><a href="{{cat.link}}">{{cat.name}}</a></li>
-            {%- endfor -%}
-            <li class="here">{{category.name}}</li>
-        </ul></h1>
+        <h1 class="breadcrumb">
+            {% for cat in category.breadcrumb[:-1] %}
+            <span><a href="{{cat.link}}">{{cat.name}}</a></span>
+            {% endfor %}
+            <span class="here">{{category.name}}</span>
+        </h1>
 
         {%- if category.description -%}
             {{category.description}}
@@ -113,7 +113,7 @@
 
         {%- block navigation_breadcrumb -%}
         {% if category.breadcrumb[:-1] -%}
-        <section id="breadcrumb">
+        <div id="breadcrumb">
         <ul class="breadcrumb">
             {%- for cat in category.breadcrumb[:-1] -%}
             <li><a href="{{cat.link(template=template if template.name != 'index' else '')}}" title="{{cat.description(markup=False)}}">{{cat.name}}</a></li>
@@ -123,13 +123,13 @@
         </ul>
         {%- if not view.is_current -%}
         <p class="now"><a href="{{view.current.link(template=template)}}">Show latest entries</a></p>{%- endif -%}
-        </section>
+        </div>
         {%- endif -%}
         {%- endblock -%}
 
         {%- block subcategories -%}
         {% if category.subcats -%}
-        <section id="subcategories">
+        <div id="subcategories">
         <h3>{%- block subcategories_title -%}Subcategories{%- endblock -%}</h3>
         <ul>
             {%- block subcategories_everything -%}
@@ -139,27 +139,27 @@
             <li><a href="{{subcat.link(template=template if template.name != 'index' else '')}}" title="{{subcat.description(markup=False)}}">{{subcat.name}}</a></li>
             {% endfor %}
         </ul>
-        </section>
+        </div>
         {%- endif -%}
         {%- endblock -%}
 
         {%- block sidebar -%}
         {%- set sidebar = get_view(category=category,entry_type='sidebar',order='title') -%}
         {%- if sidebar.entries -%}
-        <section id="sidebar">
+        <div id="sidebar">
         <h3>{%- block sidebar_title -%}Sidebar{%- endblock -%}</h3>
         <ul>
             {%- for entry in sidebar.entries -%}
             <li><a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{entry.title}}</a></li>
             {%- endfor -%}
         </ul>
-        </section>
+        </div>
         {%- endif -%}
         {%- endblock -%}
 
         {% block tag_browser scoped %}
         {%- if category.tags -%}
-        <section id="tags">
+        <div id="tags">
         <h3>{%- block tags_title -%}Topic Tags{%- endblock -%}</h3>
 
         {% macro tag_link(view) -%}
@@ -167,16 +167,16 @@
         {%- endmacro %}
 
         <ul>
-        {% if view.tags %}
+        {%- if view.tags -%}
         <li class="clear"><a href="{{tag_link(view(tag=None))}}">Clear filter</a></li>
         {% endif %}
 
         {% set tags = category.tags(tag=view.spec.tag if view.spec.tag else None,tag_filter='ALL')|sort(attribute='count',reverse=True) %}
-        {% for name,count in tags %}
-        {% if (request.args.all_tags or loop.index < 10 or name in view.tags)
-            and count > 1 %}
-        <li class="{{name in view.tags and 'selected' or ''}}"><a rel="nofollow" href="{{tag_link(view.tag_toggle(name))}}">{{name}}</a> ({{count}})</a></li>
-        {% endif %}
+        {% for name,count in tags[:10+view.tags|length] %}
+        {%- if (request.args.all_tags or loop.index < 10 or name in view.tags)
+            and count > 1 -%}
+        <li class="{{name in view.tags and 'selected' or ''}}"><a rel="nofollow" href="{{tag_link(view.tag_toggle(name))}}">{{name}}</a> ({{count}})</li>
+        {%- endif -%}
         {% endfor %}
 
         {% if request.args.all_tags %}
@@ -185,7 +185,7 @@
         <li class="all"><a rel="nofollow" href="{{view.link(template=template,all_tags=1)}}">Show all tags</a></li>
         {% endif %}
         </ul>
-        </section>
+        </div>
         {% endif %}
         {% endblock %}
 
@@ -201,7 +201,7 @@
     </nav>{%- endblock -%}
 
     {%- block content scoped -%}
-    <section id="content" class="h-feed">
+    <div id="content" class="h-feed">
         {%- block userinfo scoped -%}
             {%- if user -%}
                 <aside id="userinfo" class="hello">Hello, <a href="{{view.link(template='profile',t=template if template.name != 'index' else None)}}">{{user.name}}</a>. <a class="logout" href="{{logout}}">sign out</a></aside>
@@ -239,7 +239,7 @@
                                 {%- include '/_hcard.html' -%}
                             {%- endif -%}
 
-                            <span class="comment-link"><a title="Comment on {{entry.category.name}}: {{entry.title|forceescape}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a>
+                            <span class="comment-link"><a title="Comment on {{entry.category.name}}: {{entry.title|forceescape}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a></span>
                         </div>
                     </header>{%- endblock -%}
 
@@ -315,7 +315,7 @@
             </ul>
         </nav>{%- endif -%}
         {%- endblock -%}
-    </section>{%- endblock -%}
+    </div>{%- endblock -%}
 
 </main>
 

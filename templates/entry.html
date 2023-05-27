@@ -1,8 +1,5 @@
 {%- import '/_indieweb.html' as indieweb -%}
 
-{% block top_hook %}
-{% endblock %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,21 +14,21 @@
     {%- endblock -%}
 
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
-    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
-    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
-    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
-    <link rel="shortcut" href="{{ entry.link(absolute=True,expand=False) }}" />
-    <link rel="canonical" href="{{ entry.link(absolute=True,_scheme='https') }}" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed">
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}">
+    <link rel="shortcut" href="{{ entry.link(absolute=True,expand=False) }}">
+    <link rel="canonical" href="{{ entry.link(absolute=True,_scheme='https') }}">
 
     {%- set prev = entry.previous(entry_type='') -%}
     {%- set next = entry.next(entry_type='') -%}
 
-    <link rel="up" href="{{category.link}}" />
+    <link rel="up" href="{{category.link}}">
     {%- if prev -%}
-    <link rel="previous" href="{{prev.link}}" />
+    <link rel="previous" href="{{prev.link}}">
     {%- endif -%}
     {%- if next -%}
-    <link rel="next" href="{{next.link}}" />
+    <link rel="next" href="{{next.link}}">
     {%- endif -%}
 
     {%- block scripthooks -%}
@@ -44,10 +41,10 @@
     {%- endblock -%}
 
     {{ entry.card(width=800,height=800) }}
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@fluffy" />
-    <meta name="description" content="{{entry.summary(markup=False)}}" />
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@fluffy">
+    <meta name="description" content="{{entry.summary(markup=False)}}">
 </head>
 <body id="entry">
 
@@ -55,13 +52,16 @@
     <a href="{{e.link}}" {% if e.private %}class="private"{% endif %}>{{'🔏 ' if e.private else ''}}{{e.title}}</a>
 {%- endmacro -%}
 
+{% block top_hook %}
+{% endblock %}
+
 <main>
     {%- block banner -%}<header id="banner">
-        <h1><ul class="breadcrumb">
-            {%- for cat in category.breadcrumb -%}
-            <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+        <h1 class="breadcrumb">
+            {% for cat in category.breadcrumb %}
+            <span><a href="{{cat.link}}">{{cat.name}}</a></span>
             {%- endfor -%}
-        </ul></h1>
+        </h1>
 
         {%- if category.description -%}
             {{category.description}}
@@ -77,7 +77,7 @@
     </nav>{%- endif -%}
     {%- endblock -%}
 
-    <section id="content">
+    <div id="content">
         {%- block content -%}
         <article class="entry h-entry{{' private' if entry.private else ''}}">
             <data class="p-uid" value="{{entry.uuid}}"></data>
@@ -165,14 +165,12 @@
                 {%- endblock -%}
             </div>
 
-            </article>
-
             {% if entry.date > arrow.now().shift(days=-7) %}<a class="hidden" href="https://fed.brid.gy/"></a>{% endif %}
         </article>{%- endblock -%}
 
 
         {%- block webmentions -%}
-            <section class="webmentions" id="webmentions"></section>
+            <div class="webmentions" id="webmentions"></div>
         {%- endblock -%}
 
         {%- if not entry['Disable-Comments'] -%}
@@ -187,7 +185,7 @@
             </section>{%- endblock -%}
         {%- endif -%}
 
-    </section>
+    </div>
 </main>
 
 <script src="{{ static('lightbox/js/lightbox-plus-jquery.min.js') }}"></script>

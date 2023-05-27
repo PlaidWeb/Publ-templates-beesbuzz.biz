@@ -2,7 +2,7 @@
 
 Simple thing for embedding webmentions from webmention.io into a page, client-side.
 
-(c)2018-2021 fluffy (http://beesbuzz.biz)
+(c)2018-2022 fluffy (http://beesbuzz.biz)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -94,6 +94,8 @@ A more detailed example:
 
 */
 
+// Begin LibreJS code licensing
+// @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&dn=expat.txt
 
 (function () {
   "use strict";
@@ -125,7 +127,7 @@ A more detailed example:
   const sortBy = getCfg("sort-by", "published");
   const sortDir = getCfg("sort-dir", "up");
   /** @type {boolean} */
-  const commentsAreReactions = getCfg("comments-are-reactions");
+  const commentsAreReactions = getCfg("comments-are-reactions", false);
 
   /**
    * @typedef MentionType
@@ -155,7 +157,7 @@ A more detailed example:
   const reactEmoji = {
     "in-reply-to": "💬",
     "like-of": "❤️",
-    "repost-of": "↩️",
+    "repost-of": "🔄",
     "bookmark-of": "⭐️",
     "mention-of": "💬",
     "rsvp": "📅",
@@ -201,7 +203,7 @@ A more detailed example:
    */
   function reactImage(r, isComment) {
     const who = entities(
-      r.author?.name ?? r.url.split("/")[2]
+      r.author?.name || r.url.split("/")[2]
     );
     /** @type {string} */
     let response = reactTitle[r["wm-property"]] || t("reacted");
@@ -217,6 +219,14 @@ A more detailed example:
           loading="lazy"
           decoding="async"
           alt="${who}"
+        >
+      `;
+    } else {
+      authorPhoto = `
+        <img
+          class="missing"
+          src="data:image/webp;base64,UklGRkoCAABXRUJQVlA4TD4CAAAvP8APAIV0WduUOLr/m/iqY6SokDJSMD5xYX23SQizRsVdZmIj/f6goYUbiOj/BED7MOPReuBNT3vBesSzIex+SeqMFFkjebFmzH3S7POxDSJ1yaCbCmMnS2R46cRMPyQLw4GBK4esdK60pYwsZakecUCl5zsHv/5cPH08nx9/7i6rEEVCg2hR8VSd30PxMZpVoJZQO6Dixgg6X5oKFCmlVHIDmmMFShWumAXgCuyqVN8hHff/k+9fj8+ei7BVjpxBmZCUJv+6DhWGZwWvs+UoLHFCKsPYpfJtIcEXBTopEEsKwedZUv4ku1FZErKULLyQwFGgnmTs2vBD5qu44xwnG9uyjgrFOd+KRVlXyQfwQlauydaU6AVI7OjKXLUEqNtxJBmQegNDZgV7lxxqYMOMrDyC1NdAGbdiH9Ij0skjG+oTyfO0lmjdgvoH8iIgreuBMRYLSH+R3sAztXgL+XfS7E2bmfo6gnS0TrpnzHT7kL+skj7PgHuBwv/zpN8LDLQg7zfJZLBubMKnyeh6ZGyfDEfc2LYpnlUtG7JqsSHq1WoASbUS4KVaLwB8be5mfsGMDwBcm5VxbuxWxx3nkFanB6lYqsqSkOGkKicoDvXsneR7BkKU7DtaEuT7+pxBGVwx+9gVyqf2pVA9sC2CsmjZ1RJqEJHS4Tj/pCcS0JoyBYOsB91Xjh3OFfQPQhvCAYyeLJlaOoFp0XNNuD0BC8exr8uPx7D1JWkwFdZIXmD3MOPReuDNzHjBesSzIbQD"
+          alt="${who}$"
         >
       `;
     }
@@ -451,3 +461,6 @@ A more detailed example:
     container.innerHTML = `${formattedComments}${reactions}`;
   });
 }());
+
+// End-of-file marker for LibreJS
+// @license-end

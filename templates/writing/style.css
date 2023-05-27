@@ -25,14 +25,11 @@ header h1, header h2 {
 #banner {
     text-align: center;
 }
-#banner ul {
-    list-style-type: none;
-}
-#banner li {
+#banner span {
     display: inline;
 }
-#banner li:not(:first-child)::before {
-    content: '~';
+#banner span:not(:first-child)::before {
+    content: ':: ';
 }
 
 #navigation {

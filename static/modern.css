@@ -67,7 +67,7 @@ img {
 #banner h1 {
     font-weight: lighter;
 }
-#banner h1 ul {
+#banner h1 span {
     font-weight: normal;
 }
 
@@ -88,13 +88,14 @@ img {
     border-bottom-left-radius: 1ex;
 }
 
-#navigation section {
+#navigation div {
     margin-bottom: 1em;
 }
 
-.breadcrumb li { display: inline; }
-.breadcrumb li + li::before {
-    content: "\00a0/\00a0";
+.breadcrumb li, .breadcrumb span { display: inline; }
+.breadcrumb li + li::before,
+.breadcrumb span + span::before {
+    content: "/\00a0";
     font-weight: lighter;
 }
 

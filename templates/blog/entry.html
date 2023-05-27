@@ -6,11 +6,11 @@
 
 {%- block banner -%}<header id="banner">
     <div class="inner">
-    <h1><ul class="breadcrumb">
-        {%- for cat in category.breadcrumb[:] -%}
-        <li><a href="{{cat.link}}">{{cat.name}}</a></li>
+    <h1 class="breadcrumb">
+        {% for cat in category.breadcrumb[:] %}
+        <span><a href="{{cat.link}}">{{cat.name}}</a></span>
         {%- endfor -%}
-    </ul></h1>
+    </h1>
 
     {%- if category.description -%}
         {{category.description}}
