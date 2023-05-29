@@ -132,7 +132,7 @@
 
                 {%- block entrybody -%}{%- if entry.body -%}<div id="preamble" class="body">
                         {%- block entrybody_content scoped -%}
-                        {{entry.body(gallery_id=entry.uuid, max_width=800)}}
+                        {{entry.body(gallery_id=entry.uuid, max_width=800, prefix="entry_")}}
                         {%- endblock -%}
                 </div>{%- endif -%}{%- endblock -%}
 
@@ -141,7 +141,7 @@
                         {%- if entry.cut -%}<details><summary class="p-content-warning">{{entry.cut}}</summary>{%- endif -%}
 
                         {%- block entrymore_content scoped -%}
-                            {{entry.more(gallery_id=entry.uuid, max_width=800)}}
+                            {{entry.more(gallery_id=entry.uuid, max_width=entry.get('image-width',800)|int)}}
                         {%- endblock -%}
 
                         {%- if entry.cut -%}</details>{%- endif -%}

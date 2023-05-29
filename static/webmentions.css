@@ -44,7 +44,7 @@
 }
 
 #webmentions a.reaction img {
-    max-height: 1.3em;
+    height: 1.3em;
     margin-right: -1ex;
     border-radius: 25%;
     width: auto;

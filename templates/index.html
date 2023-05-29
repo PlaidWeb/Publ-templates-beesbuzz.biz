@@ -158,7 +158,7 @@
         {%- endblock -%}
 
         {% block tag_browser scoped %}
-        {%- if category.tags -%}
+        {%- if category.tags(recurse=view.spec.recurse) -%}
         <div id="tags">
         <h3>{%- block tags_title -%}Topic Tags{%- endblock -%}</h3>
 
@@ -171,10 +171,9 @@
         <li class="clear"><a href="{{tag_link(view(tag=None))}}">Clear filter</a></li>
         {% endif %}
 
-        {% set tags = category.tags(tag=view.spec.tag if view.spec.tag else None,tag_filter='ALL')|sort(attribute='count',reverse=True) %}
+        {% set tags = category.tags(tag=view.spec.tag if view.spec.tag else None,tag_filter='ALL',recurse=view.spec.recurse)|sort(attribute='count',reverse=True) %}
         {% for name,count in tags[:10+view.tags|length] %}
-        {%- if (request.args.all_tags or loop.index < 10 or name in view.tags)
-            and count > 1 -%}
+        {%- if (request.args.all_tags or loop.index < 10 or name in view.tags) -%}
         <li class="{{name in view.tags and 'selected' or ''}}"><a rel="nofollow" href="{{tag_link(view.tag_toggle(name))}}">{{name}}</a> ({{count}})</li>
         {%- endif -%}
         {% endfor %}

@@ -93,10 +93,15 @@ img {
 }
 
 .breadcrumb li, .breadcrumb span { display: inline; }
-.breadcrumb li + li::before,
+.breadcrumb li + li::before {
+    content: " /\00a0";
+    font-weight: lighter;
+    opacity: 50%;
+}
 .breadcrumb span + span::before {
     content: "/\00a0";
     font-weight: lighter;
+    opacity: 50%;
 }
 
 #subcategories ul { list-style-type: none; }
@@ -206,8 +211,6 @@ article .content {
 article {
     margin-bottom: 1em;
     clear: left;
-    text-align: justify;
-    hyphens: auto;
 }
 
 article:not(:first-child) {
@@ -225,7 +228,6 @@ article.react {
     padding: 1ex;
     max-width: 40%;
     text-align: center;
-    hyphens: none;
 }
 
 article.react + article.react {
@@ -251,6 +253,11 @@ article.react header {
 
 .images {
     text-align: center;
+}
+
+.images img {
+    vertical-align: middle;
+    margin: 0.25ex;
 }
 
 #toc ol {
