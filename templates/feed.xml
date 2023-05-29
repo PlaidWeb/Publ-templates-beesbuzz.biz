@@ -6,7 +6,7 @@
     xmlns:fh="http://purl.org/syndication/history/1.0"
     xmlns:at="http://purl.org/atompub/tombstones/1.0">
 
-    <title>{{"busybee: " ~ category.name if category.parent else category.name}}</title>
+    <title>{{"busybee: " ~ category.name(markup=False) if category.parent else category.name(markup=False)}}</title>
     <subtitle>Art, music, comics, and more</subtitle>
     <link href="{{ view.link(template='feed',absolute=True) }}" rel="self" />
     {% if not view.is_current %}
@@ -52,12 +52,13 @@
             {%- include get_template('_feed_entry', entry) -%}
             <p><a href="{{entry.link(absolute=True)}}#comments">comments</a></p>
 
-        ]]>
-
-
         {% for tag in entry.tags %}
         <a rel="tag" href="{{entry.archive(tag=tag,absolute=True)}}">#{{tag}}</a>
         {% endfor %}
+
+        ]]>
+
+
 
         </content>
         {% for cat in entry.category.breadcrumb[1:] -%}
