@@ -32,6 +32,9 @@ h1 a, h2 a, h3 a {
 pre, code {
     font-family: var(--font-mono);
 }
+pre {
+    white-space: pre-wrap;
+}
 
 figure {
     margin: 0;
@@ -160,6 +163,7 @@ ul.tag-list li.tag-selected {
     font-weight: bold;
 }
 
+
 article header {
     padding: 0 var(--gutter-padding);
 }
@@ -239,8 +243,9 @@ article.react header {
     font-size: 75%;
 }
 
-.inset-left { float: left; margin: 0 1em 1ex 1ex;}
-.inset-right { float: right; margin: 0 1ex 1ex 1em;}
+.inset-left { float: left; margin: 0 1em 1ex 0; }
+.inset-right { float: right; margin: 0 0 1ex 1em; }
+.shaped { shape-margin: 1ex; }
 
 .readmore {
     font-size: small;
@@ -328,7 +333,8 @@ nav.paging a {
     padding: 0 var(--gutter-padding);
 }
 
-a[href*="amzn.to"]::after, .affiliate-link::after {
+a[href*="amzn.to"]::after,
+.affiliate-link::after {
     content: '($)';
     color: rgba(0,127,0,.5);
     font-size: x-small;
@@ -390,6 +396,7 @@ iframe {
     content: ']';
 }
 
+
 blockquote::before {
     font-family: 'Georgia', 'Times', serif;
     content: '“';
@@ -412,7 +419,7 @@ blockquote {
     padding: 0.25ex 1em;
 }
 
-.footnotes {
+#footnotes {
     font-size: small;
     border-top: dotted rgba(0,0,0,0.25) 1px;
 }
@@ -443,3 +450,4 @@ blockquote {
         --gutter-padding: 1em;
     }
 }
+

@@ -148,7 +148,7 @@
                     </div>{%- endif -%}
 
                     {%- block entryfootnotes -%}{%- if entry.footnotes -%}
-                        <div class="footnotes">{%- block entryfootnotes_content scoped -%}
+                        <aside id="footnotes">{%- block entryfootnotes_content scoped -%}
                             {{ entry.footnotes(gallery_id=entry.uuid ~ '_footnotes',
                                 width=360,
                                 height=360) }}

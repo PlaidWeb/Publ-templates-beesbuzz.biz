@@ -129,11 +129,11 @@ def filter_shuffle(seq):
         return seq
 
 @app.template_filter('sort_latest')
-def filter_sort_latest(seq):
+def filter_sort_latest(seq,**kwargs):
     try:
         result = list(seq)
         def get_latest_date(cc):
-            ee = cc.last()
+            ee = cc.last(**kwargs)
             return ee.date if ee else None
         result.sort(key=get_latest_date,reverse=True)
         return result

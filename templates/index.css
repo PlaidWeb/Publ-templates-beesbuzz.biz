@@ -80,7 +80,8 @@ a:hover {
 
     transition: background-color 0.25s ease,
         filter 0.25s ease,
-        background-size 0.25s ease;
+        background-size 0.25s ease,
+        z-index 0.25s ease
 }
 
 #content {
@@ -98,12 +99,15 @@ a:hover {
 #links .{{icon}} {
     /*{{image('_layout/'~icon~iconfmt).get_css_background(uncomment=True,width=64,height=64,format='webp')}}*/
     filter: drop-shadow(0 0 0px rgba(255,255,255,0));
+    position: relative;
+    z-index: 0;
 }
 /* {% endfor %} */
 
 #links a:hover {
     filter: drop-shadow(0 0 2px rgba(255,255,255,1));
     background-size: 64px 64px;
+    z-index: 1000;
 }
 
 #latest {
@@ -214,7 +218,6 @@ a:hover {
     grid-column: span 1;
     height: 180px;
 
-    min-width: 33%;
     background: white;
     border: solid var(--border-color) 2px;
     color: black;
