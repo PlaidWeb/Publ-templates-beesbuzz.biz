@@ -1,6 +1,6 @@
 Title: Syndication feed
 Icon: rss
-Entry-Type: sidebar
+Entry-Type: linkbar
 Redirect-To: /feed
 Sort-Title: 000
 Entry-ID: 2199

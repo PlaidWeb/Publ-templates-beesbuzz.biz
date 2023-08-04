@@ -2,7 +2,7 @@ Status: HIDDEN
 Title: Liberapay
 Redirect-To: https://liberapay.com/fluffy
 Path-Alias: /liberapay
-Entry-Type: sidebar
+Entry-Type: linkbar
 Sort-Title: 001
 Link-Rel: me
 UUID: 5be746bb-cba2-54be-bfd0-fb4f553a4028

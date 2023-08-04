@@ -1,10 +1,11 @@
 Title: Ko-Fi
 Redirect-To: https://ko-fi.com/fluffycritter
 xPath-Alias: /patreon
-Path-Alias: /ko-fi
+Path-canonical: /ko-fi
 Path-Alias: /kofi
 Path-Alias: /tipjar
-Entry-Type: sidebar
+Path-Alias: /tip-jar
+Entry-Type: linkbar
 Sort-Title: 110
 Link-Rel: me
 Entry-ID: 713

@@ -4,7 +4,7 @@ status: hidden
 Title: dev.to
 icon: devto
 Path-Alias: /dev.to
-Entry-Type: sidebar
+Entry-Type: linkbar
 Link-Rel: me
 Date: 2019-02-04 23:00:45-08:00
 Entry-ID: 967

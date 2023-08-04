@@ -1,7 +1,7 @@
-xStatus: HIDDEN
+Status: HIDDEN
 Title: Twitter
 Icon: twitter
-Entry-Type: sidebar
+Entry-Type: linkbar
 Redirect-To: https://twitter.com/fluffy
 Sort-Title: 001
 Entry-ID: 4329

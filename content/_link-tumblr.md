@@ -1,5 +1,5 @@
 Title: Tumblr
-Entry-Type: sidebar
+Entry-Type: linkbar
 Path-Alias: /tumblr
 Redirect-To: http://fluffy-critter.tumblr.com
 Sort-Title: 200
