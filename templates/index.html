@@ -250,6 +250,8 @@
 
                     <div class="content">
 
+                        {{indieweb.render_links(entry)}}
+
                         <div class="{{'e-summary' if entry.more else 'e-content'}}">{%- block summary scoped -%}
                             {%- if entry.body -%}{%- block entrybody scoped -%}
                                 {{ entry.body(max_width=240,

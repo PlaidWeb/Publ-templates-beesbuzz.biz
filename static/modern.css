@@ -396,6 +396,10 @@ iframe {
     content: ']';
 }
 
+.reference {
+    font-size: small;
+    font-weight: bold;
+}
 
 blockquote::before {
     font-family: 'Georgia', 'Times', serif;

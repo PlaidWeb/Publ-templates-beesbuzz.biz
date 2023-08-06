@@ -49,7 +49,7 @@
 <body id="entry">
 
 {%- macro navlink(e) -%}
-    <a href="{{e.link}}" {% if e.private %}class="private"{% endif %}>{{'🔏 ' if e.private else ''}}{{e.title}}</a>
+    <a href="{{e.link}}" {% if e.private %}class="private"{% endif %}>{{'🔏 ' if e.private else ''}}{{e.title or '(no title)'}}</a>
 {%- endmacro -%}
 
 {% block top_hook %}
@@ -83,6 +83,7 @@
             <data class="p-uid" value="{{entry.uuid}}"></data>
             {%- block entry_heading scoped -%}<header>
                 <h2>
+                    {{indieweb.render_pings(entry,False)}}
                     <a href="{{entry.link}}" class="u-url p-name">{{'🔏 ' if entry.private else ''}}{{entry.title or '(no title)'}}</a>
                     {% if entry.category != category %}
                     <a class="subcat" href="{{category.link(category=entry.category)}}">{{entry.category.name}}</a>
@@ -128,7 +129,7 @@
 
             <div class="content e-content">
 
-                {{indieweb.render_pings(entry,True)}}
+                {{indieweb.render_links(entry)}}
 
                 {%- block entrybody -%}{%- if entry.body -%}<div id="preamble" class="body">
                         {%- block entrybody_content scoped -%}

@@ -5,16 +5,16 @@
     Repost-Of: http://example.com/bar
 
 -#}
-{%- for type, label in (('like-of', '❤️'),
-                 ('in-reply-to', '💬'),
-                 ('repost-of', '🔄'),
-                 ('bookmark-of', '⭐️'),
-                 ('syndication', ''),
-                 ('quote-of', '❝')
+{%- for type, label, slug in (('like-of', '❤️', 'Liked'),
+                 ('in-reply-to', '💬', 'Replied'),
+                 ('repost-of', '🔄', 'Reposted'),
+                 ('bookmark-of', '⭐️', 'Bookmarked'),
+                 ('syndication', '', 'Syndicated'),
+                 ('quote-of', '❝', 'Quoted')
                 ) -%}
     {%- for note in entry.get_all(type) -%}
         {%- with url,_,title = note.partition(' ') -%}
-        <a href="{{url}}" title="{{type}}{{' '~title if title else ''}}" class="{{'hidden' if not label else 'ping'}} u-{{type}}">{% if label %}{{label}}{{' ' ~ (title or entry.title|safe) if show_title else ''}}{% endif %}</a>
+        <a href="{{url}}" title="{{slug}}{{': '~title if title else ''}}" class="{{'hidden' if not label else 'ping'}} u-{{type}}">{% if label %}{{label}}{{' ' ~ (title or entry.title|safe) if show_title else ''}}{% endif %}</a>
         {%- endwith -%}
     {%- endfor -%}
 {%- endfor -%}
@@ -61,4 +61,19 @@
 </ul>
 {% endif %}
 
+{% endmacro %}
+
+{% macro render_links(entry) %}
+{#- Render the plaintext link(s) for an entry's preamble -#}
+{%- for type, slug in (('like-of', 'Like'),
+    ('in-reply-to', 'In reply to'),
+    ('repost-of', 'Reposted'),
+    ('quote-of', 'Quoted')
+    ) -%}
+    {%- for note in entry.get_all(type) -%}
+        {%- with url,_,title = note.partition(' ') -%}
+        <p class="reference">{{slug}}: <a href="{{url}}">{{title or entry.title or "(no title given)"}}</a></p>
+        {%- endwith -%}
+    {%- endfor -%}
+{%- endfor -%}
 {% endmacro %}
