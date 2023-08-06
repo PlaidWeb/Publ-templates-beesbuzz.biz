@@ -68,7 +68,8 @@
 {%- for type, slug in (('like-of', 'Like'),
     ('in-reply-to', 'In reply to'),
     ('repost-of', 'Reposted'),
-    ('quote-of', 'Quoted')
+    ('quote-of', 'Quoted'),
+    ('bookmark-of', 'Bookmarked'),
     ) -%}
     {%- for note in entry.get_all(type) -%}
         {%- with url,_,title = note.partition(' ') -%}
