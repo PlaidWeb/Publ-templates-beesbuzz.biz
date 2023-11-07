@@ -66,3 +66,16 @@ blockquote {
 .shaped {
     box-shadow: none;
 }
+
+table {
+    border-collapse: collapse;
+    border: solid black 3px;
+}
+td, th {
+    border: solid black 1px;
+    padding: 0.1ex 0.5ex;
+}
+th {
+    background: #ccc;
+    border: solid black 1px;
+}

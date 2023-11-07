@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {%- block title -%}
-        <title>{{category.name}}: {{ entry.title(markup=False) }}</title>
+        <title>{{category.name(markup=False)}}: {{ entry.title(markup=False) }}</title>
     {%- endblock -%}
 
     {%- block stylesheet -%}
@@ -79,6 +79,7 @@
 
     <div id="content">
         {%- block content -%}
+
         <article class="entry h-entry{{' private' if entry.private else ''}}">
             <data class="p-uid" value="{{entry.uuid}}"></data>
             {%- block entry_heading scoped -%}<header>
@@ -131,6 +132,10 @@
 
                 {{indieweb.render_links(entry)}}
 
+                {% if entry.affiliates or 'amzn.to' in entry.body or 'amzn.to' in entry.more %}
+                <aside class="affiliates">Note: I may earn a commission on <a class="affiliate" href="/legal#affiliate-disclosure">affiliated product links</a> in this article.</aside>
+                {% endif %}
+
                 {%- block entrybody -%}{%- if entry.body -%}<div id="preamble" class="body">
                         {%- block entrybody_content scoped -%}
                         {{entry.body(gallery_id=entry.uuid, max_width=800, prefix="entry_")}}
@@ -164,7 +169,9 @@
                         {%- endfor -%}
                     )</p>{%- endif -%}
                 {%- endblock -%}
+
             </div>
+
 
             {% if entry.date > arrow.now().shift(days=-7) %}<a class="hidden" href="https://fed.brid.gy/"></a>{% endif %}
         </article>{%- endblock -%}

@@ -116,7 +116,7 @@
         <div id="breadcrumb">
         <ul class="breadcrumb">
             {%- for cat in category.breadcrumb[:-1] -%}
-            <li><a href="{{cat.link(template=template if template.name != 'index' else '')}}" title="{{cat.description(markup=False)}}">{{cat.name}}</a></li>
+            <li><a href="{{cat.link(template=template)}}" title="{{cat.description(markup=False)}}">{{cat.name}}</a></li>
             {%- endfor -%}
             <li class="here">{{category.name}}
             </li>
@@ -136,7 +136,7 @@
             <li class="everything"><a href="{{view.link(template='everything')}}">Show everything</a></li>
             {%- endblock -%}
             {% for subcat in category.subcats %}
-            <li><a href="{{subcat.link(template=template if template.name != 'index' else '')}}" title="{{subcat.description(markup=False)}}">{{subcat.name}}</a></li>
+            <li><a href="{{subcat.link(template=template)}}" title="{{subcat.description(markup=False)}}">{{subcat.name}}</a></li>
             {% endfor %}
         </ul>
         </div>
@@ -172,8 +172,8 @@
         {% endif %}
 
         {% set tags = category.tags(tag=view.spec.tag if view.spec.tag else None,tag_filter='ALL',recurse=view.spec.recurse)|sort(attribute='count',reverse=True) %}
-        {% for name,count in tags[:10+view.tags|length] %}
-        {%- if (request.args.all_tags or loop.index < 10 or name in view.tags) -%}
+        {% for name,count in (tags if request.args.all_tags else tags[:10+view.tags|length]) %}
+        {%- if count > 1 and (request.args.all_tags or loop.index < 10 or name in view.tags) -%}
         <li class="{{name in view.tags and 'selected' or ''}}"><a rel="nofollow" href="{{tag_link(view.tag_toggle(name))}}">{{name}}</a> ({{count}})</li>
         {%- endif -%}
         {% endfor %}

@@ -8,6 +8,8 @@
     --font-mono: Consolas, monaco, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace;
 
     --gutter-padding: 2em;
+
+    --affiliate-link-color: #090;
 }
 
 .hidden {
@@ -334,10 +336,20 @@ nav.paging a {
 }
 
 a[href*="amzn.to"]::after,
-.affiliate-link::after {
+a[href*="gumroad.com"][href*="a=799797363"]::after,
+.affiliate::after {
     content: '($)';
-    color: rgba(0,127,0,.5);
+    color: var(--affiliate-link-color);
     font-size: x-small;
+    text-decoration: none;
+}
+
+.affiliates {
+    font-size: small;
+    font-style: italic;
+    border: dotted black 1px;
+    margin: 1ex 0;
+    padding: 1ex;
 }
 
 #avatars {

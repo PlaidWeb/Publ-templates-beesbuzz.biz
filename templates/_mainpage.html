@@ -49,7 +49,7 @@
         <li class="category store"><a href="https://biz.beesbuzz.biz" title="Buy my stuff!"><span>Shop</span></a></li>
 
         <li id="latest">
-            {% set latest=view(recurse=True,order='newest',count=7,entry_type_not=['linkbar','sidebar','transcript'],category_not='blog/chatter') %}
+            {% set latest=view(recurse=True,order='newest',count=7,entry_type_not=['linkbar','sidebar','transcript'],is_attached=False,category_not='blog/chatter') %}
             <h2><a href="{{view.link(template='everything')}}">Latest things</a>
                 {%- if view.tags %} <span>(tagged {{view.tags|join(', ')}})</span>{%endif%}
     	    {%- if not user and latest.has_unauthorized %} <a class="login" href="{{login}}">login for more</a>{% endif -%}
