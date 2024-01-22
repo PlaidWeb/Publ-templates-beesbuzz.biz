@@ -132,10 +132,6 @@
 
                 {{indieweb.render_links(entry)}}
 
-                {% if entry.affiliates or 'amzn.to' in entry.body or 'amzn.to' in entry.more %}
-                <aside class="affiliates">Note: I may earn a commission on <a class="affiliate" href="/legal#affiliate-disclosure">affiliated product links</a> in this article.</aside>
-                {% endif %}
-
                 {%- block entrybody -%}{%- if entry.body -%}<div id="preamble" class="body">
                         {%- block entrybody_content scoped -%}
                         {{entry.body(gallery_id=entry.uuid, max_width=800, prefix="entry_")}}
@@ -152,6 +148,11 @@
 
                         {%- if entry.cut -%}</details>{%- endif -%}
                     </div>{%- endif -%}
+
+                {% if entry.affiliates or 'amzn.to' in entry.body or 'amzn.to' in entry.more %}
+                <aside class="affiliates">Note: I may earn a commission on <a class="affiliate" href="/legal#affiliate-disclosure">affiliated product links</a> in this article.</aside>
+                {% endif %}
+
 
                     {%- block entryfootnotes -%}{%- if entry.footnotes -%}
                         <aside id="footnotes">{%- block entryfootnotes_content scoped -%}

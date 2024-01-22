@@ -1,7 +1,7 @@
 @import url('{{static("modern.css")}}');
 
 html {
-    /* {{image('/_layout/plaidbg-light.png').get_css_background(width=192,uncomment=True,format='webp')}} */
+    /* {{image('/_layout/plaidbg-light.png').get_css_background(width=192,uncomment=True)}} */
     background-color: #edd;
     background-attachment: fixed;
     margin: 0;
@@ -12,7 +12,7 @@ html {
 is subject to main's overflow:hidden; */
 #plaidlogo {
     display: block;
-    /* {{image('/_layout/plaidlogo.png').get_css_background(width=192,uncomment=True,format='webp')}} */
+    /* {{image('/_layout/plaidlogo.png').get_css_background(width=192,uncomment=True)}} */
     width: 192px;
     height: 192px;
     position: fixed;
@@ -33,7 +33,7 @@ is subject to main's overflow:hidden; */
 }
 #banner .inner {
     padding: 3em;
-    /* {{image('/_layout/plaidlogo.png').get_css_background(width=192,uncomment=True,format='webp')}} */
+    /* {{image('/_layout/plaidlogo.png').get_css_background(width=192,uncomment=True)}} */
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -56,7 +56,7 @@ a:hover {
 
 #banner {
     color: #ff9;
-    /* {{image('/_layout/plaidbg-dark.png').get_css_background(width=192,uncomment=True,format='webp')}} */
+    /* {{image('/_layout/plaidbg-dark.png').get_css_background(width=192,uncomment=True)}} */
     background-color: #511;
     background-attachment: fixed;
     position: relative;
@@ -65,7 +65,7 @@ a:hover {
 
 main {
     background-color: white;
-    /* {{image('/_layout/plaidlogo-blur-bg.jpg').get_css_background(width=192*1100/1024,uncomment=True,format='webp')}} */
+    /* {{image('/_layout/plaidlogo-blur-bg.jpg').get_css_background(width=192*1100/1024,uncomment=True)}} */
     background-attachment: fixed;
     background-repeat: no-repeat;
     position: relative;

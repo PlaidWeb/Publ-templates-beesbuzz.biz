@@ -34,7 +34,7 @@ body {
     box-shadow: 0 4px 7px rgba(0,0,0,0.5);
     text-decoration: none;
 
-    /*{{image('_logo.jpg').get_css_background(uncomment=True,width=640,quality=35,format='webp')}}*/
+    /*{{image('_logo.jpg').get_css_background(uncomment=True,width=640,quality=35)}}*/
 }
 
 a:link {

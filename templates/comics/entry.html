@@ -122,8 +122,7 @@
                 {% if entry.cut and not entry['Entry-Type'] %}<details><summary class="p-content-warning">{{entry.cut}}</summary>{% endif %}
                     {{entry.body(
                         scale=2,
-                        width=960,
-                        format='webp')}}
+                        width=960)}}
                 {% if entry.cut and not entry['Entry-Type'] %}</details>{% endif %}
                 </div>
                 {% endif %}
