@@ -17,6 +17,10 @@
         {%- if not view.is_current and view.range %} | {{ view.range }}{% endif %}
     </title>{%- endblock -%}
 
+    {%- if view.tags -%}
+    <meta name="robots" content="noindex, nofollow">
+    {% endif %}
+
     {%- block metatags -%}
         {%- if category.description -%}
             <meta name="description" content="{{category.description(markup=False)}}">
@@ -35,7 +39,7 @@
     <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}">
     <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}">
     <link rel="alternate" type="text/mf2+html" title="mf2 feed (full content)" href="{{view.link(template='everything')}}">
-    <link rel="canonical" href="{{view.link(template=template,absolute=True,_scheme='https')}}">
+    <link rel="canonical" href="{{view.link(template=template,absolute=True,_scheme='https',tag=None)}}">
 
     {% if view.has_unauthorized and not user %}
     {# provide an authorization link for feed reader discovery purposes #}
@@ -244,7 +248,7 @@
 
                     {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">
                         <ul>{%- for tag in entry.tags -%}
-                            <li><a rel="tag" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
+                            <li><a rel="tag nofollow noindex" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
                         {%- endfor -%}</ul>
                     </nav>{%- endblock -%}{%- endif -%}
 
@@ -311,7 +315,7 @@
                 <li class="prev"><a href="{{view.older.link(template=template)}}">{{ view.spec.date and view.older.range(month='MMMM YYYY',year='YYYY') or "Older" }}</a></li>
             {%- endif -%}
             {%- if view.newer -%}
-                <li class="next"><a  href="{{view.newer.link(template=template)}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></li>
+                <li class="next"><a href="{{view.newer.link(template=template)}}">{{ view.spec.date and view.newer.range(month='MMMM YYYY',year='YYYY') or "Newer" }}</a></li>
             {%- endif -%}
             </ul>
         </nav>{%- endif -%}

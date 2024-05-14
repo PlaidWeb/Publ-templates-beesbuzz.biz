@@ -53,7 +53,7 @@
 
                 {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">
                     <ul>{%- for tag in entry.tags -%}
-                        <li><a rel="tag" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
+                        <li><a rel="tag" href="{{view(tag=tag).link}}">{{tag}}</a></li>
                     {%- endfor -%}</ul>
                 </nav>{%- endblock -%}{%- endif -%}
 

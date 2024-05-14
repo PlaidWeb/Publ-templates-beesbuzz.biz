@@ -46,13 +46,14 @@ h1 span {
     padding: 8px 4px;
     text-align: left;
     vertical-align: top;
-    writing-mode: vertical-rl;
     text-orientation: upright;
     background: var(--sidebar-color);
     border: solid var(--border-color) 1px;
     border-right: none;
-    max-height: 80vh;
+    /*max-height: 80vh;*/
     overflow-x: hidden;
+    /*overflow-y: auto;*/
+    scrollbar-gutter: stable both-edges;
 }
 
 a:link {
@@ -68,13 +69,13 @@ a:hover {
 }
 
 #links a {
-    display: inline-block;
+    display: block;
     width: 64px;
     height: 64px;
     background-size: 48px 48px;
     background-position: 50% 50%;
     margin: -8px;
-    padding: 2px;
+    /*padding: 2px;*/
     background-repeat: no-repeat;
     background-position: 50% 50%;
 
@@ -343,6 +344,7 @@ a:hover {
         border: none;
         vertical-align: top;
         margin: 0;
+        overflow-y: auto;
     }
 
     #links a {
@@ -350,6 +352,7 @@ a:hover {
         width: 48px;
         height: 48px;
         background-size: 32px 32px;
+        display: inline-block;
     }
 
     #links a:hover {
