@@ -36,7 +36,7 @@ else:
 
 
 config = {
-    'database_config': db_config
+    'database_config': db_config,
 
     # West coast is best coast
     'timezone': 'US/Pacific',
