@@ -165,9 +165,23 @@ ul.tag-list li.tag-selected {
     font-weight: bold;
 }
 
-
 article header {
     padding: 0 var(--gutter-padding);
+}
+
+article.sticky header h2:first-child::before {
+    display: inline-block;
+    content: '\00a0';
+    border: red;
+    width: 1em;
+    height: 1em;
+    float: right;
+    vertical-align: bottom;
+    background-color: currentColor;
+    mask-size: auto;
+    mask-image: url('sticky.svg');
+    -webkit-mask-size: auto;
+    -webkit-mask-image: url('sticky.svg');
 }
 
 article header .posted {

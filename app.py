@@ -15,12 +15,28 @@ logging.info("Setting up")
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
 
+if 'DATABASE_URL' in os.environ:
+    # I use mysql in production, with an environment variable like
+    # DATABASE_URL=mysql://username:password@server/dbname
+    import urllib.parse
+    parsed = urllib.parse.urlparse(os.environ['DATABASE_URL'])
+    user = re.match(r'(.*):(.*)@(.*)', parsed.netloc)
+    db_config = {
+            'provider': parsed.scheme,
+            'user': user.group(1),
+            'password': user.group(2),
+            'host': user.group(3),
+            'database': parsed.path[1:],
+            'charset': 'utf8mb4',
+            'collation': 'utf8mb4_bin',
+        }
+else:
+    # Without DATABASE_URL I use a local sqlite (in staging etc.)
+    db_config = {'provider': 'sqlite', 'filename': os.path.join(APP_PATH, 'index.db')}
+
+
 config = {
-    # I use SQLite with the persistent index stored locally.
-    'database_config': {
-        'provider': 'sqlite',
-        'filename': os.path.join(APP_PATH, 'index.db')
-    },
+    'database_config': db_config
 
     # West coast is best coast
     'timezone': 'US/Pacific',

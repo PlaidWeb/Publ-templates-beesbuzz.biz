@@ -1,4 +1,4 @@
-{%- set view = view(entry_type='',is_attached=False,tag_filter='ALL') -%}
+{%- set view = view(entry_type=['','sticky'],is_attached=False,tag_filter='ALL') -%}
 {%- from get_template('_view_config', category) import view with context -%}
 {%- import '/_indieweb.html' as indieweb -%}
 
@@ -76,6 +76,7 @@
     <meta property="og:site_name" content="busybee">
     <meta property="og:type" content="webpage">
     <meta property="og:profile:first_name" content="fluffy">
+    <meta property="fediverse:creator" content="@fluffy@plush.city" />
 </head>
 
 <body id="{{ template.name }}">
@@ -214,10 +215,15 @@
         {%- endblock -%}
 
         {%- block entries -%}
-        {%- for entry in view.entries -%}
+        {% if view.is_current %}
+        {% set entries = view(entry_type='sticky').entries() + view(entry_type_not='sticky').entries() %}
+        {% else %}
+        {% set entries = view.entries %}
+        {% endif %}
+        {%- for entry in entries -%}
             {%- if entry.body or entry.more -%}
                 {#- has a body, which means there's text to display -#}
-                <article class="content h-entry{{' private' if entry.private else ''}}">
+                <article class="content {{entry.type}} h-entry{{' private' if entry.private else ''}}">
                     <data class="p-uid" value="{{entry.uuid}}"></data>
                     {%- block entry_heading scoped -%}<header>
                         <h2>

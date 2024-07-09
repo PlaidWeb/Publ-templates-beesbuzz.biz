@@ -20,8 +20,8 @@
     <link rel="shortcut" href="{{ entry.link(absolute=True,expand=False) }}">
     <link rel="canonical" href="{{ entry.link(absolute=True,_scheme='https') }}">
 
-    {%- set prev = entry.previous(entry_type='') -%}
-    {%- set next = entry.next(entry_type='') -%}
+    {%- set prev = entry.previous(entry_type=['','sticky']) -%}
+    {%- set next = entry.next(entry_type=['','sticky']) -%}
 
     <link rel="up" href="{{category.link}}">
     {%- if prev -%}
@@ -45,6 +45,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@fluffy">
     <meta name="description" content="{{entry.summary(markup=False)}}">
+    <meta property="fediverse:creator" content="@fluffy@plush.city" />
 </head>
 <body id="entry">
 
