@@ -1,5 +1,5 @@
 Title: Syndication feed
-Icon: rss
+Icon: rss.svg
 Entry-Type: linkbar
 Redirect-To: /feed
 Sort-Title: 000

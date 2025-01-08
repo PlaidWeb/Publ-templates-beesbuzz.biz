@@ -127,9 +127,7 @@ def thread_id(item):
 app.jinja_env.globals.update(thread_id=thread_id)
 
 @app.template_filter('hashtag')
-def make_hashtag(words : str):
-    """ Adds a custom Jinja filter to turn a sentence into a #HashTag. Used
-    in feed-twitter.xml """
+def make_hashtag(words: str):
     words = words.replace("'", '')
     words = re.split(r'[^a-zA-Z0-9]+', words)
 
@@ -150,7 +148,7 @@ def filter_sort_latest(seq,**kwargs):
         result = list(seq)
         def get_latest_date(cc):
             ee = cc.last(**kwargs)
-            return ee.date if ee else None
+            return ee.date if ee else arrow.get()
         result.sort(key=get_latest_date,reverse=True)
         return result
     except:

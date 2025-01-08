@@ -14,7 +14,8 @@
 
     {% include '_favicon.html' %}
 
-    <link rel="openid.server" href="https://id.beesbuzz.biz/" />
+    <link rel="openid.delegate" href="https://beesbuzz.biz/" />
+    <link rel="openid.server" href="https://openid.indieauth.com/openid" />
     <link rel="authorization_endpoint" href="https://auth.beesbuzz.biz/" />
 
     <link rel="canonical" href="https://beesbuzz.biz/" />
@@ -34,7 +35,7 @@
     <nav id="links">
         {%- for entry in view(entry_type='linkbar',order='title',tag=None).entries -%}
         <a href="{{entry.permalink if entry['Use-Permalink'] else entry.link}}" {% if entry['link-rel'] %}rel="{{entry['link-rel']}}"{% endif %}
-            title="{{entry.title(markup=False)}}" class="{{entry.icon or entry.title(markup=False).lower()}}"><span>{{entry.title}}</span></a>
+            title="{{entry.title(markup=False)}}" class="link-{{(entry.icon or entry.title(markup=False).lower()).split('.')[0]}}"><span>{{entry.title}}</span></a>
             {{entry.body}}
         {% endfor -%}
     </nav>
@@ -43,7 +44,7 @@
     <ul>
         {% for cat in category.subcats|sort_latest(recurse=True) %}
         {% if not cat.hidden %}
-        <li class="category cat_{{cat.basename}}"><a href="{{cat.link}}" title="{{cat.description(markup=False)}}"><span>{{cat['display-name'] or cat.name}}</span></a></li>
+        <li class="category cat_{{cat.basename}}"><a href="{{cat.url or cat.link}}" title="{{cat.description(markup=False)}}"><span>{{cat['display-name'] or cat.name}}</span></a></li>
         {% endif %}
         {% endfor %}
 
@@ -84,10 +85,12 @@
 
 {% include '/_hcard.html' %}
 
-<div id="webring">
+<div id="webrings">
+    <div id="indieweb">
       <a href="https://xn--sr8hvo.ws/previous">←</a>
-  <span>🕸💍</span>
-  <a href="https://xn--sr8hvo.ws/next">→</a>
+      <span>🕸💍</span>
+      <a href="https://xn--sr8hvo.ws/next">→</a>
+    </div>
 </div>
 
 </body></html>

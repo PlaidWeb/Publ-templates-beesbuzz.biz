@@ -90,7 +90,7 @@
     {% endif %}
     <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
     <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
-    <link rel="canonical" href="{{view.link(absolute=True,_scheme='https')}}" />
+    <link rel="canonical" href="{{view.link(absolute=True,tag=None,_scheme='https')}}" />
 
     {% if comics.older %}
     <link rel="prev" href="{{comics.older}}">
@@ -211,7 +211,9 @@
                 {% endif %}
 
                 <div class="commentlink">
-                <a title="Comment on {{entry.category.name}}: {{entry.title}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a>
+                {% if entry.attachments(entry_type="transcript") %}
+                <a href="{{entry.link}}#transcript" title="Transcript available">🗒️</a>
+                {% endif %}
                 </div>
 
 
@@ -265,6 +267,5 @@
 
 {% include '/_hcard.html' %}
 
-<script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js"></script>
 </body>
 </html>

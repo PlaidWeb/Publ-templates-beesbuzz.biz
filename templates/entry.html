@@ -34,9 +34,10 @@
     {%- block scripthooks -%}
         {%- include '/_webmention.html' -%}
         {%- if entry.math -%}
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async
-                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script defer src="{{static('katex/katex.min.js')}}"></script>
+        <script defer src="{{static('katex/contrib/auto-render.min.js')}}"
+            onload="renderMathInElement(document.body);"></script>
+        <link rel="stylesheet" href="{{static('katex/katex.min.css')}}">
         {%- endif -%}
     {%- endblock -%}
 
@@ -113,7 +114,7 @@
                 <nav class="tags">
                 <ul>
                     {%- for tag in entry.tags -%}
-                    <li><a rel="tag" href="{{entry.archive(tag=tag)}}">{{tag}}</a></li>
+                    <li><a class="p-category" rel="tag" href="{{entry.archive(tag=tag)}}">{{tag}}</a></li>
                     {%- endfor -%}
                 </ul></nav>
                 {%- endif -%}
@@ -160,7 +161,7 @@
                             {{ entry.footnotes(gallery_id=entry.uuid ~ '_footnotes',
                                 width=360,
                                 height=360) }}
-                        {%- endblock -%}</div>
+                        {%- endblock -%}</aside>
                     {%- endif -%}{%- endblock -%}
 
                     {%- if entry.via -%}<p class="via">(via

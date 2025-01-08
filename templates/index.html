@@ -62,11 +62,11 @@
 
     {%- block scripthooks -%}
         {%- if view.entries|selectattr('math')|first -%}
-            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-            <script id="MathJax-script" async
-                    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script defer src="{{static('katex/katex.min.js')}}"></script>
+        <script defer src="{{static('katex/contrib/auto-render.min.js')}}"
+            onload="renderMathInElement(document.body);"></script>
+        <link rel="stylesheet" href="{{static('katex/katex.min.css')}}">
         {%- endif -%}
-        <script data-isso="//d.beesbuzz.biz/" src="//d.beesbuzz.biz/js/count.min.js" defer></script>
     {%- endblock -%}
 
     <meta property="og:title" content="{{category.name}}">
@@ -138,10 +138,12 @@
         <h3>{%- block subcategories_title -%}Subcategories{%- endblock -%}</h3>
         <ul>
             {%- block subcategories_everything -%}
-            <li class="everything"><a href="{{view.link(template='everything')}}">Show everything</a></li>
+            <li class="everything"><a rel="nofollow" href="{{view.link(template='everything')}}">Show everything</a></li>
             {%- endblock -%}
             {% for subcat in category.subcats %}
+            {% if not subcat.hidden %}
             <li><a href="{{subcat.link(template=template)}}" title="{{subcat.description(markup=False)}}">{{subcat.name}}</a></li>
+            {% endif %}
             {% endfor %}
         </ul>
         </div>
@@ -215,7 +217,7 @@
         {%- endblock -%}
 
         {%- block entries -%}
-        {% if view.is_current %}
+        {% if view.is_current and not view.spec.recurse %}
         {% set entries = view(entry_type='sticky').entries() + view(entry_type_not='sticky').entries() %}
         {% else %}
         {% set entries = view.entries %}
@@ -248,13 +250,12 @@
                                 {%- include '/_hcard.html' -%}
                             {%- endif -%}
 
-                            <span class="comment-link"><a title="Comment on {{entry.category.name}}: {{entry.title|forceescape}}" rel="comments" href="{{thread_id(entry)}}#isso-thread">Comments</a></span>
                         </div>
                     </header>{%- endblock -%}
 
                     {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">
                         <ul>{%- for tag in entry.tags -%}
-                            <li><a rel="tag nofollow noindex" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
+                            <li><a class="p-category" rel="tag nofollow noindex" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
                         {%- endfor -%}</ul>
                     </nav>{%- endblock -%}{%- endif -%}
 
