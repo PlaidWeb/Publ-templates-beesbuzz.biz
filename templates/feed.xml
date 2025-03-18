@@ -7,7 +7,7 @@
     xmlns:at="http://purl.org/atompub/tombstones/1.0">
 
     <title>{{"busybee: " ~ category.name(markup=False) if category.parent else category.name(markup=False)}}</title>
-    <subtitle><![CDATA[{{category.description}}]]></subtitle>
+    <subtitle><![CDATA[{{category.description(markup=False)}}]]></subtitle>
     <link href="{{ view.link(template='feed',absolute=True) }}" rel="self" />
     {% if not view.is_current %}
     <link href="{{ view.current.link(template='feed',absolute=True) }}" rel="current" />

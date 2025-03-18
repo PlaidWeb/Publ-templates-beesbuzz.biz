@@ -150,20 +150,6 @@
         {%- endif -%}
         {%- endblock -%}
 
-        {%- block sidebar -%}
-        {%- set sidebar = get_view(category=category,entry_type='sidebar',order='title') -%}
-        {%- if sidebar.entries -%}
-        <div id="sidebar">
-        <h3>{%- block sidebar_title -%}Sidebar{%- endblock -%}</h3>
-        <ul>
-            {%- for entry in sidebar.entries -%}
-            <li><a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{entry.title}}</a></li>
-            {%- endfor -%}
-        </ul>
-        </div>
-        {%- endif -%}
-        {%- endblock -%}
-
         {% block tag_browser scoped %}
         {%- if category.tags(recurse=view.spec.recurse) -%}
         <div id="tags">
@@ -195,6 +181,20 @@
         {% endif %}
         {% endblock %}
 
+        {%- block sidebar -%}
+        {%- set sidebar = get_view(category=category,entry_type='sidebar',order='title') -%}
+        {%- if sidebar.entries -%}
+        <div id="sidebar">
+        <h3>{%- block sidebar_title -%}{{category.get('sidebar-title','Sidebar')}}{%- endblock -%}</h3>
+        <ul>
+            {%- for entry in sidebar.entries -%}
+            <li><a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{entry.title}}</a></li>
+            {%- endfor -%}
+        </ul>
+        </div>
+        {%- endif -%}
+        {%- endblock -%}
+
         {% block search_form %}
         {%- if search -%}
         <form id="search" method="GET" action="search">
@@ -203,6 +203,7 @@
         </form>
         {%- endif -%}
         {% endblock %}
+
 
     </nav>{%- endblock -%}
 

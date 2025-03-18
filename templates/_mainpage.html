@@ -48,8 +48,6 @@
         {% endif %}
         {% endfor %}
 
-        <li class="category store"><a href="https://biz.beesbuzz.biz" title="Buy my stuff!"><span>Shop</span></a></li>
-
         <li id="latest">
             {% set latest=view(recurse=True,order='newest',count=7,entry_type_not=['linkbar','sidebar','transcript'],is_attached=False,category_not='blog/chatter') %}
             <h2><a href="{{view.link(template='everything')}}">Latest things</a>
