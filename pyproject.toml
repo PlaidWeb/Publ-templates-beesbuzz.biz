@@ -7,7 +7,7 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
-gunicorn = "^22.0.0"
+gunicorn = "^23.0.0"
 publ = {version = "^0.7.22", extras = ["auth", "search"]}
 python-memcached = "^1.59"
 pushl = "^0.3.0"
