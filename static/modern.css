@@ -351,6 +351,7 @@ nav.paging a {
 
 a[href*="amzn.to"]::after,
 a[href*="gumroad.com"][href*="a=799797363"]::after,
+a[href*="join.fastmail.com"]::after,
 .affiliate::after {
     content: '($)';
     color: var(--affiliate-link-color);
@@ -452,6 +453,19 @@ blockquote {
 #footnotes {
     font-size: small;
     border-top: dotted rgba(0,0,0,0.25) 1px;
+}
+
+.permalink::after {
+    position: absolute;
+    margin-left: -1.5ex;
+    margin-top: .45em;
+    font-size: 65%;
+    content: '#';
+    opacity: 50%;
+}
+
+*:hover > .permalink::after {
+    opacity: 75%;
 }
 
 @media screen and (max-width: 960px) {

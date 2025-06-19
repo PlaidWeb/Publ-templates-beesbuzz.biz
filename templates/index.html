@@ -256,7 +256,7 @@
 
                     {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">
                         <ul>{%- for tag in entry.tags -%}
-                            <li><a class="p-category" rel="tag nofollow noindex" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
+                            <li><a class="p-category" rel="tag" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
                         {%- endfor -%}</ul>
                     </nav>{%- endblock -%}{%- endif -%}
 
@@ -270,7 +270,6 @@
                                     max_height=240,
                                     link=entry.link,
                                     resize="fill",
-                                    count=1,
                                     prefix="index_",
                                     figure_class="thumb") }}
                             {%- endblock -%}{%- endif -%}

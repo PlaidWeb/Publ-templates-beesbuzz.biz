@@ -21,6 +21,7 @@
 
 {% block entrybody_content %}
 {{entry.body(gallery_id=entry.uuid,
+    heading_link_class='permalink',
     max_width=750,
     max_height=750)}}
 {% endblock %}
@@ -28,6 +29,7 @@
 {% block entrymore_content %}
 {{entry.more(gallery_id=entry.uuid,
     figure='images',
+    heading_link_class='permalink',
     max_width=entry.get('image-width',800)|int,
     max_height=750)}}
 {% endblock %}
