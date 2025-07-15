@@ -151,7 +151,7 @@
         {%- endblock -%}
 
         {% block tag_browser scoped %}
-        {%- if category.tags(recurse=view.spec.recurse) -%}
+        {%- if not g.is_bot and category.tags(recurse=view.spec.recurse) -%}
         <div id="tags">
         <h3>{%- block tags_title -%}Topic Tags{%- endblock -%}</h3>
 
@@ -254,7 +254,7 @@
                         </div>
                     </header>{%- endblock -%}
 
-                    {%- if entry.tags -%}{%- block entrytags scoped %}<nav class="tags">
+                    {%- if not g.is_bot and entry.tags -%}{%- block entrytags scoped %}<nav class="tags">
                         <ul>{%- for tag in entry.tags -%}
                             <li><a class="p-category" rel="tag" href="{{view(tag=tag).link(template=template)}}">{{tag}}</a></li>
                         {%- endfor -%}</ul>

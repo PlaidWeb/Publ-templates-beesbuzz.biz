@@ -15,7 +15,7 @@
     <span>I AM ERROR</span></h1>
     {% endblock %}
 
-    <div id="errorinfo"><ul>
+    <details id="errorinfo"><summary>Error information</summary><ul>
         <li><span>error</span> {{error.code}} {{error.message}}</li>
         <li><span>request time</span> {{arrow.now().format()}}</li>
         <li><span>url</span> <code>{{request.url}}</code></li>
@@ -26,7 +26,7 @@
     {% if exception %}
         <li><span>Exception information</span> {{exception.type}}: {{exception.str}}</li>
     {% endif %}
-    </ul></div>
+    </ul></details>
 
 </body></html>
 

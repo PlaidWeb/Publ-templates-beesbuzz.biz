@@ -218,6 +218,24 @@ def redirect_subfeed(match):
         template='feed'), True
 
 
+@app.before_request
+def antiscraper():
+    # Flag bots to remove page elements
+    if user_agents.parse(flask.request.headers.get('User-Agent', '')).is_bot:
+        flask.g.is_bot = True
+
+    # Logged-in users have passed the test already
+    if publ.user.get_active():
+        return
+
+    # Send possible crawlers to the login page
+    if (('id' in flask.request.args and 'tag' in flask.request.args) or
+            len(flask.request.args.getlist('tag')) > 1):
+        raise werkzeug.exceptions.Unauthorized("Sentience test")
+
+    return
+
+
 @app.after_request
 def add_webmention_endpoint(response):
     """

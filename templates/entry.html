@@ -110,11 +110,11 @@
             </header>{%- endblock -%}
 
             {%- block entrytags -%}
-                {%- if entry.tags -%}
+                {%- if not g.is_bot and entry.tags -%}
                 <nav class="tags">
                 <ul>
                     {%- for tag in entry.tags -%}
-                    <li><a class="p-category" rel="tag" href="{{entry.archive(tag=tag)}}">{{tag}}</a></li>
+                    <li><a class="p-category" rel="tag" href="{{category.link(tag=tag)}}">{{tag}}</a></li>
                     {%- endfor -%}
                 </ul></nav>
                 {%- endif -%}
@@ -183,7 +183,7 @@
             <div class="webmentions" id="webmentions"></div>
         {%- endblock -%}
 
-        {%- if not entry['Disable-Comments'] -%}
+        {%- if not g.is_bot and not entry['Disable-Comments'] -%}
             {%- block comments -%}<section class="comments" id="comments">
                 <header>
                     <h2>Comments</h2>
