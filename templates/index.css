@@ -98,7 +98,7 @@ a:hover {
 {%- set icon=link.icon or (link.title.lower()~'.svg') %}
 */
 #links .link-{{icon.split('.')[0]}} {
-    /*{{link.image('_layout/'~icon).get_css_background(uncomment=True,width=64,height=64)}}*/
+    /*{{link.image('_layout/'~icon).get_css_background(uncomment=True,width=64,height=64,quality=50,format='webp')}}*/
     filter: drop-shadow(0 0 0px rgba(255,255,255,0));
     position: relative;
     z-index: 0;
@@ -295,12 +295,12 @@ a:hover {
 
 /* {% for cat in category.subcats %} */
 #content li.cat_{{cat.basename}}  {
-    /*{{image('_layout/cat-'~cat.basename~'.jpg').get_css_background(uncomment=True,width=240,quaity=90)}}*/
+    /*{{image('_layout/cat-'~cat.basename~'.jpg').get_css_background(uncomment=True,width=240,quality=35,format='webp')}}*/
 }
 /* {% endfor %} */
 
 #content li.store {
-    /*{{image('_layout/cat-store.jpg').get_css_background(uncomment=True,width=240,quality=95)}}*/
+    /*{{image('_layout/cat-store.jpg').get_css_background(uncomment=True,width=240,quality=35,format='webp')}}*/
 }
 
 #content li.cat_comics {

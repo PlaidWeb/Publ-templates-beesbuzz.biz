@@ -6,11 +6,16 @@ authors = ["fluffy <fluffy@beesbuzz.biz>"]
 package-mode = false
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
-gunicorn = "^23.0.0"
-publ = {version = "^0.7.22", extras = ["auth", "search"]}
+python = ">=3.10,<3.13"
+gunicorn = {extras = ["gthreads"], version = "^23.0.0"}
 python-memcached = "^1.59"
-pushl = "^0.3.0"
+publ = {version = "^0.8.0", extras = ["search", "auth"]}
+pymysql = "^1.1.1"
+hypercorn = "^0.17.3"
+user-agents = "^2.2.0"
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.3.2"
 
 [build-system]
 requires = ["poetry>=0.12"]

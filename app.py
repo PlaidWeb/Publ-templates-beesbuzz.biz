@@ -8,6 +8,7 @@ import hmac
 import publ
 import flask
 import authl.flask
+import user_agents
 
 logging.basicConfig(level=logging.INFO)
 
@@ -16,23 +17,25 @@ logging.info("Setting up")
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
 
 if 'DATABASE_URL' in os.environ:
-    # I use mysql in production, with an environment variable like
+    # This makes it easier to use mysql in production, with an environment
+    # variable like
     # DATABASE_URL=mysql://username:password@server/dbname
     import urllib.parse
     parsed = urllib.parse.urlparse(os.environ['DATABASE_URL'])
     user = re.match(r'(.*):(.*)@(.*)', parsed.netloc)
     db_config = {
-            'provider': parsed.scheme,
-            'user': user.group(1),
-            'password': user.group(2),
-            'host': user.group(3),
-            'database': parsed.path[1:],
-            'charset': 'utf8mb4',
-            'collation': 'utf8mb4_bin',
-        }
+        'provider': parsed.scheme,
+        'user': user.group(1),
+        'password': user.group(2),
+        'host': user.group(3),
+        'database': parsed.path[1:],
+        'charset': 'utf8mb4',
+        'collation': 'utf8mb4_bin',
+    }
 else:
     # Without DATABASE_URL I use a local sqlite (in staging etc.)
-    db_config = {'provider': 'sqlite', 'filename': os.path.join(APP_PATH, 'index.db')}
+    db_config = {'provider': 'sqlite',
+                 'filename': os.path.join(APP_PATH, 'index.db')}
 
 
 config = {
@@ -78,16 +81,27 @@ config = {
         # enable IndieAuth support using the default client_id shim
         'INDIEAUTH_CLIENT_ID': authl.flask.client_id,
 
-        # Twitter API keys are configured in the environment via systemd unit
-        'TWITTER_CLIENT_KEY': os.environ.get('TWITTER_CLIENT_KEY'),
-        'TWITTER_CLIENT_SECRET': os.environ.get('TWITTER_CLIENT_SECRET'),
-
         # if I'm running locally I want access to the `test:` pseudo-users
         'TEST_ENABLED': os.environ.get('FLASK_DEBUG'),
     },
 
     # Keep 3 months of authentication logs
     'auth_log_prune_age': 86400 * 90,
+
+    # Provides some default layout rules (particularly image renditions)
+    'layout': {
+        'max_width': 960,
+        'max_height': 960,
+        'fullsize_width': 3840,
+        'fullsize_height': 2160,
+        'fullsize_quality': 35,
+        'resize': 'fit',
+        'figure': 'images',
+        'heading_link_class': 'toc_link',
+        'img_class': 'u-photo',
+        'format': 'webp',
+        'quality': 35
+    },
 
     'search_index': 'search'
 }
@@ -126,15 +140,23 @@ def thread_id(item):
 # register the thread ID generator with the templating system
 app.jinja_env.globals.update(thread_id=thread_id)
 
+
 @app.template_filter('hashtag')
 def make_hashtag(words: str):
+    """
+    A filter to convert a bunch of words into a hashtag like #ABunchOfWords
+    """
     words = words.replace("'", '')
     words = re.split(r'[^a-zA-Z0-9]+', words)
 
     return ''.join([w.title() if w.islower() else w for w in words])
 
+
 @app.template_filter('shuffle')
 def filter_shuffle(seq):
+    """
+    A custom sort filter to shuffle the order of items
+    """
     try:
         result = list(seq)
         random.shuffle(result)
@@ -142,18 +164,45 @@ def filter_shuffle(seq):
     except:
         return seq
 
+
 @app.template_filter('sort_latest')
-def filter_sort_latest(seq,**kwargs):
+def filter_sort_latest(seq, **kwargs):
+    """
+    A custom sort filter to sort categories by their latest update,
+    used by the _mainpage template
+    """
     try:
         result = list(seq)
+
         def get_latest_date(cc):
             ee = cc.last(**kwargs)
             return ee.date if ee else arrow.get()
-        result.sort(key=get_latest_date,reverse=True)
+        result.sort(key=get_latest_date, reverse=True)
         return result
     except:
         logging.exception("Couldn't sort list %s", seq)
         return seq
+
+
+@app.template_filter('entry_urls')
+def filter_get_entry_urls(entry):
+    """
+    This lets me track multiple entry URLs for webmention.js, by adding
+    Old-Url: headers
+    """
+
+    from urllib.parse import urlparse, urlunparse
+
+    urls = {entry.link(), entry.link(expand=False, absolute=True)
+            } | set(entry.get_all('old-url'))
+
+    urls = {urlunparse(urlparse(url)._replace(
+        netloc='beesbuzz.biz', scheme='https')) for url in urls}
+
+    urls -= {flask.request.url}
+
+    return urls
+
 
 @app.route('/favicon.ico')
 def favicon():
@@ -203,6 +252,26 @@ def redirect_blog_content(match):
     return 'https://web.archive.org/web/*/' + flask.request.url, False
 
 
+@app.route('/error/<int:code>')
+def raise_error(code):
+    """
+    This lets people poke at my various error code handlers by going to
+    /error/404, /error/403, etc.
+    """
+    werkzeug.exceptions.abort(code)
+
+
+@app.route('/_indexing')
+def index_length():
+    """
+    This is a useful helper function so that my deployment scripts can
+    wait until indexing completes before sending update notifications
+    with Pushl
+    """
+    import publ.index
+    return f'{publ.index.queue_size()}'
+
+
 @app.path_alias_regex(r'/([^/]+)/.*rss.php')
 def redirect_subfeed(match):
     """
@@ -211,6 +280,9 @@ def redirect_subfeed(match):
     in their respective .cat files, but some of the old subcategories no
     longer apply, so now I just bulk-redirect all unaccounted-for subcategories
     to the top-level category's feed.
+
+    There are, surprisingly, still people accessing these old feed URLs, a
+    decade later.
     """
     return flask.url_for(
         'category',
@@ -220,6 +292,17 @@ def redirect_subfeed(match):
 
 @app.before_request
 def antiscraper():
+    """
+    This request-hook will use the user_agents package to detect whether there's
+    a bot accessing the site, and if so, adds an 'is_bot' attribute to the global
+    store, which is then available to the page templates to remove elements that
+    cause issues with web scrapers (such as tag lists, which can lead to a
+    combinatoric explosion of useless page requests).
+
+    If something is performing access patterns which are likely bot activity,
+    it sends them to the login page as a form of sentience test and generally
+    discouraging bad scraper behavior.
+    """
     # Flag bots to remove page elements
     if user_agents.parse(flask.request.headers.get('User-Agent', '')).is_bot:
         flask.g.is_bot = True
@@ -229,8 +312,10 @@ def antiscraper():
         return
 
     # Send possible crawlers to the login page
-    if (('id' in flask.request.args and 'tag' in flask.request.args) or
-            len(flask.request.args.getlist('tag')) > 1):
+    score = 0
+    for item in ('id', 'tag', 'all_tags', 'date'):
+        score += len(flask.request.args.getlist(item))
+    if score > 1:
         raise werkzeug.exceptions.Unauthorized("Sentience test")
 
     return
@@ -243,7 +328,7 @@ def add_webmention_endpoint(response):
     (necessary for receiving pings to private entries) and image resources.
     Please fix the endpoint URL before uncommenting this.
     """
-    #response.headers.add('link', '<https://webmention.io/DOMAIN_GOES_HERE/webmention>; rel="webmention"')
+    # response.headers.add('link', '<https://webmention.io/DOMAIN_GOES_HERE/webmention>; rel="webmention"')
     return response
 
 
@@ -255,6 +340,7 @@ def redirect_bridgy(match):
     at @beesbuzz.biz@beesbuzz.biz on Mastodon et al if you want.
     """
     return 'https://fed.brid.gy' + flask.request.full_path, False
+
 
 @app.route('/_access_request/<int:entry_id>', methods=['POST'])
 def access_request(entry_id: int):
@@ -268,7 +354,9 @@ def access_request(entry_id: int):
     exists. There's no particular reason to use that aside from convenience.
     It could just as well write into a database row or the like.
     """
-    import publ.model, publ.user, publ.entry
+    import publ.model
+    import publ.user
+    import publ.entry
     from authl.handlers.email_addr import smtplib_connector, simple_sendmail
     import email.message
     from flask import request
@@ -295,7 +383,7 @@ def access_request(entry_id: int):
             use_ssl=config['auth'].get('SMTP_USE_SSL'),
         )
         send_func = simple_sendmail(connector, config['auth']['EMAIL_FROM'],
-            f"Access request for {user.humanize}")
+                                    f"Access request for {user.humanize}")
 
         msg = email.message.EmailMessage()
         msg['To'] = 'admin@example.com.FIXME'
@@ -316,3 +404,12 @@ Email: {request.form.get('email') or "Not provided"}
     send_func(msg)
 
     return "Message sent."
+
+
+@app.route('/.well-known/atproto-did')
+def did():
+    """
+    Want to use the website as an ATProto/bluesky identifier? Here's where
+    to set that up.
+    """
+    # return 'did:plc:porntipsguzzardo'

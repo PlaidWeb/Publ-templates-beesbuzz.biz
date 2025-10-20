@@ -63,7 +63,7 @@ The root-level `index.html` and `entry.html` handle the generic layout for index
 
 The provided `error.html` is just a simple default handler; my actual site also has handlers for `400`, `403`, and `404`. Each of these overrides the `flair` block within the `error` template. The `404.html` in this repository shows a tiny example of how to make 404-specific content on the error page.
 
-`style.css` is the generic stylesheet for sections which have not overridden the stylesheet. It makes use of the `bubbly.css` and `pygments.default.css` libraries, which are stored in the `static` directory.
+`style.css` is the generic stylesheet for sections which have not overridden the stylesheet. It makes use of the `modern.css` and `pygments.default.css` libraries, which are stored in the `static` directory.
 
 `robots.txt` is also a template, just to make things simpler. It links to the `sitemap.xml` template.
 

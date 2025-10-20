@@ -1,5 +1,8 @@
+Sitemap: {{view.link(template="sitemap.xml",absolute=True)}}
+
 User-Agent: *
 Disallow: /_login/
+Disallow: /_orange/
 
-Sitemap: https://beesbuzz.biz/sitemap.xml
+
 
