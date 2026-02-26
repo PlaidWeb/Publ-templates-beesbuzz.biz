@@ -6,18 +6,18 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="{{ static('lightbox/css/lightbox.min.css') }}">
-    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed" />
-    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
-    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed">
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="up" href="{{category.link}}" />
+    <link rel="up" href="{{category.link}}">
 
     {% for entry in recaps.entries %}
     {{ entry.card(width=480,height=360,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
     {% endfor %}
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:creator" content="@fluffy" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@fluffy">
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 </head>

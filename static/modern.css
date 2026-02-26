@@ -208,7 +208,7 @@ article .tags ul {
     font-size: small;
     margin: 0;
     padding: 0;
-    display: inline-block;
+    display: inline;
     list-style-type: none;
     font-style: italic;
 }

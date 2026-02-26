@@ -143,6 +143,20 @@
 
         </div>
 
+    {% elif user.is_bot %}
+    <header><h2>Hello, robot buddy!</h2></header>
+
+    <div class="content">
+        <p>Hi, you seem to be a bot, identified as <a href="{{user.profile.homepage}}">{{user.name}}</a>. If this is in error, please email me to let me know.</p>
+
+        <p>Useful information to include in the report:</p>
+        <ul>
+            <li>User-agent: <code>{{request.headers['user-agent']}}</code></li>
+            <li>Remote address: <code>{{request.remote_addr}}</code></li>
+            <li>Remote user: <code>{{request.remote_user}}</code></li>
+            <li>Sentience check: <code>{{session.get('sid', 'None')}}</code></li>
+        </ul>
+
     {% else %}
 
    <header><h2>Hello, friend!</h2></header>

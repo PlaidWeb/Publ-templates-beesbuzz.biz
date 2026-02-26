@@ -5,6 +5,9 @@ import logging
 import logging.handlers
 import hmac
 
+import werkzeug.exceptions
+import datetime
+
 import publ
 import flask
 import authl.flask
@@ -12,7 +15,8 @@ import user_agents
 
 logging.basicConfig(level=logging.INFO)
 
-logging.info("Setting up")
+LOGGER = logging.getLogger(__name__)
+LOGGER.info("Setting up")
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -303,22 +307,29 @@ def antiscraper():
     it sends them to the login page as a form of sentience test and generally
     discouraging bad scraper behavior.
     """
-    # Flag bots to remove page elements
-    if user_agents.parse(flask.request.headers.get('User-Agent', '')).is_bot:
-        flask.g.is_bot = True
 
     # Logged-in users have passed the test already
     if publ.user.get_active():
         return
 
+    # Users with an 'sid' cookie have passed the test already
+    if flask.session.get('sid'):
+        return
+
     # Send possible crawlers to the login page
-    score = 0
-    for item in ('id', 'tag', 'all_tags', 'date'):
-        score += len(flask.request.args.getlist(item))
-    if score > 1:
-        raise werkzeug.exceptions.Unauthorized("Sentience test")
+    score = len(list(flask.request.args.items(True)))
+    if score > 2:
+        raise werkzeug.exceptions.TooManyRequests("Sentience test")
 
     return
+
+
+@app.route('/_zuul', methods=['POST'])
+def gatekeeper():
+    redir = flask.request.form['redir']
+    LOGGER.info(f"redirecting to {redir}")
+    flask.session['sid'] = datetime.datetime.now()
+    return flask.redirect(f'{redir}', code=303)
 
 
 @app.after_request

@@ -81,16 +81,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
-    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}">
     {% if categories|count == 1 %}
-    <link rel="stylesheet" href="{{categories[0].grouper.link(template='style.css')}}" />
+    <link rel="stylesheet" href="{{categories[0].grouper.link(template='style.css')}}">
     {% else %}
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
     {% endif %}
-    <link rel="shortcut icon" href="{{ static('favicon.ico') }}" />
-    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}" />
-    <link rel="canonical" href="{{view.link(absolute=True,tag=None,_scheme='https')}}" />
+    <link rel="shortcut icon" href="{{ static('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ static('favicon.png') }}">
+    <link rel="canonical" href="{{view.link(absolute=True,tag=None,_scheme='https')}}">
 
     {% if comics.older %}
     <link rel="prev" href="{{comics.older}}">
@@ -111,19 +111,19 @@
     {% for entry in comics.entries[:1] %}
     {{ entry.card(width=32 if entry.cut else 800,height=32 if entry.cut else 800,fill_crop_x=0,fill_crop_y=0,resize="fill") }}
     {% endfor %}
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@fluffy" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@fluffy">
 
-    <meta name="description" content="Comics for {{comics.range}}" />
+    <meta name="description" content="Comics for {{comics.range}}">
 
-    <meta property="og:title" content="{{category.name}}" />
+    <meta property="og:title" content="{{category.name}}">
     {% if category.description %}
-    <meta property="og:description" content="{{category.description}}" />
+    <meta property="og:description" content="{{category.description}}">
     {% endif %}
-    <meta property="og:site_name" content="busybee" />
-    <meta property="og:type" content="webpage" />
-    <meta property="og:profile:first_name" content="fluffy" />
-    <meta property="fediverse:creator" content="@fluffy@plush.city" />
+    <meta property="og:site_name" content="busybee">
+    <meta property="og:type" content="webpage">
+    <meta property="og:profile:first_name" content="fluffy">
+    <meta property="fediverse:creator" content="@fluffy@plush.city">
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 </head>

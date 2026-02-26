@@ -7,25 +7,25 @@
     <title>busybee</title>
 
     {% set content = view(entry_type_not='sidebar',count=20) %}
-    <link rel="stylesheet" href="index.css" />
-    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}" />
-    <link rel="alternate" type="text/mf2+html" title="mf2 feed (full content)" href="{{view.link(template='everything')}}" />
-    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}" />
+    <link rel="stylesheet" href="index.css">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (full content)" href="{{view.link(template='feed')}}">
+    <link rel="alternate" type="text/mf2+html" title="mf2 feed (full content)" href="{{view.link(template='everything')}}">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed (summary)" href="{{view.link(template='feed-summary')}}">
 
     {% include '_favicon.html' %}
 
-    <link rel="openid.delegate" href="https://beesbuzz.biz/" />
-    <link rel="openid.server" href="https://openid.indieauth.com/openid" />
-    <link rel="authorization_endpoint" href="https://auth.beesbuzz.biz/" />
+    <link rel="openid.delegate" href="https://beesbuzz.biz/">
+    <link rel="openid.server" href="https://openid.indieauth.com/openid">
+    <link rel="authorization_endpoint" href="https://auth.beesbuzz.biz/">
 
-    <link rel="canonical" href="https://beesbuzz.biz/" />
+    <link rel="canonical" href="https://beesbuzz.biz/">
 
-    <meta property="og:title" content="busybee" />
-    <meta property="og:type" content="website" />
-    <meta property="og:profile:first_name" content="fluffy" />
-    <meta property="og:image" content="{{static('headshot.jpg')}}" />
-    <meta property="og:description" content="A personal website run by a multifaceted weirdo" />
-    <meta property="fediverse:creator" content="@fluffy@plush.city" />
+    <meta property="og:title" content="busybee">
+    <meta property="og:type" content="website">
+    <meta property="og:profile:first_name" content="fluffy">
+    <meta property="og:image" content="{{static('headshot.jpg')}}">
+    <meta property="og:description" content="A personal website run by a multifaceted weirdo">
+    <meta property="fediverse:creator" content="@fluffy@plush.city">
 
 </head>
 <body id="{{ template.name }}">
@@ -82,6 +82,8 @@
     </section>
 
 {% include '/_hcard.html' %}
+
+<span class="hidden"><a rel="nofollow" href="https://pit.beesbuzz.biz/"></a><a rel="nofollow" href="http://pit.beesbuzz.biz/"></a></span>
 
 <div id="webrings">
     <div id="indieweb">
