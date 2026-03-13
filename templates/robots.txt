@@ -4,5 +4,5 @@ User-Agent: *
 Disallow: /_login/
 Disallow: /_orange/
 
-
-
+User-Agent: Claudebot
+Disallow: /

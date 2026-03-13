@@ -12,7 +12,6 @@ python-memcached = "^1.59"
 publ = {version = "^0.8.0", extras = ["search", "auth"]}
 pymysql = "^1.1.1"
 hypercorn = "^0.17.3"
-user-agents = "^2.2.0"
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^2.3.2"

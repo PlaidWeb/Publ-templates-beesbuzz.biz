@@ -12,6 +12,7 @@ import publ
 import flask
 import authl.flask
 import user_agents
+import arrow
 
 logging.basicConfig(level=logging.INFO)
 
@@ -312,25 +313,34 @@ def antiscraper():
     if publ.user.get_active():
         return
 
-    # Users with an 'sid' cookie have passed the test already
-    if flask.session.get('sid'):
-        return
-
     # Send possible crawlers to the login page
     score = len(list(flask.request.args.items(True)))
-    if score > 2:
+    if 'sid' in flask.request.args:
+        # definitely a URL that didn't come from here
+        score += 5
+
+    if score > 3:
+        raise werkzeug.exceptions.NotAuthorized("y'all")
+
+    # Check the thing
+    try:
+        if (flask.session['addr'] == flask.request.remote_addr and
+            arrow.get(flask.session['sid']) > arrow.now().shift(days=-3)):
+            return
+    except (KeyError, arrow.ParserError):
+        pass
+
+    if score > 1:
         raise werkzeug.exceptions.TooManyRequests("Sentience test")
 
     return
 
-
 @app.route('/_zuul', methods=['POST'])
 def gatekeeper():
     redir = flask.request.form['redir']
-    LOGGER.info(f"redirecting to {redir}")
-    flask.session['sid'] = datetime.datetime.now()
+    flask.session['sid'] = flask.request.form['sid']
+    flask.session['addr'] = flask.request.remote_addr
     return flask.redirect(f'{redir}', code=303)
-
 
 @app.after_request
 def add_webmention_endpoint(response):
