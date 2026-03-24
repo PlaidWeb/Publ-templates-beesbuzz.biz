@@ -6,7 +6,7 @@ authors = ["fluffy <fluffy@beesbuzz.biz>"]
 package-mode = false
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.11,<3.13"
 gunicorn = {extras = ["gthreads"], version = "^23.0.0"}
 python-memcached = "^1.59"
 publ = {version = "^0.8.0", extras = ["search", "auth"]}

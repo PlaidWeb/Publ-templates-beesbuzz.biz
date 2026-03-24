@@ -96,8 +96,8 @@ article {
 }
 
 h2 span { font-size: medium; }
-h2 span:before { content: '('; }
-h2 span:after { content: ')'; }
+h2 span::before { content: '('; }
+h2 span::after { content: ')'; }
 #navigation span { display: block; text-align: right; font-size: x-small; margin-top: 1em; }
 
 h2 a.permalink { float: left; font-size: x-small; }
@@ -123,14 +123,14 @@ nav.paging li {
 nav.paging .prev {
     text-align: left;
 }
-nav.paging .prev:before {
+nav.paging .prev::before {
     content: "<- ";
 }
 
 nav.paging .next {
     text-align: right;
 }
-nav.paging .next:after {
+nav.paging .next::after {
     content: " ->";
 }
 
@@ -152,7 +152,7 @@ article .tags ul {
 article .tags li {
     display: inline;
 }
-article .tags li+li:before {
+article .tags li+li::before {
     display: inline;
     content: ' • ';
 }

@@ -55,7 +55,7 @@ main {
     margin-left: 1ex;
 }
 
-#breadcrumb li:first-child:before {
+#breadcrumb li:first-child::before {
     content: none;
 }
 

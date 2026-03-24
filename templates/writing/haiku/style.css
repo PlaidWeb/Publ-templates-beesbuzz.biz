@@ -75,7 +75,7 @@ h2 a {
     text-decoration: none;
 }
 
-h2 a:before {
+h2 a::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -134,14 +134,14 @@ nav.paging li {
 nav .prev {
     text-align: left;
 }
-nav .prev:before {
+nav .prev::before {
     content: "← ";
 }
 
 nav .next {
     text-align: right;
 }
-nav .next:after {
+nav .next::after {
     content: " →";
 }
 

@@ -106,8 +106,8 @@ img {
 }
 
 .posted .ago { font-weight: normal; }
-.posted .ago:before { content: '('; }
-.posted .ago:after { content: ')'; }
+.posted .ago::before { content: '('; }
+.posted .ago::after { content: ')'; }
 
 #news, #entries .News {
     text-align: left;
@@ -177,7 +177,7 @@ img {
     font-weight: bold;
 }
 
-.commentlink a:before {
+.commentlink a::before {
     content: "💬 ";
 }
 
@@ -396,7 +396,7 @@ ul.subcats >li >div >ul {
     color: black;
 }
 
-#nav_series ul.subcats >li >div >ul li:first-child a {
+#nav_series ul.subcats >li >div >ul li::first-child a {
     border: none;
 }
 
@@ -469,7 +469,7 @@ ul.subcats >li >div >ul {
     color: white;
 }
 
-#entry #nav_series .breadcrumb:before {
+#entry #nav_series .breadcrumb::before {
     padding: 0.5ex;
     font-size: small;
     display: inline-block;
@@ -489,10 +489,10 @@ ul.subcats >li >div >ul {
 #archive li.subseries p { display: inline; }
 #archive li.News { font-style: italic; font-size: small;}
 #archive li.News a { background: #acf; }
-#archive li.News a:before { content: 'News: '; font-weight: bold;}
+#archive li.News a::before { content: 'News: '; font-weight: bold;}
 
 #archive li.Recap a { background: #ff7; }
-#archive li.Recap a:before { content: 'Recap: '; font-weight: bold; }
+#archive li.Recap a::before { content: 'Recap: '; font-weight: bold; }
 
 #archive li span.posted { position: static; font-size: small; }
 
@@ -555,7 +555,7 @@ details summary {
     border-left: solid black 1px;
 }
 
-#support ul li:first-child {
+#support ul li::first-child {
     margin-left: 0;
     padding-left: 0;
     border-left: none;

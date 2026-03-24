@@ -143,7 +143,7 @@ a:hover {
     color: black;
 }
 
-#latest h2 a:first-child {
+#latest h2 a::first-child {
     text-decoration: none;
     color: black;
 }
@@ -160,11 +160,11 @@ a:hover {
     text-indent: 0;
 }
 
-#latest #siteinfo li:before {
+#latest #siteinfo li::before {
     content: ' | ';
 }
 
-#latest #siteinfo li:first-child:before {
+#latest #siteinfo li:first-child::before {
     content: '';
 }
 
