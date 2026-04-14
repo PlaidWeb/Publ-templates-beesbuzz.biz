@@ -34,9 +34,6 @@ h1 a, h2 a, h3 a {
 pre, code {
     font-family: var(--font-mono);
 }
-pre {
-    white-space: pre-wrap;
-}
 
 figure {
     margin: 0;
