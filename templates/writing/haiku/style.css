@@ -15,9 +15,9 @@ main::before {
     position: fixed;
     font-size: 500px;
     font-style: italic;
-    color: rgba(0,0,0,0.1);
-    top: -.7ex;
-    left: -.2ex;
+    color: rgba(0, 0, 0, 0.1);
+    top: -0.7ex;
+    left: -0.2ex;
 }
 
 #banner {
@@ -25,17 +25,30 @@ main::before {
     border-bottom: solid #333 1px;
     padding-bottom: 1em;
     margin-bottom: 1em;
-}
 
-#banner ul {
-    list-style-type: none;
-}
+    ul {
+        list-style-type: none;
 
-#banner ul li {
-    display: inline;
-}
-#banner ul li::after {
-    content: ' ';
+        li {
+            display: inline;
+
+            &::after {
+                content: " ";
+            }
+        }
+    }
+
+    h1 {
+        margin: 0;
+        padding: 0;
+        font-family: "MT Chancery", Zapfino, cursive, serif;
+        color: white;
+    }
+
+    p {
+        font-size: small;
+        font-style: italic;
+    }
 }
 
 article {
@@ -45,18 +58,22 @@ article {
     margin-right: auto;
     border: solid #ccc 1px;
     margin-bottom: 1em;
-}
 
-article header { position: relative; }
+    header {
+        position: relative;
+    }
+}
 
 .posted {
     position: absolute;
     font-size: x-small;
     top: 0;
     right: 0;
-}
 
-.posted time { display: none; }
+    time {
+        display: none;
+    }
+}
 
 h1 {
     text-transform: lowercase;
@@ -69,48 +86,40 @@ h2 {
     border-bottom: solid #999 1px;
     position: relative;
     background: rgba(0, 0, 0, 0.1);
-}
 
-h2 a {
-    text-decoration: none;
-}
+    a {
+        text-decoration: none;
 
-h2 a::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: xx-small;
-    display: block;
-    content: '#';
-    text-decoration: underline;
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: xx-small;
+            display: block;
+            content: "#";
+            text-decoration: underline;
+        }
+    }
 }
 
 a {
     color: #400;
-}
 
-a:visited {
-    color: #304;
-}
+    &:visited {
+        color: #304;
+    }
 
-a:hover {
-    color: #500;
-}
+    &:hover {
+        color: #500;
+    }
 
-a:active {
-    color: #600;
-}
+    &:active {
+        color: #600;
+    }
 
-#banner h1 {
-    margin: 0;
-    padding: 0;
-    font-family: "MT Chancery", Zapfino, cursive, serif;
-    color: white;
-}
-
-#banner p {
-    font-size: small;
-    font-style: italic;
+    #webmentions & {
+        text-decoration: none;
+    }
 }
 
 #navigation {
@@ -124,6 +133,7 @@ nav.paging ul {
     margin: 0;
     padding: 0;
 }
+
 nav.paging li {
     flex-grow: 1;
     margin: 0;
@@ -133,27 +143,41 @@ nav.paging li {
 
 nav .prev {
     text-align: left;
-}
-nav .prev::before {
-    content: "← ";
+
+    &::before {
+        content: "← ";
+    }
 }
 
 nav .next {
     text-align: right;
-}
-nav .next::after {
-    content: " →";
+
+    &::after {
+        content: " →";
+    }
 }
 
 #webmentions {
     margin-top: 2em;
+
+    ul,
+    li {
+        display: inline;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2,
+    span,
+    .source {
+        display: none;
+    }
+
+    img {
+        max-height: 1.2em;
+    }
 }
 
-.hidden { display: none; }
-
-#webmentions ul, #webmentions li { display: inline; margin: 0; padding: 0;}
-#webmentions h2, #webmentions span, #webmentions .source { display: none; }
-#webmentions a { text-decoration: none; }
-#webmentions img { max-height: 1.2em; }
-
+.hidden {
+    display: none;
 }

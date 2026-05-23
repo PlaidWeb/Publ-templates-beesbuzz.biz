@@ -13,16 +13,32 @@ main {
 #banner {
     background: #333;
     color: #ccc;
-}
 
-#banner li::before {
-    color: #999;
+    li::before {
+        color: #999;
+    }
+
+    a {
+        color: #f44;
+        text-shadow:
+            -1px 0px 0px black,
+            1px 0px 0px black,
+            0px -1px 0px black,
+            0px 1px 0px black;
+    }
+    a:hover {
+        color: #300;
+        text-shadow:
+            -1px 0px 0px rgba(255, 255, 255, 0.5),
+            1px 0px 0px rgba(255, 255, 255, 0.5),
+            0px -1px 0px rgba(255, 255, 255, 0.5),
+            0px 1px 0px rgba(255, 255, 255, 0.5);
+    }
 }
 
 a {
     color: #900;
 }
-
 a:hover {
     color: #c55;
 }
@@ -31,35 +47,19 @@ a:hover {
     background: white;
 }
 
-#banner a {
-    color: #f44;
-    text-shadow: -1px 0px 0px black,
-    1px 0px 0px black,
-    0px -1px 0px black,
-    0px 1px 0px black;
-}
-
-#banner a:hover {
-    color: #300;
-    text-shadow: -1px 0px 0px rgba(255,255,255,0.5),
-    1px 0px 0px rgba(255,255,255,0.5),
-    0px -1px 0px rgba(255,255,255,0.5),
-    0px 1px 0px rgba(255,255,255,0.5);
-}
-
-article header {
-    background: #ddd;
-}
-
 article {
     text-align: left;
     hyphens: none;
+
+    header {
+        background: #ddd;
+    }
 }
 
 .images img {
     margin: 1ex;
-    border: dotted rgba(0,0,0,0.1) 1px;
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.25);
+    border: dotted rgba(0, 0, 0, 0.1) 1px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #index .images,

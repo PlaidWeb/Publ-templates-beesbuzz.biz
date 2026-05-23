@@ -57,7 +57,7 @@
             </h2>
             <ul class="entries">
                 {% for entry in latest.entries %}
-        	    <li>{{indieweb.render_pings(entry,False)}}<a href="{{entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{ entry.title }}</a>
+        	    <li>{{indieweb.render_pings(entry,False)}}<a href="{{entry.category.url or entry.category.link}}" title="{{entry.category.description(markup=False)}}">{{entry.category.name}}</a>: {% if entry.private %}🔒{% endif %} <a href="{{entry.link}}" title="{{entry.summary(markup=False)}}">{{ entry.title }}</a>
                                 <span class="posted">{{entry.date.humanize()}}</span>
                 </li>
                 {% endfor %}

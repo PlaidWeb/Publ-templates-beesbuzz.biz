@@ -23,14 +23,15 @@ article.react {
 
 a {
     color: #007;
-}
 
-a:visited {
-    color: #306;
-}
+    &:visited {
+        color: #306;
+    }
 
-a:hover, a:active {
-    color: #75c;
+    &:hover,
+    &:active {
+        color: #75c;
+    }
 }
 
 article.private header,
@@ -42,5 +43,5 @@ nav .private {
     border-radius: 1ex;
     background-color: #edf;
     border: dotted black 1px;
-    padding: 0 .5ex;
+    padding: 0 0.5ex;
 }

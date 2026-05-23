@@ -25,42 +25,41 @@ is subject to main's overflow:hidden; */
 
 #banner {
     padding: 0;
-    text-shadow: 0px 0px 5px rgba(0,0,0,0.25),
-    -1px 0px 0px black,
-    1px 0px 0px black,
-    0px -1px 0px black,
-    0px 1px 0px black;
-}
-#banner .inner {
-    padding: 3em;
-    /* {{image('/_layout/plaidlogo.png').get_css_background(width=192,uncomment=True,quality=50,format='webp')}} */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+    text-shadow:
+        0px 0px 5px rgba(0, 0, 0, 0.25),
+        -1px 0px 0px black,
+        1px 0px 0px black,
+        0px -1px 0px black,
+        0px 1px 0px black;
 
-#banner a {
-    color: #ff9;
-}
+    .inner {
+        padding: 3em;
+        /* {{image('/_layout/plaidlogo.png').get_css_background(width=192,uncomment=True,quality=50,format='webp')}} */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 
-a {
-    color: #700;
-}
-
-a:visited {
-    color: #903;
-}
-
-a:hover {
-    color: #900;
-}
-
-#banner {
+    a {
+        color: #ff9;
+    }
     color: #ff9;
     /* {{image('/_layout/plaidbg-dark.png').get_css_background(width=192,uncomment=True,quality=25,format='webp')}} */
     background-color: #511;
     background-attachment: fixed;
     position: relative;
     z-index: 5;
+}
+
+a {
+    color: #700;
+
+    &:visited {
+        color: #903;
+    }
+
+    &:hover {
+        color: #900;
+    }
 }
 
 main {
@@ -92,15 +91,11 @@ nav.paging {
 article.content header,
 #entry article header,
 article.react {
-    background-color: rgba(255,255,0,0.25);
-}
-
-article header {
-    padding-top: 0.5ex;
+    background-color: rgba(255, 255, 0, 0.25);
 }
 
 #userinfo.unauthorized {
-    background-color: rgba(255,192,0,0.25);
+    background-color: rgba(255, 192, 0, 0.25);
 }
 
 article.private header,
@@ -112,22 +107,29 @@ nav .private {
     border-radius: 1ex;
     background-color: #edf;
     border: dotted black 1px;
-    padding: 0 .5ex;
+    padding: 0 0.5ex;
 }
 
 article {
     padding-bottom: 1ex;
     margin-bottom: 0;
+
+    header {
+        padding-top: 0.5ex;
+    }
 }
 
 table {
     border-collapse: collapse;
     border: solid black 3px;
 }
-td, th {
+
+td,
+th {
     border: solid black 1px;
     padding: 0.1ex 0.5ex;
 }
+
 th {
     background: #ccc;
     border: solid black 1px;

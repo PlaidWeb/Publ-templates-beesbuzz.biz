@@ -2,19 +2,37 @@
 @import url('{{static("fonts/pixel-header.css")}}');
 @import url('{{static("webmentions.css")}}');
 
-
 html {
     background: #333;
-    font-family: 'Kubasta', sans-serif;
+    font-family: "Kubasta", sans-serif;
     color: white;
 }
 
-article .tags { font-size: x-small; }
-article .tags ul {display: inline; margin:0; padding:0; list-style-type: none;}
-article .tags li { display: inline; margin: 0 0 0 1em; padding: 0; }
-article.tags a { text-decoration: none; }
-article .tags a::before { content:'['; color: white; }
-article .tags a::after { content:']'; color: white;}
+article .tags {
+    font-size: x-small;
+}
+article .tags ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+article .tags li {
+    display: inline;
+    margin: 0 0 0 1em;
+    padding: 0;
+}
+article.tags a {
+    text-decoration: none;
+}
+article .tags a::before {
+    content: "[";
+    color: white;
+}
+article .tags a::after {
+    content: "]";
+    color: white;
+}
 
 main {
     background: black;
@@ -23,7 +41,9 @@ main {
     position: relative;
 }
 
-#banner li { list-style-type: none; }
+#banner li {
+    list-style-type: none;
+}
 
 #navigation {
     float: right;
@@ -51,7 +71,7 @@ main {
 }
 
 #breadcrumb li::before {
-    content: '»\00a0';
+    content: "»\00a0";
     margin-left: 1ex;
 }
 
@@ -62,42 +82,53 @@ main {
 #subcats {
     display: inline-block;
     list-style-type: none;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
-
-h1, h2, h3 {
-    font-family: 'pixel-header', 'C64 Pro mono', '8bitoperator', 'Terminal', 'Monaco', 'Inconsolata', monospace;
+h1,
+h2,
+h3 {
+    font-family:
+        "pixel-header", "C64 Pro mono", "8bitoperator", "Terminal", "Monaco",
+        "Inconsolata", monospace;
     line-height: 1.6em;
 }
 
 a {
     color: #7ff;
-    text-shadow: 0px 0px 2px #133, 0px 0px 4px rgba(127,255,255,0.5);
+    text-shadow:
+        0px 0px 2px #133,
+        0px 0px 4px rgba(127, 255, 255, 0.5);
 }
 
 a:hover {
     color: #f7f;
-    text-shadow: 0px 0px 2px #133, 0px 0px 4px rgba(255,127,255,0.5);
+    text-shadow:
+        0px 0px 2px #133,
+        0px 0px 4px rgba(255, 127, 255, 0.5);
 }
 
 h1 {
     color: #f77;
     text-align: center;
-    text-shadow: 0px 0px 3px #311, 0px 0px 6px rgba(255,127,127,0.5);
+    text-shadow:
+        0px 0px 3px #311,
+        0px 0px 6px rgba(255, 127, 127, 0.5);
     text-transform: uppercase;
 }
 
 h1 a {
     color: #f77;
-    text-shadow: 0px 0px 5px #311, 0px 0px 12px rgba(255,127,127,0.5);
+    text-shadow:
+        0px 0px 5px #311,
+        0px 0px 12px rgba(255, 127, 127, 0.5);
 }
 
 h2 {
     color: #ff7;
     margin: 0;
 }
-
 
 h2 a {
     color: #ff7;
@@ -106,7 +137,9 @@ h2 a {
 
 h2 a:hover {
     color: #f7f;
-    text-shadow: 0px 0px 3px #133, 0px 0px 6px rgba(255,127,255,0.5);
+    text-shadow:
+        0px 0px 3px #133,
+        0px 0px 6px rgba(255, 127, 255, 0.5);
 }
 
 #content {
@@ -122,7 +155,9 @@ article {
     max-width: calc(552px + 1ex);
     box-sizing: border-box;
     color: white;
-    text-shadow: 0px 0px 2px #333, 0px 0px 4px rgba(255,255,255,0.25);
+    text-shadow:
+        0px 0px 2px #333,
+        0px 0px 4px rgba(255, 255, 255, 0.25);
 }
 
 article .content {
@@ -150,7 +185,7 @@ header .posted .time {
 }
 
 header .posted .ago {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     display: block;
     font-size: 70%;
 }
@@ -181,4 +216,6 @@ header .posted .ago {
     }
 }
 
-.hidden { display: none; }
+.hidden {
+    display: none;
+}

@@ -4,13 +4,19 @@ html {
     background: #ccc;
 }
 
-a { color: #900; }
-a:visited { color: #833; }
-a:hover { color: #c11; }
+a {
+    color: #900;
+}
+a:visited {
+    color: #833;
+}
+a:hover {
+    color: #c11;
+}
 
 main {
     border: solid black 1px;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
     background: white;
     color: black;
 }
@@ -18,11 +24,11 @@ main {
 #banner {
     background: #07a;
     color: white;
-}
 
-#banner a,
-#banner a:visited {
-    color: white;
+    a,
+    a:visited {
+        color: white;
+    }
 }
 
 #navigation {
@@ -32,33 +38,36 @@ main {
 article header {
     background: #09c;
     color: white;
-    box-shadow: 0 5px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 3px rgba(0, 0, 0, 0.2);
     text-align: left;
+
+    a,
+    a:visited {
+        color: #ffc;
+        height: 100%;
+        padding: 1ex 0;
+        margin-left: -3em;
+        padding-left: 3em;
+        text-decoration: none;
+        text-shadow:
+            -1px 0px 0px rgba(0, 0, 0, 0.25),
+            1px 0px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    a:hover {
+        color: #ff9;
+    }
 }
 
-#index .thumb img, #everything .thumb img {
-    box-shadow: 4px 4px 6px rgba(0,0,0,0.25);
+#index .thumb img,
+#everything .thumb img {
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
     float: left;
     margin: 0 1em 1ex 0;
 }
 
-article header a,
-article header a:visited {
-    color: #ffc;
-    height: 100%;
-    padding: 1ex 0;
-    margin-left: -3em;
-    padding-left: 3em;
-    text-decoration: none;
-    text-shadow: -1px 0px 0px rgba(0,0,0,0.25), 1px 0px 0px rgba(0,0,0,0.25);
-}
-
-article header a:hover {
-    color: #ff9;
-}
-
 blockquote {
-    border-left: solid rgba(0,0,0,0.25) 3px;
+    border-left: solid rgba(0, 0, 0, 0.25) 3px;
     margin-left: 2em;
     padding-left: 1.5ex;
 }
@@ -71,10 +80,13 @@ table {
     border-collapse: collapse;
     border: solid black 3px;
 }
-td, th {
+
+td,
+th {
     border: solid black 1px;
     padding: 0.1ex 0.5ex;
 }
+
 th {
     background: #ccc;
     border: solid black 1px;

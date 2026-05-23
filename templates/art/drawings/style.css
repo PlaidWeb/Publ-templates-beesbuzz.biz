@@ -1,4 +1,4 @@
-@import url('../style.css');
+@import url("../style.css");
 
 #index article,
 #everything article {
@@ -7,12 +7,15 @@
     margin: 1ex;
     border-radius: 1em;
     overflow: hidden;
-}
 
-#index article .content,
-#everything article .content {
-    margin: 0;
-    padding: 0;
+    .content {
+        margin: 0;
+        padding: 0;
+    }
+
+    .tags {
+        display: none;
+    }
 }
 
 figure {
@@ -30,10 +33,5 @@ figure {
 
 #index .posted,
 #everything .posted {
-    display: none;
-}
-
-#index article .tags,
-#everything article .tags {
     display: none;
 }
