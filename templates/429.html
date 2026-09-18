@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html><head><title>Sentience test</title>
-<script>
-window.addEventListener("load", () => {
-    document.forms['proxy'].submit();
-});
-</script>
+<html><head><title>{{ error.code }} {{ error.message }}</title>
 </head>
 <body>
 <h1>Sentience check</h1>
 
+<p>Unfortunately, my site is being completely overrun with badly-written crawler bots, as is much of the Internet.</p>
+
+<p>If you're a bot author, please learn to take "no" for an answer.</p>
+
+<p>If you're a human, count the number of letters in the word "strawberry" and enter it as a number.</p>
+
+<p>If you keep seeing this page and would like not to, consider <a href="{{ login }}">logging in</a>.</p>
+
 <form method="POST" id='proxy' action="{{url_for('gatekeeper')}}">
+    <input type="number" name="check" placeholder="the answer is ten">
     <input type="hidden" name="redir" value="{{request.full_path}}">
     <input type="hidden" name="sid" value="{{arrow.now().format('X')}}">
     <input type="submit" value="I'm actually here">

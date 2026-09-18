@@ -125,7 +125,9 @@
     <meta property="og:profile:first_name" content="fluffy">
     <meta property="fediverse:creator" content="@fluffy@plush.city">
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    {% block analytics %}
+    {% include '/_analytics.html' %}
+    {% endblock %}
 </head>
 <body>
     <div id="container">

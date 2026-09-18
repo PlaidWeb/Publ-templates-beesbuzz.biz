@@ -31,7 +31,9 @@
     {% else %}<meta name="description" content="Comic for {{entry.date.format('YYYY-MM-DD')}}">
     {% endif %}
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    {% block analytics %}
+    {% include '/_analytics.html' %}
+    {% endblock %}
 </head>
 <body id="{{ template.name }}">
 

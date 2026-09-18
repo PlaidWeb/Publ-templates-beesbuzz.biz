@@ -311,13 +311,24 @@ def keymaster(sid):
 @app.before_request
 def antiscraper():
     """ Dissuade aggressive bots from pummeling the site """
+    # Don't fire for login callbacks
+    if flask.request.path.startswith('/_cb/') or flask.request.path.startswith('/_login/'):
+        return
+
+    if '&amp;' in flask.request.url:
+        raise werkzeug.exceptions.BadRequest("learn how HTML entities work, you stupid bot")
 
     # Logged-in users have passed the test already
     if publ.user.get_active():
         return
 
+    if 'sid' in flask.request.args:
+        # definitely a URL that didn't come from here
+        raise werkzeug.exceptions.Forbidden("y'all")
+
     # Send possible crawlers to the login page
     score = len(list(flask.request.args.items(True)))
+    print(flask.request.url,score)
     if score > 1:
         # Check for an existing sentience token
         try:
@@ -328,7 +339,17 @@ def antiscraper():
         except (KeyError, ValueError, arrow.ParserError):
             pass
 
-        raise werkzeug.exceptions.TooManyRequests("Sentience test")
+        if publ.user.get_active().is_bot:
+            # bots shouldn't be here but...
+            return flask.redirect(flask.request.path, code=302)
+
+        raise werkzeug.exceptions.TooManyRequests("Sentience test", retry_after=3600)
+        # raise werkzeug.exceptions.ServiceUnavailable("fucking chill y'all")
+
+    # remove old cruft from the session
+    for key in ('sid', 'addr', 'ua'):
+        if key in flask.session:
+            flask.session.pop(key)
 
     return
 
@@ -336,6 +357,10 @@ def antiscraper():
 @app.route('/_zuul', methods=['POST'])
 def gatekeeper():
     """ Check the test response and set the salted token upon passing """
+
+    if flask.request.form.get('check') != '10':
+        raise werkzeug.exceptions.Forbidden("Try again")
+
     try:
         sid = float(flask.request.form['sid'])
         if arrow.get(sid) > arrow.now():

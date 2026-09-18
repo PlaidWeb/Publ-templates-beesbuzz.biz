@@ -1,27 +1,25 @@
+/* this CSS file is run through jinja2, which drives formatters et al nuts */
 @import url('{{static("index.css")}}');
 
-/* stuff that gets run through jinja2, which drives formatters et al nuts */
 h1 span {
-    /* {{image('_layout/favicon-big.png').get_css_background(uncomment=True)}} */
+    {{image('_layout/favicon-big.png').get_css_background()}}
 }
 
-/* {% for link in view(entry_type='linkbar').entries %}
+{% for link in view(entry_type='linkbar').entries %}
 {%- set icon=link.icon or (link.title.lower()~'.svg') %}
-*/
 #links .link-{{icon.split('.')[0]}} {
-    /*{{link.image('_layout/'~icon).get_css_background(uncomment=True,width=64,height=64,quality=50,format='webp')}}*/
+    {{link.image('_layout/'~icon).get_css_background(width=64,height=64,quality=50,format='webp')}}
     filter: drop-shadow(0 0 0px rgba(255,255,255,0));
     position: relative;
     z-index: 0;
 }
-/* {% endfor %} */
+{% endfor %}
 
-/* {% for cat in category.subcats %} */
+{% for cat in category.subcats %}
 #content li.cat_{{cat.basename}}  {
-    /*{{image('_layout/cat-'~cat.basename~'.jpg').get_css_background(uncomment=True,width=cat.get('tile-width',240)|int,quality=35,format='webp')}}*/
+    {{image('_layout/cat-'~cat.basename~'.jpg').get_css_background(
+        width=cat.get('tile-width',240)|int,
+        quality=35,
+        format='webp')}}
 }
-/* {% endfor %} */
-
-#content li.store {
-    /*{{image('_layout/cat-store.jpg').get_css_background(uncomment=True,width=240,quality=35,format='webp')}}*/
-}
+{% endfor %}

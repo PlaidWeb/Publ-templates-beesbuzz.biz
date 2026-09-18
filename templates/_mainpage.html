@@ -27,6 +27,9 @@
     <meta property="og:description" content="A personal website run by a multifaceted weirdo">
     <meta property="fediverse:creator" content="@fluffy@plush.city">
 
+    {% block analytics %}
+    {% include '/_analytics.html' %}
+    {% endblock %}
 </head>
 <body id="{{ template.name }}">
 
@@ -74,7 +77,7 @@
 
             <ul id="siteinfo">
                 <li><a href="/about">About/contact</a></li>
-                <li><a href="/legal">Legal/privacy</a></li>
+                <li><a href="/legal" rel="privacy-policy">Legal/privacy</a></li>
                 <li><a href="/sitemap">Site map</a></li>
             </ul>
         </li>

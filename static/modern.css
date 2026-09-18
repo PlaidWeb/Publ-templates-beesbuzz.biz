@@ -418,14 +418,14 @@ nav.paging {
 a[href*="amzn.to"]::after,
 a[href*="gumroad.com"][href*="a=799797363"]::after,
 a[href*="join.fastmail.com"]::after,
-.affiliate::after {
+a.affiliate::after {
     content: "($)";
     color: var(--affiliate-link-color);
     font-size: x-small;
     text-decoration: none;
 }
 
-.affiliates {
+aside.affiliates {
     font-size: small;
     font-style: italic;
     border: dotted black 1px;
@@ -464,10 +464,6 @@ iframe {
         margin: 0;
         padding: 0 1ex;
     }
-}
-
-.comment-link::before {
-    content: " •\00a0";
 }
 
 #userinfo {

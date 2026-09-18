@@ -3,6 +3,8 @@ Sitemap: {{view.link(template="sitemap.xml",absolute=True)}}
 User-Agent: *
 Disallow: /_login/
 Disallow: /_orange/
+Disallow: /_zuul
+Disallow: /_cb/
 
 User-Agent: Claudebot
 Disallow: /
