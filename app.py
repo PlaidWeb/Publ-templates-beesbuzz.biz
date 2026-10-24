@@ -54,10 +54,6 @@ config = {
     # so the cache timeout mostly is just there so that humanized
     # dates (e.g. "1 hour ago") update relatively often.
     'cache': {
-        'CACHE_TYPE': 'memcached',
-        'CACHE_DEFAULT_TIMEOUT': 3613,
-        'CACHE_KEY_PREFIX': 'beesbuzz.biz',
-    } if not os.environ.get('FLASK_DEBUG') else {
         'CACHE_NO_NULL_WARNING': True
     },
 

@@ -138,14 +138,14 @@ valkey = ["valkey (>=6.1.0)"]
 
 [[package]]
 name = "certifi"
-version = "2026.7.22"
+version = "2026.10.23"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "certifi-2026.7.22-py3-none-any.whl", hash = "sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"},
-    {file = "certifi-2026.7.22.tar.gz", hash = "sha256:741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55"},
+    {file = "certifi-2026.10.23-py3-none-any.whl", hash = "sha256:e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1"},
+    {file = "certifi-2026.10.23.tar.gz", hash = "sha256:a9895e6e2758b371e0545e321a3a8fd1fcfd9829ada8824a936dfb16aaaf36cd"},
 ]
 
 [[package]]
@@ -871,14 +871,14 @@ files = [
 
 [[package]]
 name = "mastodon-py"
-version = "2.2.2"
+version = "2.3.3"
 description = "Python wrapper for the Mastodon API"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "mastodon_py-2.2.2-py3-none-any.whl", hash = "sha256:d18a107517836c783c93c9f2e713b4fad909fcd017f5036d2ce93d3dfd781904"},
-    {file = "mastodon_py-2.2.2.tar.gz", hash = "sha256:07131f6ac8820462de25b7641622b01b22f2b9ab6b3e7252749442f51fd30778"},
+    {file = "mastodon_py-2.3.3-py3-none-any.whl", hash = "sha256:12fccdbc3765bb4d06079eb7cf8e37aca6d06ec6a48da993141dd865955d5444"},
+    {file = "mastodon_py-2.3.3.tar.gz", hash = "sha256:a3cda3db86d65809957c978aef8ac7fb3dfc93abfeda3f1c6bdef4c79090ab7b"},
 ]
 
 [package.dependencies]
@@ -894,6 +894,7 @@ magic = ["python-magic ; platform_system != \"Windows\"", "python-magic-bin ; pl
 test = ["pytest", "pytest-cov", "pytest-mock", "pytest-recording", "pytest-retry", "pytz", "requests-mock", "vcrpy"]
 test-old = ["pytest", "pytest-cov", "pytest-mock", "pytest-recording", "pytz", "requests-mock", "vcrpy"]
 webpush = ["cryptography (>=1.6.0)", "http_ece (>=1.0.5)"]
+websocket-streaming = ["websocket-client (>=1.0.0)"]
 
 [[package]]
 name = "mf2py"
@@ -1130,15 +1131,15 @@ files = [
 
 [[package]]
 name = "pycparser"
-version = "3.11"
+version = "3.12"
 description = "C parser in Python"
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.11"
 groups = ["main"]
 markers = "implementation_name != \"PyPy\""
 files = [
-    {file = "pycparser-3.11-py3-none-any.whl", hash = "sha256:51d5a8ba2be0bbe440b99d2112604c95bbbc3c2748a64260186c541e1729cd80"},
-    {file = "pycparser-3.11.tar.gz", hash = "sha256:d875f09c3507d00e1aba0eecc6dcadc1352f30fff09dc6bff2f1c2935e97c2bc"},
+    {file = "pycparser-3.12-py3-none-any.whl", hash = "sha256:a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e"},
+    {file = "pycparser-3.12.tar.gz", hash = "sha256:f03387877eab82ce01bbdfd0ba7252ee55a90b1c708d5129e2ce915475cf1db6"},
 ]
 
 [[package]]
@@ -1174,18 +1175,19 @@ rsa = ["cryptography (>=46.0.7)"]
 
 [[package]]
 name = "python-dateutil"
-version = "2.9.0.post0"
+version = "3.0.0"
 description = "Extensions to the standard Python datetime module"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 groups = ["main"]
 files = [
-    {file = "python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"},
-    {file = "python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"},
+    {file = "python_dateutil-3.0.0-py2.py3-none-any.whl", hash = "sha256:3c79630202e4152c6add678446984236efe4f57e84d8e892aab0637bab82e9fd"},
+    {file = "python_dateutil-3.0.0.tar.gz", hash = "sha256:7ebcb3c29a92f3ceafe79a7a48a5c45677e9e004bbeec5742ac0bbb00560b7a2"},
 ]
 
 [package.dependencies]
-six = ">=1.5"
+six = ">=1.6"
+tzdata = "*"
 
 [[package]]
 name = "python-memcached"
@@ -1254,14 +1256,14 @@ files = [
 
 [[package]]
 name = "soupsieve"
-version = "2.10"
+version = "3.0.4"
 description = "A modern CSS selector implementation for Beautiful Soup."
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.11.5"
 groups = ["main"]
 files = [
-    {file = "soupsieve-2.10-py3-none-any.whl", hash = "sha256:8596eb8967d744174820280fa62b4542a2e955bfaccca73ed8a13c6eb8e9b502"},
-    {file = "soupsieve-2.10.tar.gz", hash = "sha256:49e9380d7d2905463583bafe285e818c7366a9ed7b3aee221c1ac79c905d8bc0"},
+    {file = "soupsieve-3.0.4-py3-none-any.whl", hash = "sha256:8412826614f9c632227067d0985aeb9f584bd15efc852955430e097a9fe7afbf"},
+    {file = "soupsieve-3.0.4.tar.gz", hash = "sha256:924fab84ae21604c19e175e1f39815eb6fa83ba23836e09e9de180925e5bc4c0"},
 ]
 
 [[package]]
@@ -1472,5 +1474,5 @@ h11 = ">=0.16.0,<1"
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.11,<3.13"
-content-hash = "e79a43d88c8b6f3cec20c9f28778b7e6b66304dc13970ba1b567b7d427bf9741"
+python-versions = ">=3.12,<3.13"
+content-hash = "1e2c8488541a73fa0384bd40e6a97e98ee3cd3a21c40a9ebcf9327d244490917"
